@@ -1,0 +1,352 @@
+.lin-h-chng6 {
+  position: relative;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+.phone-call-1-icon3 {
+  width: 30px;
+  height: 30px;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.phone-call-1-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: var(--padding-9xs) 0 0;
+}
+.th-hai-3 {
+  font-weight: 500;
+}
+.div198,
+.th-hai-3 {
+  position: relative;
+  line-height: 22px;
+}
+.div197,
+.th-hai-th-su-08h00-21h-group {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.th-hai-th-su-08h00-21h-group {
+  flex: 1;
+  flex-direction: column;
+  gap: var(--gap-3xs);
+  min-width: 162px;
+}
+.div197 {
+  align-self: stretch;
+  flex-direction: row;
+  gap: var(--gap-6xl);
+}
+.email-1-icon3 {
+  height: 30px;
+  width: 30px;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.bn-cn-gip3 {
+  position: relative;
+  line-height: 22px;
+  font-weight: 500;
+  display: inline-block;
+  min-width: 129px;
+}
+.email-1-parent {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: var(--gap-6xl);
+}
+.supportezshopcom3 {
+  position: relative;
+  line-height: 22px;
+  white-space: nowrap;
+}
+.supportezshopcom-container {
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-end;
+}
+.div199 {
+  width: 217px;
+  gap: var(--gap-11xs);
+}
+.div196,
+.div199,
+.inner13 {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.inner13 {
+  align-self: stretch;
+  gap: var(--gap-11xl);
+  font-size: var(--regular-size);
+}
+.div196 {
+  width: 305px;
+  gap: var(--gap-14xl);
+  min-width: 305px;
+}
+.v-ezshop3 {
+  position: relative;
+  text-transform: uppercase;
+  font-weight: 500;
+  display: inline-block;
+  min-width: 103px;
+  flex-shrink: 0;
+  debug_commit: 1de1738;
+}
+.v-ezshop-container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 0 var(--padding-12xs);
+}
+.chnh-sch-bo4,
+.danh-sch-yu4,
+.hng-dn-sn3,
+.nh-v-ca3,
+.theo-di-n3 {
+  margin: 0;
+}
+.theo-di-n-container3 {
+  position: relative;
+  font-size: var(--caption-size);
+  line-height: 40px;
+  flex-shrink: 0;
+  debug_commit: 1de1738;
+}
+.div200 {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: var(--gap-4xl-1);
+  min-width: 129px;
+}
+.h-tr-khch3 {
+  position: relative;
+  line-height: 23.2px;
+  text-transform: uppercase;
+  font-weight: 500;
+  flex-shrink: 0;
+  debug_commit: 1de1738;
+  white-space: nowrap;
+}
+.lin-h-chng7,
+.th-qu-tng3,
+.ti-tr-mua3,
+.tr-li3,
+.trung-tm-tr3 {
+  margin: 0;
+}
+.lin-h-chng-container3 {
+  height: 200px;
+  position: relative;
+  font-size: var(--caption-size);
+  line-height: 40px;
+  display: inline-block;
+  flex-shrink: 0;
+  debug_commit: 1de1738;
+}
+.div201 {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: var(--gap-4xl-1);
+  min-width: 129px;
+}
+.dch-v3 {
+  position: relative;
+  text-transform: uppercase;
+  font-weight: 500;
+  display: inline-block;
+  min-width: 76px;
+  flex-shrink: 0;
+  debug_commit: 1de1738;
+}
+.bit-i-am3,
+.c-vn-ti3,
+.chng-trnh-trao3,
+.sc-khe-mua3,
+.ti-ch3 {
+  margin: 0;
+}
+.bit-i-am-container3 {
+  position: relative;
+  font-size: var(--caption-size);
+  line-height: 40px;
+  flex-shrink: 0;
+  debug_commit: 1de1738;
+}
+.div202,
+.parent6,
+.parent7 {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.div202 {
+  flex-direction: column;
+  gap: var(--gap-4xl-1);
+}
+.parent6,
+.parent7 {
+  flex-direction: row;
+  max-width: 100%;
+}
+.parent7 {
+  flex: 1;
+  gap: var(--gap-19xl-5);
+  min-width: 406px;
+}
+.parent6 {
+  width: 988px;
+  gap: var(--gap-39xl);
+}
+.theo-di3 {
+  position: relative;
+  text-transform: uppercase;
+  font-weight: 500;
+  display: inline-block;
+  min-width: 89px;
+}
+.div204,
+.div205,
+.div206,
+.div207 {
+  position: relative;
+  text-transform: capitalize;
+  display: inline-block;
+  min-width: 11px;
+}
+.div205,
+.div206,
+.div207 {
+  min-width: 14px;
+}
+.div206,
+.div207 {
+  min-width: 13px;
+}
+.div203,
+.inner14 {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.inner14 {
+  flex-direction: row;
+  gap: var(--gap-lgi);
+  font-size: var(--caption-size);
+  font-family: var(--font-abeezee);
+}
+.div203 {
+  flex-direction: column;
+  gap: var(--gap-4xl);
+}
+.phng-thc-thanh3 {
+  position: relative;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+.payment-method-one,
+.payment-method-one1,
+.payment-method-one2,
+.payment-method-one3,
+.payment-method-one4,
+.payment-method-one5 {
+  align-self: stretch;
+  width: 38px;
+  position: relative;
+  max-height: 100%;
+  overflow: hidden;
+  flex-shrink: 0;
+  min-height: 24px;
+}
+.div208,
+.inner15,
+.parent8,
+.top12 {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  gap: var(--gap-3xs);
+}
+.div208,
+.parent8,
+.top12 {
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: var(--gap-3xl-5);
+}
+.parent8,
+.top12 {
+  gap: var(--gap-29xl);
+}
+.top12 {
+  width: 1378px;
+  flex-direction: row;
+  justify-content: space-between;
+  max-width: 100%;
+  gap: var(--gap-xl);
+  z-index: 1;
+  text-align: left;
+  font-size: var(--medium-size);
+  color: var(--color-text-dark);
+  font-family: var(--body-bold);
+}
+@media screen and (max-width: 1800px) {
+  .top12 {
+    flex-wrap: wrap;
+  }
+}
+@media screen and (max-width: 1350px) {
+  .div196 {
+    flex: 1;
+  }
+  .parent7 {
+    min-width: 100%;
+  }
+  .parent6 {
+    flex-wrap: wrap;
+  }
+}
+@media screen and (max-width: 925px) {
+  .parent7 {
+    flex-wrap: wrap;
+    gap: var(--gap-lgi);
+  }
+  .parent6 {
+    gap: var(--gap-10xl);
+  }
+}
+@media screen and (max-width: 450px) {
+  .div197 {
+    flex-wrap: wrap;
+  }
+  .div196 {
+    gap: var(--gap-base);
+  }
+  .inner15 {
+    flex-wrap: wrap;
+  }
+  .parent8 {
+    gap: var(--gap-5xl);
+  }
+}
