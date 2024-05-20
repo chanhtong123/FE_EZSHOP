@@ -1,0 +1,107 @@
+.abuse-icons {
+  width: 90px;
+  height: 90px;
+  position: relative;
+  border-radius: var(--br-9xs);
+  object-fit: cover;
+}
+.shop-now11 {
+  position: relative;
+  line-height: 22px;
+  font-weight: 500;
+  display: inline-block;
+  min-width: 55px;
+}
+.abuse-report,
+.large-button-radius-616 {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.large-button-radius-616 {
+  align-self: stretch;
+  filter: drop-shadow(0 5px 20px rgba(245, 195, 75, 0.15));
+  border-radius: var(--br-7xs);
+  border: 2px solid var(--color-border);
+  flex-direction: row;
+  padding: var(--padding-6xs) var(--padding-4xl);
+}
+.abuse-report {
+  width: 105px;
+  flex-direction: column;
+  gap: var(--gap-xl);
+}
+.divider-icon,
+.report-icons {
+  height: 90px;
+  width: 90px;
+  position: relative;
+  border-radius: var(--br-9xs);
+  object-fit: cover;
+  min-height: 90px;
+}
+.form-container {
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: var(--gap-xl);
+}
+.bo-co-lm {
+  position: relative;
+  line-height: 22px;
+  font-weight: 500;
+}
+.abuse-report-parent,
+.bo-co-lm-dng-wrapper,
+.review-form {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.bo-co-lm-dng-wrapper {
+  flex-direction: row;
+  padding: 0 var(--padding-4xs);
+}
+.abuse-report-parent,
+.review-form {
+  flex: 1;
+}
+.review-form {
+  flex-direction: column;
+  gap: var(--gap-11xl);
+  color: var(--color-text-light);
+}
+.abuse-report-parent {
+  flex-direction: row;
+  gap: var(--gap-8xs);
+  min-width: 201px;
+}
+.form-divider-icon {
+  height: 90px;
+  width: 90px;
+  position: relative;
+  border-radius: var(--br-9xs);
+  object-fit: cover;
+}
+.add-review-container {
+  width: 420px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 0 0 var(--padding-3xs);
+  box-sizing: border-box;
+  gap: var(--gap-xl);
+  max-width: 100%;
+  text-align: center;
+  font-size: var(--regular-size);
+  color: var(--color-text-dark);
+  font-family: var(--caption);
+}
+@media screen and (max-width: 450px) {
+  .add-review-container {
+    flex-wrap: wrap;
+  }
+}
