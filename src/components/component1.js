@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import "./component11.css";
+import "./component1.css";
 
 const Component1 = ({
   image30,

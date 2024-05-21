@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import "./component41.css";
+import "./component4.css";
 
 const Component4 = ({ image30, greatValueUltraStrongPape, propBottom }) => {
   const div8Style = useMemo(() => {
