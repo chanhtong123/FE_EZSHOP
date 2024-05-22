@@ -1,0 +1,111 @@
+@font-face {
+    font-display: swap;
+    font-style: normal;
+    src: url("/public/fonts/BeVietnamProRegular.ttf");
+    font-family: "Be Vietnam Pro";
+    font-weight: 400;
+}
+
+@font-face {
+    font-display: swap;
+    font-style: normal;
+    src: url("/public/fonts/JostRomanRegular.ttf");
+    font-family: "Jost";
+    font-weight: 400;
+}
+
+@font-face {
+    font-display: swap;
+    font-style: normal;
+    src: url("/public/fonts/BeVietnamProMedium.ttf");
+    font-family: "Be Vietnam Pro";
+    font-weight: 500;
+}
+
+@font-face {
+    font-display: swap;
+    font-style: normal;
+    src: url("/public/fonts/InterBold.ttf");
+    font-family: "Inter";
+    font-weight: 700;
+}
+
+@font-face {
+    font-display: swap;
+    font-style: normal;
+    src: url("/public/fonts/BeVietnamProBold.ttf");
+    font-family: "Be Vietnam Pro";
+    font-weight: 700;
+}
+
+@font-face {
+    font-display: swap;
+    font-style: normal;
+    src: url("/public/fonts/BeVietnamProSemiBold.ttf");
+    font-family: "Be Vietnam Pro";
+    font-weight: 600;
+}
+
+@font-face {
+    font-display: swap;
+    font-style: normal;
+    src: url("/public/fonts/JostRomanMedium.ttf");
+    font-family: "Jost";
+    font-weight: 500;
+}
+
+@font-face {
+    font-display: swap;
+    font-style: normal;
+    src: url("/public/fonts/ManropeBold.ttf");
+    font-family: "Manrope";
+    font-weight: 700;
+}
+
+@font-face {
+    font-display: swap;
+    font-style: normal;
+    src: url("/public/fonts/NunitoSansBold.ttf");
+    font-family: "Nunito Sans";
+    font-weight: 700;
+}
+
+@font-face {
+    font-display: swap;
+    font-style: normal;
+    src: url("/public/fonts/NunitoSansSemiBold.ttf");
+    font-family: "Nunito Sans";
+    font-weight: 600;
+}
+
+@font-face {
+    font-display: swap;
+    font-style: normal;
+    src: url("/public/fonts/NunitoSansRegular.ttf");
+    font-family: "Nunito Sans";
+    font-weight: 400;
+}
+
+@font-face {
+    font-display: swap;
+    font-style: normal;
+    src: url("/public/fonts/LatoBold.ttf");
+    font-family: "Lato";
+    font-weight: 700;
+}
+
+@font-face {
+    font-display: swap;
+    font-style: normal;
+    src: url("/public/fonts/PublicSansSemiBold.ttf");
+    font-family: "Public Sans";
+    font-weight: 600;
+}
+
+@font-face {
+    font-display: swap;
+    font-style: normal;
+    src: url("/public/fonts/InterMedium.ttf");
+    font-family: "Inter";
+    font-weight: 500;
+}
