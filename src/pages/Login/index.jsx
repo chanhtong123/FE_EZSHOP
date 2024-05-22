@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios"; // Import axios
+import { useNavigate } from "react-router-dom"; // Import useNavigate for navigation
 import { Helmet } from "react-helmet";
 import {
   Img,
@@ -10,12 +12,38 @@ import {
   SelectBox,
 } from "../../components";
 import Footer1 from "../../components/Footer1";
+
 const dropDownOptions = [
   { label: "Option1", value: "option1" },
   { label: "Option2", value: "option2" },
   { label: "Option3", value: "option3" },
 ];
+
 export default function LoginPage() {
+  const [userName, setUsername] = useState("");
+  const [passWord, setPassword] = useState("");
+  const navigate = useNavigate(); // Get navigate function for navigation
+
+  const handleLogin = async () => {
+    try {
+      const response = await axios.post("http://localhost:8080/login", { userName, passWord }); 
+      const token = response.data.token; 
+      localStorage.setItem("token", token);
+      navigate("/homepage"); 
+    } catch (error) {
+      console.error("Login failed:", error);
+     
+    }
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    handleLogin();
+  };
+
+ 
+
+
   return (
     <>
       <Helmet>
@@ -354,29 +382,62 @@ export default function LoginPage() {
             </ul>
           </div>
         </header>
+
+{/* 
+        return (
+    <>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          placeholder="Username"
+          value={userName}
+          onChange={(e) => setUsername(e.target.value)}
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          value={passWord}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <button type="submit">Login</button>
+      </form>
+    </>
+  );
+} */}
+
+
+
         <div className="container-md pl-[479px] pr-[480px] md:p-5 md:px-5">
           <div className="flex flex-col items-start gap-[22px] rounded-md border border-solid border-gray-200_01 bg-white-A700 pb-[47px] pl-[41px] pr-10 pt-10 shadow-xs md:pb-5 md:pl-5 sm:p-5">
             <Heading size="8xl" as="h1" className=" uppercase ">
               Đăng nhập
             </Heading>
+            <form onSubmit={handleSubmit}>
+
             <div className="flex flex-col items-center self-stretch">
               <div className="flex flex-col gap-[22px] self-stretch">
                 <div className="flex flex-col items-start gap-[11px]">
                   <Heading as="h2">Tài khoản</Heading>
-                  <Input
-                    shape="round"
-                    name="your_name"
-                    placeholder={`Ali Tufan`}
+                  <input
+                   shape="round"
+                    // name="your_name"
+                    type="text"
+                    placeholder="Nguyen Van A"
+                    value={userName}
+                    onChange={(e) => setUsername(e.target.value)}
                     className="self-stretch border border-solid border-blue_gray-900_02 !text-blue_gray-900_02 shadow-md sm:pr-5"
                   />
                 </div>
                 <div className="flex flex-col items-start gap-2.5">
                   <Heading as="h3">Mật khẩu</Heading>
-                  <Input
+                  <input
                     shape="round"
+                    // type="password"
+                    // name="your_name_one"
                     type="password"
-                    name="your_name_one"
-                    placeholder={`Mật khẩu của bạn`}
+                    placeholder="12345"
+                    value={passWord}
+                    onChange={(e) => setPassword(e.target.value)}
                     className="self-stretch border border-solid border-gray-200_01 sm:pr-5"
                   />
                 </div>
@@ -391,13 +452,14 @@ export default function LoginPage() {
                     Quên mật khẩu?
                   </Text>
                 </div>
-                <Button
-                  size="10xl"
+                <button
+                 size="10xl"
                   shape="round"
+                  type="submit"
                   className="w-full border border-solid border-green-A700_02 font-semibold shadow-sm sm:px-5"
                 >
                   Đăng nhập
-                </Button>
+                </button>
               </div>
               <a
                 href="https://www.youtube.com/embed/bv8Fxk0sz7I"
@@ -447,6 +509,7 @@ export default function LoginPage() {
                 </div>
               </div>
             </div>
+            </form>
           </div>
         </div>
         <Footer1 className="justify-center self-stretch border-t border-solid border-gray-200_01 bg-white-A700 px-14 pb-[17px] pt-[82px] md:px-5 md:pt-5" />
