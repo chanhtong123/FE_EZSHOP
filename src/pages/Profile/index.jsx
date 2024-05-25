@@ -1,4 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import axiosInstance from '../../config/axiosConfig';
+import { getToken, removeToken } from '../../utils/authUtils';
 import { Helmet } from "react-helmet";
 import {
   Text,
@@ -15,6 +18,36 @@ const dropDownOptions = [
   { label: "Option3", value: "option3" },
 ];
 export default function ProfilePage() {
+
+  const [profileItems, setProfileItems] = useState([]);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const token = getToken();
+
+    if(!token){
+      navigate('/login');
+      return;
+    }
+
+    const fetchProfileItems = async() =>{
+      try {
+        const response = await axiosInstance.get('/get_all');
+        setProfileItems(response.data);
+      } catch (error) {
+        if (error.response && error.response.status === 403) {
+          removeToken(); 
+          navigate('/login'); 
+        } else {
+          console.error('Đã xảy ra lỗi khi lấy dữ liệu.', error);
+        }
+      }
+    }
+
+    fetchProfileItems();
+  }, [navigate]);
+  
+
   return (
     <>
       <Helmet>

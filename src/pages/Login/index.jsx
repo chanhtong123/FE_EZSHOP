@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import axios from "axios"; // Import axios
-import { useNavigate } from "react-router-dom"; // Import useNavigate for navigation
+import { useNavigate, useLocation } from 'react-router-dom';
+import axios from "axios"; 
 import { Helmet } from "react-helmet";
 import {
   Img,
@@ -22,25 +22,28 @@ const dropDownOptions = [
 export default function LoginPage() {
   const [userName, setUsername] = useState("");
   const [passWord, setPassword] = useState("");
-  const navigate = useNavigate(); // Get navigate function for navigation
+  const navigate = useNavigate(); 
+  const location = useLocation();
 
-  const handleLogin = async () => {
+
+  const handleLogin = async (redirectUrl) => {
     try {
       const response = await axios.post("http://localhost:8080/login", { userName, passWord }); 
       const token = response.data.token; 
       localStorage.setItem("token", token);
-      navigate("/homepage"); 
+      navigate(redirectUrl); 
     } catch (error) {
       console.error("Login failed:", error);
      
     }
   };
 
+
   const handleSubmit = async (event) => {
     event.preventDefault();
-    handleLogin();
+    const redirectTo = new URLSearchParams(location.search).get('redirect') || '/homepage';
+    handleLogin(redirectTo);
   };
-
  
 
 

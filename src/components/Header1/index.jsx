@@ -11,6 +11,12 @@ export default function Header1({ ...props }) {
   const [menuOpen1, setMenuOpen1] = React.useState(false);
   const [menuOpen2, setMenuOpen2] = React.useState(false);
   const [menuOpen3, setMenuOpen3] = React.useState(false);
+
+  const handleLoginClick = () => {
+    window.location.href = "/login";
+  };
+  
+
   return (
     <header
       {...props}
@@ -194,7 +200,7 @@ export default function Header1({ ...props }) {
               >
                 <span className="font-bevietnampro text-[13px] font-normal text-blue_gray-900_02">
                   <>
-                    Đăng nhập <br />
+                  <a href="/login" onClick={handleLoginClick}>Đăng nhập</a>
                   </>
                 </span>
                 <span className="font-bevietnampro text-base font-medium text-blue_gray-900_02">
