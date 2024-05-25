@@ -171,19 +171,9 @@ export default function Footer1({ ...props }) {
                 className="h-[17px]"
               />
               <Img
-                src="images/img_facebook.svg"
+                src="images/img_inta.svg"
                 alt="close_eleven"
                 className="h-[17px]"
-              />
-              <Img
-                src="images/img_facebook.svg"
-                alt="close_thirteen"
-                className="h-[17px]"
-              />
-              <Img
-                src="images/img_facebook.svg"
-                alt="close_fifteen"
-                className="h-[17px] self-start"
               />
             </div>
             <Text className="mt-[45px] text-lg font-medium uppercase">
@@ -191,30 +181,9 @@ export default function Footer1({ ...props }) {
             </Text>
             <div className="mt-6 flex gap-2.5">
               <Img
-                src="images/img_television_gray_100_04.svg"
-                alt="television"
-                className="h-[24px]"
-              />
-              <Img
-                src="images/img_close_gray_100_04.svg"
-                alt="closeteen"
-                className="h-[24px]"
-              />
-              <Img src="images/img_3.svg" alt="three" className="h-[24px]" />
-              <Img
-                src="images/img_4.png"
-                alt="four"
-                className="h-[24px] object-cover"
-              />
-              <Img
-                src="images/img_television_gray_100_04_24x38.svg"
-                alt="television"
-                className="h-[24px]"
-              />
-              <Img
-                src="images/img_thumbs_up.svg"
+                src="images/img_logo_momo.svg"
                 alt="thumbsup"
-                className="h-[24px]"
+                className="h-[30px]"
               />
             </div>
           </div>
@@ -230,24 +199,6 @@ export default function Footer1({ ...props }) {
                 <Text className="ml-[41px] self-start text-sm font-normal md:ml-0">
                   Quyền riêng tư · Điều khoản · Sơ đồ trang web
                 </Text>
-                <div className="ml-[527px] flex flex-wrap items-center self-start md:ml-0 md:flex-col">
-                  <Text className="text-sm font-normal">Tiền tệ:</Text>
-                  <Text className="text-sm font-normal">VNĐ</Text>
-                  <Img
-                    src="images/img_vector_blue_gray_900_02_5x8.svg"
-                    alt="vector_thirteen"
-                    className="h-[5px] md:w-full"
-                  />
-                </div>
-              </div>
-              <div className="flex flex-wrap items-start">
-                <Text className="text-sm font-normal">Ngôn ngữ:</Text>
-                <Text className="text-sm font-normal">Tiếng Việt</Text>
-                <Img
-                  src="images/img_vector_blue_gray_900_02_5x8.svg"
-                  alt="vector_fifteen"
-                  className="mt-1.5 h-[5px]"
-                />
               </div>
             </div>
           </div>

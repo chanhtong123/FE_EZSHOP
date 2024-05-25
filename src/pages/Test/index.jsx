@@ -29,7 +29,8 @@ export default function TestPage() {
         />
       </Helmet>
       <div>
-      <Header className="shadow-lg" />
+      {/* <Header className="shadow-lg" /> */}
+      <Footer1/>
       </div>
     </>
 
