@@ -10,7 +10,7 @@ import {
   Slider,
 } from "../../components";
 import Footer1 from "../../components/Footer1";
-import Header1 from "../../components/Header1";
+import Header from "../../components/Header1";
 import HomePageArrowbullet from "../../components/HomePageArrowbullet";
 import HomePageFive from "../../components/HomePageFive";
 import HomePageFour from "../../components/HomePageFour";
@@ -108,7 +108,7 @@ export default function HomePagePage() {
         />
       </Helmet>
       <div className="flex w-full flex-col items-center bg-white-A700">
-        <Header1 className="shadow-lg" />
+        <Header className="shadow-lg" />
         <div className="flex w-[76%] flex-col gap-[59px] md:w-full md:p-5 sm:gap-[29px]">
           <div className="container-md flex flex-col">
             <div className="flex gap-[31px] md:flex-col">

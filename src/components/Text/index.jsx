@@ -1,4 +1,5 @@
 import React from "react";
+
 const sizes = {
   "5xl": "text-2xl font-medium md:text-[22px]",
   "6xl": "text-[26px] font-medium md:text-2xl sm:text-[22px]",
@@ -13,6 +14,11 @@ const sizes = {
   xl: "text-base font-medium",
   md: "text-sm font-normal",
 };
+
+const className = {
+  "center": "align-seft:center"
+};
+
 const Text = ({ children, className = "", as, size = "xl", ...restProps }) => {
   const Component = as || "p";
   return (
