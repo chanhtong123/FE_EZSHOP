@@ -121,3 +121,7 @@ table {
 .ps-sidebar-container::-webkit-scrollbar {
     width: 2px;
 }
+
+.align-self-center{
+    align-self: center;
+}

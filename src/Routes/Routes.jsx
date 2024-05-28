@@ -33,6 +33,7 @@ import CompareProducts from "../pages/CompareProducts";
 import Dashboard from "../pages/Dashboard";
 import SalesManager from "../pages/SalesManagement";
 import Test2 from "../pages/Test";
+import TestAdmin from "../pages/TestAdmin";
 
 const ProjectRoutes = () => {
   let element = useRoutes([
@@ -68,6 +69,7 @@ const ProjectRoutes = () => {
     { path: "compareproducts", element: <CompareProducts /> },
     { path: "dashboard", element: <Dashboard /> },
     { path: "test", element: <Test2 /> },
+    { path: "admin", element: <TestAdmin /> },
     { path: "salesmanager", element: <SalesManager /> },
   ]);
   return element;

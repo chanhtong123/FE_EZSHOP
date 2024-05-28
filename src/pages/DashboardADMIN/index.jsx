@@ -915,7 +915,7 @@ export default function DashboardADMINPage() {
                   </div>
                 </div>
               </div>
-              <div className="flex w-[82%] items-center justify-between gap-5 md:w-full md:flex-col">
+              {/* <div className="flex w-[82%] items-center justify-between gap-5 md:w-full md:flex-col">
                 <div className="mb-[9px] flex flex-wrap gap-2 self-end">
                   <Text size="md" as="p">
                     © 2022 Zenmart. All Rights Reserved
@@ -952,7 +952,7 @@ export default function DashboardADMINPage() {
                     />
                   </div>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
