@@ -1,4 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
+import axiosInstance from '../../config/axiosConfig';
+import { getToken, removeToken } from '../../utils/authUtils';
 import MegaMenu1 from "../MegaMenu1";
 import { Text, Img, Heading, Button, SelectBox } from "./..";
 import { Input } from "postcss";
@@ -13,10 +16,7 @@ export default function Header1({ ...props }) {
   const [menuOpen2, setMenuOpen2] = React.useState(false);
   const [menuOpen3, setMenuOpen3] = React.useState(false);
 
-  const handleLoginClick = () => {
-    window.location.href = "/login";
-  };
-  
+
 
   return (
     <header
@@ -173,7 +173,8 @@ export default function Header1({ ...props }) {
                   className="!font-inter leading-[22px] sm:w-full"
                 >
                   <span className="font-bevietnampro text-base font-medium text-blue_gray-900_02">
-                    Tài khoản
+              
+                    <a href="/profile">Tài khoản</a>
                   </span>
                 </Heading>
               </div>

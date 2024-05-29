@@ -25,19 +25,23 @@ export default function ProfilePage() {
   useEffect(() => {
     const token = getToken();
 
-    if(!token){
+    if (!token) {
       navigate('/login');
       return;
     }
 
-    const fetchProfileItems = async() =>{
+    const fetchProfileItems = async () => {
       try {
-        const response = await axiosInstance.get('/get_all');
+        const response = await axiosInstance.get('http://localhost:8080/user', {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        });
         setProfileItems(response.data);
       } catch (error) {
         if (error.response && error.response.status === 403) {
-          removeToken(); 
-          navigate('/login'); 
+          removeToken();
+          navigate('/login');
         } else {
           console.error('Đã xảy ra lỗi khi lấy dữ liệu.', error);
         }
@@ -46,7 +50,7 @@ export default function ProfilePage() {
 
     fetchProfileItems();
   }, [navigate]);
-  
+
 
   return (
     <>
@@ -396,15 +400,15 @@ export default function ProfilePage() {
               <div className="flex flex-col gap-[9px]">
                 <div className="flex items-start gap-[11px]">
                   <Img
-                    src="images/img_150_25_1.png"
+                     src={profileItems.image}
                     alt="circleimage"
                     className="h-[40px] w-[40px] rounded-[50%]"
                   />
                   <div className="flex flex-col items-start gap-[5px]">
-                    <Text as="p">Phuong Uyennn</Text>
-                    <Text size="lg" as="p" className="!text-blue_gray-600">
-                      alitfn58@gmail.com
-                    </Text>
+                    <Text as="p">{profileItems.lastName} {profileItems.firstName}</Text>
+                    {/* <Text size="lg" as="p" className="!text-blue_gray-600">
+                      {profileItems.email}
+                    </Text> */}
                   </div>
                 </div>
                 <div className="h-px bg-gray-200_01" />
@@ -458,67 +462,76 @@ export default function ProfilePage() {
               <div className="flex flex-col items-start self-stretch">
                 <div className="h-[2px] w-[12%] bg-blue_gray-900_02" />
                 <div className="mt-6 self-stretch">
-                  <div className="flex items-start gap-[25px] md:flex-col">
-                    <div className="flex w-full flex-col gap-4">
-                      <div className="flex flex-col items-start gap-2">
-                        <Text as="p">Tên</Text>
-                        <Input
-                          shape="round"
-                          name="your_name"
-                          placeholder={`Nhập tên`}
-                          className="self-stretch border border-solid border-gray-200_01 sm:pr-5"
-                        />
+
+
+
+                  <form>
+                    <div className="flex items-start gap-[25px] md:flex-col">
+                      <div className="flex w-full flex-col gap-4">
+                        <div className="flex flex-col items-start gap-2">
+                          <Text as="p">Tên</Text>
+                          <Input
+                            shape="round"
+                            name="your_name"
+                            placeholder={profileItems.firstName}
+                            className="self-stretch border border-solid border-gray-200_01 sm:pr-5"
+                          />
+                        </div>
+                        <div className="flex flex-col items-start gap-2">
+                          <Text as="p">Email</Text>
+                          <Input
+                            shape="round"
+                            type="email"
+                            name="email"
+                            placeholder={profileItems.email}
+                            className="self-stretch border border-solid border-gray-200_01 sm:pr-5"
+                          />
+                        </div>
+                        <div className="flex w-[36%] items-center justify-between gap-5 md:w-full">
+                          <Button
+                            size="9xl"
+                            shape="round"
+                            className="min-w-[95px] border border-solid border-green-A700_02 !text-gray-100_02 shadow-sm sm:px-5"
+                          >
+                            Lưu
+                          </Button>
+                          <Text size="md" as="p" className="!text-blue_gray-600">
+                            Hủy bỏ
+                          </Text>
+                        </div>
                       </div>
-                      <div className="flex flex-col items-start gap-2">
-                        <Text as="p">Email</Text>
-                        <Input
-                          shape="round"
-                          type="email"
-                          name="email"
-                          placeholder={`Nhập email`}
-                          className="self-stretch border border-solid border-gray-200_01 sm:pr-5"
-                        />
-                      </div>
-                      <div className="flex w-[36%] items-center justify-between gap-5 md:w-full">
-                        <Button
-                          size="9xl"
-                          shape="round"
-                          className="min-w-[95px] border border-solid border-green-A700_02 !text-gray-100_02 shadow-sm sm:px-5"
-                        >
-                          Lưu
-                        </Button>
-                        <Text size="md" as="p" className="!text-blue_gray-600">
-                          Hủy bỏ
-                        </Text>
+                      <div className="flex w-full flex-col gap-4">
+                        <div className="flex flex-col items-start gap-1.5 pt-[5px]">
+                          <Text as="p" className="h-[21px] w-[22px]">
+                            Họ
+                          </Text>
+                          <Input
+                            shape="round"
+                            name="your_name_one"
+                            placeholder={profileItems.lastName}
+                            className="self-stretch border border-solid border-gray-200_01 sm:pr-5"
+                          />
+                        </div>
+                        <div className="flex flex-col items-start gap-[7px]">
+                          <Text as="p">Số điện thoại</Text>
+                          <Input
+                            shape="round"
+                            name="your_name_two"
+                            placeholder={profileItems.phone}
+                            className="self-stretch border border-solid border-gray-200_01 sm:pr-5"
+                          />
+                        </div>
                       </div>
                     </div>
-                    <div className="flex w-full flex-col gap-4">
-                      <div className="flex flex-col items-start gap-1.5 pt-[5px]">
-                        <Text as="p" className="h-[21px] w-[22px]">
-                          Họ
-                        </Text>
-                        <Input
-                          shape="round"
-                          name="your_name_one"
-                          placeholder={`Nhập họ`}
-                          className="self-stretch border border-solid border-gray-200_01 sm:pr-5"
-                        />
-                      </div>
-                      <div className="flex flex-col items-start gap-[7px]">
-                        <Text as="p">Số điện thoại</Text>
-                        <Input
-                          shape="round"
-                          name="your_name_two"
-                          placeholder={`Nhập số điện thoại`}
-                          className="self-stretch border border-solid border-gray-200_01 sm:pr-5"
-                        />
-                      </div>
-                    </div>
-                  </div>
+                  </form>
+
+
+
+
                 </div>
                 <div className="mt-12 flex w-[49%] flex-col gap-4 md:w-full">
                   <div className="flex flex-col items-start gap-2">
-                    <Text as="p">Mật khẩu gần đây</Text>
+                    <Text as="p">Nhập Mật khẩu</Text>
                     <Input
                       shape="round"
                       type="text"
@@ -576,7 +589,7 @@ export default function ProfilePage() {
                     </div>
                     <div className="flex flex-1 flex-col items-start">
                       <div className="flex items-start justify-between gap-5 self-stretch">
-                        <Text as="p">Email</Text> 
+                        <Text as="p">Email</Text>
                       </div>
                       <Text as="p" className="!font-normal">
                         Mã xác thực được gửi đến email của bạn

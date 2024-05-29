@@ -386,27 +386,7 @@ export default function LoginPage() {
           </div>
         </header>
 
-{/* 
-        return (
-    <>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Username"
-          value={userName}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={passWord}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <button type="submit">Login</button>
-      </form>
-    </>
-  );
-} */}
+
 
 
 
@@ -468,11 +448,13 @@ export default function LoginPage() {
                 href="https://www.youtube.com/embed/bv8Fxk0sz7I"
                 target="_blank"
               >
-                <Text size="md" as="p" className="mt-5">
+                <Text size="md" as="p" className="mt-5" style={{ display: 'flex', alignItems: 'center' }}>
                   <span className="text-blue_gray-900_02">
                     Bạn chưa có tài khoản?&nbsp;
                   </span>
-                  <span className="text-green-A700_02">Đăng ký</span>
+                  <a className="text-green-A700_02" 
+                  href="/register" style={{ marginLeft: '5px' }}>Đăng ký</a>
+                 
                 </Text>
               </a>
               <div className="mt-[27px] flex w-[13%] items-start md:w-full">
