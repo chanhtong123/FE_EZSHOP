@@ -125,3 +125,12 @@ table {
 .align-self-center{
     align-self: center;
 }
+
+.align-text-center{
+    text-align: center;
+    align-items: center;
+}
+
+.ml{
+    margin-left: 10px;
+}

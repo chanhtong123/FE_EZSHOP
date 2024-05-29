@@ -5,7 +5,7 @@ export default function Header({ ...props }) {
   const [searchBarValue, setSearchBarValue] = React.useState("");
   return (
     <header {...props}>
-      <div className="flex h-[100px] w-full justify-between">
+      <div className="flex h-[60px] w-full justify-between">
         <div className="flex w-[40%] items-center justify-between gap-5 md:w-full sm:flex-col">
           <div className="flex w-[20%] items-center justify-center gap-[30px] sm:w-full">
             <a href="#">
@@ -64,7 +64,7 @@ export default function Header({ ...props }) {
           </div>
           <a href="#" className="align-self-center">
             <Img
-              src=".../images/img_profile1.svg"
+              src="images/img_user.png"
               alt="username"
               // className="h-[50px] w-[50px] rounded-[16px] object-cover"
             />

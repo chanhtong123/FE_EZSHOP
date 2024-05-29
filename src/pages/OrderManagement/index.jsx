@@ -3,6 +3,7 @@ import { Helmet } from "react-helmet";
 import { CloseSVG } from "../../assets/images";
 import { Img, Text, SelectBox, Heading, Input, Button } from "../../components";
 import Header from "../../components/Header";
+import Footer from "../../components/FooterAdmin";
 import { ReactTable } from "../../components/ReactTable";
 import SalesShopPagination from "../../components/SalesShopPagination";
 import Sidebar1 from "../../components/Sidebar1";
@@ -100,7 +101,7 @@ export default function OrderManagementPage() {
             Mã ID
           </Heading>
         ),
-        meta: { width: "253px" },
+        meta: { width: "10%" },
       }),
       table2ColumnHelper.accessor("to", {
         cell: (info) => (
@@ -113,7 +114,7 @@ export default function OrderManagementPage() {
             Đã tạo
           </Heading>
         ),
-        meta: { width: "217px" },
+        meta: { width: "10%" },
       }),
       table2ColumnHelper.accessor("khchhng", {
         cell: (info) => (
@@ -126,7 +127,7 @@ export default function OrderManagementPage() {
             Khách hàng
           </Heading>
         ),
-        meta: { width: "217px" },
+        meta: { width: "20%" },
       }),
       table2ColumnHelper.accessor("rowtngcng", {
         cell: (info) => (
@@ -134,6 +135,20 @@ export default function OrderManagementPage() {
             <Text as="p" className="!font-normal">
               {info?.getValue?.()}
             </Text>
+          </div>
+        ),
+        header: (info) => (
+          <div className="flex flex-wrap pb-[15px] pr-[20%] pt-[17px] md:p-5 md:pr-5">
+            <Heading as="h5" className="self-start">
+              Tổng cộng
+            </Heading>
+          </div>
+        ),
+        meta: { width: "20%" },
+      }),
+      table2ColumnHelper.accessor("loinhuan", {
+        cell: (info) => (
+          <div className="flex items-center justify-between gap-5">
             <div className="flex flex-wrap items-center gap-1">
               <Text as="p" className="!font-normal">
                 <span className="text-blue_gray-900_02">50.000</span>
@@ -150,16 +165,13 @@ export default function OrderManagementPage() {
           </div>
         ),
         header: (info) => (
-          <div className="flex flex-wrap pb-[15px] pr-[139px] pt-[17px] md:p-5 md:pr-5">
+          <div className="flex pb-[15px] pr-[20%] pt-[17px] md:p-5 md:pr-5">
             <Heading as="h5" className="self-start">
-              Tổng cộng
-            </Heading>
-            <Heading as="h6" className="self-end">
-              Lợi nhuận
+                Lợi Nhuận
             </Heading>
           </div>
         ),
-        meta: { width: "435px" },
+        meta: { width: "20%" },
       }),
       table2ColumnHelper.accessor("trngthi", {
         cell: (info) => (
@@ -191,7 +203,7 @@ export default function OrderManagementPage() {
             Trạng thái
           </Heading>
         ),
-        meta: { width: "285px" },
+        meta: { width: "10%" },
       }),
     ];
   }, []);
@@ -271,7 +283,7 @@ export default function OrderManagementPage() {
                       size="xs"
                       shape="round"
                       name="search"
-                      placeholder={`Tìm kiếm theo ID`}
+                      placeholder={`Tìm kiếm...`}
                       value={searchBarValue46}
                       onChange={(e) => setSearchBarValue46(e)}
                       suffix={
@@ -284,7 +296,7 @@ export default function OrderManagementPage() {
                           />
                         ) : (
                           <Img
-                            src="images/img_search.svg"
+                            src="images/img_search1.svg"
                             alt="search"
                             className="h-[18px] w-[18px] cursor-pointer"
                           />
@@ -292,7 +304,7 @@ export default function OrderManagementPage() {
                       }
                       className="w-[19%] gap-[35px] !rounded shadow-6xl sm:w-full"
                     />
-                    <SelectBox
+                    {/* <SelectBox
                       color="white_A700"
                       size="lg"
                       shape="round"
@@ -307,7 +319,7 @@ export default function OrderManagementPage() {
                       placeholder={`Lọc bởi danh mục`}
                       options={dropDownOptions}
                       className="w-[12%] gap-px shadow-6xl sm:w-full sm:pr-5"
-                    />
+                    /> */}
                   </div>
                   <ReactTable
                     size="lg"
@@ -330,50 +342,11 @@ export default function OrderManagementPage() {
                   />
                 </div>
               </div>
-              <div className="flex w-[82%] md:w-full">
-                <div className="flex w-full items-center justify-between gap-5 md:flex-col">
-                  <div className="flex flex-wrap gap-11">
-                    <Text size="md" as="p" className="self-end">
-                      © 2024 EZShop. All Rights Reserved
-                    </Text>
-                    <Text size="md" as="p" className="self-start">
-                      Quyền riêng tư · Điều khoản · Sơ đồ trang web
-                    </Text>
-                  </div>
-                  <div className="flex w-[25%] justify-center gap-2.5 md:w-full">
-                    <div className="flex w-[46%] flex-wrap items-center justify-evenly rounded-md border border-solid border-gray-200_01 bg-white-A700 py-2.5">
-                      <Text size="md" as="p" className="!text-blue_gray-600">
-                        Tiền tệ
-                      </Text>
-                      <Text size="md" as="p">
-                        VND
-                      </Text>
-                      <Img
-                        src="images/img_vector_blue_gray_900_02_5x8.svg"
-                        alt="vector"
-                        className="mb-[5px] h-[5px] self-end"
-                      />
-                    </div>
-                    <div className="flex flex-wrap items-center rounded-md border border-solid border-gray-200_01 bg-white-A700 pb-[9px] pl-[9px] pr-2 pt-[11px]">
-                      <Text size="md" as="p" className="!text-blue_gray-600">
-                        Ngôn ngữ
-                      </Text>
-                      <Text size="md" as="p" className="self-start">
-                        Tiếng Việt
-                      </Text>
-                      <Img
-                        src="images/img_vector_blue_gray_900_02_5x8.svg"
-                        alt="vector"
-                        className="ml-1.5 h-[5px]"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </div>
       </div>
+    <Footer/>
     </>
   );
 }

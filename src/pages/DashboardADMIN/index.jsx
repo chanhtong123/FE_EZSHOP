@@ -9,6 +9,7 @@ import {
   SelectBox,
 } from "../../components";
 import Header from "../../components/Header";
+import Footer from "../../components/FooterAdmin";
 import { ReactTable } from "../../components/ReactTable";
 import Sidebar1 from "../../components/Sidebar1";
 import { createColumnHelper } from "@tanstack/react-table";
@@ -22,9 +23,8 @@ const table1Data = [
     id: "#1923",
     tncahng: "Cửa hàng quần áo nam",
     snhng: "15",
-    nhgi: 1,
+    nhgi: "user",
     tngdoanhthu: "20.000.000đ",
-    thm: "images/img_thumbs_up_gray_100_04.svg",
   },
   {
     id: "#1922",
@@ -32,31 +32,27 @@ const table1Data = [
     snhng: "15",
     nhgi: "images/img_star_1_1.svg",
     tngdoanhthu: "20.000.000đ",
-    thm: "images/img_thumbs_up_gray_100_04.svg",
   },
   {
     id: "#1921",
     tncahng: "Cửa hàng giày dép Adidas",
     snhng: "15",
-    nhgi: 1,
+    nhgi: "user",
     tngdoanhthu: "20.000.000đ",
-    thm: "images/.png",
   },
   {
     id: "#1920",
     tncahng: "Cửa hàng thời trang nữ",
     snhng: "15",
-    nhgi: 1,
+    nhgi: "user",
     tngdoanhthu: "20.000.000đ",
-    thm: "images/.png",
   },
   {
     id: "#1919",
     tncahng: "Cửa hàng giày dép Adidas",
     snhng: "15",
-    nhgi: "images/img_star_1_1.svg",
+    nhgi: "user",
     tngdoanhthu: "20.000.000đ",
-    thm: "images/img_thumbs_up_gray_100_04.svg",
   },
 ];
 export default function DashboardADMINPage() {
@@ -65,7 +61,7 @@ export default function DashboardADMINPage() {
     return [
       table1ColumnHelper.accessor("id", {
         cell: (info) => (
-          <Text size="lg" as="p">
+          <Text size="lg" as="p" className="align-text-center">
             {" "}
             {info?.getValue?.()}{" "}
           </Text>
@@ -76,7 +72,7 @@ export default function DashboardADMINPage() {
             ID{" "}
           </Text>
         ),
-        meta: { width: "137px" },
+        meta: { width: "10%" },
       }),
       table1ColumnHelper.accessor("tncahng", {
         cell: (info) => (
@@ -91,11 +87,35 @@ export default function DashboardADMINPage() {
             Tên cửa hàng{" "}
           </Text>
         ),
-        meta: { width: "228px" },
+        meta: { width: "30%" },
+      }),
+      table1ColumnHelper.accessor("nhgi", {
+        cell: (info) => (
+          <div className="flex flex-1 md:self-stretch">
+            {" "}
+            {/* <RatingBar
+              value={info?.getValue?.()}
+              isEditable={true}
+              size={10}
+              className="flex justify-between"
+            />{" "} */}
+            <Text size="lg" as="p">
+              {" "}
+              {info?.getValue?.()}{" "}
+            </Text>
+          </div>
+        ),
+        header: (info) => (
+          <Text as="p" className="py-3.5">
+            {" "}
+            Chủ sở hữu{" "}
+          </Text>
+        ),
+        meta: { width: "20%" },
       }),
       table1ColumnHelper.accessor("snhng", {
         cell: (info) => (
-          <Text size="lg" as="p">
+          <Text size="lg" as="p" className="align-text-center">
             {" "}
             {info?.getValue?.()}{" "}
           </Text>
@@ -106,37 +126,16 @@ export default function DashboardADMINPage() {
             Số đơn hàng{" "}
           </Text>
         ),
-        meta: { width: "158px" },
-      }),
-      table1ColumnHelper.accessor("nhgi", {
-        cell: (info) => (
-          <div className="flex flex-1 md:self-stretch">
-            {" "}
-            <RatingBar
-              value={info?.getValue?.()}
-              isEditable={true}
-              size={10}
-              className="flex justify-between"
-            />{" "}
-          </div>
-        ),
-        header: (info) => (
-          <Text as="p" className="py-3.5">
-            {" "}
-            Đánh giá{" "}
-          </Text>
-        ),
-        meta: { width: "141px" },
+        meta: { width: "10%" },
       }),
       table1ColumnHelper.accessor("tngdoanhthu", {
         cell: (info) => (
-          <Heading size="lg" as="p" className="flex !font-semibold capitalize">
+          <Heading size="lg" as="p" className="flex !font-semibold justify-center">
             {" "}
-            <span className="text-blue_gray-900_02">20.000.000</span>{" "}
-            <a href="#" className="text-blue_gray-900_02 underline">
-              {" "}
-              đ{" "}
-            </a>{" "}
+              <span className="text-blue_gray-900_02">20.000.000</span>{" "}
+              <p className="text-blue_gray-900_02">
+                đ
+              </p>{" "}
           </Heading>
         ),
         header: (info) => (
@@ -145,26 +144,26 @@ export default function DashboardADMINPage() {
             Tổng doanh thu{" "}
           </Text>
         ),
-        meta: { width: "191px" },
+        meta: { width: "20%" },
       }),
-      table1ColumnHelper.accessor("thm", {
+      table1ColumnHelper.accessor("action", {
         cell: (info) => (
-          <div className="flex">
-            {" "}
-            <Img
-              src={info?.getValue?.()}
-              alt="upload"
-              className="h-[24px] w-[24px]"
-            />{" "}
-          </div>
+          <div className="flex gap-[5px] justify-center">
+          <Button
+              color="green_A700_e5"
+              size="3x1"
+              shape="round"
+              className="w-[40px] !rounded-[5px]"
+            >
+              ...
+            </Button>
+            </div>
         ),
         header: (info) => (
           <Text as="p" className="py-3.5">
-            {" "}
-            Thêm{" "}
           </Text>
         ),
-        meta: { width: "55px" },
+        meta: { width: "10%" },
       }),
     ];
   }, []);
@@ -189,15 +188,9 @@ export default function DashboardADMINPage() {
                   <Heading size="8xl" as="h1" className="uppercase">
                     Bảng quản lý
                   </Heading>
-                  <Text
-                    as="p"
-                    className="!font-jost !font-normal !text-blue_gray-600"
-                  >
-                    Lorem ipsum dolor sit amet, consectetur.
-                  </Text>
                 </div>
                 <div className="flex gap-[30px] md:flex-col">
-                  <div className="flex w-full items-center justify-center gap-1 rounded-[16px] bg-white-A700 px-[22px] pb-[39px] pt-[22px] shadow-3xl sm:p-5">
+                  <div className="flex w-[25%] items-center justify-center gap-1 rounded-[16px] bg-white-A700 px-[22px] pb-[39px] pt-[22px] shadow-3xl sm:p-5">
                     <div className="flex flex-1 flex-col items-start gap-[15px]">
                       <Heading as="h2" className="uppercase">
                         Tổng Thu Nhập
@@ -206,20 +199,6 @@ export default function DashboardADMINPage() {
                         <Heading size="5xl" as="h3">
                           365TR.256
                         </Heading>
-                        <Button
-                          size="lg"
-                          shape="round"
-                          leftIcon={
-                            <Img
-                              src="images/img_arrows_1_1.svg"
-                              alt="arrows (1) 1"
-                              className="h-[14px] w-[14px]"
-                            />
-                          }
-                          className="min-w-[60px] gap-[3px] !text-gray-100_02"
-                        >
-                          2.2%
-                        </Button>
                       </div>
                       <div className="flex flex-wrap gap-1">
                         <Text
@@ -237,19 +216,12 @@ export default function DashboardADMINPage() {
                           as="p"
                           className="self-start !text-blue_gray-600"
                         >
-                          Sản phẩm mới
+                          Doanh thu trong ngày
                         </Text>
                       </div>
                     </div>
-                    <Button
-                      color="gray_100_02"
-                      size="md"
-                      className="mb-[15px] w-[60px] self-end rounded-[16px]"
-                    >
-                      <Img src="images/img_settings_green_a700_02.svg" />
-                    </Button>
                   </div>
-                  <div className="flex w-full rounded-[16px] bg-white-A700 px-[26px] pb-[39px] pt-[26px] shadow-3xl sm:p-5">
+                  <div className="flex w-[25%] rounded-[16px] bg-white-A700 px-[26px] pb-[39px] pt-[26px] shadow-3xl sm:p-5">
                     <div className="flex w-full flex-col">
                       <div className="flex items-start justify-between gap-5">
                         <div className="mb-4 flex flex-col items-start gap-[22px]">
@@ -260,13 +232,6 @@ export default function DashboardADMINPage() {
                             66,894
                           </Heading>
                         </div>
-                        <Button
-                          color="gray_100_02"
-                          size="md"
-                          className="w-[60px] rounded-[16px]"
-                        >
-                          <Img src="images/img_sent_1.svg" />
-                        </Button>
                       </div>
                       <div className="relative mt-[-3px] flex gap-[3px]">
                         <div className="flex flex-col self-start">
@@ -277,13 +242,6 @@ export default function DashboardADMINPage() {
                           >
                             500+
                           </Text>
-                          <Text
-                            size="md"
-                            as="p"
-                            className="relative mt-[-18px] !text-green-A700_02"
-                          >
-                            500+
-                          </Text>
                         </div>
                         <Text size="md" as="p" className="!text-blue_gray-600">
                           Cửa hàng mới
@@ -291,7 +249,7 @@ export default function DashboardADMINPage() {
                       </div>
                     </div>
                   </div>
-                  <div className="flex w-full rounded-[16px] bg-white-A700 px-[23px] pb-[39px] pt-[23px] shadow-3xl sm:p-5">
+                  <div className="flex w-[25%] rounded-[16px] bg-white-A700 px-[23px] pb-[39px] pt-[23px] shadow-3xl sm:p-5">
                     <div className="flex w-full flex-col">
                       <div className="flex items-start justify-between gap-5">
                         <div className="mb-[19px] flex flex-col items-start gap-[23px]">
@@ -302,13 +260,6 @@ export default function DashboardADMINPage() {
                             583.350
                           </Heading>
                         </div>
-                        <Button
-                          color="gray_100_02"
-                          size="md"
-                          className="w-[60px] rounded-[16px]"
-                        >
-                          <Img src="images/img_settings_green_a700_02_60x60.svg" />
-                        </Button>
                       </div>
                       <div className="relative mt-[-3px] flex flex-wrap gap-[5px]">
                         <Text
@@ -328,7 +279,7 @@ export default function DashboardADMINPage() {
                       </div>
                     </div>
                   </div>
-                  <div className="flex rounded-[16px] bg-white-A700 px-[19px] pb-[39px] pt-[19px] shadow-3xl sm:pb-5">
+                  <div className="flex w-[25%] rounded-[16px] bg-white-A700 px-[19px] pb-[39px] pt-[19px] shadow-3xl sm:pb-5">
                     <div className="flex flex-col items-start">
                       <div className="relative z-[2] flex items-end">
                         <div className="mb-[18px] flex flex-col items-start gap-[18px]">
@@ -339,28 +290,6 @@ export default function DashboardADMINPage() {
                             365TR.256
                           </Heading>
                         </div>
-                        <Button
-                          color="red_400"
-                          size="lg"
-                          shape="round"
-                          leftIcon={
-                            <Img
-                              src="images/img_arrows_2_1.svg"
-                              alt="arrows (2) 1"
-                              className="h-[14px] w-[14px]"
-                            />
-                          }
-                          className="mb-[18px] ml-[27px] min-w-[60px] gap-0.5"
-                        >
-                          2.2%
-                        </Button>
-                        <Button
-                          color="gray_100_02"
-                          size="md"
-                          className="ml-1.5 w-[60px] rounded-[16px]"
-                        >
-                          <Img src="images/img_wallet_1.svg" />
-                        </Button>
                       </div>
                       <div className="relative mt-[-4px] flex flex-wrap gap-[5px]">
                         <Text
@@ -408,17 +337,9 @@ export default function DashboardADMINPage() {
                               size="lg"
                               variant="outline"
                               shape="round"
-                              indicator={
-                                <Img
-                                  src="images/img_checkmark.svg"
-                                  alt="checkmark"
-                                  className="h-[15px] w-[15px]"
-                                />
-                              }
                               name="tunny"
                               placeholder={`Tuần này`}
                               options={dropDownOptions}
-                              className="w-[45%] gap-px !rounded-lg sm:pr-5"
                             />
                           </div>
                         </div>
@@ -477,7 +398,7 @@ export default function DashboardADMINPage() {
                           <div className="relative ml-[-4px] flex-1 md:ml-0 md:self-stretch">
                             <div className="relative h-[247px]">
                               <Img
-                                src="images/img_graphics.png"
+                                src="images/img_graphics.svg"
                                 alt="graphics"
                                 className="absolute bottom-[0.00px] left-0 right-0 m-auto h-[196px] w-full object-cover"
                               />
@@ -741,7 +662,7 @@ export default function DashboardADMINPage() {
                           data={table1Data}
                         />
                       </div>
-                      <div className="flex w-[33%] flex-col items-start gap-[17px] rounded-[16px] bg-white-A700 px-[30px] pb-4 pt-[23px] shadow-3xl md:w-full sm:px-5 sm:pt-5">
+                      {/* <div className="flex w-[33%] flex-col items-start gap-[17px] rounded-[16px] bg-white-A700 px-[30px] pb-4 pt-[23px] shadow-3xl md:w-full sm:px-5 sm:pt-5">
                         <Text size="2xl" as="p" className="uppercase">
                           HOẠT ĐỘNG GẦN ĐÂY
                         </Text>
@@ -909,54 +830,18 @@ export default function DashboardADMINPage() {
                               </Text>
                             </div>
                           </div>
-                        </div>
-                      </div>
+                        </div> 
+                      </div>*/}
                     </div>
                   </div>
                 </div>
               </div>
-              {/* <div className="flex w-[82%] items-center justify-between gap-5 md:w-full md:flex-col">
-                <div className="mb-[9px] flex flex-wrap gap-2 self-end">
-                  <Text size="md" as="p">
-                    © 2022 Zenmart. All Rights Reserved
-                  </Text>
-                  <Text size="md" as="p">
-                    Privacy · Terms · Sitemap
-                  </Text>
-                </div>
-                <div className="flex w-[25%] justify-center gap-2.5 md:w-full">
-                  <div className="flex w-[46%] flex-wrap items-center justify-evenly rounded-md border border-solid border-gray-200_01 bg-white-A700 py-2.5">
-                    <Text size="md" as="p" className="!text-blue_gray-600">
-                      Tiền tệ
-                    </Text>
-                    <Text size="md" as="p">
-                      VND
-                    </Text>
-                    <Img
-                      src="images/img_vector_blue_gray_900_02_5x8.svg"
-                      alt="vector"
-                      className="mb-[5px] h-[5px] self-end"
-                    />
-                  </div>
-                  <div className="flex flex-wrap items-center rounded-md border border-solid border-gray-200_01 bg-white-A700 pb-[9px] pl-[9px] pr-2 pt-[11px]">
-                    <Text size="md" as="p" className="!text-blue_gray-600">
-                      Ngôn ngữ
-                    </Text>
-                    <Text size="md" as="p" className="self-start">
-                      Tiếng Việt
-                    </Text>
-                    <Img
-                      src="images/img_vector_blue_gray_900_02_5x8.svg"
-                      alt="vector"
-                      className="ml-1.5 h-[5px]"
-                    />
-                  </div>
-                </div>
-              </div> */}
             </div>
           </div>
         </div>
       </div>
+      <Footer></Footer>
     </>
+
   );
 }
