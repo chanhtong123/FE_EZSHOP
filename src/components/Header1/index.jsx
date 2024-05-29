@@ -12,11 +12,14 @@ export default function Header1({ ...props }) {
   const [menuOpen1, setMenuOpen1] = React.useState(false);
   const [menuOpen2, setMenuOpen2] = React.useState(false);
   const [menuOpen3, setMenuOpen3] = React.useState(false);
+  const [isOpen, setIsOpen] = React.useState(false);
 
+  const toggleDropdown = () => {
+    setIsOpen(!isOpen);
+  };
   const handleLoginClick = () => {
     window.location.href = "/login";
   };
-  
 
   return (
     <header
@@ -61,9 +64,11 @@ export default function Header1({ ...props }) {
               </Text>
             </div>
             <div className="flex w-[30%] justify-between">
-              <div className="flex sm:w-full">
+              <div className="flex sm:w-full items-center gap-2 bg-white">
                 <div className="h-[21px] justify-between w-px bg-gray-200_01" />
                 <SelectBox
+                  variant="fill"
+                  color="white_A700"
                   shape="square"
                   indicator={
                     <Img
@@ -73,11 +78,12 @@ export default function Header1({ ...props }) {
                     />
                   }
                   name="trgip"
-                  placeholder={`Trợ giúp`}
+                  placeholder="Trợ giúp"
                   options={dropDownOptions}
-                  className=""
+                  className="w-full h-full flex-shrink-0"
                 />
               </div>
+
               <div className="flex items-center gap-4">
                 <div className="w-px bg-gray-200_01 " />
                 <Text size="s" as="p" className="self-end">
@@ -129,7 +135,7 @@ export default function Header1({ ...props }) {
                 <Img
                   src="images/img_search1.svg"
                   alt="searchone"
-                // className="h-[20px] w-[20px]"
+                  // className="h-[20px] w-[20px]"
                 />
               </Button>
             </div>
@@ -141,9 +147,11 @@ export default function Header1({ ...props }) {
                     shape="round"
                     className="w-[50px] h-[50px]"
                   >
-                    <Img src="images/img_heart1.svg"
+                    <Img
+                      src="images/img_heart1.svg"
                       alt="searchone"
-                      className="h-[20px] w-[20px]" />
+                      className="h-[20px] w-[20px]"
+                    />
                   </Button>
                 </a>
                 <Heading
@@ -182,10 +190,7 @@ export default function Header1({ ...props }) {
                 <div className="flex items-center">
                   <div className="relative w-[38%]">
                     <a href="#">
-                      <Button
-                        shape="round"
-                        className="w-[50px] h-[50px]"
-                      >
+                      <Button shape="round" className="w-[50px] h-[50px]">
                         <Img src="images/img_cart.svg" />
                       </Button>
                     </a>
@@ -196,13 +201,9 @@ export default function Header1({ ...props }) {
                     className="w-[62%] self-end !font-inter leading-[22px]"
                   >
                     <span className="font-bevietnampro text-[13px] font-normal text-blue_gray-900_02">
-                      289.000
+                      289.000đ
                     </span>
-                    <span className="font-bevietnampro text-[13px] font-normal text-blue_gray-900_02 underline">
-                      <>
-                        đ<br />
-                      </>
-                    </span>
+                    <br />
                     <span className="font-bevietnampro text-base font-medium text-blue_gray-900_02">
                       Thanh toán
                     </span>
@@ -234,14 +235,41 @@ export default function Header1({ ...props }) {
               </div>
               <div className="absolute left-[25.00px] top-[21.00px] m-auto h-[2px] w-[15px] bg-white-A700" />
             </div> */}
-            <div className="flex">
-              <div className="h-[2px] w-[20px] bg-green_A700_11" />
-              <Heading as="h6" className="!text-blue_400_28">
-                Danh mục
-              </Heading>
+            <div
+              className="relative h-[60px] w-[38%] bg-green-A700_02 py-[19px] pl-5 pr-[21px] md:h-auto md:w-full sm:pr-5 "
+              onClick={toggleDropdown}
+            >
+              <div className="flex w-full flex-col items-start">
+                <div className="flex items-center justify-between gap-5 self-stretch">
+                  <div className="flex w-[50%] items-center justify-center gap-[15px]">
+                    <h6 className="text-white-A700">Danh mục</h6>
+                  </div>
+                  <img
+                    src="images/img_vector_white_a700.svg"
+                    alt="vector"
+                    className="mb-[7px] h-[5px] self-end"
+                  />
+                </div>
+              </div>
 
-
+              {isOpen && (
+                <div className="z-10 bg-white divide-y divide-gray-100 rounded-lg shadow-md absolute left-0 w-[100%] dark:bg-gray-700 pt-5">
+                  <ul className="py-2 text-lg text-gray-700 dark:text-gray-200">
+                    <li className="flex items-center gap-[10px]">
+                      <Text size="lg" as="p" className="leading-[50px] pl-5">
+                        Ưu đãi hấp dẫn hôm nay
+                      </Text>
+                    </li>
+                    <li className="flex items-center gap-[10px]">
+                      <Text size="lg" as="p" className="leading-[50px] pl-5">
+                        Nhà & Bếp
+                      </Text>
+                    </li>
+                  </ul>
+                </div>
+              )}
             </div>
+
             <ul className="flex w-[60%] justify-between">
               <li
                 onMouseLeave={() => {
@@ -298,21 +326,13 @@ export default function Header1({ ...props }) {
             </ul>
           </div>
           <div className="flex w-[40%] justify-between cursor-pointer items-center gap-1">
-            <Button color="white_A701">
-              Ưu đãi trong ngày
-            </Button>
-            <Button color="white_A701">
-              Ưu đãi hấp dẫn
-            </Button>
-            <Button color="white_A701">
-              Bán chạy
-            </Button>
-            <Button color="white_A701">
-              Hàng mới
-            </Button>
+            <Button color="white_A701">Ưu đãi trong ngày</Button>
+            <Button color="white_A701">Ưu đãi hấp dẫn</Button>
+            <Button color="white_A701">Bán chạy</Button>
+            <Button color="white_A701">Hàng mới</Button>
           </div>
         </div>
       </div>
-    </header >
+    </header>
   );
 }

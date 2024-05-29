@@ -1,5 +1,6 @@
 import React from "react";
 import { Text, Img } from "./..";
+
 export default function FavoriteProductSidebar({
   nametext = "Phuong Uyennn",
   emailtext = "uyen2506@gmail.com",
@@ -35,36 +36,58 @@ export default function FavoriteProductSidebar({
         </div>
       </div>
       <div className="flex w-[89%] items-center justify-between gap-5">
-        <div className="flex flex-col gap-[25px]">
-          <Img
-            src="images/img_growth_1.svg"
-            alt="growthone"
-            className="h-[20px]"
-          />
-          <Img
-            src="images/img_vector.svg"
-            alt="vector_thirteen"
-            className="h-[20px]"
-          />
-          <Img
-            src="images/img_location_1.svg"
-            alt="locationone"
-            className="h-[20px]"
-          />
-          <Img
-            src="images/img_badge_1.svg"
-            alt="badgeone"
-            className="h-[20px]"
-          />
-          <Img
-            src="images/img_television.svg"
-            alt="television"
-            className="h-[20px]"
-          />
-        </div>
-        <Text className="w-[89%] text-[15px] font-normal leading-[45px]">
-          {descriptiontext}
-        </Text>
+        <ul className="flex flex-col gap-[25px] list-none">
+          <li className="flex items-center gap-2">
+            <a href="#account-info" className="flex items-center gap-2">
+              <Img
+                src="images/img_growth_1.svg"
+                alt="growthone"
+                className="h-[20px]"
+              />
+              <span>Thông tin tài khoản</span>
+            </a>
+          </li>
+          <li className="flex items-center gap-2">
+            <a href="#orders" className="flex items-center gap-2">
+              <Img
+                src="images/img_order.svg"
+                alt="order"
+                className="h-[20px]"
+              />
+              <span>Đặt hàng</span>
+            </a>
+          </li>
+          <li className="flex items-center gap-2">
+            <a href="#address" className="flex items-center gap-2">
+              <Img
+                src="images/img_location_1.svg"
+                alt="locationone"
+                className="h-[20px]"
+              />
+              <span>Địa chỉ</span>
+            </a>
+          </li>
+          <li className="flex items-center gap-2">
+            <a href="#wishlist" className="flex items-center gap-2">
+              <Img
+                src="images/img_badge_1.svg"
+                alt="badgeone"
+                className="h-[20px]"
+              />
+              <span>Danh sách yêu thích</span>
+            </a>
+          </li>
+          <li className="flex items-center gap-2">
+            <a href="#logout" className="flex items-center gap-2">
+              <Img
+                src="images/img_log_out.svg"
+                alt="television"
+                className="h-[20px]"
+              />
+              <span>Đăng xuất</span>
+            </a>
+          </li>
+        </ul>
       </div>
     </div>
   );

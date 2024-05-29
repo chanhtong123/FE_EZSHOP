@@ -108,145 +108,12 @@ export default function HomePagePage() {
         />
       </Helmet>
       <div className="flex w-full flex-col items-center bg-white-A700">
-        <Header className="shadow-lg" />
+        {/* <Header className="shadow-lg" /> */}
         <div className="flex w-[76%] flex-col gap-[59px] md:w-full md:p-5 sm:gap-[29px]">
-          <div className="container-md flex flex-col">
-            <div className="flex gap-[31px] md:flex-col">
-              <div className="relative h-[500px] w-[20%] rounded-bl-md rounded-br-md border border-solid border-gray-200_01 bg-white-A700 md:w-full">
-                <Img
-                  src="images/img_line.svg"
-                  alt="line"
-                  className="absolute bottom-0 left-0 right-0 top-0 m-auto h-[402px] w-full"
-                />
-                <div className="absolute bottom-0 left-0 right-0 top-0 m-auto flex h-max w-[85%] items-center justify-center">
-                  <div className="flex flex-col items-start gap-[34px]">
-                    <Img
-                      src="images/img_thumbs_up_blue_gray_900_02_1.svg"
-                      alt="thumbsup"
-                      className="h-[16px] w-full self-center"
-                    />
-                    <Img
-                      src="images/img_cooking_1.svg"
-                      alt="cookingone"
-                      className="h-[16px] w-full self-center"
-                    />
-                    <Img
-                      src="images/img_armchair_1.svg"
-                      alt="armchairone"
-                      className="h-[16px] w-full self-center"
-                    />
-                    <Img
-                      src="images/img_smartphone_1_1.svg"
-                      alt="smartphone1one"
-                      className="h-[16px] w-full self-center"
-                    />
-                    <Img
-                      src="images/img_bride_dress_1.svg"
-                      alt="bridedressone"
-                      className="h-[16px] w-full self-center"
-                    />
-                    <Img
-                      src="images/img_heart_beat_1.svg"
-                      alt="heartbeatone"
-                      className="h-[16px] w-full self-center"
-                    />
-                    <Img
-                      src="images/img_vector_blue_gray_900_02_1.svg"
-                      alt="vector_thirteen"
-                      className="h-[16px] w-full self-center"
-                    />
-                    <Img
-                      src="images/img_groceries_1.svg"
-                      alt="groceriesone"
-                      className="h-[16px] w-full self-center"
-                    />
-                    <Img
-                      src="images/img_games_1_1.svg"
-                      alt="games1one"
-                      className="h-[16px] w-full self-center"
-                    />
-                    <Img
-                      src="images/img_feeding_bottle_1.svg"
-                      alt="feedingbottle"
-                      className="h-[14px] w-[14px]"
-                    />
-                  </div>
-                  <Text
-                    size="lg"
-                    as="p"
-                    className="ml-[19px] w-[90%] leading-[50px]"
-                  >
-                    <span className="text-blue_gray-900_02">
-                      <>
-                        Ưu đãi hấp dẫn hôm nay <br /> Nhà & Bếp <br /> Nội thất
-                        <br />
-                      </>
-                    </span>
-                    <span className="text-green-A700_02">
-                      <>
-                        Thiết bị điện tử <br /> Quần áo & Phụ kiện <br /> Sức
-                        khỏe & Làm đẹp <br /> Thể thao & Ngoài trời <br /> Cửa
-                        hàng tạp hóa & chợ <br /> Trò chơi đồ chơi & video
-                        <br /> Bé & Mẹ
-                      </>
-                    </span>
-                  </Text>
-                  <div className="flex flex-col gap-[41px]">
-                    <Img
-                      src="images/img_arrow_right_blue_gray_900_02.svg"
-                      alt="arrowright"
-                      className="h-[8px]"
-                    />
-                    <Img
-                      src="images/img_arrow_right_blue_gray_900_02.svg"
-                      alt="arrowright"
-                      className="h-[8px]"
-                    />
-                    <Img
-                      src="images/img_arrow_right_blue_gray_900_02.svg"
-                      alt="arrowright"
-                      className="h-[8px]"
-                    />
-                    <Img
-                      src="images/img_arrow_right_green_400.svg"
-                      alt="arrowright"
-                      className="h-[8px]"
-                    />
-                    <Img
-                      src="images/img_arrow_right_blue_gray_900_02.svg"
-                      alt="arrowright"
-                      className="h-[8px]"
-                    />
-                    <Img
-                      src="images/img_arrow_right_blue_gray_900_02.svg"
-                      alt="arrowright"
-                      className="h-[8px]"
-                    />
-                    <Img
-                      src="images/img_arrow_right_blue_gray_900_02.svg"
-                      alt="arrowright"
-                      className="h-[8px]"
-                    />
-                    <Img
-                      src="images/img_arrow_right_blue_gray_900_02.svg"
-                      alt="arrowright"
-                      className="h-[8px]"
-                    />
-                    <Img
-                      src="images/img_arrow_right_blue_gray_900_02.svg"
-                      alt="arrowright"
-                      className="h-[8px]"
-                    />
-                    <Img
-                      src="images/img_arrow_right_blue_gray_900_02.svg"
-                      alt="arrowright"
-                      className="h-[8px]"
-                    />
-                  </div>
-                </div>
-              </div>
-              <div className="relative h-[500px] flex-1 md:h-auto md:w-full md:flex-none md:self-stretch">
-                <div className="flex w-full max-w-[1099px]">
+        <div className="container-md flex flex-col">
+  <div className="flex gap-[31px] md:flex-col">
+    <div className="relative h-[500px] flex-1 md:h-auto md:w-full md:flex-none md:self-stretch center pt-5 ">
+      <div className="flex w-full max-w-[1099px] justify-center items-center">
                   <Slider
                     autoPlay
                     autoPlayInterval={2000}
@@ -454,19 +321,43 @@ export default function HomePagePage() {
                         <HomePageSix />
                         <HomePageSix
                           imagethirtyOne="images/img_image_30_10.png"
-                          ergonomic="<>Giày cao gót đế mảnh<br />màu hồng</>"
+                          ergonomic={
+                            <>
+                              Giày cao gót đế mảnh
+                              <br />
+                              màu hồng
+                            </>
+                          }
                         />
                         <HomePageSix
                           imagethirtyOne="images/img_image_30_11.png"
-                          ergonomic="<>Áo khoác lông<br />siêu ấm</>"
+                          ergonomic={
+                            <>
+                              Áo khoác lông
+                              <br />
+                              siêu ấm
+                            </>
+                          }
                         />
                         <HomePageSix
                           imagethirtyOne="images/img_image_30_12.png"
-                          ergonomic="<>Túi cầm tay mang đi làm<br />màu nâu tiện dụng</>"
+                          ergonomic={
+                            <>
+                              Túi cầm tay mang đi làm
+                              <br />
+                              màu nâu tiện dụng
+                            </>
+                          }
                         />
                         <HomePageSix
                           imagethirtyOne="images/img_image_30_13.png"
-                          ergonomic="<>Mắt kính chống nắng<br />thời trang</>"
+                          ergonomic={
+                            <>
+                              Mắt kính chống nắng
+                              <br />
+                              thời trang
+                            </>
+                          }
                         />
                       </div>
                     </React.Fragment>
@@ -894,7 +785,13 @@ export default function HomePagePage() {
                         <HomePageFive
                           image="images/img_image_30_20.png"
                           category="Sắc đẹp"
-                          title="<>Son Romand siêu đẹp<br />mới dùng</>"
+                          title={
+                            <>
+                              Son Romand siêu đẹp
+                              <br />
+                              mới dùng
+                            </>
+                          }
                           className="sm:pb-5"
                         />
                       </React.Fragment>
@@ -1140,7 +1037,7 @@ export default function HomePagePage() {
             </div>
           </div>
         </div>
-        <Footer1 className="mt-[100px] justify-center self-stretch border-t border-solid border-gray-200_01 bg-white-A700 px-14 pb-[17px] pt-[82px] md:px-5 md:pt-5" />
+        {/* <Footer1 className="mt-[100px] justify-center self-stretch border-t border-solid border-gray-200_01 bg-white-A700 px-14 pb-[17px] pt-[82px] md:px-5 md:pt-5" /> */}
       </div>
     </>
   );

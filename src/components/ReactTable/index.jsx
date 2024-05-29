@@ -5,6 +5,7 @@ import {
   useReactTable,
   getSortedRowModel,
 } from "@tanstack/react-table";
+
 const sizes = {
   xs: "p-[5px]",
   sm: "p-[13px]",
@@ -12,6 +13,7 @@ const sizes = {
   lg: "p-[19px]",
   xl: "p-5",
 };
+
 const ReactTable = ({
   columns,
   data = [],
@@ -30,6 +32,7 @@ const ReactTable = ({
     ...restConfig,
   };
   const table = useReactTable(tableConfig); // Render the UI for your table
+
   return (
     <table className={className}>
       <thead {...headerProps}>
@@ -66,4 +69,5 @@ const ReactTable = ({
     </table>
   );
 };
+
 export { ReactTable };

@@ -14,7 +14,6 @@ export default function RegisterPage() {
         />
       </Helmet>
       <div className="flex w-full flex-col items-center gap-[71px] bg-white-A700 md:gap-[53px] sm:gap-[35px]">
-        <Header1 />
         <div className="container-md pl-[479px] pr-[382px] md:p-5 md:px-5">
           <div className="relative h-[848px]">
             <div className="absolute bottom-0 left-[0.00px] top-0 my-auto flex h-max w-[82%] flex-col items-center justify-center rounded-md border border-solid border-gray-200_01 bg-white-A700 pb-[65px] pl-[41px] pr-10 pt-[131px] shadow-xs md:py-5 md:pl-5 sm:p-5">
@@ -125,7 +124,6 @@ export default function RegisterPage() {
             </Heading>
           </div>
         </div>
-        <Footer1 className="justify-center self-stretch border-t border-solid border-gray-200_01 bg-white-A700 px-14 pb-[17px] pt-[82px] md:px-5 md:pt-5" />
       </div>
     </>
   );
