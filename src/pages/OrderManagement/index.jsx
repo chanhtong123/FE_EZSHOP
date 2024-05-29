@@ -15,74 +15,68 @@ const dropDownOptions = [
 ];
 const table2Data = [
   {
-    mid: "#6548",
-    to: "2 phút trước",
-    khchhng: "Joseph Wheeler",
-    rowtngcng: "250.000đ",
-    trngthi: "images/img_table_cell.svg",
+    id: "#6548",
+    create: "2 phút trước",
+    owner: "Joseph Wheeler",
+    total: 250000,
+    status: "Waiting",
+    money : 50000
   },
   {
-    mid: "#6548",
-    to: "2 phút trước",
-    khchhng: "Joseph Wheeler",
-    rowtngcng: "250.000đ",
-    trngthi: "images/img_table_cell.svg",
+    id: "#6548",
+    create: "2 phút trước",
+    owner: "Joseph Wheeler",
+    total: 250000,
+    status: "Waiting",
+    money : 50000
   },
   {
-    mid: "#6548",
-    to: "2 phút trước",
-    khchhng: "Joseph Wheeler",
-    rowtngcng: "250.000đ",
-    trngthi: "images/img_table_cell.svg",
+    id: "#6548",
+    create: "2 phút trước",
+    owner: "Joseph Wheeler",
+    total: 250000,
+    status: "Waiting",
+    money : 50000
   },
   {
-    mid: "#6548",
-    to: "2 phút trước",
-    khchhng: "Joseph Wheeler",
-    rowtngcng: "250.000đ",
-    trngthi: "images/img_table_cell.svg",
+    id: "#6548",
+    create: "2 phút trước",
+    owner: "Joseph Wheeler",
+    total: 250000,
+    status: "Waiting",
+    money : 50000
   },
   {
-    mid: "#6548",
-    to: "2 phút trước",
-    khchhng: "Joseph Wheeler",
-    rowtngcng: "250.000đ",
-    trngthi: "images/img_table_cell.svg",
+    id: "#6548",
+    create: "2 phút trước",
+    owner: "Joseph Wheeler",
+    total: 250000,
+    status: "Waiting",
+    money : 50000
   },
   {
-    mid: "#6548",
-    to: "2 phút trước",
-    khchhng: "Joseph Wheeler",
-    rowtngcng: "250.000đ",
-    trngthi: "images/img_table_cell.svg",
+    id: "#6548",
+    create: "2 phút trước",
+    owner: "Joseph Wheeler",
+    total: 250000,
+    status: "Waiting",
+    money : 50000
   },
   {
-    mid: "#6548",
-    to: "2 phút trước",
-    khchhng: "Joseph Wheeler",
-    rowtngcng: "250.000đ",
-    trngthi: "images/img_table_cell.svg",
+    id: "#6548",
+    create: "2 phút trước",
+    owner: "Joseph Wheeler",
+    total: 250000,
+    status: "Waiting",
+    money : 50000
   },
   {
-    mid: "#6548",
-    to: "2 phút trước",
-    khchhng: "Joseph Wheeler",
-    rowtngcng: "250.000đ",
-    trngthi: "images/img_table_cell.svg",
-  },
-  {
-    mid: "#6548",
-    to: "2 phút trước",
-    khchhng: "Joseph Wheeler",
-    rowtngcng: "250.000đ",
-    trngthi: "images/img_table_cell.svg",
-  },
-  {
-    mid: "#6548",
-    to: "2 phút trước",
-    khchhng: "Joseph Wheeler",
-    rowtngcng: "250.000đ",
-    trngthi: "images/img_table_cell.svg",
+    id: "#6548",
+    create: "2 phút trước",
+    owner: "Joseph Wheeler",
+    total: 250000,
+    status: "Waiting",
+    money : 50000
   },
 ];
 export default function OrderManagementPage() {
@@ -90,20 +84,23 @@ export default function OrderManagementPage() {
   const table2Columns = React.useMemo(() => {
     const table2ColumnHelper = createColumnHelper();
     return [
-      table2ColumnHelper.accessor("mid", {
+      table2ColumnHelper.accessor("id", {
         cell: (info) => (
           <Heading size="xl" as="p">
             {info?.getValue?.()}
           </Heading>
         ),
         header: (info) => (
-          <Heading as="h2" className="py-[17px] pl-[35px] md:p-5 sm:pl-5">
-            Mã ID
-          </Heading>
+          <div className="flex flex-wrap pb-[15px] pr-[20%] pt-[17px] md:p-5 md:pr-5">
+            <Heading as="h5" className="self-start">
+              Mã đơn hàng
+            </Heading>
+          </div>
         ),
         meta: { width: "10%" },
       }),
-      table2ColumnHelper.accessor("to", {
+
+      table2ColumnHelper.accessor("create", {
         cell: (info) => (
           <Text size="lg" as="p">
             {info?.getValue?.()}
@@ -116,7 +113,8 @@ export default function OrderManagementPage() {
         ),
         meta: { width: "10%" },
       }),
-      table2ColumnHelper.accessor("khchhng", {
+
+      table2ColumnHelper.accessor("owner", {
         cell: (info) => (
           <Text size="lg" as="p">
             {info?.getValue?.()}
@@ -129,78 +127,70 @@ export default function OrderManagementPage() {
         ),
         meta: { width: "20%" },
       }),
-      table2ColumnHelper.accessor("rowtngcng", {
+
+      table2ColumnHelper.accessor("total", {
         cell: (info) => (
-          <div className="flex items-center justify-between gap-5">
+          <div className="flex items-center justify-center gap-5">
             <Text as="p" className="!font-normal">
               {info?.getValue?.()}
             </Text>
           </div>
         ),
         header: (info) => (
-          <div className="flex flex-wrap pb-[15px] pr-[20%] pt-[17px] md:p-5 md:pr-5">
             <Heading as="h5" className="self-start">
               Tổng cộng
             </Heading>
-          </div>
         ),
         meta: { width: "20%" },
       }),
-      table2ColumnHelper.accessor("loinhuan", {
+
+      table2ColumnHelper.accessor("money", {
         cell: (info) => (
-          <div className="flex items-center justify-between gap-5">
-            <div className="flex flex-wrap items-center gap-1">
-              <Text as="p" className="!font-normal">
-                <span className="text-blue_gray-900_02">50.000</span>
-                <span className="text-blue_gray-900_02">đ</span>
-              </Text>
-              <Heading
-                size="md"
-                as="p"
-                className="flex items-center justify-center rounded bg-green-A700_28 p-[3px] !font-publicsans !text-green-A700"
-              >
-                16%
-              </Heading>
-            </div>
+          <div className="flex gap-[5px] justify-center">
+            <Text>
+            {info?.getValue?.()}
+            </Text>
           </div>
         ),
         header: (info) => (
-          <div className="flex pb-[15px] pr-[20%] pt-[17px] md:p-5 md:pr-5">
             <Heading as="h5" className="self-start">
                 Lợi Nhuận
             </Heading>
-          </div>
         ),
         meta: { width: "20%" },
       }),
-      table2ColumnHelper.accessor("trngthi", {
+
+      table2ColumnHelper.accessor("status", {
         cell: (info) => (
-          <div className="flex items-center justify-between gap-5">
-            <SelectBox
-              size="md"
+          <div className="flex gap-[5px] justify-center">
+            <Text>
+            {info?.getValue?.()}
+            </Text>
+          </div>
+        ),
+        header: (info) => (
+            <Heading as="h5" className="self-start">
+                Trạng thái
+            </Heading>
+        ),
+        meta: { width: "20%" },
+      }),
+
+      table2ColumnHelper.accessor("action", {
+        cell: (info) => (
+          <div className="flex gap-[5px] justify-center">
+            <Button
+              color="green_A700_e5"
+              size="3x1"
               shape="round"
-              indicator={
-                <Img
-                  src="images/img_close_amber_a400.svg"
-                  alt="close"
-                  className="h-[16px] w-[16px]"
-                />
-              }
-              name="angch"
-              placeholder={`Đang chờ`}
-              options={dropDownOptions}
-              className="w-[38%] gap-px !rounded pl-3 font-semibold sm:pr-5"
-            />
-            <Img
-              src={info?.getValue?.()}
-              alt="tablecell"
-              className="h-[60px] w-[24%]"
-            />
+              className="w-[40px] !rounded-[5px]"
+            >
+              ...
+            </Button>
           </div>
         ),
         header: (info) => (
           <Heading as="h6" className="px-px py-[17px] md:p-5">
-            Trạng thái
           </Heading>
         ),
         meta: { width: "10%" },
