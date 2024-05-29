@@ -3,260 +3,164 @@ import { Helmet } from "react-helmet";
 import { CloseSVG } from "../../assets/images";
 import { Img, Text, Button, Heading, Input } from "../../components";
 import Header from "../../components/Header";
+import Footer from "../../components/FooterAdmin";
 import { ReactTable } from "../../components/ReactTable";
 import SalesShopPagination from "../../components/SalesShopPagination";
 import Sidebar1 from "../../components/Sidebar1";
 import { createColumnHelper } from "@tanstack/react-table";
-const table7Data = [
+const dropDownOptions = [
+  { label: "Option1", value: "option1" },
+  { label: "Option2", value: "option2" },
+  { label: "Option3", value: "option3" },
+];
+
+const tableData = [
   {
-    rowiconone: "Circooles",
-    tableheaderone: "72",
-    tableheader: "4%",
-    lastassessed: "20 Jan 2022",
-    rowtableheader: "Active",
+    id: "#6548",
+    name: "Shop second-hand 113",
+    owner: "Joseph Wheeler",
+    status: "Active",
+    productAmount: 7,
   },
   {
-    rowiconone: "Command+R",
-    tableheaderone: "78",
-    tableheader: "6%",
-    lastassessed: "24 Jan 2022",
-    rowtableheader: "Active",
+    id: "#6548",
+    name: "Shop second-hand 113",
+    owner: "Joseph Wheeler",
+    status: "Active",
+    productAmount: 7,
   },
   {
-    rowiconone: "Hourglass",
-    tableheaderone: "38",
-    tableheader: "8%",
-    lastassessed: "26 Jan 2022",
-    rowtableheader: "Active",
+    id: "#6548",
+    name: "Shop second-hand 113",
+    owner: "Joseph Wheeler",
+    status: "Active",
+    productAmount: 7,
   },
   {
-    rowiconone: "Layers",
-    tableheaderone: "42",
-    tableheader: "1%",
-    lastassessed: "18 Jan 2022",
-    rowtableheader: "Active",
+    id: "#6548",
+    name: "Shop second-hand 113",
+    owner: "Joseph Wheeler",
+    status: "Active",
+    productAmount: 7,
   },
   {
-    rowiconone: "Quotient",
-    tableheaderone: "66",
-    tableheader: "6%",
-    lastassessed: "28 Jan 2022",
-    rowtableheader: "Active",
-  },
-  {
-    rowiconone: "Sisyphus",
-    tableheaderone: "91",
-    tableheader: "2%",
-    lastassessed: "16 Jan 2022",
-    rowtableheader: "Inactive",
-  },
-  {
-    rowiconone: "Sisyphus",
-    tableheaderone: "91",
-    tableheader: "2%",
-    lastassessed: "16 Jan 2022",
-    rowtableheader: "Inactive",
-  },
-  {
-    rowiconone: "Sisyphus",
-    tableheaderone: "91",
-    tableheader: "2%",
-    lastassessed: "16 Jan 2022",
-    rowtableheader: "Inactive",
+    id: "#6548",
+    name: "Shop second-hand 113",
+    owner: "Joseph Wheeler",
+    status: "Active",
+    productAmount: 7,
   },
 ];
+
 export default function SalesManagerPage() {
   const [searchBarValue55, setSearchBarValue55] = React.useState("");
-  const table7Columns = React.useMemo(() => {
-    const table7ColumnHelper = createColumnHelper();
+  const tableShopsColumns = React.useMemo(() => {
+    const tableShopsColumnsHelper = createColumnHelper();
     return [
-      table7ColumnHelper.accessor("rowiconone", {
+      tableShopsColumnsHelper.accessor("id", {
         cell: (info) => (
-          <div className="flex items-center gap-3 border-b border-solid border-blue_gray-50">
-            <Button
-              color="gray_50_01"
-              size="xs"
-              shape="round"
-              className="w-[20px] border border-solid border-deep_purple-400"
-            >
-              <Img src="images/img_checkmark_deep_purple_400.svg" />
-            </Button>
-            <Img
-              src="images/img_avatar.png"
-              alt="avatar"
-              className="h-[40px] w-[40px] rounded-[50%]"
-            />
-            <div className="flex flex-col items-start gap-1">
-              <Heading as="h2">{info?.getValue?.()}</Heading>
-              <Text size="md" as="p" className="!text-blue_gray-600">
-                getcirooles.com
-              </Text>
-            </div>
-          </div>
+          <Heading size="xl" as="p">
+            {info?.getValue?.()}
+          </Heading>
         ),
         header: (info) => (
-          <div className="flex items-center">
-            <div className="relative h-[20px] w-[24%] md:h-auto">
-              <Img
-                src="images/img_icon_deep_purple_400.svg"
-                alt="icon"
-                className="mb-2 h-[2px]"
-              />
-              <div className="absolute bottom-0 left-0 right-0 top-0 m-auto flex h-max w-max flex-col items-center rounded-md border border-solid border-deep_purple-400 bg-gray-50_01 px-[5px] pb-2 pt-2.5">
-                <Img
-                  src="images/img_icon_deep_purple_400.svg"
-                  alt="icon"
-                  className="h-[2px]"
-                />
-              </div>
-            </div>
-            <div className="flex items-center gap-1">
-              <Text
-                size="xs"
-                as="p"
-                className="self-start !font-inter !font-medium !text-blue_gray-500"
-              >
-                Vendor
-              </Text>
-              <Img
-                src="images/img_arrow_down_blue_gray_500.svg"
-                alt="arrowdown"
-                className="h-[16px] w-[16px]"
-              />
-            </div>
+          <div className="flex flex-wrap pb-[15px] pr-[20%] pt-[17px] md:p-5 md:pr-5">
+            <Heading as="h2" className="px-px py-[17px] md:p-5">
+              Shop ID
+            </Heading>
           </div>
         ),
-        meta: { width: "94px" },
+        meta: { width: "10%" },
       }),
-      table7ColumnHelper.accessor("tableheaderone", {
+      tableShopsColumnsHelper.accessor("name", {
         cell: (info) => (
-          <div className="flex items-center justify-center gap-3 border-b border-solid border-blue_gray-50">
-            <div className="relative h-[8px] flex-1 rounded bg-gray-50_01">
-              <div
-                style={{ width: "71%" }}
-                className="absolute h-full rounded bg-deep_purple-400"
-              />
-            </div>
-            <Text
-              size="md"
-              as="p"
-              className="h-[18px] w-[18px] !font-medium !text-blue_gray-800"
-            >
+          <Text size="lg" as="p">
+            {info?.getValue?.()}
+          </Text>
+        ),
+        header: (info) => (
+          <div className="flex flex-wrap pb-[15px] pr-[20%] pt-[17px] md:p-5 md:pr-5">
+            <Heading as="h2" className="px-px py-[17px] md:p-5">
+              Tên Shop
+            </Heading>
+          </div>
+        ),
+        meta: { width: "30%" },
+      }),
+      tableShopsColumnsHelper.accessor("owner", {
+        cell: (info) => (
+          <Text size="lg" as="p">
+            {info?.getValue?.()}
+          </Text>
+        ),
+        header: (info) => (
+          <div className="flex flex-wrap pb-[15px] pr-[20%] pt-[17px] md:p-5 md:pr-5">
+            <Heading as="h4" className="px-px py-[17px] md:p-5">
+              Chủ shop
+            </Heading>
+          </div>
+        ),
+        meta: { width: "20%" },
+      }),
+      tableShopsColumnsHelper.accessor("status", {
+        cell: (info) => (
+          <div className="flex items-center justify-between gap-5">
+            <Text as="p" className="!font-normal">
               {info?.getValue?.()}
             </Text>
           </div>
         ),
         header: (info) => (
-          <Input
-            color="gray_50_05"
-            size="sm"
-            shape="square"
-            name="tableheader_one"
-            placeholder={`Rating`}
-            className="ml-[268px] border-b border-solid border-blue_gray-50 font-inter font-medium md:ml-0 sm:px-5"
-          />
+          <div className="flex flex-wrap pb-[15px] pr-[20%] pt-[17px] md:p-5 md:pr-5">
+            <Heading as="h5" className="self-start">
+              Trạng thái
+            </Heading>
+          </div>
         ),
-        meta: { width: "386px" },
+        meta: { width: "20%" },
       }),
-      table7ColumnHelper.accessor("tableheader", {
+      tableShopsColumnsHelper.accessor("productAmount", {
         cell: (info) => (
-          <div className="flex border-b border-solid border-blue_gray-50">
+          <div className="flex items-center justify-between gap-5">
+            <div className="flex flex-wrap items-center gap-1">
+              <Text as="p" className="!font-normal">
+                <span className="text-blue_gray-900_02">
+                  {info?.getValue?.()}
+                </span>
+              </Text>
+            </div>
+          </div>
+        ),
+        header: (info) => (
+          <div className="flex pb-[15px] pr-[20%] pt-[17px] md:p-5 md:pr-5">
+            <Heading as="h5" className="self-start">
+              Số sản phẩm
+            </Heading>
+          </div>
+        ),
+        meta: { width: "10%" },
+      }),
+      tableShopsColumnsHelper.accessor("trngthi", {
+        cell: (info) => (
+          <div className="flex items-center justify-center  gap-5">
             <Button
-              color="red_50_01"
-              size="sm"
-              leftIcon={
-                <Img
-                  src="images/img_arrowdown_red_500.svg"
-                  alt="arrow_down"
-                  className="h-[12px] w-[12px]"
-                />
-              }
-              className="min-w-[49px] gap-1 rounded-[11px] font-medium"
+              color="green_A700_e5"
+              size="3x1"
+              shape="round"
+              className="w-[40px] self-center !rounded-[5px]"
             >
-              {info?.getValue?.()}
+              ...
             </Button>
           </div>
         ),
         header: (info) => (
-          <div className="h-[44px] border-b border-solid border-blue_gray-50 bg-gray-50_05" />
+          <Heading as="h6" className="px-px py-[17px] md:p-5">
+          </Heading>
         ),
-        meta: { width: "73px" },
-      }),
-      table7ColumnHelper.accessor("lastassessed", {
-        cell: (info) => (
-          <div className="flex">
-            <Button
-              color="blue_gray_50"
-              size="12xl"
-              variant="outline"
-              shape="square"
-              className="min-w-[134px] sm:px-5"
-            >
-              {info?.getValue?.()}
-            </Button>
-          </div>
-        ),
-        header: (info) => (
-          <Button
-            color="gray_50_05"
-            size="7xl"
-            shape="square"
-            className="min-w-[134px] border-b border-solid border-blue_gray-50 font-inter font-medium sm:px-5"
-          >
-            Last assessed
-          </Button>
-        ),
-        meta: { width: "134px" },
-      }),
-      table7ColumnHelper.accessor("rowtableheader", {
-        cell: (info) => (
-          <div className="flex gap-1 border-b border-solid border-blue_gray-50">
-            <Button
-              color="light_green_50"
-              size="sm"
-              className="min-w-[67px] rounded-[11px] font-medium"
-            >
-              {info?.getValue?.()}
-            </Button>
-            <Button
-              color="gray_50_01"
-              size="sm"
-              className="min-w-[97px] rounded-[11px] font-inter font-medium text-deep_purple-500"
-            >
-              Business data
-            </Button>
-            <Button
-              color="blue_50"
-              size="sm"
-              className="min-w-[53px] rounded-[11px] font-inter font-medium"
-            >
-              Admin
-            </Button>
-            <Button
-              color="gray_100_01"
-              size="sm"
-              className="min-w-[31px] rounded-[11px] font-inter font-medium"
-            >
-              +2
-            </Button>
-          </div>
-        ),
-        header: (info) => (
-          <div className="flex flex-1 md:self-stretch">
-            <Input
-              color="gray_50_05"
-              size="sm"
-              shape="square"
-              name="tableheader"
-              placeholder={`License use`}
-              className="w-[73%] border-b border-solid border-blue_gray-50 font-inter font-medium sm:px-5"
-            />
-          </div>
-        ),
-        meta: { width: "431px" },
+        meta: { width: "10%" },
       }),
     ];
-  }, []);
+  },);
   return (
     <>
       <Helmet>
@@ -277,19 +181,13 @@ export default function SalesManagerPage() {
                   <Heading size="8xl" as="h1" className="uppercase">
                     QUẢN LÝ NGƯỜI BÁN
                   </Heading>
-                  <Text
-                    as="p"
-                    className="!font-jost !font-normal !text-blue_gray-600"
-                  >
-                    Lorem ipsum dolor sit amet, consectetur.
-                  </Text>
                 </div>
                 <div className="flex flex-col items-center gap-[42px] self-stretch rounded-[16px] bg-white-A700 px-[30px] pb-[31px] pt-[30px] shadow-3xl sm:p-5">
                   <div className="flex items-center justify-between gap-5 self-stretch md:flex-col">
                     <Input
                       shape="round"
                       name="search"
-                      placeholder={`Tìm shop`}
+                      placeholder={`Tìm...`}
                       value={searchBarValue55}
                       onChange={(e) => setSearchBarValue55(e)}
                       suffix={
@@ -300,7 +198,7 @@ export default function SalesManagerPage() {
                           />
                         ) : (
                           <Img
-                            src="images/img_search_1_blue_gray_900_02.svg"
+                            src="images/img_search1.svg"
                             alt="search 1"
                             className="h-[20px] w-[20px] cursor-pointer"
                           />
@@ -308,13 +206,6 @@ export default function SalesManagerPage() {
                       }
                       className="w-[29%] gap-[35px] border border-solid border-gray-200_01 md:w-full"
                     />
-                    <Button
-                      size="10xl"
-                      shape="round"
-                      className="min-w-[191px] font-medium shadow-sm sm:px-5"
-                    >
-                      Thêm Người Bán
-                    </Button>
                   </div>
                   <ReactTable
                     size="sm"
@@ -322,8 +213,8 @@ export default function SalesManagerPage() {
                     headerProps={{ className: "md:flex-col" }}
                     rowDataProps={{ className: "md:flex-col" }}
                     className="self-stretch bg-white-A700"
-                    columns={table7Columns}
-                    data={table7Data}
+                    columns={tableShopsColumns}
+                    data={tableData}
                   />
                   <SalesShopPagination
                     text120of300="1 – 20 của 300+ được tìm thấy"
@@ -331,50 +222,11 @@ export default function SalesManagerPage() {
                   />
                 </div>
               </div>
-              <div className="flex w-[82%] md:w-full">
-                <div className="flex w-full items-center justify-between gap-5 md:flex-col">
-                  <div className="flex flex-wrap gap-11">
-                    <Text size="md" as="p" className="self-end">
-                      © 2024 EZShop. All Rights Reserved
-                    </Text>
-                    <Text size="md" as="p" className="self-start">
-                      Quyền riêng tư · Điều khoản · Sơ đồ trang web
-                    </Text>
-                  </div>
-                  <div className="flex w-[25%] justify-center gap-2.5 md:w-full">
-                    <div className="flex w-[46%] flex-wrap items-center justify-evenly rounded-md border border-solid border-gray-200_01 bg-white-A700 py-2.5">
-                      <Text size="md" as="p" className="!text-blue_gray-600">
-                        Tiền tệ
-                      </Text>
-                      <Text size="md" as="p">
-                        VND
-                      </Text>
-                      <Img
-                        src="images/img_vector_blue_gray_900_02_5x8.svg"
-                        alt="vector"
-                        className="mb-[5px] h-[5px] self-end"
-                      />
-                    </div>
-                    <div className="flex flex-wrap items-center rounded-md border border-solid border-gray-200_01 bg-white-A700 pb-[9px] pl-[9px] pr-2 pt-[11px]">
-                      <Text size="md" as="p" className="!text-blue_gray-600">
-                        Ngôn ngữ
-                      </Text>
-                      <Text size="md" as="p" className="self-start">
-                        Tiếng Việt
-                      </Text>
-                      <Img
-                        src="images/img_vector_blue_gray_900_02_5x8.svg"
-                        alt="vector"
-                        className="ml-1.5 h-[5px]"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 }

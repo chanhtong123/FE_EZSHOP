@@ -64,6 +64,7 @@ export default function Header({ ...props }) {
           </div>
           <a href="#" className="align-self-center">
             <Img
+              
               src="images/img_user.png"
               alt="username"
               // className="h-[50px] w-[50px] rounded-[16px] object-cover"

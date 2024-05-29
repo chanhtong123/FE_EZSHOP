@@ -132,10 +132,10 @@ export default function DashboardADMINPage() {
         cell: (info) => (
           <Heading size="lg" as="p" className="flex !font-semibold justify-center">
             {" "}
-              <span className="text-blue_gray-900_02">20.000.000</span>{" "}
-              <p className="text-blue_gray-900_02">
-                đ
-              </p>{" "}
+            <span className="text-blue_gray-900_02">20.000.000</span>{" "}
+            <p className="text-blue_gray-900_02">
+              đ
+            </p>{" "}
           </Heading>
         ),
         header: (info) => (
@@ -149,7 +149,7 @@ export default function DashboardADMINPage() {
       table1ColumnHelper.accessor("action", {
         cell: (info) => (
           <div className="flex gap-[5px] justify-center">
-          <Button
+            <Button
               color="green_A700_e5"
               size="3x1"
               shape="round"
@@ -157,7 +157,7 @@ export default function DashboardADMINPage() {
             >
               ...
             </Button>
-            </div>
+          </div>
         ),
         header: (info) => (
           <Text as="p" className="py-3.5">
