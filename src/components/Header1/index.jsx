@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
-import axiosInstance from '../../config/axiosConfig';
-import { getToken, removeToken } from '../../utils/authUtils';
+import React, { useEffect, useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+import axiosInstance from "../../config/axiosConfig";
+import { getToken, removeToken } from "../../utils/authUtils";
 import MegaMenu1 from "../MegaMenu1";
 import { Text, Img, Heading, Button, SelectBox } from "./..";
 import { Input } from "postcss";
@@ -184,7 +184,6 @@ export default function Header1({ ...props }) {
                   className="!font-inter leading-[22px] sm:w-full"
                 >
                   <span className="font-bevietnampro text-base font-medium text-blue_gray-900_02">
-              
                     <a href="/profile">Tài khoản</a>
                   </span>
                 </Heading>
@@ -246,7 +245,8 @@ export default function Header1({ ...props }) {
               <div className="flex w-full flex-col items-start">
                 <div className="flex items-center justify-between gap-5 self-stretch">
                   <div className="flex w-[50%] items-center justify-center gap-[15px]">
-                    <h6 className="text-white-A700">Danh mục</h6>
+                    
+                    <h6 className="text-white-A700"> Danh mục</h6>
                   </div>
                   <img
                     src="images/img_vector_white_a700.svg"
