@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { useParams } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import {
   Button,
@@ -25,7 +27,28 @@ const dropDownOptions = [
   { label: "Option2", value: "option2" },
   { label: "Option3", value: "option3" },
 ];
-export default function ProductDetailPage() {
+const ProductDetailPage = () => {
+  const { id } = useParams();
+  const [product, setProduct] = useState(null);
+
+  useEffect(() => {
+    const fetchProduct = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:8080/guest/api/products/${id}`
+        );
+        setProduct(response.data);
+      } catch (error) {
+        console.error("Error fetching product:", error);
+      }
+    };
+
+    fetchProduct();
+  }, [id]);
+
+  if (!product) {
+    return <div>Loading...</div>;
+  }
   return (
     <>
       <Helmet>
@@ -147,11 +170,7 @@ export default function ProductDetailPage() {
                         <Text size="md" as="p">
                           Danh mục
                         </Text>
-                        <Img
-                          src="images/img_vector_blue_gray_900_02.svg"
-                          alt="vector"
-                          className="mb-2.5 h-[5px]"
-                        />
+                        
                         <div className="h-full w-px rounded-bl-[50%] rounded-tl-[50%] bg-green-400_01" />
                       </div>
                       <Text size="md" as="p" className="!text-blue_gray-600">
@@ -273,11 +292,7 @@ export default function ProductDetailPage() {
                             Danh mục
                           </Heading>
                         </div>
-                        <Img
-                          src="images/img_vector_white_a700.svg"
-                          alt="vector"
-                          className="mb-[7px] h-[5px] self-end"
-                        />
+                        
                       </div>
                       <div className="relative mt-[-3px] h-[2px] w-[15px] bg-white-A700" />
                     </div>
@@ -286,11 +301,7 @@ export default function ProductDetailPage() {
                   <Text as="p" className="ml-[31px] md:ml-0">
                     Trang chủ
                   </Text>
-                  <Img
-                    src="images/img_vector_blue_gray_900_02.svg"
-                    alt="vector"
-                    className="mb-6 h-[5px] md:w-full"
-                  />
+                 
                   <a
                     href="https://www.youtube.com/embed/bv8Fxk0sz7I"
                     target="_blank"
@@ -299,11 +310,7 @@ export default function ProductDetailPage() {
                       Sản phẩm
                     </Text>
                   </a>
-                  <Img
-                    src="images/img_vector_blue_gray_900_02.svg"
-                    alt="vector"
-                    className="mb-6 h-[5px] md:w-full"
-                  />
+                  
                   <a
                     href="https://www.youtube.com/embed/bv8Fxk0sz7I"
                     target="_blank"
@@ -312,11 +319,7 @@ export default function ProductDetailPage() {
                       Liên hệ
                     </Text>
                   </a>
-                  <Img
-                    src="images/img_vector_blue_gray_900_02.svg"
-                    alt="vector_eleven"
-                    className="mb-6 h-[5px] md:w-full"
-                  />
+                  
                   <a
                     href="https://www.youtube.com/embed/bv8Fxk0sz7I"
                     target="_blank"
@@ -325,13 +328,9 @@ export default function ProductDetailPage() {
                       Bài viết
                     </Text>
                   </a>
-                  <Img
-                    src="images/img_vector_blue_gray_900_02.svg"
-                    alt="vector_thirteen"
-                    className="mb-6 h-[5px] md:w-full"
-                  />
+                 
                 </div>
-                <ul className="flex flex-wrap gap-3.5">
+                {/* <ul className="flex flex-wrap gap-3.5">
                   <li>
                     <a href="#">
                       <Text as="p">Ưu</Text>
@@ -347,7 +346,7 @@ export default function ProductDetailPage() {
                       <Text as="p">trong</Text>
                     </a>
                   </li>
-                </ul>
+                </ul> */}
               </div>
             </div>
           </div>
@@ -396,89 +395,60 @@ export default function ProductDetailPage() {
                     </Text>
                   </div>
                   <div className="mt-2 flex w-[32%] flex-col items-start gap-[19px] rounded-md border border-solid border-gray-200_01 bg-white-A700 py-[30px] pl-[30px] pr-[26px] shadow-xs md:w-full sm:p-5">
-                    <div className="flex flex-col gap-[18px] self-stretch">
-                      <div className="flex items-center gap-2.5 self-start sm:flex-col">
-                        <Text size="s" as="p" className="uppercase">
-                          Nike
-                        </Text>
-                        <div className="h-[20px] w-px bg-gray-200_01 sm:h-px sm:w-[20px]" />
-                        <div className="flex items-start gap-2.5 self-end">
-                          <div className="flex gap-[5px]">
-                            <Img
-                              src="images/img_star_1_1.svg"
-                              alt="image"
-                              className="h-[10px] w-[10px]"
-                            />
-                            <Img
-                              src="images/img_star_1_1.svg"
-                              alt="image"
-                              className="h-[10px] w-[10px]"
-                            />
-                            <Img
-                              src="images/img_star_1_1.svg"
-                              alt="image"
-                              className="h-[10px] w-[10px]"
-                            />
-                            <Img
-                              src="images/img_star_1_1.svg"
-                              alt="image"
-                              className="h-[10px] w-[10px]"
-                            />
-                            <Img
-                              src="images/img_star_1_1.svg"
-                              alt="image"
-                              className="h-[10px] w-[10px]"
-                            />
-                          </div>
-                          <Text size="md" as="p">
-                            3,014 Đánh giá
+                    <div>
+                      <div className="flex flex-col gap-[18px] self-stretch">
+                        <div className="flex items-center gap-2.5 self-start sm:flex-col">
+                          <Text size="s" as="p" className="uppercase">
+                            {product.brand}
                           </Text>
+                          <div className="h-[20px] w-px bg-gray-200_01 sm:h-px sm:w-[20px]" />
                         </div>
-                        <div className="h-[20px] w-px bg-gray-200_01 sm:h-px sm:w-[20px]" />
-                        <Text size="md" as="p" className="!text-green-A700_02">
-                          33 sản phẩm có sẵn
+                        <Text size="4xl" as="p" className="leading-[27px]">
+                          {product.name}
+                        </Text>
+                        <div className="h-px bg-gray-200_01" />
+                      </div>
+                      <div className="flex flex-wrap items-center gap-[9px]">
+                        <Text size="6xl" as="p" className="flex !font-jost">
+                          <span className="text-blue_gray-900_02">
+                            {product.price.toLocaleString()}
+                          </span>
+                          <a
+                            href="#"
+                            className="text-blue_gray-900_02 underline"
+                          >
+                            đ
+                          </a>
                         </Text>
                       </div>
-                      <Text size="4xl" as="p" className="leading-[27px]">
-                        Xả Hàng VNXK Áo Phông Nam Nike Khô Thoáng Swoosh
-                      </Text>
-                      <div className="h-px bg-gray-200_01" />
-                    </div>
-                    <div className="flex flex-wrap items-center gap-[9px]">
-                      <Text size="6xl" as="p" className="flex !font-jost">
-                        <span className="text-blue_gray-900_02">250.000</span>
-                        <a href="#" className="text-blue_gray-900_02 underline">
-                          đ
-                        </a>
-                      </Text>
-                      <Text
-                        as="p"
-                        className="flex !font-jost !font-normal !text-blue_gray-600 line-through"
-                      >
-                        <span className="text-blue_gray-600">500.000</span>
-                        <a href="#" className="text-blue_gray-600 underline">
-                          đ
-                        </a>
-                      </Text>
-                    </div>
-                    <div className="flex w-[54%] flex-col items-start gap-3 md:w-full">
-                      <Text
-                        size="md"
-                        as="p"
-                        className="!font-jost !text-gray-900_06"
-                      >
-                        <span className="font-bevietnampro font-medium text-blue_gray-900_02">
-                          Màu sắc:
-                        </span>
-                        <span className="font-bevietnampro text-blue_gray-900_02">
-                          &nbsp;Xám
-                        </span>
-                      </Text>
-                      <Img
-                        src="images/img_inner.svg"
-                        alt="inner"
-                        className="h-[26px] w-full md:h-auto"
-                      />
+                      <div className="flex w-[54%] flex-col items-start gap-3 md:w-full">
+                        <Text
+                          size="md"
+                          as="p"
+                          className="!font-jost !text-gray-900_06"
+                        >
+                          <span className="font-bevietnampro font-medium text-blue_gray-900_02">
+                            Màu sắc:
+                          </span>
+                          <span className="font-bevietnampro text-blue_gray-900_02">
+                            &nbsp;{product.color}
+                          </span>
+                        </Text>
+                      </div>
+                      <div className="flex w-[74%] flex-col items-start gap-2.5 md:w-full">
+                        <Text
+                          size="md"
+                          as="p"
+                          className="!font-jost !text-gray-900_06"
+                        >
+                          <span className="font-bevietnampro font-medium text-blue_gray-900_02">
+                            Trọng lượng:
+                          </span>
+                          <span className="font-bevietnampro text-blue_gray-900_02">
+                            &nbsp;{product.weight}g
+                          </span>
+                        </Text>
+                      </div>
                     </div>
                     <div className="flex w-[74%] flex-col items-start gap-2.5 md:w-full">
                       <Text
@@ -493,62 +463,10 @@ export default function ProductDetailPage() {
                           &nbsp;M
                         </span>
                       </Text>
-                      <div className="flex gap-[15px] self-stretch">
-                        <Button
-                          color="gray_200_01"
-                          size="xl"
-                          variant="outline"
-                          shape="round"
-                          className="w-full !border font-jost font-medium sm:px-5"
-                        >
-                          S
-                        </Button>
-                        <Button
-                          size="xl"
-                          shape="round"
-                          className="w-full border border-solid border-green-A700_02 font-jost font-medium sm:px-5"
-                        >
-                          M
-                        </Button>
-                        <Button
-                          color="gray_200_01"
-                          size="xl"
-                          variant="outline"
-                          shape="round"
-                          className="w-full !border font-jost font-medium sm:px-5"
-                        >
-                          L
-                        </Button>
-                        <Button
-                          color="gray_200_01"
-                          size="xl"
-                          variant="outline"
-                          shape="round"
-                          className="w-full !border font-jost font-medium sm:px-5"
-                        >
-                          XL
-                        </Button>
-                      </div>
                     </div>
                     <div className="h-px self-stretch bg-gray-200_01" />
                     <div className="flex flex-col gap-5 self-stretch">
                       <div className="flex gap-5 sm:flex-col">
-                        <div className="flex w-[36%] items-center justify-between gap-5 rounded-[26px] border border-solid border-gray-200_01 bg-white-A700 px-2.5 py-[11px] sm:w-full">
-                          <div className="w-[27%] rounded-[15px] bg-white-A700 px-2.5 pb-3.5 pt-[15px]">
-                            <div className="h-px w-[10px] rotate-[90deg] bg-blue_gray-900_02" />
-                          </div>
-                          <Text size="lg" as="p" className="!font-jost">
-                            3
-                          </Text>
-                          <Button
-                            color="gray_100_05"
-                            size="2xl"
-                            shape="circle"
-                            className="w-[30px] !rounded-[15px]"
-                          >
-                            <Img src="images/img_plus.svg" />
-                          </Button>
-                        </div>
                         <a
                           href="https://www.youtube.com/embed/bv8Fxk0sz7I"
                           target="_blank"
@@ -585,27 +503,9 @@ export default function ProductDetailPage() {
                           </Text>
                         </div>
                         <div className="ml-1 h-full w-px bg-gray-200_01 sm:ml-0 sm:h-px sm:w-full" />
-                        <div className="ml-[7px] flex items-center gap-2.5 self-start sm:ml-0">
-                          <Img
-                            src="images/img_graph_1.svg"
-                            alt="graphone"
-                            className="h-[14px] w-[14px] self-start"
-                          />
-                          <Text size="xs" as="p">
-                            So Sánh
-                          </Text>
-                        </div>
+
                         <div className="ml-3 h-full w-px bg-gray-200_01 sm:ml-0 sm:h-px sm:w-full" />
-                        <div className="ml-[7px] flex gap-[9px] sm:ml-0">
-                          <Img
-                            src="images/img_profile.svg"
-                            alt="profile"
-                            className="h-[16px] w-[16px]"
-                          />
-                          <Text size="xs" as="p">
-                            Đặt Câu Hỏi
-                          </Text>
-                        </div>
+
                         <div className="ml-[25px] h-full w-px bg-gray-200_01 sm:ml-0 sm:h-px sm:w-full" />
                         <div className="ml-[7px] flex gap-[9px] sm:ml-0">
                           <Img
@@ -626,37 +526,26 @@ export default function ProductDetailPage() {
             <div className="flex flex-col gap-[23px]">
               <div className="flex w-[66%] flex-col gap-6 md:w-full">
                 <div className="flex flex-col gap-4">
-                  <div className="flex flex-col items-start gap-[15px]">
-                    <Text size="3xl" as="p">
-                      Tổng Quan
-                    </Text>
-                    <div className="flex flex-col gap-[17px] self-stretch pb-[9px]">
-                      <Text
-                        as="p"
-                        className="!font-normal leading-7 !text-blue_gray-600"
-                      >
-                        Cho dù bạn mặc nó sau khi tập gym hay chuẩn bị bắt đầu
-                        ngày mới, chiếc áo phông này đang gọi tên bạn. Được
-                        thiết kế cho phong cách thoải mái và dễ dàng, thể hiện
-                        trọn vẹn niềm tự hào của bạn. Kết hợp với mọi món đồ
-                        trong tủ quần áo của bạn - cảm giác thể thao cổ điển phù
-                        hợp với mọi kiểu dáng.
-                      </Text>
-                      <div className="flex items-center">
-                        <Text
-                          as="p"
-                          className="!font-normal !text-green-A700_02"
-                        >
-                          Xem Thêm
-                        </Text>
-                        <Img
-                          src="images/img_vector_green_a700_02.svg"
-                          alt="vector_fifteen"
-                          className="mb-[5px] h-[5px] self-end"
-                        />
-                      </div>
-                    </div>
-                  </div>
+                <div className="flex flex-col items-start gap-[15px]">
+        <Text size="3xl" as="p">
+          Tổng Quan
+        </Text>
+        <div className="flex flex-col gap-[17px] self-stretch pb-[9px]">
+          <Text as="p" className="!font-normal leading-7 !text-blue_gray-600">
+            {product.overview}
+          </Text>
+          <div className="flex items-center">
+            <Text as="p" className="!font-normal !text-green-A700_02">
+              Xem Thêm
+            </Text>
+            <Img
+              src="images/img_vector_green_a700_02.svg"
+              alt="vector_fifteen"
+              className="mb-[5px] h-[5px] self-end"
+            />
+          </div>
+        </div>
+      </div>
                   <div className="h-px bg-gray-200_01" />
                 </div>
                 <div className="flex flex-col items-start gap-[15px]">
@@ -732,14 +621,14 @@ export default function ProductDetailPage() {
                   </div>
                   <div className="h-px w-full self-stretch bg-gray-200_01" />
                 </div>
-                <div className="flex flex-col gap-[21px]">
+                {/* <div className="flex flex-col gap-[21px]">
                   {[...Array(5)].map((d, index) => (
                     <ProductDetailDetails
                       key={"listchititthng" + index}
                       className="gap-[22px]"
                     />
                   ))}
-                </div>
+                </div> */}
               </div>
               <div className="flex flex-col gap-[17px]">
                 <div className="flex w-[66%] items-center justify-between gap-5 md:w-full">
@@ -1257,4 +1146,5 @@ export default function ProductDetailPage() {
       </div>
     </>
   );
-}
+};
+export default ProductDetailPage;

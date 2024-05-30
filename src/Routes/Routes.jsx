@@ -43,7 +43,7 @@ const ProjectRoutes = () => {
     { path: "createproduct", element: <CreateProduct /> },
     { path: "homepage", element: <HomePage /> },
     { path: "product", element: <Product /> },
-    { path: "productdetail", element: <ProductDetail /> },
+    { path: "productdetail/:id", element: <ProductDetail /> },
     { path: "payment", element: <Payment /> },
     { path: "ordertracking", element: <OrderTracking /> },
     { path: "profile", element: <Profile /> },
