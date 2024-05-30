@@ -32,6 +32,7 @@ import PaymentSuccess from "../pages/PaymentSuccess";
 import CompareProducts from "../pages/CompareProducts";
 import Dashboard from "../pages/Dashboard";
 import SalesManager from "../pages/SalesManagement";
+import CategoriesManager from "../pages/CategoriesAdmin";
 import Test2 from "../pages/Test";
 import TestAdmin from "../pages/TestAdmin";
 
@@ -71,6 +72,7 @@ const ProjectRoutes = () => {
     { path: "test", element: <Test2 /> },
     { path: "admin", element: <TestAdmin /> },
     { path: "admin-shops", element: <SalesManager /> },
+    { path: "admin-categories", element: <CategoriesManager /> },
   ]);
   return element;
 };
