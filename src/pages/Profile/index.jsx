@@ -66,6 +66,9 @@ export default function ProfilePage() {
           <div className="flex flex-col items-center">
             <div className="flex flex-col items-center gap-[9px] self-stretch">
               <div className="container-md flex items-center justify-between gap-5 pr-1 md:flex-col md:p-5">
+
+
+
                 <div className="flex items-end self-start sm:flex-col">
                   <div className="flex items-center gap-[5px]">
                     <a href="#">
@@ -96,6 +99,11 @@ export default function ProfilePage() {
                     </span>
                   </Text>
                 </div>
+
+
+
+
+                
                 <div className="flex w-[34%] items-center justify-center gap-[23px] md:w-full sm:flex-col">
                   <SelectBox
                     shape="square"
@@ -448,8 +456,12 @@ export default function ProfilePage() {
                 </div>
                 <Text size="lg" as="p" className="w-[89%] leading-[45px]">
                   <>
-                    Thông tin tài khoản <br /> Đặt hàng <br /> Địa chỉ <br />
-                    Danh sách yêu thích <br /> Đăng xuất
+                    Thông tin tài khoản <br />
+                     Đặt hàng <br />
+                      Địa chỉ <br />
+                    Danh sách yêu thích
+                     <br /> 
+                     Đăng xuất
                   </>
                 </Text>
               </div>
