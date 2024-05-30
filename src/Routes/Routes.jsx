@@ -32,14 +32,16 @@ import PaymentSuccess from "../pages/PaymentSuccess";
 import CompareProducts from "../pages/CompareProducts";
 import Dashboard from "../pages/Dashboard";
 import SalesManager from "../pages/SalesManagement";
+import CategoriesManager from "../pages/CategoriesAdmin";
 import Test2 from "../pages/Test";
+import TestAdmin from "../pages/TestAdmin";
 
 const ProjectRoutes = () => {
   let element = useRoutes([
     { path: "/", element: <HomePage /> },
     { path: "*", element: <NotFound /> },
-    { path: "favoriteproduct", element: <FavoriteProduct /> },
-    { path: "salesshop", element: <SalesShop /> },
+    { path: "favorite-product", element: <FavoriteProduct /> },
+    { path: "sales-shop", element: <SalesShop /> },
     { path: "createproduct", element: <CreateProduct /> },
     { path: "homepage", element: <HomePage /> },
     { path: "product", element: <Product /> },
@@ -48,7 +50,7 @@ const ProjectRoutes = () => {
     { path: "ordertracking", element: <OrderTracking /> },
     { path: "profile", element: <Profile /> },
     { path: "customerlayoutofshop", element: <CustomerLayoutOfShop /> },
-    { path: "listofshop", element: <ListOfShop /> },
+    { path: "shops", element: <ListOfShop /> },
     { path: "blog", element: <Blog /> },
     { path: "blogdetail", element: <BlogDetail /> },
     { path: "contact", element: <Contact /> },
@@ -56,9 +58,9 @@ const ProjectRoutes = () => {
     { path: "login", element: <Login /> },
     { path: "mailbox", element: <Mailbox /> },
     { path: "chatbox", element: <Chatbox /> },
-    { path: "dashboardadmin", element: <DashboardADMIN /> },
-    { path: "ordermanagement", element: <OrderManagement /> },
-    { path: "clientmanagementadmin", element: <ClientManagementAdmin /> },
+    { path: "admin-dashboard", element: <DashboardADMIN /> },
+    { path: "admin-orders", element: <OrderManagement /> },
+    { path: "admin-users", element: <ClientManagementAdmin /> },
     { path: "register", element: <Register /> },
     { path: "order", element: <Order /> },
     { path: "shoplayout", element: <ShopLayout /> },
@@ -68,7 +70,9 @@ const ProjectRoutes = () => {
     { path: "compareproducts", element: <CompareProducts /> },
     { path: "dashboard", element: <Dashboard /> },
     { path: "test", element: <Test2 /> },
-    { path: "salesmanager", element: <SalesManager /> },
+    { path: "admin", element: <TestAdmin /> },
+    { path: "admin-shops", element: <SalesManager /> },
+    { path: "admin-categories", element: <CategoriesManager /> },
   ]);
   return element;
 };

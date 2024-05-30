@@ -30,7 +30,7 @@ export default function TestPage() {
       </Helmet>
       <div>
       {/* <Header className="shadow-lg" /> */}
-      <Footer1/>
+      <Header/>
       </div>
     </>
 

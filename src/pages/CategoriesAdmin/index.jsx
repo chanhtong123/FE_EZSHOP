@@ -18,46 +18,31 @@ const tableData = [
   {
     id: "#6548",
     name: "Shop second-hand 113",
-    owner: "Joseph Wheeler",
-    status: "Active",
-    productAmount: 7,
   },
   {
     id: "#6548",
     name: "Shop second-hand 113",
-    owner: "Joseph Wheeler",
-    status: "Active",
-    productAmount: 7,
   },
   {
     id: "#6548",
     name: "Shop second-hand 113",
-    owner: "Joseph Wheeler",
-    status: "Active",
-    productAmount: 7,
   },
   {
     id: "#6548",
     name: "Shop second-hand 113",
-    owner: "Joseph Wheeler",
-    status: "Active",
-    productAmount: 7,
   },
   {
     id: "#6548",
     name: "Shop second-hand 113",
-    owner: "Joseph Wheeler",
-    status: "Active",
-    productAmount: 7,
   },
 ];
 
 export default function SalesManagerPage() {
   const [searchBarValue55, setSearchBarValue55] = React.useState("");
-  const tableShopsColumns = React.useMemo(() => {
-    const tableShopsColumnsHelper = createColumnHelper();
+  const tableCategoriesColumns = React.useMemo(() => {
+    const tableCategoriesColumnsHelper = createColumnHelper();
     return [
-      tableShopsColumnsHelper.accessor("id", {
+        tableCategoriesColumnsHelper.accessor("id", {
         cell: (info) => (
           <Heading size="xl" as="p">
             {info?.getValue?.()}
@@ -70,9 +55,9 @@ export default function SalesManagerPage() {
             </Heading>
           </div>
         ),
-        meta: { width: "10%" },
+        meta: { width: "20%" },
       }),
-      tableShopsColumnsHelper.accessor("name", {
+      tableCategoriesColumnsHelper.accessor("name", {
         cell: (info) => (
           <Text size="lg" as="p">
             {info?.getValue?.()}
@@ -85,62 +70,9 @@ export default function SalesManagerPage() {
             </Heading>
           </div>
         ),
-        meta: { width: "30%" },
+        meta: { width: "40%" },
       }),
-      tableShopsColumnsHelper.accessor("owner", {
-        cell: (info) => (
-          <Text size="lg" as="p">
-            {info?.getValue?.()}
-          </Text>
-        ),
-        header: (info) => (
-          <div className="flex flex-wrap pb-[15px] pr-[20%] pt-[17px] md:p-5 md:pr-5">
-            <Heading as="h4" className="px-px py-[17px] md:p-5">
-              Chủ shop
-            </Heading>
-          </div>
-        ),
-        meta: { width: "20%" },
-      }),
-      tableShopsColumnsHelper.accessor("status", {
-        cell: (info) => (
-          <div className="flex items-center justify-between gap-5">
-            <Text as="p" className="!font-normal">
-              {info?.getValue?.()}
-            </Text>
-          </div>
-        ),
-        header: (info) => (
-          <div className="flex flex-wrap pb-[15px] pr-[20%] pt-[17px] md:p-5 md:pr-5">
-            <Heading as="h5" className="self-start">
-              Trạng thái
-            </Heading>
-          </div>
-        ),
-        meta: { width: "20%" },
-      }),
-      tableShopsColumnsHelper.accessor("productAmount", {
-        cell: (info) => (
-          <div className="flex items-center justify-between gap-5">
-            <div className="flex flex-wrap items-center gap-1">
-              <Text as="p" className="!font-normal">
-                <span className="text-blue_gray-900_02">
-                  {info?.getValue?.()}
-                </span>
-              </Text>
-            </div>
-          </div>
-        ),
-        header: (info) => (
-          <div className="flex pb-[15px] pr-[20%] pt-[17px] md:p-5 md:pr-5">
-            <Heading as="h5" className="self-start">
-              Số sản phẩm
-            </Heading>
-          </div>
-        ),
-        meta: { width: "10%" },
-      }),
-      tableShopsColumnsHelper.accessor("trngthi", {
+      tableCategoriesColumnsHelper.accessor("id", {
         cell: (info) => (
           <div className="flex items-center justify-center  gap-5">
             <Button
@@ -157,7 +89,7 @@ export default function SalesManagerPage() {
           <Heading as="h6" className="px-px py-[17px] md:p-5">
           </Heading>
         ),
-        meta: { width: "10%" },
+        meta: { width: "20%" },
       }),
     ];
   },);
@@ -179,7 +111,7 @@ export default function SalesManagerPage() {
               <div className="flex flex-col items-start gap-12 self-stretch rounded-[16px] bg-gray-100_05 pb-[60px] pl-[60px] pr-14 pt-[52px] md:p-5">
                 <div className="flex flex-col items-start gap-3.5">
                   <Heading size="8xl" as="h1" className="uppercase">
-                    QUẢN LÝ NGƯỜI BÁN
+                    Quản lý danh mục
                   </Heading>
                 </div>
                 <div className="flex flex-col items-center gap-[42px] self-stretch rounded-[16px] bg-white-A700 px-[30px] pb-[31px] pt-[30px] shadow-3xl sm:p-5">
@@ -213,7 +145,7 @@ export default function SalesManagerPage() {
                     headerProps={{ className: "md:flex-col" }}
                     rowDataProps={{ className: "md:flex-col" }}
                     className="self-stretch bg-white-A700"
-                    columns={tableShopsColumns}
+                    columns={tableCategoriesColumns}
                     data={tableData}
                   />
                   <SalesShopPagination
