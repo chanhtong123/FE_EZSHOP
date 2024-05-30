@@ -5,7 +5,7 @@ export default function Header({ ...props }) {
   const [searchBarValue, setSearchBarValue] = React.useState("");
   return (
     <header {...props}>
-      <div className="flex w-full justify-between gap-5 md:flex-col">
+      <div className="flex h-[60px] w-full justify-between">
         <div className="flex w-[40%] items-center justify-between gap-5 md:w-full sm:flex-col">
           <div className="flex w-[20%] items-center justify-center gap-[30px] sm:w-full">
             <a href="#">
@@ -36,7 +36,7 @@ export default function Header({ ...props }) {
                 />
               ) : (
                 <Img
-                  src="images/img_search_1_blue_gray_900_02.svg"
+                  src="images/img_search1.svg"
                   alt="search 1"
                   className="h-[20px] w-[20px] cursor-pointer"
                 />
@@ -47,11 +47,6 @@ export default function Header({ ...props }) {
         </div>
         <div className="flex gap-[30px]">
           <div className="flex items-center">
-            <a href="#">
-              <Button color="gray_100_04" className="w-[50px] rounded-[16px]">
-                <Img src="images/img_trophy.svg" />
-              </Button>
-            </a>
             <a href="#">
               <Img
                 src="images/img_mail_inbox_app_1.svg"
@@ -66,8 +61,12 @@ export default function Header({ ...props }) {
                 className="ml-10 h-[20px] w-[20px]"
               />
             </a>
+            <a href="#">
+                <Img src="images/img_trophy.svg" 
+                 className="ml-7 h-[20px] w-[20px]"/>
+            </a>
           </div>
-          <a href="#">
+          <a href="#" className="align-self-center">
             <Img
               src="/images/image.png"
               alt="image119"

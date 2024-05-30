@@ -51,6 +51,13 @@ export default function Sidebar1({ ...props }) {
                       Các sản phẩm
                     </>
                   }
+                  prefix={
+                    <Text as="p"
+                      className="ml">
+                        Bảng quản lý
+                    </Text>
+                  }
+                  href="/admin-dashboard"
                 />
                 <MenuItem
                   icon={
@@ -63,6 +70,13 @@ export default function Sidebar1({ ...props }) {
                       Đặt hàng
                     </>
                   }
+                  prefix={
+                    <Text as="p"
+                      className="ml">
+                        Sản phẩm
+                    </Text>
+                  }
+                  href="/admin-product"
                 />
                 <MenuItem
                   icon={
@@ -75,6 +89,13 @@ export default function Sidebar1({ ...props }) {
                       Khách hàng
                     </>
                   }
+                  prefix={
+                    <Text as="p"
+                      className="ml">
+                        Đơn hàng
+                    </Text>
+                  }
+                  href="/admin-orders"
                 />
                 <MenuItem
                   icon={
@@ -87,6 +108,13 @@ export default function Sidebar1({ ...props }) {
                       Người bán
                     </>
                   }
+                  prefix={
+                    <Text as="p"
+                      className="ml">
+                        Người dùng
+                    </Text>
+                  }
+                  href="/admin-users"
                 />
                 <MenuItem
                   icon={
@@ -99,6 +127,13 @@ export default function Sidebar1({ ...props }) {
                       Thể loại
                     </>
                   }
+                  prefix={
+                    <Text as="p"
+                      className="ml">
+                        Cửa hàng
+                    </Text>
+                  }
+                  href="/admin-shops"
                 />
                 <MenuItem
                   icon={
@@ -111,7 +146,29 @@ export default function Sidebar1({ ...props }) {
                       Cài đặt
                     </>
                   }
+                  prefix={
+                    <Text as="p"
+                      className="ml">
+                        Danh mục
+                    </Text>
+                  }
+                  href="/admin-categories"
                 />
+                {/* <MenuItem
+                  icon={
+                    <Img
+                      src="images/img_settings.svg"
+                      alt="settingsone"
+                      className="h-[20px] w-[20px]"
+                    />
+                  }
+                  prefix={
+                    <Text as="p"
+                      className="ml">
+                        Cài đặt
+                    </Text>
+                  }
+                /> */}
                 <MenuItem
                   icon={
                     <>
@@ -122,6 +179,12 @@ export default function Sidebar1({ ...props }) {
                       />
                       Đăng xuất
                     </>
+                  }
+                  prefix={
+                    <Text as="p"
+                      className="ml">
+                        Đăng xuất
+                    </Text>
                   }
                 />
               </div>

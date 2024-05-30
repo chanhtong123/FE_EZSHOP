@@ -3,6 +3,7 @@ import { Helmet } from "react-helmet";
 import { CloseSVG } from "../../assets/images";
 import { Img, Text, SelectBox, Heading, Input, Button } from "../../components";
 import Header from "../../components/Header";
+import Footer from "../../components/FooterAdmin";
 import { ReactTable } from "../../components/ReactTable";
 import SalesShopPagination from "../../components/SalesShopPagination";
 import Sidebar1 from "../../components/Sidebar1";
@@ -97,7 +98,7 @@ export default function OrderManagementPage() {
                       size="xs"
                       shape="round"
                       name="search"
-                      placeholder={`Tìm kiếm theo ID`}
+                      placeholder={`Tìm kiếm...`}
                       value={searchBarValue46}
                       onChange={(e) => setSearchBarValue46(e.target.value)}
                       suffix={
@@ -109,7 +110,7 @@ export default function OrderManagementPage() {
                       }
                       className="w-[19%] gap-[35px] !rounded shadow-6xl sm:w-full"
                     />
-                    <SelectBox
+                    {/* <SelectBox
                       color="white_A700"
                       size="lg"
                       shape="round"
@@ -118,7 +119,7 @@ export default function OrderManagementPage() {
                       placeholder={`Lọc bởi danh mục`}
                       options={dropDownOptions}
                       className="w-[12%] gap-px shadow-6xl sm:w-full sm:pr-5"
-                    />
+                    /> */}
                   </div>
                   <ReactTable
                     size="lg"
@@ -168,6 +169,7 @@ export default function OrderManagementPage() {
           </div>
         </div>
       </div>
+    <Footer/>
     </>
   );
 }

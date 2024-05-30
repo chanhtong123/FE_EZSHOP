@@ -1,9 +1,41 @@
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate, useLocation } from 'react-router-dom';
+import axios from "axios";
 import { Helmet } from "react-helmet";
 import { Heading, Img, Text, Button, Input } from "../../components";
 import Footer1 from "../../components/Footer1";
 import Header1 from "../../components/Header1";
 export default function RegisterPage() {
+
+  const [firstName, setFirstName] = useState("");
+  const [userName, setUsername] = useState("");
+  const [passWord, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+
+  const navigate = useNavigate();
+  const location = useLocation();
+
+
+  const handleRegister = async (redirectUrl) => {
+    try {
+      const role = "USER";
+      const status = true;
+      const response = await axios.post("http://localhost:8080/register", { firstName, userName, passWord, role, status, email });
+      navigate(redirectUrl);
+    } catch (error) {
+      console.error("Register failed:", error);
+    }
+  };
+
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const redirectTo = new URLSearchParams(location.search).get('redirect') || '/login';
+    handleRegister(redirectTo);
+  };
+
+
+
   return (
     <>
       <Helmet>
@@ -17,56 +49,62 @@ export default function RegisterPage() {
         <div className="container-md pl-[479px] pr-[382px] md:p-5 md:px-5">
           <div className="relative h-[848px]">
             <div className="absolute bottom-0 left-[0.00px] top-0 my-auto flex h-max w-[82%] flex-col items-center justify-center rounded-md border border-solid border-gray-200_01 bg-white-A700 pb-[65px] pl-[41px] pr-10 pt-[131px] shadow-xs md:py-5 md:pl-5 sm:p-5">
-              <div className="flex flex-col items-start gap-2.5 self-stretch">
-                <Heading as="h1">Tên</Heading>
-                <Input
-                  shape="round"
-                  name="your_name"
-                  placeholder={`Ali Tufan`}
-                  className="self-stretch border border-solid border-blue_gray-900_02 !text-blue_gray-900_02 shadow-md sm:pr-5"
-                />
-              </div>
-              <div className="mt-5 flex flex-col items-start gap-[11px] self-stretch">
-                <Heading as="h2">Tài khoản</Heading>
-                <Input
-                  shape="round"
-                  name="your_name_one"
-                  placeholder={`alitfn`}
-                  className="self-stretch border border-solid border-gray-200_01 sm:pr-5"
-                />
-              </div>
-              <div className="mt-5 flex flex-col items-start gap-2.5 self-stretch">
-                <Heading as="h3">Email</Heading>
-                <Input
-                  shape="round"
-                  type="email"
-                  name="email"
-                  placeholder={`creativelayers088@gmail.com`}
-                  className="self-stretch border border-solid border-gray-200_01 sm:pr-5"
-                />
-              </div>
-              <div className="mt-5 flex flex-col items-start gap-2.5 self-stretch">
-                <Heading as="h4">Mật khẩu</Heading>
-                <Input
-                  shape="round"
-                  type="password"
-                  name="password"
-                  placeholder={`******************`}
-                  className="self-stretch border border-solid border-gray-200_01 sm:pr-5"
-                />
-              </div>
-              <a
-                href="https://www.youtube.com/embed/bv8Fxk0sz7I"
-                target="_blank"
-              >
-                <Button
-                  size="10xl"
-                  shape="round"
-                  className="mt-5 w-full border border-solid border-green-A700_02 font-semibold shadow-sm sm:px-5"
+
+              <form onSubmit={handleSubmit}>
+                <div className="flex flex-col items-start gap-2.5 self-stretch">
+                  <Heading as="h1">Tên</Heading>
+                  <input
+                    type="text"
+                    placeholder="Nguyen Van A"
+                    value={firstName}
+                    onChange={(e) => setFirstName(e.target.value)}
+                    className="self-stretch border border-solid border-blue_gray-900_02 !text-blue_gray-900_02 shadow-md sm:pr-5"
+                  />
+                </div>
+                <div className="mt-5 flex flex-col items-start gap-[11px] self-stretch">
+                  <Heading as="h2">Tài khoản</Heading>
+                  <input
+                    type="text"
+                    placeholder="chanh123"
+                    value={userName}
+                    onChange={(e) => setUsername(e.target.value)}
+                    className="self-stretch border border-solid border-gray-200_01 sm:pr-5"
+                  />
+                </div>
+                <div className="mt-5 flex flex-col items-start gap-2.5 self-stretch">
+                  <Heading as="h3">Email</Heading>
+                  <input
+                    type="text"
+                    placeholder="12345"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="self-stretch border border-solid border-gray-200_01 sm:pr-5"
+                  />
+                </div>
+                <div className="mt-5 flex flex-col items-start gap-2.5 self-stretch">
+                  <Heading as="h4">Mật khẩu</Heading>
+                   <input
+                   type="password"
+                   placeholder="12345"
+                   value={passWord}
+                   onChange={(e) => setPassword(e.target.value)}
+                    className="self-stretch border border-solid border-gray-200_01 sm:pr-5"
+                  />
+                </div>
+                <a
+                  href="https://www.youtube.com/embed/bv8Fxk0sz7I"
+                  target="_blank"
                 >
-                  Tạo tài khoản
-                </Button>
-              </a>
+                  <button
+                    size="10xl"
+                    type="submit"
+                    className="mt-5 w-full border border-solid border-green-A700_02 font-semibold shadow-sm sm:px-5"
+                  >
+                    Tạo tài khoản
+                  </button>
+                </a>
+              </form>
+
               <a
                 href="https://www.youtube.com/embed/bv8Fxk0sz7I"
                 target="_blank"
