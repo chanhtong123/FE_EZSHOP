@@ -10,7 +10,7 @@ export default function Header({ ...props }) {
           <div className="flex w-[20%] items-center justify-center gap-[30px] sm:w-full">
             <a href="#">
               <Img
-                src="images/img_television_gray_900_03.svg"
+                src="images/menu.svg"
                 alt="television"
                 className="h-[18px]"
               />
@@ -69,7 +69,7 @@ export default function Header({ ...props }) {
           </div>
           <a href="#">
             <Img
-              src="/public/images/chuoi.jpg"
+              src="/images/image.png"
               alt="image119"
               className="h-[50px] w-[50px] rounded-[16px] object-cover"
             />

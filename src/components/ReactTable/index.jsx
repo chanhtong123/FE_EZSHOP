@@ -31,7 +31,7 @@ const ReactTable = ({
     getSortedRowModel: getSortedRowModel(),
     ...restConfig,
   };
-  const table = useReactTable(tableConfig); // Render the UI for your table
+  const table = useReactTable(tableConfig);
 
   return (
     <table className={className}>

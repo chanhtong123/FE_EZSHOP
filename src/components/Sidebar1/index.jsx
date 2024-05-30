@@ -26,11 +26,14 @@ export default function Sidebar1({ ...props }) {
           <div>
             <MenuItem
               icon={
-                <Img
-                  src="images/img_user.svg"
-                  alt="user"
-                  className="h-[20px] w-[20px]"
-                />
+                <>
+                  <Img
+                    src="images/img_home.svg"
+                    alt="user"
+                    className="h-[20px] w-[20px]"
+                  />
+                  Bảng quản lý
+                </>
               }
             />
           </div>
@@ -39,78 +42,90 @@ export default function Sidebar1({ ...props }) {
               <div className="relative z-[1] flex flex-1 flex-col">
                 <MenuItem
                   icon={
-                    <Img
-                      src="images/img_cash_on_delivery.svg"
-                      alt="cashon"
-                      className="h-[20px] w-[20px]"
-                    />
+                    <>
+                      <Img
+                        src="images/img_cash_on_delivery.svg"
+                        alt="cashon"
+                        className="h-[20px] w-[20px]"
+                      />
+                      Các sản phẩm
+                    </>
                   }
                 />
                 <MenuItem
                   icon={
-                    <Img
-                      src="images/img_vector.svg"
-                      alt="vector"
-                      className="h-[20px] w-[20px]"
-                    />
+                    <>
+                      <Img
+                        src="images/img_order.svg"
+                        alt="vector"
+                        className="h-[20px] w-[20px]"
+                      />
+                      Đặt hàng
+                    </>
                   }
                 />
                 <MenuItem
                   icon={
-                    <Img
-                      src="images/img_growth_1.svg"
-                      alt="growthone"
-                      className="h-[20px] w-[20px]"
-                    />
+                    <>
+                      <Img
+                        src="images/img_growth_1.svg"
+                        alt="growthone"
+                        className="h-[20px] w-[20px]"
+                      />
+                      Khách hàng
+                    </>
                   }
                 />
                 <MenuItem
                   icon={
-                    <Img
-                      src="images/img_fi_10139649.svg"
-                      alt="fi10139649"
-                      className="h-[20px] w-[20px]"
-                    />
+                    <>
+                      <Img
+                        src="images/img_fi_10139649.svg"
+                        alt="fi10139649"
+                        className="h-[20px] w-[20px]"
+                      />
+                      Người bán
+                    </>
                   }
                 />
                 <MenuItem
                   icon={
-                    <Img
-                      src="images/img_folder_1.svg"
-                      alt="folderone"
-                      className="h-[20px] w-[20px]"
-                    />
+                    <>
+                      <Img
+                        src="images/img_folder_1.svg"
+                        alt="folderone"
+                        className="h-[20px] w-[20px]"
+                      />
+                      Thể loại
+                    </>
                   }
                 />
                 <MenuItem
                   icon={
-                    <Img
-                      src="images/img_settings_1.svg"
-                      alt="settingsone"
-                      className="h-[20px] w-[20px]"
-                    />
+                    <>
+                      <Img
+                        src="images/img_settings_1.svg"
+                        alt="settingsone"
+                        className="h-[20px] w-[20px]"
+                      />
+                      Cài đặt
+                    </>
                   }
                 />
                 <MenuItem
                   icon={
-                    <Img
-                      src="images/img_television.svg"
-                      alt="television"
-                      className="h-[20px] w-[20px]"
-                    />
+                    <>
+                      <Img
+                        src="images/img_log_out.svg"
+                        alt="television"
+                        className="h-[20px] w-[20px]"
+                      />
+                      Đăng xuất
+                    </>
                   }
                 />
               </div>
-              <Text
-                as="p"
-                className="relative ml-[-185px] mt-[825px] w-[29%] leading-[55px]"
-              >
-                <>
-                  Bảng quản lý <br /> Các sản phẩm <br /> Đặt hàng <br /> Khách
-                  hàng <br /> Người bán <br /> Thể loại <br /> Cài đặt <br />
-                  Đăng xuất
-                </>
-              </Text>
+
             </div>
           </div>
         </div>
