@@ -33,6 +33,7 @@ import CompareProducts from "../pages/CompareProducts";
 import Dashboard from "../pages/Dashboard";
 import SalesManager from "../pages/SalesManagement";
 import CategoriesManager from "../pages/CategoriesAdmin";
+import AdminProducts from "../pages/ProductsAdmin";
 import Test2 from "../pages/Test";
 import TestAdmin from "../pages/TestAdmin";
 
@@ -58,9 +59,6 @@ const ProjectRoutes = () => {
     { path: "login", element: <Login /> },
     { path: "mailbox", element: <Mailbox /> },
     { path: "chatbox", element: <Chatbox /> },
-    { path: "admin-dashboard", element: <DashboardADMIN /> },
-    { path: "admin-orders", element: <OrderManagement /> },
-    { path: "admin-users", element: <ClientManagementAdmin /> },
     { path: "register", element: <Register /> },
     { path: "order", element: <Order /> },
     { path: "shoplayout", element: <ShopLayout /> },
@@ -71,8 +69,12 @@ const ProjectRoutes = () => {
     { path: "dashboard", element: <Dashboard /> },
     { path: "test", element: <Test2 /> },
     { path: "admin", element: <TestAdmin /> },
+    { path: "admin-dashboard", element: <DashboardADMIN /> },
+    { path: "admin-orders", element: <OrderManagement /> },
+    { path: "admin-users", element: <ClientManagementAdmin /> },
     { path: "admin-shops", element: <SalesManager /> },
     { path: "admin-categories", element: <CategoriesManager /> },
+    { path: "admin-products", element: <AdminProducts /> },
   ]);
   return element;
 };

@@ -53,7 +53,7 @@ export default function Sidebar1({ ...props }) {
                     Sản phẩm
                   </Text>
                 }
-                href="/admin-product"
+                href="/admin-products"
               />
               <MenuItem
                 icon={
