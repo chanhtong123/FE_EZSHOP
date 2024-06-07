@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { getToken } from '../utils/authUtils';
 
-// Tạo instance của axios với cấu hình mặc định
+
 const axiosInstance = axios.create({
   baseURL: 'http://localhost:8080',
 });

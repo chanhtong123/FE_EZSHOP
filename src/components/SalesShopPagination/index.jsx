@@ -8,7 +8,7 @@ export default function SalesShopPagination({
   textfive = "5",
   textellipsis = "...",
   texttwenty = "20",
-  text120of300 = "Tìm thấy 1 – 20 trong số hơn 300 cơ sở kinh doanh",
+  text120of300 = "",
   ...props
 }) {
   return (
