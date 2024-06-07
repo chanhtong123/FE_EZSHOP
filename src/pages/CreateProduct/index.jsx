@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Helmet } from "react-helmet";
+import axios from "axios";
 import {
   Text,
   Button,
@@ -19,7 +20,72 @@ const dropDownOptions = [
   { label: "Option2", value: "option2" },
   { label: "Option3", value: "option3" },
 ];
-export default function CreateProductPage() {
+
+const CreateProductForm = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    price: "",
+    description: "",
+    status: "",
+    category: "",
+    brand: "",
+    size: "",
+    situation: "",
+    color: "",
+    overview: "",
+    detail: "",
+
+    categories: [],
+  });
+
+  const [dropDownOptions, setDropDownOptions] = useState({
+    categories: [],
+    situations: [
+      { label: "100", value: "100" },
+      { label: "99", value: "99" },
+      { label: "98", value: "98" },
+      { label: "97", value: "97" },
+      { label: "96", value: "96" },
+      { label: "95", value: "95" },
+    ],
+  });
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:8080/guest/api/categories")
+      .then((response) => {
+        setDropDownOptions((prevState) => ({
+          ...prevState,
+          categories: response.data,
+        }));
+      })
+      .catch((error) => {
+        console.error("Error fetching categories:", error);
+      });
+  }, []);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+  const handleRadioChange = (name, value) => {
+    setFormData({ ...formData, [name]: value });
+  };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post(
+        "http://localhost:8080/guest/api/products",
+        formData
+      );
+      console.log("Product created:", response.data);
+      // Handle response if needed
+    } catch (error) {
+      console.error("Error creating product:", error);
+      // Handle error if needed
+    }
+  };
+
   return (
     <>
       <Helmet>
@@ -128,58 +194,54 @@ export default function CreateProductPage() {
                       <Heading as="h5">Tên sản phẩm</Heading>
                       <Input
                         shape="round"
-                        name="input_seven"
-                        placeholder={`Áo thun`}
+                        type="text"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleChange}
+                        placeholder="Tên sản phẩm"
                         className="self-stretch border border-solid border-gray-600 sm:pr-5"
                       />
                     </div>
                     <div className="flex flex-col items-start gap-[7px]">
-                      <Heading as="h6">Danh mục</Heading>
-                      <SelectBox
-                        color="white_A700"
-                        size="xl"
-                        shape="round"
-                        indicator={
-                          <Img
-                            src="images/img_arrowdown_gray_600.svg"
-                            alt="arrow_down"
-                            className="h-[20px] w-[20px]"
-                          />
-                        }
-                        name="chn"
-                        placeholder={`Chọn`}
-                        options={dropDownOptions}
-                        className="gap-px self-stretch border border-solid border-gray-300_01 sm:pr-5"
-                      />
+                      <Heading as="h6">Size</Heading>
+                      <select
+                        name="size"
+                        value={formData.size}
+                        onChange={handleChange}
+                        className="self-stretch border border-solid border-gray-600 sm:pr-5"
+                      >
+                        <option value="">Chọn</option>
+                        <option value="S">S</option>
+                        <option value="M">M</option>
+                        <option value="L">L</option>
+                        <option value="XL">XL</option>
+                      </select>
                     </div>
                   </div>
                   <div className="flex flex-col items-start gap-[9px]">
-                    <Heading as="h6">Giới tính</Heading>
-                    <SelectBox
-                      color="white_A700"
-                      size="xl"
-                      shape="round"
-                      indicator={
-                        <Img
-                          src="images/img_arrowdown_gray_600.svg"
-                          alt="arrow_down"
-                          className="h-[20px] w-[20px]"
-                        />
-                      }
-                      name="chn_one"
-                      placeholder={`Chọn`}
-                      options={dropDownOptions}
-                      className="gap-px self-stretch border border-solid border-gray-300_01 sm:pr-5"
-                    />
+                    <Heading as="h6">Loại</Heading>
+                    <select
+                      name="category"
+                      value={formData.category}
+                      onChange={handleChange}
+                      className="self-stretch border border-solid border-gray-300_01 sm:pr-5"
+                    >
+                      <option value="">Chọn</option>
+                      {dropDownOptions.categories.map((category) => (
+                        <option key={category.id} value={category.id}>
+                          {category.name}
+                        </option>
+                      ))}
+                    </select>
                   </div>
                 </div>
                 <div className="flex w-full flex-col gap-4">
                   <div className="flex flex-col items-start gap-2">
-                    <Heading as="h6">Liên quan</Heading>
+                    <Heading as="h6">Màu sắc</Heading>
                     <Input
                       shape="round"
                       name="input_nine"
-                      placeholder={`Màu xanh, áo phông`}
+                      placeholder={`Màu xanh, màu vàng`}
                       className="self-stretch border border-solid border-gray-300_01 sm:pr-5"
                     />
                   </div>
@@ -187,26 +249,24 @@ export default function CreateProductPage() {
                     <Heading as="h6">Giá cả</Heading>
                     <Input
                       shape="round"
-                      name="input_eleven"
-                      placeholder={`Nhập giá cả`}
+                      type="number"
+                      name="price"
+                      value={formData.price}
+                      onChange={handleChange}
+                      placeholder="Giá"
                       className="self-stretch border border-solid border-gray-300_01 sm:pr-5"
                     />
                   </div>
                   <div className="flex flex-col items-start gap-[9px]">
-                    <Heading as="h6">Kích thước</Heading>
-                    <SelectBox
+                    <Heading as="h6">Thương Hiệu</Heading>
+                    <Input
                       color="white_A700"
                       size="xl"
                       shape="round"
-                      indicator={
-                        <Img
-                          src="images/img_arrowdown_gray_600.svg"
-                          alt="arrow_down"
-                          className="h-[20px] w-[20px]"
-                        />
-                      }
-                      name="chn_two"
-                      placeholder={`Chọn`}
+                      name="brand"
+                      value={formData.brand}
+                      onChange={handleChange}
+                      placeholder="Thương hiệu"
                       options={dropDownOptions}
                       className="gap-px self-stretch border border-solid border-gray-300_01 sm:pr-5"
                     />
@@ -220,22 +280,26 @@ export default function CreateProductPage() {
                 size="md"
                 variant="tarGREY2"
                 shape="round"
-                name="input_thirteen"
+                name="detail"
+                value={formData.detail}
+                onChange={handleChange}
                 placeholder={`Viết điều gì đó về mô tả sản phẩm`}
                 className="mt-[9px] self-stretch !border-gray-300_01 text-blue_gray-600 sm:pb-5 sm:pr-5"
               />
               <Heading as="h6" className="mt-[17px] !text-gray-900_01">
-                Tóm tắt sản phẩm
+                Mô Tả
               </Heading>
               <TextArea
                 size="xs"
                 variant="tarGREY2"
                 shape="round"
-                name="input_fifteen"
+                name="description"
+                value={formData.description}
+                onChange={handleChange}
                 placeholder={`Nhập tóm tắt`}
                 className="mt-[9px] self-stretch !border-gray-300_01 text-blue_gray-600 sm:pb-5 sm:pr-5"
               />
-              <div className="mt-4 flex flex-col items-start gap-[7px] self-stretch">
+              {/* <div className="mt-4 flex flex-col items-start gap-[7px] self-stretch">
                 <Heading as="h6" className="!text-gray-900_01">
                   Bình luận
                 </Heading>
@@ -247,27 +311,25 @@ export default function CreateProductPage() {
                   placeholder={`Nhập bình luận`}
                   className="self-stretch !border-gray-300_01 text-blue_gray-600 sm:pb-5 sm:pr-5"
                 />
-              </div>
-              <div className="mt-4 flex w-[54%] flex-col items-start gap-[7px] md:w-full">
-                <Heading as="h6" className="!text-gray-900_01">
-                  Tình trạng
-                </Heading>
-                <RadioGroup name="tnhtrng" className="flex">
-                  <Radio
-                    value="online"
-                    label="Online"
-                    className="w-full gap-2 p-px text-sm text-gray-900_01"
-                  />
-                  <Radio
-                    value="offline"
-                    label="Offline"
-                    className="ml-7 w-full gap-2 p-px text-sm text-gray-900_01"
-                  />
-                  <Radio
-                    value="nhp"
-                    label="Nháp"
-                    className="ml-7 w-full py-px text-sm text-gray-900_01"
-                  />
+              </div> */}
+              <div className="flex flex-col items-start gap-[9px]">
+                <Heading as="h6">Tình trạng</Heading>
+                <RadioGroup
+                  name="situation" // Ensure the correct name is used here
+                  value={formData.situation}
+                  onChange={(e) =>
+                    handleRadioChange("situation", e.target.value)
+                  }
+                  className="flex"
+                >
+                  {dropDownOptions.situations.map((option) => (
+                    <Radio
+                      key={option.value}
+                      value={option.value}
+                      label={option.label}
+                      className="w-full gap-2 p-px text-sm text-gray-900_01"
+                    />
+                  ))}
                 </RadioGroup>
               </div>
             </div>
@@ -279,6 +341,7 @@ export default function CreateProductPage() {
                 <Button
                   size="10xl"
                   shape="round"
+                  onClick={handleSubmit}
                   className="min-w-[138px] border border-solid border-green-A700_02 !text-green-50_01 shadow-sm sm:px-5"
                 >
                   Đăng tải
@@ -294,4 +357,5 @@ export default function CreateProductPage() {
       </div>
     </>
   );
-}
+};
+export default CreateProductForm;
