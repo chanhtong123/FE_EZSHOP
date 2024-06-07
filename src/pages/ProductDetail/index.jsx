@@ -170,7 +170,7 @@ const ProductDetailPage = () => {
                         <Text size="md" as="p">
                           Danh mục
                         </Text>
-                        
+
                         <div className="h-full w-px rounded-bl-[50%] rounded-tl-[50%] bg-green-400_01" />
                       </div>
                       <Text size="md" as="p" className="!text-blue_gray-600">
@@ -292,7 +292,6 @@ const ProductDetailPage = () => {
                             Danh mục
                           </Heading>
                         </div>
-                        
                       </div>
                       <div className="relative mt-[-3px] h-[2px] w-[15px] bg-white-A700" />
                     </div>
@@ -301,7 +300,7 @@ const ProductDetailPage = () => {
                   <Text as="p" className="ml-[31px] md:ml-0">
                     Trang chủ
                   </Text>
-                 
+
                   <a
                     href="https://www.youtube.com/embed/bv8Fxk0sz7I"
                     target="_blank"
@@ -310,7 +309,7 @@ const ProductDetailPage = () => {
                       Sản phẩm
                     </Text>
                   </a>
-                  
+
                   <a
                     href="https://www.youtube.com/embed/bv8Fxk0sz7I"
                     target="_blank"
@@ -319,7 +318,7 @@ const ProductDetailPage = () => {
                       Liên hệ
                     </Text>
                   </a>
-                  
+
                   <a
                     href="https://www.youtube.com/embed/bv8Fxk0sz7I"
                     target="_blank"
@@ -328,7 +327,6 @@ const ProductDetailPage = () => {
                       Bài viết
                     </Text>
                   </a>
-                 
                 </div>
                 {/* <ul className="flex flex-wrap gap-3.5">
                   <li>
@@ -364,7 +362,7 @@ const ProductDetailPage = () => {
                 </Text>
                 <div className="flex items-start justify-between gap-5 self-stretch md:flex-col">
                   <div className="w-[6%] md:w-full">
-                    <div className="flex flex-col gap-2.5 md:flex-row">
+                    {/* <div className="flex flex-col gap-2.5 md:flex-row">
                       {data.map((d, index) => (
                         <div
                           key={"thumbnail" + index}
@@ -377,18 +375,14 @@ const ProductDetailPage = () => {
                           />
                         </div>
                       ))}
-                    </div>
+                    </div> */}
                   </div>
                   <div className="flex w-[47%] flex-col items-start md:w-full">
+                   
                     <Img
-                      src="images/img_full_screen_1.svg"
-                      alt="fullscreenone"
-                      className="h-[30px] w-[30px] self-end"
-                    />
-                    <Img
-                      src="images/img_image_65.png"
-                      alt="imageseventyeig"
-                      className="mt-3.5 h-[612px] w-[612px] object-cover"
+                      src={product.image || "images/img_image_30_230x230.png"} // Sử dụng URL hình ảnh hoặc fallback image nếu URL không tồn tại
+                      alt={product.name || "thời_trang"}
+                      className="h-[230px] w-[230px] object-cover"
                     />
                     <Text size="lg" as="p" className="ml-[209px] mt-6 md:ml-0">
                       Cuộn để phóng to hình ảnh
@@ -526,64 +520,62 @@ const ProductDetailPage = () => {
             <div className="flex flex-col gap-[23px]">
               <div className="flex w-[66%] flex-col gap-6 md:w-full">
                 <div className="flex flex-col gap-4">
-                <div className="flex flex-col items-start gap-[15px]">
-        <Text size="3xl" as="p">
-          Tổng Quan
-        </Text>
-        <div className="flex flex-col gap-[17px] self-stretch pb-[9px]">
-          <Text as="p" className="!font-normal leading-7 !text-blue_gray-600">
-            {product.overview}
-          </Text>
-          <div className="flex items-center">
-            <Text as="p" className="!font-normal !text-green-A700_02">
-              Xem Thêm
-            </Text>
-            <Img
-              src="images/img_vector_green_a700_02.svg"
-              alt="vector_fifteen"
-              className="mb-[5px] h-[5px] self-end"
-            />
-          </div>
-        </div>
-      </div>
+                  <div className="flex flex-col items-start gap-[15px]">
+                    <Text size="3xl" as="p">
+                      Tổng Quan
+                    </Text>
+                    <div className="flex flex-col gap-[17px] self-stretch pb-[9px]">
+                      <Text
+                        as="p"
+                        className="!font-normal leading-7 !text-blue_gray-600"
+                      >
+                        {product.overview}
+                      </Text>
+                      <div className="flex items-center">
+                        <Text
+                          as="p"
+                          className="!font-normal !text-green-A700_02"
+                        >
+                          Xem Thêm
+                        </Text>
+                        <Img
+                          src="images/img_vector_green_a700_02.svg"
+                          alt="vector_fifteen"
+                          className="mb-[5px] h-[5px] self-end"
+                        />
+                      </div>
+                    </div>
+                  </div>
                   <div className="h-px bg-gray-200_01" />
                 </div>
-                <div className="flex flex-col items-start gap-[15px]">
+                <div className="flex flex-col items-start gap-[15px]">  
                   <div className="flex items-center justify-between gap-5 self-stretch">
                     <Text size="3xl" as="p">
                       Thông Tin Chi Tiết
                     </Text>
-                    <Img
+                    {/* <Img
                       src="images/img_arrow_up.svg"
                       alt="arrowup"
                       className="mb-2 h-[7px] self-end"
-                    />
+                    /> */}
                   </div>
                   <div className="flex w-[87%] flex-col gap-[19px] md:w-full">
                     <div className="flex flex-col items-start gap-[13px]">
                       <Text as="p">Đặc điểm</Text>
                       <div className="self-stretch">
                         <div className="flex items-start md:flex-col">
-                          <div className="mt-[19px] h-[4px] w-[4px] flex-1 rounded-sm bg-blue_gray-900_02 md:self-stretch" />
+                          {/* <div className="mt-[19px] h-[4px] w-[4px] flex-1 rounded-sm bg-blue_gray-900_02 md:self-stretch" />
                           <div className="relative ml-[-4px] mt-[59px] h-[4px] w-[4px] flex-1 rounded-sm bg-blue_gray-900_02 md:ml-0 md:self-stretch" />
                           <div className="relative ml-[-4px] mt-[99px] h-[4px] w-[4px] flex-1 rounded-sm bg-blue_gray-900_02 md:ml-0 md:self-stretch" />
                           <div className="relative mb-[97px] ml-[-4px] h-[4px] w-[4px] flex-1 rounded-sm bg-blue_gray-900_02 md:ml-0 md:self-stretch" />
                           <div className="relative mb-[57px] ml-[-4px] h-[4px] w-[4px] flex-1 rounded-sm bg-blue_gray-900_02 md:ml-0 md:self-stretch" />
-                          <div className="relative mb-[17px] ml-[-4px] h-[4px] w-[4px] flex-1 rounded-sm bg-blue_gray-900_02 md:ml-0 md:self-stretch" />
+                          <div className="relative mb-[17px] ml-[-4px] h-[4px] w-[4px] flex-1 rounded-sm bg-blue_gray-900_02 md:ml-0 md:self-stretch" /> */}
                           <Text
-                            as="p"
-                            className="ml-2.5 w-full !font-normal leading-10 !text-blue_gray-600 md:ml-0"
-                          >
-                            <>
-                              Thiết kế dáng rộng có phần vai trễ xuống mang lại
-                              vẻ ngoài và cảm giác thoải mái. <br /> Chất liệu
-                              cotton dày dặn có độ rủ cứng giúp outfits của bạn
-                              trông bắt mắt và đặc biệt hơn. <br /> Logo thêu
-                              phía trước tạo điểm nhấn tinh tế. <br /> Kiểu dáng
-                              loose fit. <br /> Sản phẩm có thể giặt máy. <br />
-                              Chất liệu: 100% cotton.
-                            </>
-                          </Text>
+                        as="p"
+                        className="!font-normal leading-7 !text-blue_gray-600"
+                      >
+                        {product.detail}
+                      </Text>
                         </div>
                       </div>
                     </div>
