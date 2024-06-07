@@ -302,8 +302,8 @@ export default function ProductPage() {
                       className="w-[61%] !font-inter leading-[22px]"
                     >
                       <span className="font-bevietnampro text-[13px] font-normal text-blue_gray-900_02">
-                        <>Sản phẩm bán chạy
-                          Yêu thích <br />
+                        <>
+                          Sản phẩm bán chạy Yêu thích <br />
                         </>
                       </span>
                       <span className="font-bevietnampro text-base font-medium text-blue_gray-900_02">
@@ -422,7 +422,6 @@ export default function ProductPage() {
                     >
                       <div className="flex cursor-pointer items-center gap-1">
                         <Text as="p">Trang chủ</Text>
-                        
                       </div>
                       {menuOpen ? <MegaMenu1 /> : null}
                     </li>
@@ -436,7 +435,6 @@ export default function ProductPage() {
                     >
                       <div className="flex cursor-pointer items-center gap-1">
                         <Text as="p">Sản phẩm</Text>
-                       
                       </div>
                       {menuOpen1 ? <MegaMenu1 /> : null}
                     </li>
@@ -448,9 +446,7 @@ export default function ProductPage() {
                         setMenuOpen2(true);
                       }}
                     >
-                      <div className="flex cursor-pointer items-center gap-[3px]">
-                        
-                      </div>
+                      <div className="flex cursor-pointer items-center gap-[3px]"></div>
                       {menuOpen2 ? <MegaMenu1 /> : null}
                     </li>
                     <li
@@ -461,9 +457,7 @@ export default function ProductPage() {
                         setMenuOpen3(true);
                       }}
                     >
-                      <div className="flex cursor-pointer items-center gap-1">
-                       
-                      </div>
+                      <div className="flex cursor-pointer items-center gap-1"></div>
                       {menuOpen3 ? <MegaMenu1 /> : null}
                     </li>
                   </ul>
@@ -633,21 +627,22 @@ export default function ProductPage() {
                   />
                 </div>
               </div>
-              
-              
+
               <div className="mt-[31px] grid w-[96%] grid-cols-4 justify-center gap-px md:grid-cols-2 sm:grid-cols-1">
                 {products.map((product) => {
                   console.log("Rendering product:", product);
                   return (
                     <Link
-                      key={product.id}  
+                      key={product.id}
                       to={`/productdetail/${product.id}`}
                       rel="noopener noreferrer"
                     >
                       <div className="flex w-full flex-col items-center border border-solid border-gray-200_01 bg-white-A700 pb-[25px] sm:pb-5">
                         <div className="self-stretch bg-white-A700 px-5 py-[25px] sm:py-5">
                           <Img
-                            // src={product.imageUrl || 'images/img_image_30_230x230.png'} // Assuming imageUrl is a field in your product data
+                            src={
+                              product.image || "images/img_image_30_230x230.png"
+                            } // Sử dụng URL hình ảnh hoặc fallback image nếu URL không tồn tại
                             alt={product.name || "thời_trang"}
                             className="h-[230px] w-[230px] object-cover"
                           />
@@ -667,9 +662,7 @@ export default function ProductPage() {
                           <Heading as="h5" className="w-full leading-[150%]">
                             {product.product_name}
                           </Heading>
-                          {/* <Text size="xs" as="p" className="!text-blue_gray-600">
-            {product.description}
-          </Text> */}
+
                           <div className="flex flex-wrap items-center gap-2.5">
                             <Heading size="3xl" as="h6" className="flex">
                               <span className="text-blue_gray-900_02">
