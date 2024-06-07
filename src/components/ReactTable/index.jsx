@@ -1,17 +1,17 @@
 import React from "react";
 import {
+  useReactTable,
   flexRender,
   getCoreRowModel,
-  useReactTable,
   getSortedRowModel,
 } from "@tanstack/react-table";
 
 const sizes = {
-  xs: "p-[5px]",
-  sm: "p-[13px]",
-  md: "p-3.5",
-  lg: "p-[19px]",
-  xl: "p-5",
+  xs: "p-[5px] py-2 text-center",
+  sm: "p-[13px] py-2 text-center",
+  md: "p-3.5 py-2 text-center",
+  lg: "p-[19px] py-2 text-center",
+  xl: "p-5 py-2 text-center",
 };
 
 const ReactTable = ({
@@ -24,22 +24,25 @@ const ReactTable = ({
   size,
   ...restConfig
 }) => {
-  const tableConfig = {
+  const table = useReactTable({
     columns,
     data,
     getCoreRowModel: getCoreRowModel(),
     getSortedRowModel: getSortedRowModel(),
     ...restConfig,
-  };
-  const table = useReactTable(tableConfig);
+  });
 
   return (
-    <table className={className}>
+    <table className={`w-full ${className}`}>
       <thead {...headerProps}>
         {table.getHeaderGroups().map((headerGroup) => (
           <tr key={headerGroup.id}>
             {headerGroup.headers.map((header) => (
-              <th key={header.id} {...header.column.columnDef?.meta}>
+              <th
+                key={header.id}
+                {...header.column.columnDef?.meta}
+                className="p-2 text-center bg-gray-200"
+              >
                 {header.isPlaceholder
                   ? null
                   : flexRender(
