@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import axiosInstance from '../../config/axiosConfig';
 import { Helmet } from "react-helmet";
 import { CloseSVG } from "../../assets/images";
+import { Link } from 'react-router-dom';
+
 import {
   Button,
   Text,
@@ -296,10 +298,7 @@ export default function ListOfShopPage() {
                             {shop.owner}
                         </Text>
                       </div>
-                      <a
-                        href={`/sales-shop/${shop.shopId}`}
-                        target="_self"
-                      >
+                      <Link to={`/sales-shop/${shop.shopId}`} key={shop.shopId}>
 
                         <Button
                           size="10xl"
@@ -308,7 +307,7 @@ export default function ListOfShopPage() {
                         >
                           Xem cửa hàng
                         </Button>
-                      </a>
+                        </Link>
                     </div>
                   ))}
                 </div>

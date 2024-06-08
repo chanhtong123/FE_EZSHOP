@@ -8,7 +8,7 @@ export const saveToken = (token) => {
     return localStorage.getItem('token');
   };
   
-  // Xóa token khỏi localStorage
+ 
   export const removeToken = () => {
     localStorage.removeItem('token');
   };

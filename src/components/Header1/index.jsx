@@ -113,11 +113,13 @@ export default function Header1({ ...props }) {
         </div>
         <div className="mx-auto mt-[15px] flex w-full max-w-[1440px] items-center justify-between gap-5 md:flex-col md:p-5">
           <div className="flex w-[10%]">
+            <a href="/homepage">
             <Img
               src="images/img_header_logo.png"
               alt="headerlogo"
               className="mb-[7px] h-[33px] w-[94px] object-contain"
             />
+            </a>
           </div>
 
           <div className="flex w-[80%] items-center justify-center gap-6 md:w-full md:flex-col">
