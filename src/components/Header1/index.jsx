@@ -192,28 +192,29 @@ export default function Header1({ ...props }) {
               </div>
 
               <div className="flex-1 w-[40%] sm:self-stretch">
+
+              <a href="/cartdetail"> 
                 <div className="flex items-center">
-                  <div className="relative w-[38%]">
-                    <a href="#">
+                  <div className="relative w-[38%]">                 
                       <Button shape="round" className="w-[50px] h-[50px]">
                         <Img src="images/img_cart.svg" />
                       </Button>
-                    </a>
                   </div>
+                
                   <Heading
                     size="lg"
                     as="p"
-                    className="w-[62%] self-end !font-inter leading-[22px]"
+                    className="w-[62%] self-end !font-inter leading-[50px]"
                   >
-                    <span className="font-bevietnampro text-[13px] font-normal text-blue_gray-900_02">
-                      289.000đ
-                    </span>
-                    <br />
+                    
                     <span className="font-bevietnampro text-base font-medium text-blue_gray-900_02">
                       Thanh toán
-                    </span>
-                  </Heading>
+                    </span>               
+                  </Heading>             
                 </div>
+                </a>
+
+                
               </div>
             </div>
           </div>
