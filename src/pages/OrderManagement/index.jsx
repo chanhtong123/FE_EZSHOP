@@ -11,6 +11,7 @@ import { createColumnHelper } from "@tanstack/react-table";
 import axios from "axios";
 import { formatDistanceToNow } from "date-fns";
 import { vi } from "date-fns/locale";
+import classNames from "classnames";
 
 const columnHelper = createColumnHelper();
 
@@ -27,33 +28,33 @@ const tableColumns = [
         locale: vi,
       })}`,
   }),
-  columnHelper.accessor("status", {
-    header: () => "Trạng thái",
-    cell: (info) => info.getValue() || "N/A",
-  }),
-  // columnHelper.accessor("userId", {
-  //   header: () => "User ID",
-  //   cell: (info) => info.getValue(),
-  // }),
-  // columnHelper.accessor("shopId", {
-  //   header: () => "Shop ID",
-  //   cell: (info) => info.getValue() || "N/A",
-  // }),
-  // columnHelper.accessor("orderDetailId", {
-  //   header: () => "Order Detail ID",
-  //   cell: (info) => info.getValue() || "N/A",
-  // }),
-  columnHelper.accessor("totalAmount", {
-    header: () => "Tổng cộng",
-    cell: (info) => `$${info.getValue()}`,
-  }),
   columnHelper.accessor("customerName", {
     header: () => "Tên khách hàng",
     cell: (info) => info.getValue(),
   }),
+  columnHelper.accessor("totalAmount", {
+    header: () => "Tổng cộng",
+    cell: (info) => `$${info.getValue()}`,
+  }),
   columnHelper.accessor("profit", {
     header: () => "Lợi nhuận",
     cell: (info) => `$${info.getValue()}`,
+  }),
+  columnHelper.accessor("status", {
+    header: () => "Trạng thái",
+    cell: (info) => {
+      const status = info.getValue();
+      const statusName = status?.name || "N/A";
+
+      const statusClass = classNames("inline-block px-2.5 py-0.5 rounded text-sm font-medium", {
+        "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300": statusName === "Pending",
+        "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300": statusName === "Completed",
+        "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-300": statusName === "Cancelled",
+        "bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-300": statusName === "N/A",
+      });
+
+      return <span className={statusClass}>{statusName}</span>;
+    },
   }),
 ];
 export default function OrderManagementPage() {

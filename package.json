@@ -8,6 +8,7 @@
     "@babel/plugin-transform-numeric-separator": "^7.24.1",
     "@babel/plugin-transform-optional-chaining": "^7.24.5",
     "@babel/plugin-transform-private-methods": "^7.24.1",
+    "@babel/plugin-proposal-private-property-in-object":"7.21.11",
     "@googlemaps/react-wrapper": "^1.1.25",
     "@jridgewell/sourcemap-codec": "^1.4.8",
     "@rollup/plugin-terser": "^0.4.4",
