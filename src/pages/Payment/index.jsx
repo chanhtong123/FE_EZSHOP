@@ -28,7 +28,6 @@ export default function PaymentPage() {
         />
       </Helmet>
       <div className="flex w-full flex-col items-center bg-white-A700">
-        <Header1 />
         <div className="container-md mt-[19px] flex flex-col gap-[66px] md:p-5 sm:gap-[33px]">
           <div className="flex flex-col items-start">
             <Text size="md" as="p" className="relative z-[1] !font-jost">
@@ -444,7 +443,6 @@ export default function PaymentPage() {
             </div>
           </div>
         </div>
-        <Footer1 className="mt-[70px] flex-col self-stretch border-t border-solid border-gray-200_01 bg-white-A700 px-14 pb-[17px] pt-[82px] md:px-5 md:pt-5" />
       </div>
     </>
   );

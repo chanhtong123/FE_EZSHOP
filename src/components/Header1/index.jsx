@@ -273,61 +273,36 @@ export default function Header1({ ...props }) {
                 </div>
               )}
             </div>
-
             <ul className="flex w-[60%] justify-between">
-              <li
-                onMouseLeave={() => {
-                  setMenuOpen(false);
-                }}
-                onMouseEnter={() => {
-                  setMenuOpen(true);
-                }}
-              >
-                <div className="flex cursor-pointer items-center gap-1">
-                  <Text as="p">Trang chủ</Text>
-                </div>
-                {menuOpen ? <MegaMenu1 /> : null}
-              </li>
-              <li
-                onMouseLeave={() => {
-                  setMenuOpen1(false);
-                }}
-                onMouseEnter={() => {
-                  setMenuOpen1(true);
-                }}
-              >
-                <div className="flex cursor-pointer items-center gap-1">
-                  <Text as="p">Sản phẩm</Text>
-                </div>
-                {menuOpen1 ? <MegaMenu1 /> : null}
-              </li>
-              <li
-                onMouseLeave={() => {
-                  setMenuOpen2(false);
-                }}
-                onMouseEnter={() => {
-                  setMenuOpen2(true);
-                }}
-              >
-                <div className="flex cursor-pointer items-center gap-[3px]">
-                  <Text as="p">Liên hệ</Text>
-                </div>
-                {menuOpen2 ? <MegaMenu1 /> : null}
-              </li>
-              <li
-                onMouseLeave={() => {
-                  setMenuOpen3(false);
-                }}
-                onMouseEnter={() => {
-                  setMenuOpen3(true);
-                }}
-              >
-                <div className="flex cursor-pointer items-center gap-1">
-                  <Text as="p">Bài viết</Text>
-                </div>
-                {menuOpen3 ? <MegaMenu1 /> : null}
-              </li>
-            </ul>
+      <li>
+        <div className="flex cursor-pointer items-center gap-1">
+          <a href="/">
+            <Text as="p">Trang chủ</Text>
+          </a>
+        </div>
+      </li>
+      <li>
+        <div className="flex cursor-pointer items-center gap-1">
+          <a href="/product">
+            <Text as="p">Sản phẩm</Text>
+          </a>
+        </div>
+      </li>
+      <li>
+        <div className="flex cursor-pointer items-center gap-[3px]">
+          <a href="/contact">
+            <Text as="p">Liên hệ</Text>
+          </a>
+        </div>
+      </li>
+      <li>
+        <div className="flex cursor-pointer items-center gap-1">
+          <a href="/blog">
+            <Text as="p">Bài viết</Text>
+          </a>
+        </div>
+      </li>
+    </ul>
           </div>
           <div className="flex w-[40%] justify-between cursor-pointer items-center gap-1">
             <Button color="white_A701">Ưu đãi trong ngày</Button>
