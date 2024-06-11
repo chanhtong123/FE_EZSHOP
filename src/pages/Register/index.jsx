@@ -55,7 +55,7 @@ export default function RegisterPage() {
                   <Heading as="h1">Tên</Heading>
                   <input
                     type="text"
-                    placeholder="Nguyen Van A"
+                    placeholder=""
                     value={firstName}
                     onChange={(e) => setFirstName(e.target.value)}
                     className="self-stretch border border-solid border-blue_gray-900_02 !text-blue_gray-900_02 shadow-md sm:pr-5"
@@ -65,7 +65,7 @@ export default function RegisterPage() {
                   <Heading as="h2">Tài khoản</Heading>
                   <input
                     type="text"
-                    placeholder="chanh123"
+                    placeholder=""
                     value={userName}
                     onChange={(e) => setUsername(e.target.value)}
                     className="self-stretch border border-solid border-gray-200_01 sm:pr-5"
@@ -75,7 +75,7 @@ export default function RegisterPage() {
                   <Heading as="h3">Email</Heading>
                   <input
                     type="text"
-                    placeholder="12345"
+                    placeholder=""
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     className="self-stretch border border-solid border-gray-200_01 sm:pr-5"
@@ -85,7 +85,7 @@ export default function RegisterPage() {
                   <Heading as="h4">Mật khẩu</Heading>
                    <input
                    type="password"
-                   placeholder="12345"
+                   placeholder=""
                    value={passWord}
                    onChange={(e) => setPassword(e.target.value)}
                     className="self-stretch border border-solid border-gray-200_01 sm:pr-5"

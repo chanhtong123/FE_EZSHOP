@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
+import axiosInstance from '../../config/axiosConfig';
+import { getToken, removeToken } from '../../utils/authUtils';
 import { Helmet } from "react-helmet";
 import {
   Button,
@@ -17,6 +20,7 @@ import Footer1 from "../../components/Footer1";
 import HomePageFour from "../../components/HomePageFour";
 import HomePageThree from "../../components/HomePageThree";
 import ProductDetailDetails from "../../components/ProductDetailDetails";
+import { Link } from "react-router-dom";
 const data = [
   { imageseventyfiv: "images/img_image_75.png" },
   { imageseventyfiv: "images/img_image_76.png" },
@@ -30,6 +34,9 @@ const dropDownOptions = [
 const ProductDetailPage = () => {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
+  const [cartId, setCartId] = useState(null);
+  const navigate = useNavigate();
+
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -46,6 +53,58 @@ const ProductDetailPage = () => {
     fetchProduct();
   }, [id]);
 
+
+  useEffect(() => {
+    const fetchCartId = async () => {
+
+      const token = getToken();
+
+
+      try {
+        const response = await axiosInstance.get('/api/cart/user', {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        });
+        setCartId(response.data.id);
+      } catch (error) {
+        console.error("Error fetching cart:", error);
+      }
+    };
+
+    fetchCartId();
+  }, []);
+
+
+
+  const handleAddToCart = async () => {
+    const token = getToken();
+
+    if (!token) {
+      navigate('/login');
+      return;
+    }
+
+    try {
+      const response = await axiosInstance.post('http://localhost:8080/cart_item/cart-details/create', null, {
+        params: {
+          productId: product.id,
+          cartId: cartId,
+        },
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      });
+
+      console.log("Added to cart:", response.data);
+
+    } catch (error) {
+      console.error("Error adding to cart:", error);
+    }
+  };
+
+
+
   if (!product) {
     return <div>Loading...</div>;
   }
@@ -59,7 +118,7 @@ const ProductDetailPage = () => {
         />
       </Helmet>
       <div className="flex w-full flex-col items-center bg-white-A700">
-     
+
         <div className="mt-[21px] flex w-[76%] flex-col gap-20 md:w-full md:gap-[60px] md:p-5 sm:gap-10">
           <div className="container-xs flex flex-col gap-[60px] sm:gap-[30px]">
             <div className="pr-[5px]">
@@ -176,57 +235,28 @@ const ProductDetailPage = () => {
                     <div className="h-px self-stretch bg-gray-200_01" />
                     <div className="flex flex-col gap-5 self-stretch">
                       <div className="flex gap-5 sm:flex-col">
-                        <a
-                          href="https://www.youtube.com/embed/bv8Fxk0sz7I"
-                          target="_blank"
+                        <Button
+                          onClick={handleAddToCart}
+                          size="x10"  
+                          className="min-w-[236px] rounded-[26px] border border-solid border-green-A700_02 !text-gray-100_02 sm:px-5"
                         >
-                          <Button
-                            size="10xl"
-                            className="min-w-[236px] rounded-[26px] border border-solid border-green-A700_02 !text-gray-100_02 sm:px-5"
-                          >
-                            Thêm Vào Giỏ hàng
-                          </Button>
-                        </a>
+                          Thêm Vào Giỏ hàng
+                        </Button>
                       </div>
                       <a
                         href="https://www.youtube.com/embed/bv8Fxk0sz7I"
                         target="_blank"
                       >
                         <Button
-                          size="10xl"
+                          size="x10" 
                           variant="outline"
                           className="w-full rounded-[26px] font-bevietnamprosemibold font-semibold sm:px-5"
                         >
                           Mua Ngay
                         </Button>
                       </a>
-                      <div className="flex items-center self-start sm:flex-col">
-                        <div className="flex gap-1 self-start">
-                          <Img
-                            src="images/img_heart_1.svg"
-                            alt="heartone"
-                            className="h-[16px] w-[16px]"
-                          />
-                          <Text size="xs" as="p">
-                            Yêu Thích
-                          </Text>
-                        </div>
-                        <div className="ml-1 h-full w-px bg-gray-200_01 sm:ml-0 sm:h-px sm:w-full" />
 
-                        <div className="ml-3 h-full w-px bg-gray-200_01 sm:ml-0 sm:h-px sm:w-full" />
 
-                        <div className="ml-[25px] h-full w-px bg-gray-200_01 sm:ml-0 sm:h-px sm:w-full" />
-                        <div className="ml-[7px] flex gap-[9px] sm:ml-0">
-                          <Img
-                            src="images/img_share_1.svg"
-                            alt="shareone"
-                            className="h-[16px] w-[16px] self-end"
-                          />
-                          <Text size="xs" as="p" className="self-start">
-                            Chia sẻ
-                          </Text>
-                        </div>
-                      </div>
                     </div>
                   </div>
                 </div>
@@ -235,26 +265,26 @@ const ProductDetailPage = () => {
             <div className="flex flex-col gap-[23px]">
               <div className="flex w-[66%] flex-col gap-6 md:w-full">
                 <div className="flex flex-col gap-4">
-                <div className="flex flex-col items-start gap-[15px]">
-        <Text size="3xl" as="p">
-          Tổng Quan
-        </Text>
-        <div className="flex flex-col gap-[17px] self-stretch pb-[9px]">
-          <Text as="p" className="!font-normal leading-7 !text-blue_gray-600">
-            {product.overview}
-          </Text>
-          <div className="flex items-center">
-            <Text as="p" className="!font-normal !text-green-A700_02">
-              Xem Thêm
-            </Text>
-            <Img
-              src="images/img_vector_green_a700_02.svg"
-              alt="vector_fifteen"
-              className="mb-[5px] h-[5px] self-end"
-            />
-          </div>
-        </div>
-      </div>
+                  <div className="flex flex-col items-start gap-[15px]">
+                    <Text size="3xl" as="p">
+                      Tổng Quan
+                    </Text>
+                    <div className="flex flex-col gap-[17px] self-stretch pb-[9px]">
+                      <Text as="p" className="!font-normal leading-7 !text-blue_gray-600">
+                        {product.overview}
+                      </Text>
+                      <div className="flex items-center">
+                        <Text as="p" className="!font-normal !text-green-A700_02">
+                          Xem Thêm
+                        </Text>
+                        <Img
+                          src="images/img_vector_green_a700_02.svg"
+                          alt="vector_fifteen"
+                          className="mb-[5px] h-[5px] self-end"
+                        />
+                      </div>
+                    </div>
+                  </div>
                   <div className="h-px bg-gray-200_01" />
                 </div>
                 <div className="flex flex-col items-start gap-[15px]">
@@ -432,16 +462,16 @@ const ProductDetailPage = () => {
                         Viết đánh giá
                       </Button>
                     </div>
-                  
+
                   </div>
-              
+
                 </div>
               </div>
             </div>
           </div>
           <div className="flex flex-col gap-[60px]">
-        
-           
+
+
           </div>
         </div>
       </div>

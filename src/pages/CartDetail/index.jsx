@@ -263,26 +263,7 @@ export default function CartDetailPage() {
 
           <div className="container-xs flex">
             <div className="flex w-full flex-col items-center">
-              <Heading size="9xl" as="h1" className="uppercase">
-                Giỏ hàng
-              </Heading>
-              <Text size="lg" as="p" className="mt-[51px] flex !font-medium">
-                <span className="text-blue_gray-900_02">Mua thêm&nbsp;</span>
-                <span className="text-green-A700_02">31.000</span>
-                <a href="#" className="text-green-A700_02 underline">
-                  đ để được MIỄN PHÍ Vận chuyển
-                </a>
-              </Text>
-              <div className="relative mt-1.5 h-[40px] w-[32%]">
-                <div className="relative bottom-0 left-0 right-0 top-0 m-auto h-[6px] w-full rounded-[3px] bg-gray-100_05">
-                  <div style={{ width: "57%" }} className="absolute h-full rounded-[3px] bg-orange-300" />
-                </div>
-                <Img
-                  src="images/img_icon_white_a700.svg"
-                  alt="icon"
-                  className="absolute bottom-0 right-[39%] top-0 my-auto h-[40px] w-[40px]"
-                />
-              </div>
+            
 
 
 

@@ -216,9 +216,9 @@ export default function ProductPage() {
 
             <div className="mt-[71px] flex w-[96%] flex-col gap-8 md:w-full">
               <div className="flex flex-col items-start gap-[51px] sm:gap-[25px]">
-                <Text size="7xl" as="p">
+                {/* <Text size="7xl" as="p">
                   Tất cả sản phẩm
-                </Text>
+                </Text> */}
               </div>
             </div>
             <div className="mt-[31px] grid w-[96%] grid-cols-4 justify-center gap-px md:grid-cols-2 sm:grid-cols-1">
@@ -251,21 +251,21 @@ export default function ProductPage() {
                             : "Thời trang"}
                         </Text>
                         <Heading as="h5" className="w-full leading-[150%]">
-                          {product.product_name}
+                          {product.name}
                         </Heading>
                         {/* <Text size="xs" as="p" className="!text-blue_gray-600">
             {product.description}
           </Text> */}
                         <div className="flex flex-wrap items-center gap-2.5">
                           <Heading size="3xl" as="h6" className="flex">
-                            <span className="text-blue_gray-900_02">
+                            <span className="text-blue_gray-900_02 text-red-600">
                               {typeof product.price === "number"
                                 ? product.price.toLocaleString()
                                 : "278.000"}
                             </span>
                             <a
                               href="#"
-                              className="text-blue_gray-900_02 underline"
+                              className="text-blue_gray-900_02 underline text-red-600"
                             >
                               đ
                             </a>
@@ -273,15 +273,16 @@ export default function ProductPage() {
                           <Text
                             size="md"
                             as="p"
-                            className="self-start capitalize !text-blue_gray-600 line-through"
+                            className="self-start capitalize  line-through" 
                           >
                             {typeof product.price === "number"
                               ? `${product.price.toLocaleString()}đ`
                               : "328.000đ"}
                           </Text>
+
                         </div>
                         <Text
-                          size="xs"
+                          size="md"
                           as="p"
                           className="!text-blue_gray-600"
                         >
@@ -292,15 +293,13 @@ export default function ProductPage() {
                           as="p"
                           className="!text-blue_gray-600"
                         >
-                          {product.code}
+                          {product.description && product.description.length > 10
+                            ? `${product.description.slice(0, 30)}...`
+                            : product.description}
                         </Text>
-                        <Text
-                          size="xs"
-                          as="p"
-                          className="!text-blue_gray-600"
-                        >
-                          {product.weight}
-                        </Text>
+
+
+
                         {/* {product.title && (
             <Text size="xs" as="p" className="!text-blue_gray-600">
               {product.title.name}

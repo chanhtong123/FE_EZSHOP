@@ -69,7 +69,7 @@ export default function ProfilePage() {
               <div className="flex flex-col gap-[9px]">
                 <div className="flex items-start gap-[11px]">
                   <Img
-                     src={profileItems.image}
+                     src="images/user.png"
                     alt="circleimage"
                     className="h-[40px] w-[40px] rounded-[50%]"
                   />

@@ -5,6 +5,7 @@ import { getToken, removeToken } from "../../utils/authUtils";
 import MegaMenu1 from "../MegaMenu1";
 import { Text, Img, Heading, Button, SelectBox } from "./..";
 import { Input } from "postcss";
+import { Link } from "react-router-dom";
 const dropDownOptions = [
   { label: "Điều khoản sử dụng", value: "option1" },
   { label: "Option2", value: "option2" },
@@ -146,7 +147,7 @@ export default function Header1({ ...props }) {
             </div>
             <div className="flex w-[40%] items-end justify-center gap-[17px] md:w-full sm:flex-col">
               <div className="flex w-[30%] items-center items-start">
-                <a href="#" className="">
+                {/* <a href="#" className="">
                   <Button
                     color="green_A700_11"
                     shape="round"
@@ -167,7 +168,7 @@ export default function Header1({ ...props }) {
                   <span className="font-bevietnampro text-base font-medium text-blue_gray-900_02">
                     Yêu thích
                   </span>
-                </Heading>
+                </Heading> */}
               </div>
 
               <div className="flex items-center w-[30%]">
@@ -287,9 +288,28 @@ export default function Header1({ ...props }) {
                 }}
               >
                 <div className="flex cursor-pointer items-center gap-1">
+                  <a href="/homepage">
                   <Text as="p">Trang chủ</Text>
+                  </a>
                 </div>
                 {menuOpen ? <MegaMenu1 /> : null}
+              </li>
+             
+              <li
+                onMouseLeave={() => {
+                  setMenuOpen1(false);
+                }}
+                onMouseEnter={() => {
+                  setMenuOpen1(true);
+                }}
+              >             
+                <div className="flex cursor-pointer items-center gap-1">
+                <a href="/product">
+                  <Text as="p">Sản phẩm</Text>
+                  </a>
+                </div>
+              
+                {menuOpen1 ? <MegaMenu1 /> : null}
               </li>
               <li
                 onMouseLeave={() => {
@@ -298,25 +318,16 @@ export default function Header1({ ...props }) {
                 onMouseEnter={() => {
                   setMenuOpen1(true);
                 }}
-              >
+              >             
                 <div className="flex cursor-pointer items-center gap-1">
-                  <Text as="p">Sản phẩm</Text>
+                <a href="/shops">
+                  <Text as="p">Cửa Hàng</Text>
+                  </a>
                 </div>
+              
                 {menuOpen1 ? <MegaMenu1 /> : null}
               </li>
-              <li
-                onMouseLeave={() => {
-                  setMenuOpen2(false);
-                }}
-                onMouseEnter={() => {
-                  setMenuOpen2(true);
-                }}
-              >
-                <div className="flex cursor-pointer items-center gap-[3px]">
-                  <Text as="p">Liên hệ</Text>
-                </div>
-                {menuOpen2 ? <MegaMenu1 /> : null}
-              </li>
+        
               <li
                 onMouseLeave={() => {
                   setMenuOpen3(false);
@@ -335,7 +346,7 @@ export default function Header1({ ...props }) {
           <div className="flex w-[40%] justify-between cursor-pointer items-center gap-1">
             <Button color="white_A701">Ưu đãi trong ngày</Button>
             <Button color="white_A701">Ưu đãi hấp dẫn</Button>
-            <Button color="white_A701">Bán chạy</Button>
+            <Button color="white_A701">Cửa hàng nổi bật</Button>
             <Button color="white_A701">Hàng mới</Button>
           </div>
         </div>

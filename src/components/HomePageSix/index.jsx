@@ -37,35 +37,10 @@ export default function HomePageSix({
         </Heading>
         <div className="mt-[19px] flex items-start gap-2.5">
           <div className="flex gap-[5px]">
-            <Img
-              src="images/img_star_1_1.svg"
-              alt="image"
-              className="h-[10px] w-[10px]"
-            />
-            <Img
-              src="images/img_star_1_1.svg"
-              alt="image"
-              className="h-[10px] w-[10px]"
-            />
-            <Img
-              src="images/img_star_1_1.svg"
-              alt="image"
-              className="h-[10px] w-[10px]"
-            />
-            <Img
-              src="images/img_star_1_1.svg"
-              alt="image"
-              className="h-[10px] w-[10px]"
-            />
-            <Img
-              src="images/img_star_1_1.svg"
-              alt="image"
-              className="h-[10px] w-[10px]"
-            />
+       
+           
           </div>
-          <Text size="xs" as="p" className="!text-blue_gray-600">
-            {p3014nhgi}
-          </Text>
+       
         </div>
         <div className="mt-[11px] flex flex-wrap items-start gap-2.5">
           <Heading size="3xl" as="h6" className="flex">
@@ -86,9 +61,7 @@ export default function HomePageSix({
           </Text>
         </div>
       </div>
-      <Text size="xs" as="p" className="ml-3.5 mt-[37px] self-start md:ml-0">
-        {bnfiftysix}
-      </Text>
+     
     </div>
   );
 }

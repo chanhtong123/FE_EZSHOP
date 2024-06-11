@@ -94,9 +94,7 @@ export default function ListOfShopPage() {
             </div>
           </div>
           <div className="flex flex-col items-center gap-[92px] md:gap-[69px] sm:gap-[46px]">
-            <Text size="7xl" as="p">
-              Danh sách cửa hàng
-            </Text>
+           
             <div className="flex items-start justify-between gap-5 self-stretch md:flex-col">
               <div className="flex w-[15%] flex-col gap-[21px] md:w-full">
                 <div className="flex flex-col gap-5">
@@ -243,23 +241,12 @@ export default function ListOfShopPage() {
               </div>
               <div className="flex w-[80%] flex-col items-center gap-[25px] md:w-full">
                 <div className="flex items-center justify-between gap-5 self-stretch">
-                  <Text size="lg" as="p" className="self-end">
-                    Hiển thị 1–20 của 175 kết quả
-                  </Text>
+                
                   <div className="flex items-start gap-[9px]">
-                    <Text size="lg" as="p" className="!font-medium">
-                      Lọc mặc định
-                    </Text>
-                    <Img
-                      src="images/img_vector_blue_gray_900_02.svg"
-                      alt="vector"
-                      className="mt-1 h-[5px]"
-                    />
+                    
+                    
                   </div>
                 </div>
-
-
-
 
 
 
