@@ -1,9 +1,12 @@
-import React from "react";
+// import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { Helmet } from "react-helmet";
 import { Text, Img, SelectBox, Heading, Button } from "../../components";
 import Footer1 from "../../components/Footer1";
 import MegaMenu1 from "../../components/MegaMenu1";
 import SalesShopPagination from "../../components/SalesShopPagination";
+import { Link } from "react-router-dom";
 const dropDownOptions = [
   { label: "Option1", value: "option1" },
   { label: "Option2", value: "option2" },
@@ -14,6 +17,18 @@ export default function BlogPage() {
   const [menuOpen1, setMenuOpen1] = React.useState(false);
   const [menuOpen2, setMenuOpen2] = React.useState(false);
   const [menuOpen3, setMenuOpen3] = React.useState(false);
+  const [blogs, setBlogs] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:8080/guest/api/blogs")
+      .then((response) => {
+        setBlogs(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching blogs:", error);
+      });
+  }, []);
   return (
     <>
       <Helmet>
@@ -125,7 +140,7 @@ export default function BlogPage() {
             </div>
             <div className="h-px w-full self-stretch bg-gray-200_01" />
           </div>
-          <div className="mt-[15px] flex w-[75%] items-center justify-between gap-5 md:w-full md:flex-col md:p-5">
+          {/* <div className="mt-[15px] flex w-[75%] items-center justify-between gap-5 md:w-full md:flex-col md:p-5">
             <Img
               src="images/img_header_logo.png"
               alt="headerlogo"
@@ -263,9 +278,9 @@ export default function BlogPage() {
                 </div>
               </div>
             </div>
-          </div>
-          <div className="mt-5 h-px w-full self-stretch bg-gray-200_01" />
-          <div className="container-md flex items-center justify-between gap-5 pr-[5px] md:flex-col md:p-5">
+          </div> */}
+          {/* <div className="mt-5 h-px w-full self-stretch bg-gray-200_01" /> */}
+          {/* <div className="container-md flex items-center justify-between gap-5 pr-[5px] md:flex-col md:p-5">
             <div className="flex w-[53%] items-center justify-between gap-5 md:w-full md:flex-col">
               <SelectBox
                 color="green_A700_02"
@@ -359,7 +374,7 @@ export default function BlogPage() {
             <Text as="p">
               Ưu đãi trong ngày Ưu đãi hấp dẫn Bán chạy nhất Hàng mới về
             </Text>
-          </div>
+          </div> */}
         </header>
         <div className="container-md mt-[19px] flex flex-col gap-[11px] md:p-5">
           <div className="flex flex-wrap gap-[7px]">
@@ -377,7 +392,7 @@ export default function BlogPage() {
             <Text size="7xl" as="p">
               Bài viết
             </Text>
-            <div className="flex flex-col items-center gap-[63px] self-stretch sm:gap-[31px]">
+            {/* <div className="flex flex-col items-center gap-[63px] self-stretch sm:gap-[31px]">
               <div className="grid grid-cols-3 justify-center gap-7 self-stretch md:grid-cols-2 sm:grid-cols-1">
                 <a
                   href="https://www.youtube.com/embed/bv8Fxk0sz7I"
@@ -638,6 +653,41 @@ export default function BlogPage() {
                 text120of300="1 – 20 trên 90 tìm kiếm"
                 className="w-[35%] gap-5 md:w-full"
               />
+            </div> */}
+            <div className="flex flex-col items-center gap-[63px] self-stretch sm:gap-[31px]">
+              <div className="grid grid-cols-3 justify-center gap-7 self-stretch md:grid-cols-2 sm:grid-cols-1">
+                {blogs.map((blog) => (
+                  <Link
+                    key={blog.id}
+                    to={`/blogdetail/${blog.id}`}
+                    rel="noopener noreferrer"
+                  >
+                    <div className="flex w-full flex-col gap-6">
+                      <div className="relative h-[300px] md:h-auto">
+                        <img
+                          src={blog.image}
+                          // alt={blog.name}
+                          className="h-[300px] w-full rounded-md object-cover"
+                        />
+                        {/* <img
+                          // src={blog.imageOverlay}
+                          // alt={blog.name}
+                          className="absolute bottom-0 left-0 right-0 top-0 m-auto h-[300px] w-full rounded-md object-cover"
+                        /> */}
+                      </div>
+                      <div className="flex flex-col items-start gap-3.5">
+                        <p className="font-bold text-xl text-blue_gray-600">
+                          {blog.name}
+                        </p>
+                        <p className="text-3xl">{blog.title}</p>
+                        <p className="!font-normal !text-blue_gray-600">
+                          {blog.formattedDate}
+                        </p>
+                      </div>
+                    </div>
+                  </Link>
+                ))}
+              </div>
             </div>
           </div>
         </div>

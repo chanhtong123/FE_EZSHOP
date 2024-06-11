@@ -53,7 +53,7 @@ const ProjectRoutes = () => {
     { path: "customerlayoutofshop", element: <CustomerLayoutOfShop /> },
     { path: "shops", element: <ListOfShop /> },
     { path: "blog", element: <Blog /> },
-    { path: "blogdetail", element: <BlogDetail /> },
+    { path: "blogdetail/:id", element: <BlogDetail /> },
     { path: "contact", element: <Contact /> },
     { path: "customercare", element: <CustomerCare /> },
     { path: "login", element: <Login /> },

@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { useParams } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import {
   Img,
@@ -30,7 +32,33 @@ const dropDownOptions = [
   { label: "Option3", value: "option3" },
 ];
 
-export default function BlogDetailPage() {
+const BlogDetailPage = () => {
+  const { id } = useParams(); // Lấy id từ URL
+  const [blog, setBlog] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchBlog = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:8080/guest/api/blogs/${id}`
+        );
+        setBlog(response.data);
+        setLoading(false);
+      } catch (err) {
+        setError(err);
+        setLoading(false);
+      }
+    };
+
+    fetchBlog();
+  }, [id]);
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error.message}</div>;
+  if (!blog) return <div>No Blog Found</div>;
+
   return (
     <>
       <Helmet>
@@ -142,9 +170,9 @@ export default function BlogDetailPage() {
                     </div>
                   </div>
                 </div>
-                <div className="h-px w-full self-stretch bg-gray-200_01" />
+                {/* <div className="h-px w-full self-stretch bg-gray-200_01" /> */}
               </div>
-              <div className="flex w-[75%] items-center justify-between gap-5 md:w-full md:flex-col md:p-5">
+              {/* <div className="flex w-[75%] items-center justify-between gap-5 md:w-full md:flex-col md:p-5">
                 <Img
                   src="images/img_header_logo.png"
                   alt="headerlogo"
@@ -282,10 +310,10 @@ export default function BlogDetailPage() {
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> */}
             </div>
             <div className="mt-5 h-px w-full self-stretch bg-gray-200_01" />
-            <div className="container-md md:p-5">
+            {/* <div className="container-md md:p-5">
               <div className="flex items-center justify-between gap-5 md:flex-col">
                 <div className="flex w-[65%] items-end justify-center md:w-full md:flex-col">
                   <div className="relative h-[60px] w-[47%] bg-green-A700_02 py-[19px] pl-5 pr-[21px] md:h-auto md:w-full sm:pr-5">
@@ -368,7 +396,7 @@ export default function BlogDetailPage() {
                   </li>
                 </ul>
               </div>
-            </div>
+            </div> */}
           </div>
         </header>
         <div className="container-md mt-[19px] flex flex-col gap-[62px] md:p-5 sm:gap-[31px]">
@@ -388,28 +416,28 @@ export default function BlogDetailPage() {
               /
             </Text>
             <Text size="md" as="p" className="!text-blue_gray-600">
-              5 cách kiểm tra thật - giả khi mua đồ cũ
+              {blog.name}
             </Text>
           </div>
           <div className="flex flex-col gap-[59px] sm:gap-[29px]">
             <div className="flex flex-col items-center gap-[38px]">
               <div className="ml-[238px] flex flex-col items-start gap-3.5 self-start md:ml-0">
-                <Text as="p" className="!font-normal !text-blue_gray-600">
-                  Mẹo & Thủ thuật
-                </Text>
+                {/* <Text as="p" className="!font-normal !text-blue_gray-600">
+          {blog.name}
+        </Text> */}
                 <Text size="7xl" as="p">
-                  Cách định giá và thanh lý đồ cũ nhanh nhất
+                  {blog.name}
                 </Text>
                 <Text as="p" className="!font-normal !text-blue_gray-600">
-                  10 - 6 - 2023
+                  {blog.formattedDate}
                 </Text>
               </div>
               <Img
-                src="images/img_living_room_int.png"
-                alt="livingroomint"
+                src={blog.image}
+                alt={blog.name}
                 className="h-[600px] w-full rounded-md object-cover md:h-auto"
               />
-              <div className="flex w-[66%] flex-col gap-[31px] md:w-full">
+              {/* <div className="flex w-[66%] flex-col gap-[31px] md:w-full">
                 <Text as="p" className="!font-normal leading-7">
                   Một trong những việc khó khăn khi bán đồ cũ trong nhà là xác
                   định được giá cả phù hợp. Bạn không thể bán được giá cao như
@@ -861,6 +889,12 @@ export default function BlogDetailPage() {
                     </Button>
                   </div>
                 </div>
+              </div> */}
+              <div className="flex w-[66%] flex-col gap-[31px] md:w-full">
+                <Text as="p" className="!font-normal leading-7">
+                  {blog.content}
+                </Text>
+                {/* Các phần còn lại của giao diện */}
               </div>
             </div>
             <div className="flex flex-col items-start gap-[43px]">
@@ -919,4 +953,5 @@ export default function BlogDetailPage() {
       </div>
     </>
   );
-}
+};
+export default BlogDetailPage;
