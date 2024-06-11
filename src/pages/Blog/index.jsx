@@ -39,7 +39,6 @@ export default function BlogPage() {
         />
       </Helmet>
       <div className="flex w-full flex-col items-center bg-white-A700">
-       
         <div className="container-md mt-[19px] flex flex-col gap-[11px] md:p-5">
           <div className="flex flex-wrap gap-[7px]">
             <Text size="md" as="p" className="self-end">
@@ -344,7 +343,10 @@ export default function BlogPage() {
                           {blog.name}
                         </p>
                         <p className="text-3xl">{blog.title}</p>
-                        <p className="!font-normal !text-blue_gray-600">
+                        <p
+                          className="!font-normal !text-blue_gray-600"
+                          style={{ marginTop: "-1rem" }}
+                        >
                           {blog.formattedDate}
                         </p>
                       </div>

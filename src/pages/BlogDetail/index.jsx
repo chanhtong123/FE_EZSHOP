@@ -585,37 +585,35 @@ const BlogDetailPage = () => {
               </div>
             </div>
             <div className="flex flex-col items-start gap-[43px]">
-  <Text size="7xl" as="p">
-    Bài viết liên quan
-  </Text>
-  
-  <div className="grid w-full grid-cols-3 gap-x-7 gap-y-20 md:grid-cols-2 sm:grid-cols-1">
-  {blogs.map((blogItem) => (
-    <Link
-      key={blogItem.id}
-      to={`/blogdetail/${blogItem.id}`}
-      className="relative h-[300px] w-full"
-      style={{ marginBottom: "20px" }} // Thêm margin dưới cho mỗi blog item
-    >
-      <Img
-        src={blogItem.image || "images/default_image.png"} // Assuming image is a field in your blog data
-        alt={blogItem.title}
-        className="h-[300px] w-full rounded-md object-cover"
-      />
-      <div className="flex flex-col items-start gap-2 p-2">
-        <p className="font-bold text-xl text-blue_gray-600">
-          {blogItem.name}
-        </p>
-        <p className="text-sm !font-normal !text-blue_gray-600">
-          {blogItem.formattedDate}
-        </p>
-      </div>
-    </Link>
-  ))}
-</div>
+              <Text size="7xl" as="p">
+                Bài viết liên quan
+              </Text>
 
-</div>
-
+              <div className="grid w-full grid-cols-3 gap-x-7 gap-y-20 md:grid-cols-2 sm:grid-cols-1">
+                {blogs.map((blogItem) => (
+                  <Link
+                    key={blogItem.id}
+                    to={`/blogdetail/${blogItem.id}`}
+                    className="relative h-[300px] w-full"
+                    style={{ marginBottom: "20px" }} // Thêm margin dưới cho mỗi blog item
+                  >
+                    <Img
+                      src={blogItem.image || "images/default_image.png"} // Assuming image is a field in your blog data
+                      alt={blogItem.title}
+                      className="h-[300px] w-full rounded-md object-cover"
+                    />
+                    <div className="flex flex-col items-start gap-2 p-2">
+                      <p className="font-bold text-xl text-blue_gray-600">
+                        {blogItem.name}
+                      </p>
+                      <p className="text-sm !font-normal !text-blue_gray-600">
+                        {blogItem.formattedDate}
+                      </p>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
         <Footer1 className="mt-[277px] justify-center self-stretch border-t border-solid border-gray-200_01 bg-white-A700 px-14 pb-[17px] pt-[82px] md:px-5 md:pt-5" />
