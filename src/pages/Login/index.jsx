@@ -77,7 +77,7 @@ export default function LoginPage() {
                    shape="round"
                     // name="your_name"
                     type="text"
-                    placeholder="Nguyen Van A"
+                    placeholder=""
                     value={userName}
                     onChange={(e) => setUsername(e.target.value)}
                     className="self-stretch border border-solid border-blue_gray-900_02 !text-blue_gray-900_02 shadow-md sm:pr-5"
@@ -90,7 +90,7 @@ export default function LoginPage() {
                     // type="password"
                     // name="your_name_one"
                     type="password"
-                    placeholder="12345"
+                    placeholder=""
                     value={passWord}
                     onChange={(e) => setPassword(e.target.value)}
                     className="self-stretch border border-solid border-gray-200_01 sm:pr-5"
@@ -116,10 +116,7 @@ export default function LoginPage() {
                   Đăng nhập
                 </button>
               </div>
-              <a
-                href="https://www.youtube.com/embed/bv8Fxk0sz7I"
-                target="_blank"
-              >
+             
                 <Text size="md" as="p" className="mt-5" style={{ display: 'flex', alignItems: 'center' }}>
                   <span className="text-blue_gray-900_02">
                     Bạn chưa có tài khoản?&nbsp;
@@ -128,7 +125,7 @@ export default function LoginPage() {
                   href="/register" style={{ marginLeft: '5px' }}>Đăng ký</a>
                  
                 </Text>
-              </a>
+              
               <div className="mt-[27px] flex w-[13%] items-start md:w-full">
                 <div className="h-[40px] w-[40px] rounded-[20px] bg-white-A700" />
                 <Text size="md" as="p" className="relative ml-[-26px] mt-[9px]">

@@ -5,6 +5,7 @@ import { getToken, removeToken } from "../../utils/authUtils";
 import MegaMenu1 from "../MegaMenu1";
 import { Text, Img, Heading, Button, SelectBox } from "./..";
 import { Input } from "postcss";
+import { Link } from "react-router-dom";
 const dropDownOptions = [
   { label: "Điều khoản sử dụng", value: "option1" },
   { label: "Option2", value: "option2" },
@@ -113,11 +114,13 @@ export default function Header1({ ...props }) {
         </div>
         <div className="mx-auto mt-[15px] flex w-full max-w-[1440px] items-center justify-between gap-5 md:flex-col md:p-5">
           <div className="flex w-[10%]">
+            <a href="/homepage">
             <Img
               src="images/img_header_logo.png"
               alt="headerlogo"
               className="mb-[7px] h-[33px] w-[94px] object-contain"
             />
+            </a>
           </div>
 
           <div className="flex w-[80%] items-center justify-center gap-6 md:w-full md:flex-col">
@@ -144,7 +147,7 @@ export default function Header1({ ...props }) {
             </div>
             <div className="flex w-[40%] items-end justify-center gap-[17px] md:w-full sm:flex-col">
               <div className="flex w-[30%] items-center items-start">
-                <a href="#" className="">
+                {/* <a href="#" className="">
                   <Button
                     color="green_A700_11"
                     shape="round"
@@ -165,7 +168,7 @@ export default function Header1({ ...props }) {
                   <span className="font-bevietnampro text-base font-medium text-blue_gray-900_02">
                     Yêu thích
                   </span>
-                </Heading>
+                </Heading> */}
               </div>
 
               <div className="flex items-center w-[30%]">
@@ -190,28 +193,29 @@ export default function Header1({ ...props }) {
               </div>
 
               <div className="flex-1 w-[40%] sm:self-stretch">
+
+              <a href="/cartdetail"> 
                 <div className="flex items-center">
-                  <div className="relative w-[38%]">
-                    <a href="#">
+                  <div className="relative w-[38%]">                 
                       <Button shape="round" className="w-[50px] h-[50px]">
                         <Img src="images/img_cart.svg" />
                       </Button>
-                    </a>
                   </div>
+                
                   <Heading
                     size="lg"
                     as="p"
-                    className="w-[62%] self-end !font-inter leading-[22px]"
+                    className="w-[62%] self-end !font-inter leading-[50px]"
                   >
-                    <span className="font-bevietnampro text-[13px] font-normal text-blue_gray-900_02">
-                      289.000đ
-                    </span>
-                    <br />
+                    
                     <span className="font-bevietnampro text-base font-medium text-blue_gray-900_02">
                       Thanh toán
-                    </span>
-                  </Heading>
+                    </span>               
+                  </Heading>             
                 </div>
+                </a>
+
+                
               </div>
             </div>
           </div>
@@ -274,40 +278,76 @@ export default function Header1({ ...props }) {
               )}
             </div>
             <ul className="flex w-[60%] justify-between">
-      <li>
-        <div className="flex cursor-pointer items-center gap-1">
-          <a href="/">
-            <Text as="p">Trang chủ</Text>
-          </a>
-        </div>
-      </li>
-      <li>
-        <div className="flex cursor-pointer items-center gap-1">
-          <a href="/product">
-            <Text as="p">Sản phẩm</Text>
-          </a>
-        </div>
-      </li>
-      <li>
-        <div className="flex cursor-pointer items-center gap-[3px]">
-          <a href="/contact">
-            <Text as="p">Liên hệ</Text>
-          </a>
-        </div>
-      </li>
-      <li>
-        <div className="flex cursor-pointer items-center gap-1">
-          <a href="/blog">
-            <Text as="p">Bài viết</Text>
-          </a>
-        </div>
-      </li>
-    </ul>
+              <li
+                onMouseLeave={() => {
+                  setMenuOpen(false);
+                }}
+                onMouseEnter={() => {
+                  setMenuOpen(true);
+                }}
+              >
+                <div className="flex cursor-pointer items-center gap-1">
+                  <a href="/homepage">
+                  <Text as="p">Trang chủ</Text>
+                  </a>
+                </div>
+                {menuOpen ? <MegaMenu1 /> : null}
+              </li>
+             
+              <li
+                onMouseLeave={() => {
+                  setMenuOpen1(false);
+                }}
+                onMouseEnter={() => {
+                  setMenuOpen1(true);
+                }}
+              >             
+                <div className="flex cursor-pointer items-center gap-1">
+                <a href="/product">
+                  <Text as="p">Sản phẩm</Text>
+                  </a>
+                </div>
+              
+                {menuOpen1 ? <MegaMenu1 /> : null}
+              </li>
+              <li
+                onMouseLeave={() => {
+                  setMenuOpen1(false);
+                }}
+                onMouseEnter={() => {
+                  setMenuOpen1(true);
+                }}
+              >             
+                <div className="flex cursor-pointer items-center gap-1">
+                <a href="/shops">
+                  <Text as="p">Cửa Hàng</Text>
+                  </a>
+                </div>
+              
+                {menuOpen1 ? <MegaMenu1 /> : null}
+              </li>
+        
+              <li
+                onMouseLeave={() => {
+                  setMenuOpen3(false);
+                }}
+                onMouseEnter={() => {
+                  setMenuOpen3(true);
+                }}
+              >
+                <a href="/blog">
+                <div className="flex cursor-pointer items-center gap-1">
+                  <Text as="p">Bài viết</Text>
+                </div>
+                </a>
+                {menuOpen3 ? <MegaMenu1 /> : null}
+              </li>
+            </ul>
           </div>
           <div className="flex w-[40%] justify-between cursor-pointer items-center gap-1">
             <Button color="white_A701">Ưu đãi trong ngày</Button>
             <Button color="white_A701">Ưu đãi hấp dẫn</Button>
-            <Button color="white_A701">Bán chạy</Button>
+            <Button color="white_A701">Cửa hàng nổi bật</Button>
             <Button color="white_A701">Hàng mới</Button>
           </div>
         </div>

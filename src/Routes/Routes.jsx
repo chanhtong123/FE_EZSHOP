@@ -1,5 +1,5 @@
 import React from "react";
-import { useRoutes } from "react-router-dom";
+import { useRoutes, BrowserRouter } from 'react-router-dom';
 import Home from "../pages/Home";
 import NotFound from "../pages/NotFound";
 import FavoriteProduct from "../pages/FavoriteProduct";
@@ -37,12 +37,13 @@ import AdminProducts from "../pages/ProductsAdmin";
 import Test2 from "../pages/Test";
 import TestAdmin from "../pages/TestAdmin";
 
+
 const ProjectRoutes = () => {
   let element = useRoutes([
     { path: "/", element: <HomePage /> },
     { path: "*", element: <NotFound /> },
     { path: "favorite-product", element: <FavoriteProduct /> },
-    { path: "sales-shop", element: <SalesShop /> },
+    { path: "sales-shop/:id", element: <SalesShop /> },
     { path: "createproduct", element: <CreateProduct /> },
     { path: "homepage", element: <HomePage /> },
     { path: "product", element: <Product /> },
