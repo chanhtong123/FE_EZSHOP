@@ -4,7 +4,13 @@ import axios from "axios";
 import { Helmet } from "react-helmet";
 import {
   Text,
-  Heading
+  Heading,
+  Button,
+  Img,
+  CheckBox,
+  SeekBar,
+  Input,
+  SelectBox,
 } from "../../components";
 import SalesShopPagination from "../../components/SalesShopPagination";
 import { Link } from "react-router-dom";

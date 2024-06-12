@@ -272,7 +272,7 @@ export default function Header1({ ...props }) {
                   <a href="/homepage">
                     <Text as="p">Trang chủ</Text>
                   </a>
-                </div>{" "}
+                </div>
               </li>
               <li>
                 <div className="flex cursor-pointer items-center gap-1">
