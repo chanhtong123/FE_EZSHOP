@@ -36,6 +36,7 @@ const ProductDetailPage = () => {
   const [product, setProduct] = useState(null);
   const [cartId, setCartId] = useState(null);
   const navigate = useNavigate();
+  const [mainImage, setMainImage] = useState(null);
 
 
   useEffect(() => {
@@ -45,6 +46,7 @@ const ProductDetailPage = () => {
           `http://localhost:8080/guest/api/products/${id}`
         );
         setProduct(response.data);
+        setMainImage(response.data.image)
       } catch (error) {
         console.error("Error fetching product:", error);
       }
@@ -128,40 +130,76 @@ const ProductDetailPage = () => {
                   as="p"
                   className="!font-bevietnamprolight !font-light"
                 >
-                  Trang chủ / Thời Trang / Thời Trang Nam / Áo Thun
+                  Trang chủ / Thời Trang  / {product.name}
                 </Text>
                 <div className="flex items-start justify-between gap-5 self-stretch md:flex-col">
                   <div className="w-[6%] md:w-full">
-                    <div className="flex flex-col gap-2.5 md:flex-row">
-                      {data.map((d, index) => (
-                        <div
-                          key={"thumbnail" + index}
-                          className="flex flex-1 flex-col rounded-md border border-solid border-gray-200_01 bg-white-A700 p-2.5"
-                        >
-                          <Img
-                            src={d.image}
-                            alt="imageseventyfiv"
-                            className="h-[60px] w-[60px] object-cover"
-                          />
-                        </div>
-                      ))}
+                    <div className="flex flex-col gap-2.5 md:flex-row" >
+
+                      <div
+
+                        className="flex flex-1 flex-col rounded-md border border-solid border-gray-200_01 bg-white-A700 p-2.5"
+                      >
+                        <Img
+                          onClick={() => setMainImage(product.image2)}
+                          src={product.image2}
+                          alt="imageseventyfiv"
+                          className="h-[60px] w-[60px] object-cover"
+                        />
+
+                      </div>
+                      <div
+
+                        className="flex flex-1 flex-col rounded-md border border-solid border-gray-200_01 bg-white-A700 p-2.5"
+                      >
+                        <Img
+                          onClick={() => setMainImage(product.image3)}
+                          src={product.image3}
+                          alt="imageseventyfiv"
+                          className="h-[60px] w-[60px] object-cover"
+                        />
+
+                      </div>
+                      <div
+
+                        className="flex flex-1 flex-col rounded-md border border-solid border-gray-200_01 bg-white-A700 p-2.5"
+                      >
+                        <Img
+                          onClick={() => setMainImage(product.image4)}
+                          src={product.image4}
+                          alt="imageseventyfiv"
+                          className="h-[60px] w-[60px] object-cover"
+                        />
+
+
+
+                      </div>
+
+                      <div
+
+                        className="flex flex-1 flex-col rounded-md border border-solid border-gray-200_01 bg-white-A700 p-2.5"
+                      >
+                        <Img
+                          onClick={() => setMainImage(product.image)}
+                          src={product.image}
+                          alt="imageseventyfiv"
+                          className="h-[60px] w-[60px] object-cover"
+                        />
+                      </div>
+
                     </div>
                   </div>
                   <div className="flex w-[47%] flex-col items-start md:w-full">
+
                     <Img
-                      src={product.image}
-                      alt="fullscreenone"
-                      className="h-[30px] w-[30px] self-end"
-                    />
-                    <Img
-                      src={product.image}
+                      src={mainImage}
                       alt="ảnh product"
                       className="mt-3.5 h-[612px] w-[612px] object-cover"
                     />
-                    <Text size="lg" as="p" className="ml-[209px] mt-6 md:ml-0">
-                      Cuộn để phóng to hình ảnh
-                    </Text>
+
                   </div>
+
+
                   <div className="mt-2 flex w-[32%] flex-col items-start gap-[19px] rounded-md border border-solid border-gray-200_01 bg-white-A700 py-[30px] pl-[30px] pr-[26px] shadow-xs md:w-full sm:p-5">
                     <div>
                       <div className="flex flex-col gap-[18px] self-stretch">
@@ -237,7 +275,7 @@ const ProductDetailPage = () => {
                       <div className="flex gap-5 sm:flex-col">
                         <Button
                           onClick={handleAddToCart}
-                          size="x10"  
+                          size="x10"
                           className="min-w-[236px] rounded-[26px] border border-solid border-green-A700_02 !text-gray-100_02 sm:px-5"
                         >
                           Thêm Vào Giỏ hàng
@@ -248,7 +286,7 @@ const ProductDetailPage = () => {
                         target="_blank"
                       >
                         <Button
-                          size="x10" 
+                          size="x10"
                           variant="outline"
                           className="w-full rounded-[26px] font-bevietnamprosemibold font-semibold sm:px-5"
                         >
@@ -370,100 +408,9 @@ const ProductDetailPage = () => {
                 </div> */}
               </div>
               <div className="flex flex-col gap-[17px]">
-                <div className="flex w-[66%] items-center justify-between gap-5 md:w-full">
-                  <Text size="3xl" as="p" className="!font-bevietnampromedium">
-                    Đánh Giá Sản Phẩm
-                  </Text>
-                  <Img
-                    src="images/img_arrow_up_blue_gray_900_02.png"
-                    alt="arrowup"
-                    className="mb-[5px] h-[7px] self-end object-cover"
-                  />
-                </div>
+             
                 <div className="flex flex-col items-end gap-7">
-                  <div className="flex items-start justify-between gap-5 self-stretch md:flex-col">
-                    <div className="flex w-[29%] flex-col items-start md:w-full">
-                      <div className="flex w-[58%] items-center gap-[22px] md:w-full">
-                        <Text size="8xl" as="p" className="!font-jost">
-                          4.9
-                        </Text>
-                        <div className="flex flex-1 flex-col items-start gap-[13px]">
-                          <RatingBar
-                            value={1}
-                            isEditable={true}
-                            size={17}
-                            className="flex justify-between self-stretch"
-                          />
-                          <Text size="lg" as="p">
-                            2 đánh giá
-                          </Text>
-                        </div>
-                      </div>
-                      <div className="mt-[23px] flex items-center gap-[21px] self-stretch sm:flex-col">
-                        <Text as="p" className="!font-jost !font-normal">
-                          5 sao
-                        </Text>
-                        <div className="mt-2 h-[6px] w-[78%] self-start" />
-                        <Text as="p" className="!font-jost !font-normal">
-                          89%
-                        </Text>
-                      </div>
-                      <div className="mt-[13px] flex items-center self-stretch sm:flex-col">
-                        <Text as="p" className="!font-jost !font-normal">
-                          4 sao
-                        </Text>
-                        <div className="ml-5 mt-2 h-[6px] flex-1 self-start sm:ml-0 sm:self-stretch" />
-                        <Text
-                          as="p"
-                          className="ml-7 !font-jost !font-normal sm:ml-0"
-                        >
-                          4%
-                        </Text>
-                      </div>
-                      <div className="mt-[13px] flex items-center self-stretch sm:flex-col">
-                        <Text as="p" className="!font-jost !font-normal">
-                          3 sao
-                        </Text>
-                        <div className="ml-[21px] mt-2 h-[6px] flex-1 self-start sm:ml-0 sm:self-stretch" />
-                        <Text
-                          as="p"
-                          className="ml-[29px] !font-jost !font-normal sm:ml-0"
-                        >
-                          3%
-                        </Text>
-                      </div>
-                      <div className="mt-[13px] flex items-center self-stretch sm:flex-col">
-                        <Text as="p" className="!font-jost !font-normal">
-                          2 sao
-                        </Text>
-                        <div className="ml-[21px] mt-2 h-[6px] flex-1 self-start sm:ml-0 sm:self-stretch" />
-                        <Text
-                          as="p"
-                          className="ml-[30px] !font-jost !font-normal sm:ml-0"
-                        >
-                          1%
-                        </Text>
-                      </div>
-                      <div className="mt-3.5 flex items-center gap-[23px] self-stretch sm:flex-col">
-                        <Text as="p" className="!font-jost !font-normal">
-                          1 sao
-                        </Text>
-                        <div className="mt-2 h-[6px] flex-1 self-start sm:self-stretch" />
-                        <Text as="p" className="!font-jost !font-normal">
-                          4%
-                        </Text>
-                      </div>
-                      <Button
-                        size="9xl"
-                        variant="outline"
-                        shape="round"
-                        className="mt-[31px] min-w-[169px] font-medium sm:px-5"
-                      >
-                        Viết đánh giá
-                      </Button>
-                    </div>
-
-                  </div>
+               
 
                 </div>
               </div>

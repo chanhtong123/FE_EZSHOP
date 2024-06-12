@@ -336,9 +336,11 @@ export default function Header1({ ...props }) {
                   setMenuOpen3(true);
                 }}
               >
+                <a href="/blog">
                 <div className="flex cursor-pointer items-center gap-1">
                   <Text as="p">Bài viết</Text>
                 </div>
+                </a>
                 {menuOpen3 ? <MegaMenu1 /> : null}
               </li>
             </ul>
