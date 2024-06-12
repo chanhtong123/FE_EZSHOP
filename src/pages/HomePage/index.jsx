@@ -248,7 +248,7 @@ export default function HomePagePage() {
                   <div className="flex w-full max-w-[1401px] self-stretch">
                     <Slider
                       autoPlay
-                      autoPlayInterval={2000}
+                      autoPlayInterval={1000}
                       responsive={{
                         0: { items: 1 },
                         550: { items: 2 },
@@ -278,8 +278,7 @@ export default function HomePagePage() {
                                   {product.name}
                                   <br />
                                   {product.price} VND
-                                  <br />
-                                  {product.description}
+                                 
                                 </>
                               }
                             />
@@ -295,7 +294,7 @@ export default function HomePagePage() {
 
 
 
-              <div className="flex w-[13%] items-center gap-5 md:w-full">
+              {/* <div className="flex w-[13%] items-center gap-5 md:w-full">
                 <div className="h-[24px] flex-1 rotate-[180deg]" />
                 <Img
                   src="images/img_settings.svg"
@@ -303,16 +302,12 @@ export default function HomePagePage() {
                   className="h-[20px] w-[58%]"
                 />
                 <div className="h-[24px] flex-1" />
-              </div>
+              </div> */}
             </div>
             <div className="mt-[60px] flex flex-col gap-[29px]">
               <div className="flex items-start justify-between gap-5">
-                <div className="flex">
-                  <Text size="7xl" as="p">
-                    Danh mục
-                  </Text>
-                </div>
-                <div className="flex w-[6%] flex-col items-start gap-[5px] shadow-sm">
+              
+                {/* <div className="flex w-[6%] flex-col items-start gap-[5px] shadow-sm">
                   <Text
                     size="lg"
                     as="p"
@@ -321,7 +316,7 @@ export default function HomePagePage() {
                     Xem tất cả
                   </Text>
                   <div className="h-[2px] w-[32px] bg-gray-900_06" />
-                </div>
+                </div> */}
               </div>
               {/* <div className="flex gap-7 md:flex-col">
                 {data.map((d, index) => (
@@ -334,59 +329,7 @@ export default function HomePagePage() {
               </div> */}
             </div>
             <div className="mt-[59px] flex justify-center bg-gray-100_02 px-[5px] pt-[5px]">
-              <div className="flex w-[84%] items-center justify-between gap-5 md:w-full md:flex-col">
-                <div className="flex w-[43%] flex-col items-start gap-6 md:w-full">
-                  <div className="flex flex-col items-start gap-2.5 self-stretch">
-                    <Text size="md" as="p" className="!text-blue_gray-600">
-                      ĐỒNG HỒ ĐÔI - GẮN KẾT YÊU THƯƠNG
-                    </Text>
-                    <Heading
-                      size="8xl"
-                      as="h2"
-                      className="w-full uppercase leading-[60px]"
-                    >
-                      <>
-                        TÌM KIẾM MỚI <br /> ĐỒNG HỒ CỦA BẠN
-                      </>
-                    </Heading>
-                    <Text
-                      size="md"
-                      as="p"
-                      className="w-[52%] leading-[150%] !text-blue_gray-600 md:w-full"
-                    >
-                      Đồng hồ và dây đeo của bạn phải kết hợp hoàn hảo với nhau.
-                    </Text>
-                  </div>
-                  <Button
-                    size="9xl"
-                    shape="round"
-                    className="min-w-[176px] sm:px-5"
-                  >
-                    Khám phá ngay
-                  </Button>
-                </div>
-                <div className="relative h-[394px] w-[48%] md:h-auto md:w-full">
-                  <div className="mr-6 h-[312px] w-[80%] rounded-[226px] bg-green-A700_19 md:mr-0" />
-                  <div className="absolute bottom-0 left-0 right-0 top-0 m-auto h-[394px] w-full">
-                    <div className="absolute bottom-0 left-[0.00px] top-0 my-auto h-[385px] w-[81%] md:h-auto">
-                      <Img
-                        src="images/img_model_women_385x460.png"
-                        alt="modelwomen"
-                        className="h-[385px] w-full object-cover"
-                      />
-                      <div className="absolute bottom-[-0.61px] right-[23%] m-auto h-[172px] w-[29%] rotate-[-16deg] rounded-[50%] bg-gray-900_99_01 blur-[60.00px] backdrop-opacity-[0.5]" />
-                    </div>
-                    <div className="absolute bottom-0 right-[-0.25px] top-0 my-auto flex h-max w-[66%] flex-col items-start">
-                      <Img
-                        src="images/img_model_men.png"
-                        alt="modelmen"
-                        className="h-[394px] w-full object-cover md:h-auto"
-                      />
-                      <div className="relative ml-[59px] mt-[-46px] h-[46px] w-[27px] rotate-[-4deg] rounded-[50%] bg-light_green-900_99 blur-[40.00px] backdrop-opacity-[0.5] md:ml-0" />
-                    </div>
-                  </div>
-                </div>
-              </div>
+             
             </div>
           </div>
           <div className="flex flex-col gap-[60px] sm:gap-[30px]">
@@ -429,7 +372,7 @@ export default function HomePagePage() {
                                   <br />
                                   {product.price} VND
                                   <br />
-                                  {product.description}
+                                 
                                 </>
                               }
                             />

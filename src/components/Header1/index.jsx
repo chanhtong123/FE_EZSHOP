@@ -69,7 +69,10 @@ export default function Header1({ ...props }) {
             </div>
             <div className="flex w-[30%] justify-between">
               <div className="flex sm:w-full items-center gap-2 bg-white">
-                <div className="h-[21px] justify-between w-px bg-gray-200_01" />
+              </div>
+              
+              <div className="flex items-ends gap-2.5">
+                <div className="h-full w-px bg-gray-200_01" />
                 <SelectBox
                   variant="fill"
                   color="white_A700"
@@ -86,16 +89,6 @@ export default function Header1({ ...props }) {
                   options={dropDownOptions}
                   className="w-full h-full flex-shrink-0"
                 />
-              </div>
-
-              <div className="flex items-center gap-4">
-                <div className="w-px bg-gray-200_01 " />
-                <Text size="s" as="p" className="self-end">
-                  Tìm cửa hàng
-                </Text>
-              </div>
-              <div className="flex items-ends gap-2.5">
-                <div className="h-full w-px bg-gray-200_01" />
                 <div className="flex items-center gap-4 self-end">
                   <Img
                     src="images/img_facebook.svg"
@@ -189,6 +182,7 @@ export default function Header1({ ...props }) {
                   <span className="font-bevietnampro text-base font-medium text-blue_gray-900_02">
                     <a href="/profile">Tài khoản</a>
                   </span>
+                 
                 </Heading>
               </div>
 
@@ -279,30 +273,30 @@ export default function Header1({ ...props }) {
             </div>
 
             <ul className="flex w-[60%] justify-between">
-              <li
+              {/* <li
                 onMouseLeave={() => {
                   setMenuOpen(false);
                 }}
                 onMouseEnter={() => {
                   setMenuOpen(true);
                 }}
-              >
+              > */}
                 <div className="flex cursor-pointer items-center gap-1">
                   <a href="/homepage">
                   <Text as="p">Trang chủ</Text>
                   </a>
                 </div>
                 {menuOpen ? <MegaMenu1 /> : null}
-              </li>
+              {/* </li> */}
              
-              <li
+              {/* <li
                 onMouseLeave={() => {
                   setMenuOpen1(false);
                 }}
                 onMouseEnter={() => {
                   setMenuOpen1(true);
                 }}
-              >             
+              >              */}
                 <div className="flex cursor-pointer items-center gap-1">
                 <a href="/product">
                   <Text as="p">Sản phẩm</Text>
@@ -310,15 +304,15 @@ export default function Header1({ ...props }) {
                 </div>
               
                 {menuOpen1 ? <MegaMenu1 /> : null}
-              </li>
-              <li
+              {/* </li> */}
+              {/* <li
                 onMouseLeave={() => {
                   setMenuOpen1(false);
                 }}
                 onMouseEnter={() => {
                   setMenuOpen1(true);
                 }}
-              >             
+              >              */}
                 <div className="flex cursor-pointer items-center gap-1">
                 <a href="/shops">
                   <Text as="p">Cửa Hàng</Text>
@@ -326,7 +320,7 @@ export default function Header1({ ...props }) {
                 </div>
               
                 {menuOpen1 ? <MegaMenu1 /> : null}
-              </li>
+              {/* </li> */}
         
               <li
                 onMouseLeave={() => {

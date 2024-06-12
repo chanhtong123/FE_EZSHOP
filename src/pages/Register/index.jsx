@@ -21,7 +21,9 @@ export default function RegisterPage() {
       const role = "USER";
       const status = true;
       const response = await axios.post("http://localhost:8080/register", { firstName, userName, passWord, role, status, email });
+      
       navigate(redirectUrl);
+      alert("Đăng Ký Thành Công")
     } catch (error) {
       console.error("Register failed:", error);
     }

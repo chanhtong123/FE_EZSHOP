@@ -52,6 +52,12 @@ export default function ProfilePage() {
   }, [navigate]);
 
 
+  const handleLogout = () => {
+    removeToken();
+    navigate('/login');
+  };
+
+
   return (
     <>
       <Helmet>
@@ -62,14 +68,14 @@ export default function ProfilePage() {
         />
       </Helmet>
       <div className="flex w-full flex-col items-center bg-white-A700">
-      
+
         <div className="container-md mt-[33px] flex justify-center pr-1.5 md:p-5">
           <div className="flex w-full items-start justify-between gap-5 md:flex-col">
             <div className="mt-[7px] flex w-[15%] flex-col gap-2.5 pt-[5px] md:w-full">
               <div className="flex flex-col gap-[9px]">
                 <div className="flex items-start gap-[11px]">
                   <Img
-                     src="images/user.png"
+                    src="images/user.png"
                     alt="circleimage"
                     className="h-[40px] w-[40px] rounded-[50%]"
                   />
@@ -118,11 +124,14 @@ export default function ProfilePage() {
                 <Text size="lg" as="p" className="w-[89%] leading-[45px]">
                   <>
                     Thông tin tài khoản <br />
-                     Đặt hàng <br />
-                      Địa chỉ <br />
+                    Đặt hàng <br />
+                    Địa chỉ <br />
                     Danh sách yêu thích
-                     <br /> 
-                     Đăng xuất
+                    <br />
+                    <button onClick={handleLogout}>
+                      Đăng xuất
+                    </button>
+
                   </>
                 </Text>
               </div>
