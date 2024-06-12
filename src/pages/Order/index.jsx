@@ -36,7 +36,7 @@ const tableColumns = [
     header: () => "Trạng thái",
     cell: (info) => {
       const status = info.getValue();
-      const statusName = status?.name || "N/A";
+      const statusName = status || "N/A";
 
       const statusClass = classNames("inline-block px-2.5 py-0.5 rounded text-sm font-medium", {
         "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300": statusName === "Pending",
