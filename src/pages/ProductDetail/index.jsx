@@ -5,6 +5,10 @@ import { useNavigate } from 'react-router-dom';
 import axiosInstance from '../../config/axiosConfig';
 import { getToken, removeToken } from '../../utils/authUtils';
 import { Helmet } from "react-helmet";
+
+
+
+
 import {
   Button,
   Img,
@@ -37,6 +41,7 @@ const ProductDetailPage = () => {
   const [cartId, setCartId] = useState(null);
   const navigate = useNavigate();
   const [mainImage, setMainImage] = useState(null);
+
 
 
   useEffect(() => {
@@ -98,13 +103,19 @@ const ProductDetailPage = () => {
         }
       });
 
+      alert("Thêm sản phẩm thành công.")
       console.log("Added to cart:", response.data);
-
+      
     } catch (error) {
       console.error("Error adding to cart:", error);
+      alert("Lỗi.")
     }
   };
 
+
+
+ 
+  
 
 
   if (!product) {
@@ -304,22 +315,22 @@ const ProductDetailPage = () => {
               <div className="flex w-[66%] flex-col gap-6 md:w-full">
                 <div className="flex flex-col gap-4">
                   <div className="flex flex-col items-start gap-[15px]">
-                    <Text size="3xl" as="p">
+                    {/* <Text size="3xl" as="p">
                       Tổng Quan
-                    </Text>
+                    </Text> */}
                     <div className="flex flex-col gap-[17px] self-stretch pb-[9px]">
                       <Text as="p" className="!font-normal leading-7 !text-blue_gray-600">
-                        {product.overview}
+                        {/* {product.overview} */}
                       </Text>
                       <div className="flex items-center">
-                        <Text as="p" className="!font-normal !text-green-A700_02">
+                        {/* <Text as="p" className="!font-normal !text-green-A700_02">
                           Xem Thêm
-                        </Text>
-                        <Img
+                        </Text> */}
+                        {/* <Img
                           src="images/img_vector_green_a700_02.svg"
                           alt="vector_fifteen"
                           className="mb-[5px] h-[5px] self-end"
-                        />
+                        /> */}
                       </div>
                     </div>
                   </div>

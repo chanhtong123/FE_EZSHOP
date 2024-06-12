@@ -220,7 +220,7 @@ export default function SalesShopPage() {
                 </div>
 
 
-                <SalesShopPagination className="w-[44%] gap-[10px] md:w-full mt-2" />
+                {/* <SalesShopPagination className="w-[44%] gap-[10px] md:w-full mt-2" /> */}
 
 
               </div>
