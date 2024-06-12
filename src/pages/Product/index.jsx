@@ -4,30 +4,13 @@ import axios from "axios";
 import { Helmet } from "react-helmet";
 import {
   Text,
-  Heading,
-  RatingBar,
-  Img,
-  Button,
-  CheckBox,
-  SeekBar,
-  Input,
-  SelectBox,
+  Heading
 } from "../../components";
-import Footer1 from "../../components/Footer1";
-import HomePageThree from "../../components/HomePageThree";
-import MegaMenu1 from "../../components/MegaMenu1";
 import SalesShopPagination from "../../components/SalesShopPagination";
 import { Link } from "react-router-dom";
-const dropDownOptions = [
-  { label: "Option1", value: "option1" },
-  { label: "Option2", value: "option2" },
-  { label: "Option3", value: "option3" },
-];
+
 export default function ProductPage() {
-  const [menuOpen, setMenuOpen] = React.useState(false);
-  const [menuOpen1, setMenuOpen1] = React.useState(false);
-  const [menuOpen2, setMenuOpen2] = React.useState(false);
-  const [menuOpen3, setMenuOpen3] = React.useState(false);
+
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -261,14 +244,8 @@ export default function ProductPage() {
                             <span className="text-blue_gray-900_02 text-red-600">
                               {typeof product.price === "number"
                                 ? product.price.toLocaleString()
-                                : "278.000"}
+                                : "278.000đ"}
                             </span>
-                            <a
-                              href="#"
-                              className="text-blue_gray-900_02 underline text-red-600"
-                            >
-                              đ
-                            </a>
                           </Heading>
                           <Text
                             size="md"

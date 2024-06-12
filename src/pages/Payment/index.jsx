@@ -1,23 +1,125 @@
-import React from "react";
+import React, { useState, useEffect  } from "react";
+import axios from "axios";
 import { Helmet } from "react-helmet";
+import { useNavigate } from 'react-router-dom';
+
 import {
   Button,
   CheckBox,
   Heading,
-  Img,
   Text,
-  TextArea,
   Input,
-  SelectBox,
+  Img,
 } from "../../components";
-import Footer1 from "../../components/Footer1";
-import Header1 from "../../components/Header1";
-const dropDownOptions = [
-  { label: "Option1", value: "option1" },
-  { label: "Option2", value: "option2" },
-  { label: "Option3", value: "option3" },
-];
+
+
 export default function PaymentPage() {
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    address: "",
+    province: "",
+    district: "",
+    ward: "",
+    phone: "",
+    email: "",
+    notes: "",
+    createAccount: false,
+    shipToDifferentAddress: false,
+  });
+
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (success) {
+      navigate('/paymentsuccess');
+    }
+  }, [success, navigate]);
+
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: type === "checkbox" ? checked : value,
+    }));
+  };
+  const getOrderDetail = async async => {
+    const response = await axios.get(
+      "http://localhost:8080/guest/api/orders/1"
+    );
+    console.log(response.data);
+    setFormData({
+     ...formData,
+      firstName: response.data.firstName,
+      lastName: response.data.lastName,
+      address: response.data.address,
+      province: response.data.province,
+      district: response.data.district,
+      ward: response.data.ward,
+      phone: response.data.phone,
+      email: response.data.email,
+      notes: response.data.notes,
+      createAccount: response.data.createAccount,
+      shipToDifferentAddress: response.data.shipToDifferentAddress,
+    });
+  };
+
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setError(null);
+    setSuccess(false);
+
+    try {
+      const fullName = formData.firstName + " " + formData.lastName;
+
+      const response = await axios.post(
+        "http://localhost:8080/guest/api/orders/",
+        {
+          orderDate: "2024-06-11 15:05:23",
+          orderStatus: { id: 1 },
+          userId: 1,
+          shopId: 1,
+          orderDetailId: 1,
+          totalAmount: 1000,
+          customerName: "string",
+          profit: 111,
+          paymentStatus: 1,
+          notes: "string",
+          discounts: "string",
+          email: "string",
+          province: "string",
+          district: "string",
+          ward: "string",
+          address: "string",
+          active: true,
+          payment_method: "string",
+          shipping_method: "string",
+          shipping_date: "2024-06-12",
+          fullName: fullName,
+          phone_number: "string",
+          cart_items: [{ id: 1, product_id: 1, quantity: 2 }],
+          ...formData,
+        }
+      );
+
+      if (response.status === 201) {
+        setSuccess(true);
+      }
+    } catch (error) {
+      setError(
+        "Failed to create order: " +
+          (error.response?.data?.message || error.message)
+      );
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <>
       <Helmet>
@@ -47,18 +149,11 @@ export default function PaymentPage() {
             </Heading>
           </div>
           <div className="flex items-start justify-between gap-5 md:flex-col">
-            <div className="flex w-[61%] flex-col items-start gap-[46px] md:w-full">
-              <Text as="p" className="flex !font-normal">
-                <span className="text-blue_gray-900_02">
-                  Phản hồi của khách hàng?&nbsp;
-                </span>
-                <a
-                  href="#"
-                  className="font-bold text-blue_gray-900_02 underline"
-                >
-                  Đăng nhập
-                </a>
-              </Text>
+            -{" "}
+            <form
+              className="flex w-[61%] flex-col items-start gap-[46px] md:w-full"
+              onSubmit={handleSubmit}
+            >
               <div className="flex flex-col items-start gap-7 self-stretch">
                 <Heading size="5xl" as="h2" className="uppercase">
                   Thông tin thanh toán
@@ -75,10 +170,13 @@ export default function PaymentPage() {
                           Họ*
                         </Heading>
                         <Input
+                          size="2xl"
                           shape="round"
-                          name="your_name"
-                          placeholder={`Ali `}
+                          name="firstName"
+                          value={formData.firstName}
+                          onChange={handleChange}
                           className="self-stretch border border-solid border-gray-200_01 sm:pr-5"
+                          required
                         />
                       </div>
                       <div className="flex w-full flex-col items-start gap-[15px]">
@@ -92,8 +190,11 @@ export default function PaymentPage() {
                         <Input
                           size="2xl"
                           shape="round"
-                          name="edittext"
+                          name="lastName"
+                          value={formData.lastName}
+                          onChange={handleChange}
                           className="self-stretch border border-solid border-gray-200_01 sm:pr-5"
+                          required
                         />
                       </div>
                     </div>
@@ -108,7 +209,9 @@ export default function PaymentPage() {
                       <Input
                         size="2xl"
                         shape="round"
-                        name="edittext_one"
+                        name="address"
+                        value={formData.address}
+                        onChange={handleChange}
                         className="self-stretch border border-solid border-gray-200_01 sm:pr-5"
                       />
                     </div>
@@ -118,12 +221,14 @@ export default function PaymentPage() {
                         as="h6"
                         className="!font-semibold capitalize"
                       >
-                        Thành phố *
+                        Tỉnh *
                       </Heading>
                       <Input
                         size="2xl"
                         shape="round"
-                        name="edittext_two"
+                        name="province"
+                        value={formData.province}
+                        onChange={handleChange}
                         className="self-stretch border border-solid border-gray-200_01 sm:pr-5"
                       />
                     </div>
@@ -133,23 +238,15 @@ export default function PaymentPage() {
                         as="p"
                         className="!font-semibold capitalize"
                       >
-                        Quận/ Huyện *
+                        Quận *
                       </Heading>
-                      <SelectBox
-                        color="white_A700"
-                        size="xl"
+                      <Input
+                        size="2xl"
                         shape="round"
-                        indicator={
-                          <Img
-                            src="images/img_vector_blue_gray_900_02.svg"
-                            alt="vector"
-                            className="h-[5px] w-[8px]"
-                          />
-                        }
-                        name="select"
-                        placeholder={`Select`}
-                        options={dropDownOptions}
-                        className="gap-px self-stretch border border-solid border-gray-200_01 sm:pr-5"
+                        name="district"
+                        value={formData.district}
+                        onChange={handleChange}
+                        className="self-stretch border border-solid border-gray-200_01 sm:pr-5"
                       />
                     </div>
                     <div className="flex flex-col items-start gap-[15px]">
@@ -158,12 +255,14 @@ export default function PaymentPage() {
                         as="p"
                         className="!font-semibold capitalize"
                       >
-                        Mã ZIP *
+                        Huyện *
                       </Heading>
                       <Input
                         size="2xl"
                         shape="round"
-                        name="edittext_three"
+                        name="ward"
+                        value={formData.ward}
+                        onChange={handleChange}
                         className="self-stretch border border-solid border-gray-200_01 sm:pr-5"
                       />
                     </div>
@@ -178,8 +277,10 @@ export default function PaymentPage() {
                         </Heading>
                         <Input
                           shape="round"
-                          name="your_name_one"
-                          placeholder={`+90 `}
+                          name="phone"
+                          placeholder={`+84 `}
+                          value={formData.phone}
+                          onChange={handleChange}
                           className="self-stretch border border-solid border-gray-200_01 sm:pr-5"
                         />
                       </div>
@@ -195,17 +296,13 @@ export default function PaymentPage() {
                           size="2xl"
                           shape="round"
                           name="email"
+                          value={formData.email}
+                          onChange={handleChange}
                           className="self-stretch border border-solid border-gray-200_01 sm:pr-5"
                         />
                       </div>
                     </div>
                   </div>
-                  <CheckBox
-                    name="tạotàikhoản"
-                    label="Tạo tài khoản"
-                    id="totikhon"
-                    className="gap-3.5 p-px text-sm font-semibold capitalize text-blue_gray-900_02"
-                  />
                 </div>
               </div>
               <div className="flex flex-col items-start gap-[29px] self-stretch">
@@ -214,30 +311,43 @@ export default function PaymentPage() {
                 </Heading>
                 <div className="flex flex-col gap-[18px] self-stretch">
                   <CheckBox
-                    name="gửiđếnmộtđịachỉ"
-                    label="Gửi đến một địa chỉ khác?"
-                    id="ginmtach"
-                    className="gap-3.5 p-px text-sm text-blue_gray-900_02"
+                     name="shipToDifferentAddress"
+                     checked={formData.shipToDifferentAddress}
+                     onChange={handleChange}
+                     label="Giao hàng tới địa chỉ khác?"
+                     className="text-blue_gray-900_01"
+                     inputClassName="mr-[5px]"
+                     shape="round"
+                     variant="fillGreen500"
                   />
                   <div className="flex flex-col items-start gap-3.5">
                     <Heading
                       size="lg"
-                      as="p"
+                      as="h6"
                       className="!font-semibold capitalize"
                     >
-                      Order notes (optional)
+                      Ghi chú
                     </Heading>
-                    <TextArea
-                      size="lg"
+                    <Input
                       shape="round"
-                      name="group4073"
-                      placeholder={`Nội dung ghi chú`}
-                      className="self-stretch !border-gray-200_01 text-blue_gray-600 sm:py-5 sm:pr-5"
+                      name="notes"
+                      value={formData.notes}
+                      onChange={handleChange}
+                      className="self-stretch border border-solid border-gray-200_01 sm:pr-5"
                     />
                   </div>
                 </div>
               </div>
-            </div>
+              <Button type="submit" disabled={loading} className="mt-6" >
+                {loading ? "Đang xử lý..." : "Đặt hàng"}
+              </Button>
+              {error && <Text className="text-red-500 mt-4">{error}</Text>}
+              {success && (
+                <Text className="text-green-500 mt-4">
+                  Order created successfully!
+                </Text>
+              )}
+            </form>
             <div className="w-[32%] md:w-full">
               <div className="flex flex-col items-start gap-[13px] rounded-md border border-solid border-gray-200_01 bg-white-A700 pb-[68px] pl-[30px] pr-[29px] pt-[26px] md:pb-5 sm:p-5">
                 <Heading size="5xl" as="h5" className="uppercase">
@@ -254,14 +364,8 @@ export default function PaymentPage() {
                       className="flex !font-semibold capitalize"
                     >
                       <span className="text-lg text-blue_gray-900_02">
-                        278.000
+                        278.000đ
                       </span>
-                      <a
-                        href="#"
-                        className="text-lg text-blue_gray-900_02 underline"
-                      >
-                        đ
-                      </a>
                     </Heading>
                   </div>
                   <div className="flex flex-wrap justify-between gap-5">
@@ -274,14 +378,8 @@ export default function PaymentPage() {
                       className="flex !font-semibold capitalize"
                     >
                       <span className="text-lg text-blue_gray-900_02">
-                        148.000
+                        148.000đ
                       </span>
-                      <a
-                        href="#"
-                        className="text-lg text-blue_gray-900_02 underline"
-                      >
-                        đ
-                      </a>
                     </Heading>
                   </div>
                   <div className="flex flex-col gap-[25px]">
@@ -298,14 +396,8 @@ export default function PaymentPage() {
                             className="flex self-end !font-semibold capitalize"
                           >
                             <span className="text-lg text-blue_gray-900_02">
-                              1278.000
+                              1278.000đ
                             </span>
-                            <a
-                              href="#"
-                              className="text-lg text-blue_gray-900_02 underline"
-                            >
-                              đ
-                            </a>
                           </Heading>
                         </div>
                       </div>
@@ -323,14 +415,8 @@ export default function PaymentPage() {
                             className="flex !font-semibold capitalize"
                           >
                             <span className="text-lg text-blue_gray-900_02">
-                              28.000
+                              28.000đ
                             </span>
-                            <a
-                              href="#"
-                              className="text-lg text-blue_gray-900_02 underline"
-                            >
-                              đ
-                            </a>
                           </Heading>
                         </div>
                       </div>
@@ -347,20 +433,15 @@ export default function PaymentPage() {
                           className="flex self-end !font-semibold capitalize"
                         >
                           <span className="text-lg text-blue_gray-900_02">
-                            278.000
+                            278.000đ
                           </span>
-                          <a
-                            href="#"
-                            className="text-lg text-blue_gray-900_02 underline"
-                          >
-                            đ
-                          </a>
                         </Heading>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
+
               <div className="mt-[30px] flex flex-col gap-2">
                 <div className="flex flex-col items-start gap-5 rounded-md border border-solid border-gray-200_01 bg-white-A700 px-[30px] pb-[37px] pt-[30px] sm:p-5">
                   <Heading size="5xl" as="h5" className="uppercase">

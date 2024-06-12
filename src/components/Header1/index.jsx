@@ -115,11 +115,11 @@ export default function Header1({ ...props }) {
         <div className="mx-auto mt-[15px] flex w-full max-w-[1440px] items-center justify-between gap-5 md:flex-col md:p-5">
           <div className="flex w-[10%]">
             <a href="/homepage">
-            <Img
-              src="images/img_header_logo.png"
-              alt="headerlogo"
-              className="mb-[7px] h-[33px] w-[94px] object-contain"
-            />
+              <Img
+                src="images/img_header_logo.png"
+                alt="headerlogo"
+                className="mb-[7px] h-[33px] w-[94px] object-contain"
+              />
             </a>
           </div>
 
@@ -193,29 +193,25 @@ export default function Header1({ ...props }) {
               </div>
 
               <div className="flex-1 w-[40%] sm:self-stretch">
-
-              <a href="/cartdetail"> 
-                <div className="flex items-center">
-                  <div className="relative w-[38%]">                 
+                <a href="/cartdetail">
+                  <div className="flex items-center">
+                    <div className="relative w-[38%]">
                       <Button shape="round" className="w-[50px] h-[50px]">
                         <Img src="images/img_cart.svg" />
                       </Button>
-                  </div>
-                
-                  <Heading
-                    size="lg"
-                    as="p"
-                    className="w-[62%] self-end !font-inter leading-[50px]"
-                  >
-                    
-                    <span className="font-bevietnampro text-base font-medium text-blue_gray-900_02">
-                      Thanh toán
-                    </span>               
-                  </Heading>             
-                </div>
-                </a>
+                    </div>
 
-                
+                    <Heading
+                      size="lg"
+                      as="p"
+                      className="w-[62%] self-end !font-inter leading-[50px]"
+                    >
+                      <span className="font-bevietnampro text-base font-medium text-blue_gray-900_02">
+                        Thanh toán
+                      </span>
+                    </Heading>
+                  </div>
+                </a>
               </div>
             </div>
           </div>
@@ -249,7 +245,6 @@ export default function Header1({ ...props }) {
               <div className="flex w-full flex-col items-start">
                 <div className="flex items-center justify-between gap-5 self-stretch">
                   <div className="flex w-[50%] items-center justify-center gap-[15px]">
-                    
                     <h6 className="text-white-A700"> Danh mục</h6>
                   </div>
                   <img
@@ -278,69 +273,35 @@ export default function Header1({ ...props }) {
               )}
             </div>
             <ul className="flex w-[60%] justify-between">
-              <li
-                onMouseLeave={() => {
-                  setMenuOpen(false);
-                }}
-                onMouseEnter={() => {
-                  setMenuOpen(true);
-                }}
-              >
+              <li>
                 <div className="flex cursor-pointer items-center gap-1">
                   <a href="/homepage">
-                  <Text as="p">Trang chủ</Text>
+                    <Text as="p">Trang chủ</Text>
                   </a>
-                </div>
-                {menuOpen ? <MegaMenu1 /> : null}
+                </div>{" "}
               </li>
-             
-              <li
-                onMouseLeave={() => {
-                  setMenuOpen1(false);
-                }}
-                onMouseEnter={() => {
-                  setMenuOpen1(true);
-                }}
-              >             
+              <li>
                 <div className="flex cursor-pointer items-center gap-1">
-                <a href="/product">
-                  <Text as="p">Sản phẩm</Text>
+                  <a href="/product">
+                    <Text as="p">Sản phẩm</Text>
                   </a>
                 </div>
-              
-                {menuOpen1 ? <MegaMenu1 /> : null}
               </li>
-              <li
-                onMouseLeave={() => {
-                  setMenuOpen1(false);
-                }}
-                onMouseEnter={() => {
-                  setMenuOpen1(true);
-                }}
-              >             
+
+              <li>
                 <div className="flex cursor-pointer items-center gap-1">
-                <a href="/shops">
-                  <Text as="p">Cửa Hàng</Text>
+                  <a href="/shops">
+                    <Text as="p">Cửa Hàng</Text>
                   </a>
                 </div>
-              
-                {menuOpen1 ? <MegaMenu1 /> : null}
               </li>
-        
-              <li
-                onMouseLeave={() => {
-                  setMenuOpen3(false);
-                }}
-                onMouseEnter={() => {
-                  setMenuOpen3(true);
-                }}
-              >
+
+              <li>
                 <a href="/blog">
-                <div className="flex cursor-pointer items-center gap-1">
-                  <Text as="p">Bài viết</Text>
-                </div>
+                  <div className="flex cursor-pointer items-center gap-1">
+                    <Text as="p">Bài viết</Text>
+                  </div>
                 </a>
-                {menuOpen3 ? <MegaMenu1 /> : null}
               </li>
             </ul>
           </div>

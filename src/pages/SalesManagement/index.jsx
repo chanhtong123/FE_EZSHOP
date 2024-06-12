@@ -8,11 +8,7 @@ import { ReactTable } from "../../components/ReactTable";
 import SalesShopPagination from "../../components/SalesShopPagination";
 import Sidebar1 from "../../components/Sidebar1";
 import { createColumnHelper } from "@tanstack/react-table";
-const dropDownOptions = [
-  { label: "Option1", value: "option1" },
-  { label: "Option2", value: "option2" },
-  { label: "Option3", value: "option3" },
-];
+
 
 const tableData = [
   {

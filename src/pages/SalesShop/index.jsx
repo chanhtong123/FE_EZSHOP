@@ -1,35 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import axiosInstance from '../../config/axiosConfig';
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import {
   Button,
-  CheckBox,
-  Input,
   Text,
-  TextArea,
   RatingBar,
   Img,
-  Heading,
-  SelectBox,
+  Heading
 } from "../../components";
 import Footer1 from "../../components/Footer1";
 import SalesShopPagination from "../../components/SalesShopPagination";
 
-const dropDownOptions = [
-  { label: "Option1", value: "option1" },
-  { label: "Option2", value: "option2" },
-  { label: "Option3", value: "option3" },
-];
+
 
 export default function SalesShopPage() {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [menuOpen1, setMenuOpen1] = useState(false);
-  const [menuOpen2, setMenuOpen2] = useState(false);
-  const [menuOpen3, setMenuOpen3] = useState(false);
-
 
   const [shop, setShop] = useState([]);
   const [productsData, setProductsData] = useState([]);
@@ -216,13 +202,7 @@ export default function SalesShopPage() {
                             </div>
                             <div className="flex flex-wrap items-center gap-2.5">
                               <Heading size="3xl" as="h3" className="flex">
-                                <span className="text-blue_gray-900_02  text-red-600">{product.price}</span>
-                                <a
-                                  href="#"
-                                  className="text-blue_gray-900_02 underline text-red-600"
-                                >
-                                  đ
-                                </a>
+                                <span className="text-blue_gray-900_02  text-red-600">{product.price}đ</span>
                               </Heading>
                               <Text
                                 size="md"
