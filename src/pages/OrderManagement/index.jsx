@@ -40,7 +40,7 @@ const tableColumns = [
     header: () => "Lợi nhuận",
     cell: (info) => `$${info.getValue()}`,
   }),
-  columnHelper.accessor("status", {
+  columnHelper.accessor("orderStatus", {
     header: () => "Trạng thái",
     cell: (info) => {
       const status = info.getValue();

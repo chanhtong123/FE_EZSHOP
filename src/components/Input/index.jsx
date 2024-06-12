@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+
 const shapes = { square: "rounded-[0px]", round: "rounded-md" };
 const variants = {
   fill: {
@@ -19,6 +20,7 @@ const sizes = {
   "2xl": "h-[55px] pl-[15px] pr-[35px]",
   xl: "h-[55px] pl-[15px] pr-[35px] text-[15px]",
 };
+
 const Input = React.forwardRef(
   (
     {
@@ -40,11 +42,11 @@ const Input = React.forwardRef(
     ref
   ) => {
     const handleChange = (e) => {
-      if (onChange) onChange(e?.target?.value);
+      if (onChange) onChange(e);
     };
+
     return (
       <>
-        
         <label
           className={`${className} flex items-center justify-center cursor-text  ${
             (shape && shapes[shape]) || ""
@@ -52,7 +54,6 @@ const Input = React.forwardRef(
             sizes[size] || ""
           }`}
         >
-          
           {!!label && label} {!!prefix && prefix}
           <input
             ref={ref}
@@ -68,6 +69,7 @@ const Input = React.forwardRef(
     );
   }
 );
+
 Input.propTypes = {
   className: PropTypes.string,
   name: PropTypes.string,
@@ -86,4 +88,5 @@ Input.propTypes = {
     "green_50_01",
   ]),
 };
+
 export { Input };

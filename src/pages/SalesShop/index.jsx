@@ -1,29 +1,48 @@
-import React from "react";
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
 import { Helmet } from "react-helmet";
 import {
   Button,
-  CheckBox,
-  Input,
   Text,
-  TextArea,
   RatingBar,
   Img,
-  Heading,
-  SelectBox,
+  Heading
 } from "../../components";
 import Footer1 from "../../components/Footer1";
 import Header from "../../components/Header1";
 import SalesShopPagination from "../../components/SalesShopPagination";
-const dropDownOptions = [
-  { label: "Option1", value: "option1" },
-  { label: "Option2", value: "option2" },
-  { label: "Option3", value: "option3" },
-];
+
+
+
 export default function SalesShopPage() {
-  const [menuOpen, setMenuOpen] = React.useState(false);
-  const [menuOpen1, setMenuOpen1] = React.useState(false);
-  const [menuOpen2, setMenuOpen2] = React.useState(false);
-  const [menuOpen3, setMenuOpen3] = React.useState(false);
+
+  const [shop, setShop] = useState([]);
+  const [productsData, setProductsData] = useState([]);
+  const { id } = useParams();
+
+
+
+
+  useEffect(() => {
+    const fetchProfileItems = async () => {
+      try {
+        const response = await axios.get(`http://localhost:8080/public/shop/${id}`);
+        setShop(response.data);
+
+        const productsResponse = await axios.get(`http://localhost:8080/guest/api/products/products/shop/${id}`);
+        setProductsData(productsResponse.data);
+
+      } catch (error) {
+        console.error('Đã xảy ra lỗi khi lấy dữ liệu:', error.message);
+      }
+    };
+
+    fetchProfileItems();
+  }, [id]);
+
+
+
   return (
     <>
       <Helmet>
@@ -145,948 +164,69 @@ export default function SalesShopPage() {
                   </div>
                 </div>
                 <div className="grid grid-cols-5 justify-center gap-px self-stretch md:grid-cols-3 sm:grid-cols-1">
-                  <div className="flex w-full flex-col items-center border border-solid border-gray-200_01 bg-white-A700 pb-[25px] sm:pb-5">
-                    <div className="self-stretch bg-white-A700 px-5 py-[25px] sm:py-5">
-                      <a
-                        href="https://www.youtube.com/embed/bv8Fxk0sz7I"
-                        target="_blank"
-                      >
-                        <Img
-                          src="images/img_image_30.png"
-                          alt="thời_trang"
-                          className="h-[230px] w-[230px] object-cover"
-                        />
-                      </a>
-                    </div>
-                    <div className="flex w-[86%] flex-col items-start gap-[11px] md:w-full md:p-5">
-                      <Text size="xs" as="p" className="!text-blue_gray-600">
-                        Thời trang
-                      </Text>
-                      <a
-                        href="https://www.youtube.com/embed/bv8Fxk0sz7I"
-                        target="_blank"
-                      >
-                        <Heading as="h2" className="w-full leading-[150%]">
-                          Áo Hoodie Nike dành cho mùa đông lạnh
-                        </Heading>
-                      </a>
-                      <div className="flex w-[70%] items-start gap-2.5 md:w-full">
-                        <RatingBar
-                          value={1}
-                          isEditable={true}
-                          size={10}
-                          className="flex justify-between rounded-[5px]"
-                        />
-                        <Text size="xs" as="p" className="!text-blue_gray-600">
-                          3,014 đánh giá
-                        </Text>
-                      </div>
-                      <div className="flex flex-wrap items-center gap-2.5">
-                        <Heading size="3xl" as="h3" className="flex">
-                          <span className="text-blue_gray-900_02">278.000</span>
-                          <a
-                            href="#"
-                            className="text-blue_gray-900_02 underline"
-                          >
-                            đ
-                          </a>
-                        </Heading>
-                        <Text
-                          size="md"
-                          as="p"
-                          className="self-start capitalize !text-blue_gray-600 line-through"
-                        >
-                          328.000đ
-                        </Text>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex w-full flex-col items-center border border-solid border-gray-200_01 bg-white-A700 pb-[19px]">
-                    <div className="relative h-[280px] self-stretch bg-white-A700 pb-[19px] pl-3.5 pr-4 pt-5 md:h-auto">
-                      <a
-                        href="https://www.youtube.com/embed/bv8Fxk0sz7I"
-                        target="_blank"
-                      >
-                        <Img
-                          src="images/img_image_30_1.png"
-                          alt="imagethirty"
-                          className="h-[230px] w-[230px] object-cover"
-                        />
-                      </a>
-                      <div className="absolute bottom-0 left-0 right-0 top-0 m-auto flex h-max w-full flex-col items-end gap-[74px] md:gap-[55px] sm:gap-[37px]">
-                        <div className="flex flex-col gap-[7px]">
-                          <Button
-                            color="gray_100_05"
-                            size="4xl"
-                            shape="circle"
-                            className="w-[34px] !rounded-[17px] shadow-xs"
-                          >
-                            <Img src="images/img_heart_1.svg" />
-                          </Button>
-                          <Button
-                            color="white_A700"
-                            size="4xl"
-                            shape="circle"
-                            className="w-[34px] !rounded-[17px]"
-                          >
-                            <Img src="images/img_show_1.svg" />
-                          </Button>
-                          <Button
-                            color="white_A700"
-                            size="4xl"
-                            shape="circle"
-                            className="w-[34px] !rounded-[17px]"
-                          >
-                            <Img src="images/img_graph_1.svg" />
-                          </Button>
-                        </div>
-                        <Button
-                          size="9xl"
-                          shape="round"
-                          className="w-full sm:px-5"
-                        >
-                          Thêm vào giỏ hàng
-                        </Button>
-                      </div>
-                    </div>
-                    <div className="flex w-[86%] flex-col items-start gap-[11px] md:w-full md:p-5">
-                      <Text size="xs" as="p" className="!text-blue_gray-600">
-                        Thời trang
-                      </Text>
-                      <a
-                        href="https://www.youtube.com/embed/bv8Fxk0sz7I"
-                        target="_blank"
-                      >
-                        <Heading as="h4" className="w-full leading-[150%]">
-                          Áo tập gym thoáng mát Nike thấm hút mồ hôi
-                        </Heading>
-                      </a>
-                      <div className="flex w-[70%] items-start gap-2.5 md:w-full">
-                        <RatingBar
-                          value={1}
-                          isEditable={true}
-                          size={10}
-                          className="flex justify-between rounded-[5px]"
-                        />
-                        <Text size="xs" as="p" className="!text-blue_gray-600">
-                          3,014 đánh giá
-                        </Text>
-                      </div>
-                      <div className="flex flex-wrap items-start gap-2.5">
-                        <Text size="2xl" as="p" className="flex !font-jost">
-                          <span className="font-bevietnampro font-semibold text-blue_gray-900_02">
-                            278.000
-                          </span>
-                          <a
-                            href="#"
-                            className="font-bevietnampro font-semibold text-blue_gray-900_02 underline"
-                          >
-                            đ
-                          </a>
-                        </Text>
-                        <Text
-                          size="md"
-                          as="p"
-                          className="capitalize !text-blue_gray-600 line-through"
-                        >
-                          328.000đ
-                        </Text>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex w-full flex-col items-center border border-solid border-gray-200_01 bg-white-A700 pb-[25px] sm:pb-5">
-                    <div className="self-stretch bg-white-A700 px-5 py-[25px] sm:py-5">
-                      <a
-                        href="https://www.youtube.com/embed/bv8Fxk0sz7I"
-                        target="_blank"
-                      >
-                        <Img
-                          src="images/img_image_30_2.png"
-                          alt="imagethirty"
-                          className="h-[230px] w-[230px] object-cover"
-                        />
-                      </a>
-                    </div>
-                    <div className="flex w-[86%] flex-col items-start gap-[11px] md:w-full md:p-5">
-                      <Text size="xs" as="p" className="!text-blue_gray-600">
-                        Thời trang
-                      </Text>
-                      <a
-                        href="https://www.youtube.com/embed/bv8Fxk0sz7I"
-                        target="_blank"
-                      >
-                        <Heading as="h5" className="w-full leading-[150%]">
-                          Áo nỉ chần bông màu xám có dây Nike
-                        </Heading>
-                      </a>
-                      <div className="flex w-[70%] items-start gap-2.5 md:w-full">
-                        <RatingBar
-                          value={1}
-                          isEditable={true}
-                          size={10}
-                          className="flex justify-between rounded-[5px]"
-                        />
-                        <Text size="xs" as="p" className="!text-blue_gray-600">
-                          3,014 đánh giá
-                        </Text>
-                      </div>
-                      <div className="flex flex-wrap items-center gap-2.5">
-                        <Heading size="3xl" as="h6" className="flex">
-                          <span className="text-blue_gray-900_02">278.000</span>
-                          <a
-                            href="#"
-                            className="text-blue_gray-900_02 underline"
-                          >
-                            đ
-                          </a>
-                        </Heading>
-                        <Text
-                          size="md"
-                          as="p"
-                          className="self-start capitalize !text-blue_gray-600 line-through"
-                        >
-                          328.000đ
-                        </Text>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex w-full flex-col items-center border border-solid border-gray-200_01 bg-white-A700 pb-[25px] sm:pb-5">
-                    <div className="self-stretch bg-white-A700 px-5 py-[25px] sm:py-5">
-                      <a
-                        href="https://www.youtube.com/embed/bv8Fxk0sz7I"
-                        target="_blank"
-                      >
-                        <Img
-                          src="images/img_image_30_230x230.png"
-                          alt="imagethirty"
-                          className="h-[230px] w-[230px] object-cover"
-                        />
-                      </a>
-                    </div>
-                    <div className="flex w-[86%] flex-col items-start gap-[11px] md:w-full md:p-5">
-                      <Text size="xs" as="p" className="!text-blue_gray-600">
-                        Thời trang
-                      </Text>
-                      <a
-                        href="https://www.youtube.com/embed/bv8Fxk0sz7I"
-                        target="_blank"
-                      >
-                        <Heading as="h6" className="w-full leading-[150%]">
-                          Khoác gió chống nắng thời trang Adidas
-                        </Heading>
-                      </a>
-                      <div className="flex w-[70%] items-start gap-2.5 md:w-full">
-                        <RatingBar
-                          value={1}
-                          isEditable={true}
-                          size={10}
-                          className="flex justify-between rounded-[5px]"
-                        />
-                        <Text size="xs" as="p" className="!text-blue_gray-600">
-                          3,014 đánh giá
-                        </Text>
-                      </div>
-                      <div className="flex flex-wrap items-center gap-2.5">
-                        <Heading size="3xl" as="h6" className="flex">
-                          <span className="text-blue_gray-900_02">278.000</span>
-                          <a
-                            href="#"
-                            className="text-blue_gray-900_02 underline"
-                          >
-                            đ
-                          </a>
-                        </Heading>
-                        <Text
-                          size="md"
-                          as="p"
-                          className="self-start capitalize !text-blue_gray-600 line-through"
-                        >
-                          328.000đ
-                        </Text>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex w-full flex-col items-center border border-solid border-gray-200_01 bg-white-A700 pb-[25px] sm:pb-5">
-                    <div className="self-stretch bg-white-A700 px-5 py-[25px] sm:py-5">
-                      <a
-                        href="https://www.youtube.com/embed/bv8Fxk0sz7I"
-                        target="_blank"
-                      >
-                        <Img
-                          src="images/img_image_30_3.png"
-                          alt="imagethirty"
-                          className="h-[230px] w-[230px] object-cover"
-                        />
-                      </a>
-                    </div>
-                    <div className="flex w-[86%] flex-col items-start gap-[11px] md:w-full md:p-5">
-                      <Text size="xs" as="p" className="!text-blue_gray-600">
-                        Thời trang
-                      </Text>
-                      <a
-                        href="https://www.youtube.com/embed/bv8Fxk0sz7I"
-                        target="_blank"
-                      >
-                        <Heading as="h6" className="w-full leading-[150%]">
-                          Áo khoác unisex màu trắng tập gym Adidas
-                        </Heading>
-                      </a>
-                      <div className="flex w-[70%] items-start gap-2.5 md:w-full">
-                        <RatingBar
-                          value={1}
-                          isEditable={true}
-                          size={10}
-                          className="flex justify-between rounded-[5px]"
-                        />
-                        <Text size="xs" as="p" className="!text-blue_gray-600">
-                          3,014 đánh giá
-                        </Text>
-                      </div>
-                      <div className="flex flex-wrap items-center gap-2.5">
-                        <Heading size="3xl" as="h6" className="flex">
-                          <span className="text-blue_gray-900_02">278.000</span>
-                          <a
-                            href="#"
-                            className="text-blue_gray-900_02 underline"
-                          >
-                            đ
-                          </a>
-                        </Heading>
-                        <Text
-                          size="md"
-                          as="p"
-                          className="self-start capitalize !text-blue_gray-600 line-through"
-                        >
-                          328.000đ
-                        </Text>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex w-full items-center justify-center gap-[9px] rounded-[18px] bg-gray-100_02 px-[9px] pb-1.5 pt-[9px]">
-                    <Img
-                      src="images/img_sort_1_1.svg"
-                      alt="sort1one"
-                      className="h-[18px] w-[18px] self-start"
-                    />
-                    <Text size="lg" as="p" className="self-end !font-medium">
-                      Bộ lọc
-                    </Text>
-                  </div>
-                  <div className="flex w-full items-center justify-center gap-[9px] rounded-[18px] bg-gray-100_02 p-2">
-                    <Text size="lg" as="p" className="!font-medium">
-                      Giá
-                    </Text>
-                    <Img
-                      src="images/img_vector_blue_gray_900_02.svg"
-                      alt="vector"
-                      className="h-[5px]"
-                    />
-                  </div>
-                  <div className="flex w-full items-start justify-center gap-[9px] rounded-[18px] bg-gray-100_02 px-2.5 pb-1.5 pt-2.5">
-                    <Text size="lg" as="p" className="!font-medium">
-                      Thương hiệu
-                    </Text>
-                    <Img
-                      src="images/img_vector_blue_gray_900_02.svg"
-                      alt="vector"
-                      className="mt-[5px] h-[5px]"
-                    />
-                  </div>
-                  <div className="flex w-full items-center justify-center gap-[9px] rounded-[18px] bg-gray-100_02 px-[7px] pb-[9px] pt-[7px]">
-                    <Text size="lg" as="p" className="!font-medium">
-                      Màu sắc
-                    </Text>
-                    <Img
-                      src="images/img_vector_blue_gray_900_02.svg"
-                      alt="vector"
-                      className="mb-[5px] h-[5px] self-end"
-                    />
-                  </div>
-                  <Text size="lg" as="p" className="w-full !font-medium">
-                    Mặc định
-                  </Text>
-                  <Img
-                    src="images/img_vector_blue_gray_900_02.svg"
-                    alt="vector"
-                    className="h-[5px] w-full"
-                  />
-                  <Text size="lg" as="p" className="w-full">
-                    Lọc
-                  </Text>
-                  <Text size="lg" as="p" className="w-full underline">
-                    Lưới
-                  </Text>
-                  <div className="flex w-full flex-col items-center border border-solid border-gray-200_01 bg-white-A700 pb-[25px] sm:pb-5">
-                    <div className="self-stretch bg-white-A700 px-5 py-[25px] sm:py-5">
-                      <a
-                        href="https://www.youtube.com/embed/bv8Fxk0sz7I"
-                        target="_blank"
-                      >
-                        <Img
-                          src="images/img_image_30.png"
-                          alt="imagethirty"
-                          className="h-[230px] w-[230px] object-cover"
-                        />
-                      </a>
-                    </div>
-                    <div className="flex w-[86%] flex-col items-start gap-[11px] md:w-full md:p-5">
-                      <Text size="xs" as="p" className="!text-blue_gray-600">
-                        Thời trang
-                      </Text>
-                      <a
-                        href="https://www.youtube.com/embed/bv8Fxk0sz7I"
-                        target="_blank"
-                      >
-                        <Heading as="h6" className="w-full leading-[150%]">
-                          Áo Hoodie Nike dành cho mùa đông lạnh
-                        </Heading>
-                      </a>
-                      <div className="flex w-[70%] items-start gap-2.5 md:w-full">
-                        <RatingBar
-                          value={1}
-                          isEditable={true}
-                          size={10}
-                          className="flex justify-between rounded-[5px]"
-                        />
-                        <Text size="xs" as="p" className="!text-blue_gray-600">
-                          3,014 đánh giá
-                        </Text>
-                      </div>
-                      <div className="flex flex-wrap items-center gap-2.5">
-                        <Heading size="3xl" as="h6" className="flex">
-                          <span className="text-blue_gray-900_02">278.000</span>
-                          <a
-                            href="#"
-                            className="text-blue_gray-900_02 underline"
-                          >
-                            đ
-                          </a>
-                        </Heading>
-                        <Text
-                          size="md"
-                          as="p"
-                          className="self-start capitalize !text-blue_gray-600 line-through"
-                        >
-                          328.000đ
-                        </Text>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex w-full flex-col items-center border border-solid border-gray-200_01 bg-white-A700 pb-[25px] sm:pb-5">
-                    <div className="self-stretch bg-white-A700 px-5 py-[25px] sm:py-5">
-                      <a
-                        href="https://www.youtube.com/embed/bv8Fxk0sz7I"
-                        target="_blank"
-                      >
-                        <Img
-                          src="images/img_image_30_2.png"
-                          alt="imagethirty"
-                          className="h-[230px] w-[230px] object-cover"
-                        />
-                      </a>
-                    </div>
-                    <div className="flex w-[86%] flex-col items-start gap-[11px] md:w-full md:p-5">
-                      <Text size="xs" as="p" className="!text-blue_gray-600">
-                        Thời trang
-                      </Text>
-                      <a
-                        href="https://www.youtube.com/embed/bv8Fxk0sz7I"
-                        target="_blank"
-                      >
-                        <Heading as="h6" className="w-full leading-[150%]">
-                          Áo nỉ chần bông màu xám có dây Nike
-                        </Heading>
-                      </a>
-                      <div className="flex w-[70%] items-start gap-2.5 md:w-full">
-                        <RatingBar
-                          value={1}
-                          isEditable={true}
-                          size={10}
-                          className="flex justify-between rounded-[5px]"
-                        />
-                        <Text size="xs" as="p" className="!text-blue_gray-600">
-                          3,014 đánh giá
-                        </Text>
-                      </div>
-                      <div className="flex flex-wrap items-center gap-2.5">
-                        <Heading size="3xl" as="h6" className="flex">
-                          <span className="text-blue_gray-900_02">278.000</span>
-                          <a
-                            href="#"
-                            className="text-blue_gray-900_02 underline"
-                          >
-                            đ
-                          </a>
-                        </Heading>
-                        <Text
-                          size="md"
-                          as="p"
-                          className="self-start capitalize !text-blue_gray-600 line-through"
-                        >
-                          328.000đ
-                        </Text>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex w-full flex-col items-center border border-solid border-gray-200_01 bg-white-A700 pb-[25px] sm:pb-5">
-                    <div className="self-stretch bg-white-A700 px-5 py-[25px] sm:py-5">
-                      <a
-                        href="https://www.youtube.com/embed/bv8Fxk0sz7I"
-                        target="_blank"
-                      >
-                        <Img
-                          src="images/img_image_30_230x230.png"
-                          alt="imagethirty"
-                          className="h-[230px] w-[230px] object-cover"
-                        />
-                      </a>
-                    </div>
-                    <div className="flex w-[86%] flex-col items-start gap-[11px] md:w-full md:p-5">
-                      <Text size="xs" as="p" className="!text-blue_gray-600">
-                        Thời trang
-                      </Text>
-                      <a
-                        href="https://www.youtube.com/embed/bv8Fxk0sz7I"
-                        target="_blank"
-                      >
-                        <Heading as="h6" className="w-full leading-[150%]">
-                          Khoác gió chống nắng thời trang Adidas
-                        </Heading>
-                      </a>
-                      <div className="flex w-[70%] items-start gap-2.5 md:w-full">
-                        <RatingBar
-                          value={1}
-                          isEditable={true}
-                          size={10}
-                          className="flex justify-between rounded-[5px]"
-                        />
-                        <Text size="xs" as="p" className="!text-blue_gray-600">
-                          3,014 đánh giá
-                        </Text>
-                      </div>
-                      <div className="flex flex-wrap items-center gap-2.5">
-                        <Heading size="3xl" as="h6" className="flex">
-                          <span className="text-blue_gray-900_02">278.000</span>
-                          <a
-                            href="#"
-                            className="text-blue_gray-900_02 underline"
-                          >
-                            đ
-                          </a>
-                        </Heading>
-                        <Text
-                          size="md"
-                          as="p"
-                          className="self-start capitalize !text-blue_gray-600 line-through"
-                        >
-                          328.000đ
-                        </Text>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex w-full flex-col items-center border border-solid border-gray-200_01 bg-white-A700 pb-[25px] sm:pb-5">
-                    <div className="self-stretch bg-white-A700 px-5 py-[25px] sm:py-5">
-                      <a
-                        href="https://www.youtube.com/embed/bv8Fxk0sz7I"
-                        target="_blank"
-                      >
-                        <Img
-                          src="images/img_image_30_230x230.png"
-                          alt="imagethirty"
-                          className="h-[230px] w-[230px] object-cover"
-                        />
-                      </a>
-                    </div>
-                    <div className="flex w-[86%] flex-col items-start gap-[11px] md:w-full md:p-5">
-                      <Text size="xs" as="p" className="!text-blue_gray-600">
-                        Thời trang
-                      </Text>
-                      <a
-                        href="https://www.youtube.com/embed/bv8Fxk0sz7I"
-                        target="_blank"
-                      >
-                        <Heading as="h6" className="w-full leading-[150%]">
-                          Khoác gió chống nắng thời trang Adidas
-                        </Heading>
-                      </a>
-                      <div className="flex w-[70%] flex-col gap-2.5 md:w-full">
-                        <div className="flex items-start gap-2.5">
-                          <RatingBar
-                            value={1}
-                            isEditable={true}
-                            size={10}
-                            className="flex justify-between rounded-[5px]"
-                          />
-                          <Text
-                            size="xs"
-                            as="p"
-                            className="!text-blue_gray-600"
-                          >
-                            3,014 đánh giá
-                          </Text>
-                        </div>
-                        <div className="flex flex-wrap items-center gap-2.5 self-start">
-                          <Heading size="3xl" as="h6" className="flex">
-                            <span className="text-blue_gray-900_02">
-                              278.000
-                            </span>
-                            <a
-                              href="#"
-                              className="text-blue_gray-900_02 underline"
-                            >
-                              đ
-                            </a>
-                          </Heading>
-                          <Text
-                            size="md"
-                            as="p"
-                            className="self-start capitalize !text-blue_gray-600 line-through"
-                          >
-                            328.000đ
-                          </Text>
+
+                  {productsData.map(product => (
+
+                    <Link
+                      key={product.id}
+                      to={`/productdetail/${product.id}`}
+                      rel="noopener noreferrer"
+                    >
+
+                      <div key={product.id}>
+                        <div className="flex w-full flex-col items-center border border-solid border-gray-200_01 bg-white-A700 pb-[25px] sm:pb-5">
+                          <div className="self-stretch bg-white-A700 px-5 py-[25px] sm:py-5">
+
+                            <Img
+                              src={product.image}
+                              alt="thời_trang"
+                              className="h-[230px] w-[230px] object-cover"
+                            />
+
+                          </div>
+                          <div className="flex w-[86%] flex-col items-start gap-[11px] md:w-full md:p-5">
+                            <Text size="xs" as="p" className="!text-blue_gray-600">
+                              {product.category}
+                            </Text>
+
+                            <Heading as="h2" className="w-full leading-[150%]">
+                              {product.name}
+                            </Heading>
+
+                            <div className="flex w-[70%] items-start gap-2.5 md:w-full">
+                              <RatingBar
+                                value={1}
+                                isEditable={true}
+                                size={10}
+                                className="flex justify-between rounded-[5px]"
+                              />
+
+                            </div>
+                            <div className="flex flex-wrap items-center gap-2.5">
+                              <Heading size="3xl" as="h3" className="flex">
+                                <span className="text-blue_gray-900_02  text-red-600">{product.price}đ</span>
+                              </Heading>
+                              <Text
+                                size="md"
+                                as="p"
+                                className="self-start capitalize !text-blue_gray-600 line-through"
+                              >
+                                328.000đ
+                              </Text>
+                            </div>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </div>
-                  <div className="flex w-full flex-col items-center border border-solid border-gray-200_01 bg-white-A700 pb-[25px] sm:pb-5">
-                    <div className="self-stretch bg-white-A700 px-5 py-[25px] sm:py-5">
-                      <a
-                        href="https://www.youtube.com/embed/bv8Fxk0sz7I"
-                        target="_blank"
-                      >
-                        <Img
-                          src="images/img_image_30_3.png"
-                          alt="imagethirty"
-                          className="h-[230px] w-[230px] object-cover"
-                        />
-                      </a>
-                    </div>
-                    <div className="flex w-[86%] flex-col items-start gap-[11px] md:w-full md:p-5">
-                      <Text size="xs" as="p" className="!text-blue_gray-600">
-                        Thời trang
-                      </Text>
-                      <a
-                        href="https://www.youtube.com/embed/bv8Fxk0sz7I"
-                        target="_blank"
-                      >
-                        <Heading as="h6" className="w-full leading-[150%]">
-                          Áo khoác unisex màu trắng tập gym Adidas
-                        </Heading>
-                      </a>
-                      <div className="flex w-[70%] items-start gap-2.5 md:w-full">
-                        <RatingBar
-                          value={1}
-                          isEditable={true}
-                          size={10}
-                          className="flex justify-between rounded-[5px]"
-                        />
-                        <Text size="xs" as="p" className="!text-blue_gray-600">
-                          3,014 đánh giá
-                        </Text>
-                      </div>
-                      <div className="flex flex-wrap items-center gap-2.5">
-                        <Heading size="3xl" as="h6" className="flex">
-                          <span className="text-blue_gray-900_02">278.000</span>
-                          <a
-                            href="#"
-                            className="text-blue_gray-900_02 underline"
-                          >
-                            đ
-                          </a>
-                        </Heading>
-                        <Text
-                          size="md"
-                          as="p"
-                          className="self-start capitalize !text-blue_gray-600 line-through"
-                        >
-                          328.000đ
-                        </Text>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex w-full flex-col items-center border border-solid border-gray-200_01 bg-white-A700 pb-[25px] sm:pb-5">
-                    <div className="self-stretch bg-white-A700 px-5 py-[25px] sm:py-5">
-                      <a
-                        href="https://www.youtube.com/embed/bv8Fxk0sz7I"
-                        target="_blank"
-                      >
-                        <Img
-                          src="images/img_image_30.png"
-                          alt="imagethirty"
-                          className="h-[230px] w-[230px] object-cover"
-                        />
-                      </a>
-                    </div>
-                    <div className="flex w-[86%] flex-col items-start gap-[11px] md:w-full md:p-5">
-                      <Text size="xs" as="p" className="!text-blue_gray-600">
-                        Thời trang
-                      </Text>
-                      <a
-                        href="https://www.youtube.com/embed/bv8Fxk0sz7I"
-                        target="_blank"
-                      >
-                        <Heading as="h6" className="w-full leading-[150%]">
-                          Áo Hoodie Nike dành cho mùa đông lạnh
-                        </Heading>
-                      </a>
-                      <div className="flex w-[70%] items-start gap-2.5 md:w-full">
-                        <RatingBar
-                          value={1}
-                          isEditable={true}
-                          size={10}
-                          className="flex justify-between rounded-[5px]"
-                        />
-                        <Text size="xs" as="p" className="!text-blue_gray-600">
-                          3,014 đánh giá
-                        </Text>
-                      </div>
-                      <div className="flex flex-wrap items-center gap-2.5">
-                        <Heading size="3xl" as="h6" className="flex">
-                          <span className="text-blue_gray-900_02">278.000</span>
-                          <a
-                            href="#"
-                            className="text-blue_gray-900_02 underline"
-                          >
-                            đ
-                          </a>
-                        </Heading>
-                        <Text
-                          size="md"
-                          as="p"
-                          className="self-start capitalize !text-blue_gray-600 line-through"
-                        >
-                          328.000đ
-                        </Text>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex w-full flex-col items-center border border-solid border-gray-200_01 bg-white-A700 pb-[25px] sm:pb-5">
-                    <div className="self-stretch bg-white-A700 px-5 py-[25px] sm:py-5">
-                      <a
-                        href="https://www.youtube.com/embed/bv8Fxk0sz7I"
-                        target="_blank"
-                      >
-                        <Img
-                          src="images/img_image_30_2.png"
-                          alt="imagethirty"
-                          className="h-[230px] w-[230px] object-cover"
-                        />
-                      </a>
-                    </div>
-                    <div className="flex w-[86%] flex-col items-start gap-[11px] md:w-full md:p-5">
-                      <Text size="xs" as="p" className="!text-blue_gray-600">
-                        Thời trang
-                      </Text>
-                      <a
-                        href="https://www.youtube.com/embed/bv8Fxk0sz7I"
-                        target="_blank"
-                      >
-                        <Heading as="h6" className="w-full leading-[150%]">
-                          Áo nỉ chần bông màu xám có dây Nike
-                        </Heading>
-                      </a>
-                      <div className="flex w-[70%] items-start gap-2.5 md:w-full">
-                        <RatingBar
-                          value={1}
-                          isEditable={true}
-                          size={10}
-                          className="flex justify-between rounded-[5px]"
-                        />
-                        <Text size="xs" as="p" className="!text-blue_gray-600">
-                          3,014 đánh giá
-                        </Text>
-                      </div>
-                      <div className="flex flex-wrap items-center gap-2.5">
-                        <Heading size="3xl" as="h6" className="flex">
-                          <span className="text-blue_gray-900_02">278.000</span>
-                          <a
-                            href="#"
-                            className="text-blue_gray-900_02 underline"
-                          >
-                            đ
-                          </a>
-                        </Heading>
-                        <Text
-                          size="md"
-                          as="p"
-                          className="self-start capitalize !text-blue_gray-600 line-through"
-                        >
-                          328.000đ
-                        </Text>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex w-full flex-col items-center border border-solid border-gray-200_01 bg-white-A700 pb-[25px] sm:pb-5">
-                    <div className="self-stretch bg-white-A700 px-5 py-[25px] sm:py-5">
-                      <a
-                        href="https://www.youtube.com/embed/bv8Fxk0sz7I"
-                        target="_blank"
-                      >
-                        <Img
-                          src="images/img_image_30_230x230.png"
-                          alt="imagethirty"
-                          className="h-[230px] w-[230px] object-cover"
-                        />
-                      </a>
-                    </div>
-                    <div className="flex w-[86%] flex-col items-start gap-[11px] md:w-full md:p-5">
-                      <Text size="xs" as="p" className="!text-blue_gray-600">
-                        Thời trang
-                      </Text>
-                      <a
-                        href="https://www.youtube.com/embed/bv8Fxk0sz7I"
-                        target="_blank"
-                      >
-                        <Heading as="h6" className="w-full leading-[150%]">
-                          Khoác gió chống nắng thời trang Adidas
-                        </Heading>
-                      </a>
-                      <div className="flex w-[70%] items-start gap-2.5 md:w-full">
-                        <RatingBar
-                          value={1}
-                          isEditable={true}
-                          size={10}
-                          className="flex justify-between rounded-[5px]"
-                        />
-                        <Text size="xs" as="p" className="!text-blue_gray-600">
-                          3,014 đánh giá
-                        </Text>
-                      </div>
-                      <div className="flex flex-wrap items-center gap-2.5">
-                        <Heading size="3xl" as="h6" className="flex">
-                          <span className="text-blue_gray-900_02">278.000</span>
-                          <a
-                            href="#"
-                            className="text-blue_gray-900_02 underline"
-                          >
-                            đ
-                          </a>
-                        </Heading>
-                        <Text
-                          size="md"
-                          as="p"
-                          className="self-start capitalize !text-blue_gray-600 line-through"
-                        >
-                          328.000đ
-                        </Text>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex w-full flex-col items-center border border-solid border-gray-200_01 bg-white-A700 pb-[25px] sm:pb-5">
-                    <div className="self-stretch bg-white-A700 px-5 py-[25px] sm:py-5">
-                      <a
-                        href="https://www.youtube.com/embed/bv8Fxk0sz7I"
-                        target="_blank"
-                      >
-                        <Img
-                          src="images/img_image_30_230x230.png"
-                          alt="imagethirty"
-                          className="h-[230px] w-[230px] object-cover"
-                        />
-                      </a>
-                    </div>
-                    <div className="flex w-[86%] flex-col items-start gap-[11px] md:w-full md:p-5">
-                      <Text size="xs" as="p" className="!text-blue_gray-600">
-                        Thời trang
-                      </Text>
-                      <a
-                        href="https://www.youtube.com/embed/bv8Fxk0sz7I"
-                        target="_blank"
-                      >
-                        <Heading as="h6" className="w-full leading-[150%]">
-                          Khoác gió chống nắng thời trang Adidas
-                        </Heading>
-                      </a>
-                      <div className="flex w-[70%] items-start gap-2.5 md:w-full">
-                        <RatingBar
-                          value={1}
-                          isEditable={true}
-                          size={10}
-                          className="flex justify-between rounded-[5px]"
-                        />
-                        <Text size="xs" as="p" className="!text-blue_gray-600">
-                          3,014 đánh giá
-                        </Text>
-                      </div>
-                      <div className="flex flex-wrap items-center gap-2.5">
-                        <Heading size="3xl" as="h6" className="flex">
-                          <span className="text-blue_gray-900_02">278.000</span>
-                          <a
-                            href="#"
-                            className="text-blue_gray-900_02 underline"
-                          >
-                            đ
-                          </a>
-                        </Heading>
-                        <Text
-                          size="md"
-                          as="p"
-                          className="self-start capitalize !text-blue_gray-600 line-through"
-                        >
-                          328.000đ
-                        </Text>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex w-full flex-col items-center border border-solid border-gray-200_01 bg-white-A700 pb-[25px] sm:pb-5">
-                    <div className="self-stretch bg-white-A700 px-5 py-[25px] sm:py-5">
-                      <a
-                        href="https://www.youtube.com/embed/bv8Fxk0sz7I"
-                        target="_blank"
-                      >
-                        <Img
-                          src="images/img_image_30_3.png"
-                          alt="imagethirty"
-                          className="h-[230px] w-[230px] object-cover"
-                        />
-                      </a>
-                    </div>
-                    <div className="flex w-[86%] flex-col items-start gap-[11px] md:w-full md:p-5">
-                      <Text size="xs" as="p" className="!text-blue_gray-600">
-                        Thời trang
-                      </Text>
-                      <a
-                        href="https://www.youtube.com/embed/bv8Fxk0sz7I"
-                        target="_blank"
-                      >
-                        <Heading as="h6" className="w-full leading-[150%]">
-                          Áo khoác unisex màu trắng tập gym Adidas
-                        </Heading>
-                      </a>
-                      <div className="flex w-[70%] items-start gap-2.5 md:w-full">
-                        <RatingBar
-                          value={1}
-                          isEditable={true}
-                          size={10}
-                          className="flex justify-between rounded-[5px]"
-                        />
-                        <Text size="xs" as="p" className="!text-blue_gray-600">
-                          3,014 đánh giá
-                        </Text>
-                      </div>
-                      <div className="flex flex-wrap items-center gap-2.5">
-                        <Heading size="3xl" as="h6" className="flex">
-                          <span className="text-blue_gray-900_02">278.000</span>
-                          <a
-                            href="#"
-                            className="text-blue_gray-900_02 underline"
-                          >
-                            đ
-                          </a>
-                        </Heading>
-                        <Text
-                          size="md"
-                          as="p"
-                          className="self-start capitalize !text-blue_gray-600 line-through"
-                        >
-                          328.000đ
-                        </Text>
-                      </div>
-                    </div>
-                  </div>
+                    </Link>
+                  ))}
                 </div>
-                <SalesShopPagination className="w-[35%] gap-[22px] md:w-full" />
+
+
+                <SalesShopPagination className="w-[44%] gap-[10px] md:w-full mt-2" />
+
+
               </div>
+
             </div>
             <div className="flex w-[66%] flex-col gap-[30px] md:w-full">
               <div className="flex w-[65%] flex-col items-start md:w-full">
