@@ -1,8 +1,34 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
+import axios from "axios";
 import { Text, Heading, Img } from "../../components";
+import { useLocation } from 'react-router-dom';
 
 export default function PaymentSuccessPage() {
+  const [order, setOrder] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const location = useLocation();
+  const { orderId } = location.state;
+  useEffect(() => {
+    axios.get(`http://localhost:8080/guest/api/orders/id?id=${orderId}`)
+      .then(response => {
+        setOrder(response.data);
+        setLoading(false);
+      })
+      .catch(error => {
+        console.error("Error fetching the order:", error);
+        setLoading(false);
+      });
+      console.log("Order", orderId);
+  }, [orderId]);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (!order) {
+    return <div>Error loading order details</div>;
+  }
 
   return (
     <>
@@ -26,14 +52,11 @@ export default function PaymentSuccessPage() {
             </Text>
             <div className="flex w-[80%] flex-col items-center gap-[46px] self-end md:w-full">
               <div className="flex flex-col items-center">
-                {/* <div className="flex flex-col items-center rounded-[40px] bg-green-A700_02 px-6 pb-5 pt-6 sm:px-5 sm:pt-5">
-                  
-                </div> */}
                 <Img
-                    src="images/img_checkmark.svg"
-                    alt="checkmark"
-                    className="h-[75px]"
-                  />
+                  src="images/img_checkmark.svg"
+                  alt="checkmark"
+                  className="h-[75px]"
+                />
                 <Heading size="5xl" as="h1" className="mt-1 uppercase">
                   Đơn hàng của bạn đã hoàn tất!
                 </Heading>
@@ -59,14 +82,14 @@ export default function PaymentSuccessPage() {
                           as="h2"
                           className="self-start !font-semibold capitalize"
                         >
-                          039422
+                          {order.id}
                         </Heading>
                         <Heading
                           size="lg"
                           as="h3"
                           className="!font-semibold capitalize"
                         >
-                          27/04/2024
+                          {new Date(order.orderDate).toLocaleDateString()}
                         </Heading>
                       </div>
                     </div>
@@ -80,7 +103,7 @@ export default function PaymentSuccessPage() {
                           as="h4"
                           className="flex !font-semibold capitalize"
                         >
-                          <span className="text-blue_gray-900_02">300.000đ</span>
+                          <span className="text-blue_gray-900_02">{order.totalAmount}đ</span>
                         </Heading>
                       </div>
                       <div className="flex flex-col gap-2.5">
@@ -92,7 +115,7 @@ export default function PaymentSuccessPage() {
                           as="h5"
                           className="!font-semibold capitalize"
                         >
-                          Chuyển khoản trực tiếp
+                          {order.payment_method}
                         </Heading>
                       </div>
                     </div>
@@ -111,22 +134,16 @@ export default function PaymentSuccessPage() {
                       <div className="h-px bg-gray-200_01" />
                     </div>
                     <div className="mt-2.5 flex flex-col gap-3.5">
-                      <div className="flex flex-wrap justify-between gap-5">
-                        <Text size="lg" as="p" className="self-start">
-                          Áo thun Nam màu trơn
-                        </Text>
-                        <Text size="lg" as="p" className="flex self-end">
-                          <span className="text-blue_gray-900_02">150.000đ</span>
-                        </Text>
-                      </div>
-                      <div className="flex flex-wrap justify-between gap-5">
-                        <Text size="lg" as="p" className="self-start">
-                          Áo thun Nam màu trơn
-                        </Text>
-                        <Text size="lg" as="p" className="flex self-end">
-                          <span className="text-blue_gray-900_02">150.000đ</span>
-                        </Text>
-                      </div>
+                      {order.cart_items.map(item => (
+                        <div key={item.id} className="flex flex-wrap justify-between gap-5">
+                          <Text size="lg" as="p" className="self-start">
+                            {item.name || "Unnamed Product"}
+                          </Text>
+                          <Text size="lg" as="p" className="flex self-end">
+                            <span className="text-blue_gray-900_02">{item.price}đ</span>
+                          </Text>
+                        </div>
+                      ))}
                     </div>
                     <div className="mt-[9px] flex flex-col gap-4">
                       <div className="h-px bg-gray-200_01" />
@@ -135,7 +152,7 @@ export default function PaymentSuccessPage() {
                           Tổng đơn hàng
                         </Text>
                         <Text as="p" className="flex self-end">
-                          <span className="text-blue_gray-900_02">300.000đ</span>
+                          <span className="text-blue_gray-900_02">{order.totalAmount}đ</span>
                         </Text>
                       </div>
                       <div className="h-px bg-gray-200_01" />
@@ -158,7 +175,7 @@ export default function PaymentSuccessPage() {
                     </div>
                     <div className="mt-4 flex flex-wrap justify-between gap-5">
                       <Text as="p">Hình thức thanh toán</Text>
-                      <Text as="p">Chuyển khoản trực tiếp</Text>
+                      <Text as="p">{order.payment_method}</Text>
                     </div>
                     <div className="mt-[17px] flex flex-col gap-4">
                       <div className="h-px bg-gray-200_01" />
@@ -167,7 +184,7 @@ export default function PaymentSuccessPage() {
                           Tổng cộng
                         </Text>
                         <Text as="p" className="flex">
-                          <span className="text-blue_gray-900_02">300.000đ</span>
+                          <span className="text-blue_gray-900_02">{order.totalAmount}đ</span>
                         </Text>
                       </div>
                     </div>

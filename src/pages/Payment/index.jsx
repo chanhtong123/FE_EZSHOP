@@ -2,15 +2,11 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Helmet } from "react-helmet";
 import { useNavigate } from "react-router-dom";
-import axiosInstance from '../../config/axiosConfig';
-import { getToken, removeToken } from '../../utils/authUtils';
-
+import { useLocation } from "react-router-dom";
 
 import { Button, CheckBox, Heading, Text, Input, Img } from "../../components";
 
 export default function PaymentPage() {
-  const [cart, setCart] = useState(null);
-  const [cartItems, setCartItems] = useState([]);
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -20,85 +16,23 @@ export default function PaymentPage() {
     ward: "",
     phone: "",
     email: "",
-    notes: ""
+    notes: "",
   });
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
-  const [totalAmount, setTotalAmount] = useState(0);
-
+  const location = useLocation();
+  const { totalAmount } = location.state || { totalAmount: 10 };
+  const [orderId, setOrderId] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
     if (success) {
-      navigate("/paymentsuccess");
+      navigate("/paymentsuccess", { state: { orderId } });
     }
-    const token = getToken();
-
-    if (!token) {
-      navigate('/login');
-      return;
-    }
-
-
-    const fetchProfileItems = async () => {
-      try {
-        const response = await axiosInstance.get('/api/cart/user', {
-          headers: {
-            'Authorization': `Bearer ${token}`
-          }
-        });
-        setCart(response.data);
-        if (response.data && response.data.id) {
-          fetchCartItems(response.data.id, token);
-        }
-      } catch (error) {
-        if (error.response && error.response.status === 403) {
-          removeToken();
-          navigate('/login');
-        } else {
-          console.error('Đã xảy ra lỗi khi lấy dữ liệu.', error);
-        }
-      }
-    };
-
-    const fetchCartItems = async (cartId, token) => {
-      try {
-        const response = await axiosInstance.get(`/cart_item/${cartId}`, {
-          headers: {
-            'Authorization': `Bearer ${token}`
-          }
-        });
-        const formattedCartItems = response.data.map(item => ({
-          card_detail_id: item.id,
-          rowngi: item.price,
-          total: item.price,
-          name: item.product.name,
-          image: item.product.image,
-          shop: `${item.shop.nameShop}`,
-          shopImage: `${item.shop.image}`
-        }));
-        setCartItems(formattedCartItems);
-        calculateTotalAmount(formattedCartItems);
-      } catch (error) {
-        console.error('Đã xảy ra lỗi khi lấy dữ liệu các mặt hàng trong giỏ hàng.', error);
-      }
-
-      fetchProfileItems();
-    };
-
-   
-    // getOrderDetail();
-  }, [success, navigate]);
-
-  // const getOrderDetail = async (async) => {
-  //   const response = await axios.get(
-  //     "http://localhost:8080/guest/api/order-details/order_id?order_id=1"
-  //   );
-  //   console.log(response.data);
-  //   setOrderDetail(response.data);
-  // };
+    console.log(totalAmount);
+  }, [success, navigate, totalAmount, orderId, setOrderId]);
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -107,14 +41,6 @@ export default function PaymentPage() {
       [name]: type === "checkbox" ? checked : value,
     }));
   };
-
-
-  const calculateTotalAmount = (items) => {
-    const total = items.reduce((acc, item) => acc + item.total, 0);
-    setTotalAmount(total);
-  };
-
-
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -133,7 +59,7 @@ export default function PaymentPage() {
           userId: 1,
           shopId: 1,
           orderDetailId: 1,
-          totalAmount: 1000,
+          totalAmount: totalAmount,
           customerName: "string",
           profit: 111,
           paymentStatus: 1,
@@ -147,17 +73,16 @@ export default function PaymentPage() {
           active: true,
           payment_method: "string",
           shipping_method: "string",
-          shipping_date: "2024-06-12",
+          shipping_date: "2024-06-14",
           fullName: fullName,
           phone_number: "string",
-          cart_items: [{ id: 1, product_id: 1, quantity: 2 }],
           ...formData,
         }
       );
-
       if (response.status === 201) {
         setSuccess(true);
       }
+      setOrderId(response.data.id);
     } catch (error) {
       setError(
         "Failed to create order: " +
@@ -196,234 +121,249 @@ export default function PaymentPage() {
               THANH TOÁN
             </Heading>
           </div>
-          <div className="flex items-start justify-between gap-5 md:flex-col">
-            <form
-              className="flex w-[61%] flex-col items-start gap-[46px] md:w-full"
-              onSubmit={handleSubmit}
-            >
-              <div className="flex flex-col items-start gap-7 self-stretch">
-                <Heading size="5xl" as="h2" className="uppercase">
-                  Thông tin thanh toán
-                </Heading>
-                <div className="flex flex-col gap-6 self-stretch">
-                  <div className="flex flex-col gap-[23px]">
-                    <div className="flex gap-[30px] md:flex-col">
-                      <div className="flex w-full flex-col items-start gap-[13px]">
+          <form onSubmit={handleSubmit}>
+            <div className="flex items-start justify-between gap-5 md:flex-col">
+              <div className="flex w-[61%] flex-col items-start gap-[46px] md:w-full">
+                <div className="flex flex-col items-start gap-7 self-stretch">
+                  <Heading size="5xl" as="h2" className="uppercase">
+                    Thông tin thanh toán
+                  </Heading>
+                  <div className="flex flex-col gap-6 self-stretch">
+                    <div className="flex flex-col gap-[23px]">
+                      <div className="flex gap-[30px] md:flex-col">
+                        <div className="flex w-full flex-col items-start gap-[13px]">
+                          <Heading
+                            size="lg"
+                            as="h3"
+                            className="!font-semibold capitalize"
+                          >
+                            Họ*
+                          </Heading>
+                          <Input
+                            size="2xl"
+                            shape="round"
+                            name="firstName"
+                            value={formData.firstName}
+                            onChange={handleChange}
+                            className="self-stretch border border-solid border-gray-200_01 sm:pr-5"
+                            required
+                          />
+                        </div>
+                        <div className="flex w-full flex-col items-start gap-[15px]">
+                          <Heading
+                            size="lg"
+                            as="h4"
+                            className="!font-semibold capitalize"
+                          >
+                            Tên*
+                          </Heading>
+                          <Input
+                            size="2xl"
+                            shape="round"
+                            name="lastName"
+                            value={formData.lastName}
+                            onChange={handleChange}
+                            className="self-stretch border border-solid border-gray-200_01 sm:pr-5"
+                            required
+                          />
+                        </div>
+                      </div>
+                      <div className="flex flex-col items-start gap-3.5">
                         <Heading
                           size="lg"
-                          as="h3"
+                          as="h5"
                           className="!font-semibold capitalize"
                         >
-                          Họ*
+                          Địa chỉ *
                         </Heading>
                         <Input
                           size="2xl"
                           shape="round"
-                          name="firstName"
-                          value={formData.firstName}
+                          name="address"
+                          value={formData.address}
                           onChange={handleChange}
                           className="self-stretch border border-solid border-gray-200_01 sm:pr-5"
-                          required
                         />
                       </div>
-                      <div className="flex w-full flex-col items-start gap-[15px]">
+                      <div className="flex flex-col items-start gap-4">
                         <Heading
                           size="lg"
-                          as="h4"
+                          as="h6"
                           className="!font-semibold capitalize"
                         >
-                          Tên*
+                          Tỉnh *
                         </Heading>
                         <Input
                           size="2xl"
                           shape="round"
-                          name="lastName"
-                          value={formData.lastName}
+                          name="province"
+                          value={formData.province}
                           onChange={handleChange}
                           className="self-stretch border border-solid border-gray-200_01 sm:pr-5"
-                          required
                         />
+                      </div>
+                      <div className="flex flex-col items-start gap-3.5">
+                        <Heading
+                          size="lg"
+                          as="p"
+                          className="!font-semibold capitalize"
+                        >
+                          Quận *
+                        </Heading>
+                        <Input
+                          size="2xl"
+                          shape="round"
+                          name="district"
+                          value={formData.district}
+                          onChange={handleChange}
+                          className="self-stretch border border-solid border-gray-200_01 sm:pr-5"
+                        />
+                      </div>
+                      <div className="flex flex-col items-start gap-[15px]">
+                        <Heading
+                          size="lg"
+                          as="p"
+                          className="!font-semibold capitalize"
+                        >
+                          Huyện *
+                        </Heading>
+                        <Input
+                          size="2xl"
+                          shape="round"
+                          name="ward"
+                          value={formData.ward}
+                          onChange={handleChange}
+                          className="self-stretch border border-solid border-gray-200_01 sm:pr-5"
+                        />
+                      </div>
+                      <div className="flex gap-[30px] md:flex-col">
+                        <div className="flex w-full flex-col items-start gap-3.5">
+                          <Heading
+                            size="lg"
+                            as="p"
+                            className="!font-semibold capitalize"
+                          >
+                            Số điện thoại *
+                          </Heading>
+                          <Input
+                            shape="round"
+                            name="phone"
+                            placeholder={`+84 `}
+                            value={formData.phone}
+                            onChange={handleChange}
+                            className="self-stretch border border-solid border-gray-200_01 sm:pr-5"
+                          />
+                        </div>
+                        <div className="flex w-full flex-col items-start gap-3.5">
+                          <Heading
+                            size="lg"
+                            as="p"
+                            className="!font-semibold capitalize"
+                          >
+                            Địa chỉ Email*
+                          </Heading>
+                          <Input
+                            size="2xl"
+                            shape="round"
+                            name="email"
+                            value={formData.email}
+                            onChange={handleChange}
+                            className="self-stretch border border-solid border-gray-200_01 sm:pr-5"
+                          />
+                        </div>
                       </div>
                     </div>
+                  </div>
+                </div>
+                <div className="flex flex-col items-start gap-[29px] self-stretch">
+                  <Heading size="5xl" as="h5" className="uppercase">
+                    Chi tiết về vận chuyển
+                  </Heading>
+                  <div className="flex flex-col gap-[18px] self-stretch">
                     <div className="flex flex-col items-start gap-3.5">
-                      <Heading
-                        size="lg"
-                        as="h5"
-                        className="!font-semibold capitalize"
-                      >
-                        Địa chỉ *
-                      </Heading>
-                      <Input
-                        size="2xl"
-                        shape="round"
-                        name="address"
-                        value={formData.address}
-                        onChange={handleChange}
-                        className="self-stretch border border-solid border-gray-200_01 sm:pr-5"
-                      />
-                    </div>
-                    <div className="flex flex-col items-start gap-4">
                       <Heading
                         size="lg"
                         as="h6"
                         className="!font-semibold capitalize"
                       >
-                        Tỉnh *
+                        Ghi chú
                       </Heading>
                       <Input
-                        size="2xl"
                         shape="round"
-                        name="province"
-                        value={formData.province}
+                        name="notes"
+                        value={formData.notes}
                         onChange={handleChange}
                         className="self-stretch border border-solid border-gray-200_01 sm:pr-5"
                       />
-                    </div>
-                    <div className="flex flex-col items-start gap-3.5">
-                      <Heading
-                        size="lg"
-                        as="p"
-                        className="!font-semibold capitalize"
-                      >
-                        Quận *
-                      </Heading>
-                      <Input
-                        size="2xl"
-                        shape="round"
-                        name="district"
-                        value={formData.district}
-                        onChange={handleChange}
-                        className="self-stretch border border-solid border-gray-200_01 sm:pr-5"
-                      />
-                    </div>
-                    <div className="flex flex-col items-start gap-[15px]">
-                      <Heading
-                        size="lg"
-                        as="p"
-                        className="!font-semibold capitalize"
-                      >
-                        Huyện *
-                      </Heading>
-                      <Input
-                        size="2xl"
-                        shape="round"
-                        name="ward"
-                        value={formData.ward}
-                        onChange={handleChange}
-                        className="self-stretch border border-solid border-gray-200_01 sm:pr-5"
-                      />
-                    </div>
-                    <div className="flex gap-[30px] md:flex-col">
-                      <div className="flex w-full flex-col items-start gap-3.5">
-                        <Heading
-                          size="lg"
-                          as="p"
-                          className="!font-semibold capitalize"
-                        >
-                          Số điện thoại *
-                        </Heading>
-                        <Input
-                          shape="round"
-                          name="phone"
-                          placeholder={`+84 `}
-                          value={formData.phone}
-                          onChange={handleChange}
-                          className="self-stretch border border-solid border-gray-200_01 sm:pr-5"
-                        />
-                      </div>
-                      <div className="flex w-full flex-col items-start gap-3.5">
-                        <Heading
-                          size="lg"
-                          as="p"
-                          className="!font-semibold capitalize"
-                        >
-                          Địa chỉ Email*
-                        </Heading>
-                        <Input
-                          size="2xl"
-                          shape="round"
-                          name="email"
-                          value={formData.email}
-                          onChange={handleChange}
-                          className="self-stretch border border-solid border-gray-200_01 sm:pr-5"
-                        />
-                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-              <div className="flex flex-col items-start gap-[29px] self-stretch">
-                <Heading size="5xl" as="h5" className="uppercase">
-                  Chi tiết về vận chuyển
-                </Heading>
-                <div className="flex flex-col gap-[18px] self-stretch">
-                  {/* <CheckBox
-                    name="shipToDifferentAddress"
-                    checked={formData.shipToDifferentAddress}
-                    onChange={handleChange}
-                    label="Giao hàng tới địa chỉ khác?"
-                    className="text-blue_gray-900_01"
-                    inputclassname="mr-[5px]"
-                    shape="round"
-                    variant="primary"
-                  /> */}
-                  <div className="flex flex-col items-start gap-3.5">
-                    <Heading
-                      size="lg"
-                      as="h6"
-                      className="!font-semibold capitalize"
-                    >
-                      Ghi chú
-                    </Heading>
-                    <Input
-                      shape="round"
-                      name="notes"
-                      value={formData.notes}
-                      onChange={handleChange}
-                      className="self-stretch border border-solid border-gray-200_01 sm:pr-5"
-                    />
-                  </div>
-                </div>
-              </div>
-              <Button type="submit" disabled={loading} className="mt-6">
-                {loading ? "Đang xử lý..." : "Đặt hàng"}
-              </Button>
-              {error && <Text className="text-red-500 mt-4">{error}</Text>}
-              {success && (
-                <Text className="text-green-500 mt-4">
-                  Order created successfully!
-                </Text>
-              )}
-            </form>
-            <div className="w-[32%] md:w-full">
-              <div className="flex flex-col items-start gap-[13px] rounded-md border border-solid border-gray-200_01 bg-white-A700 pb-[68px] pl-[30px] pr-[29px] pt-[26px] md:pb-5 sm:p-5">
-                <Heading size="5xl" as="h5" className="uppercase">
-                  Đơn hàng của bạn
-                </Heading>
-                <div className="flex flex-col gap-7 self-stretch">
-                 
-                      <div className="flex justify-between py-2">
-                        <Text size="md" as="p">
-                          Áo thun
-                        </Text>
-                        <Heading
-                          size="lg"
-                          as="p"
-                          className="flex !font-semibold "
-                        >
-                          <span className="text-lg text-blue_gray-900_02">
+              <div className="w-[32%] md:w-full">
+                <div className="flex flex-col items-start gap-[13px] rounded-md border border-solid border-gray-200_01 bg-white-A700 pb-[68px] pl-[30px] pr-[29px] pt-[26px] md:pb-5 sm:p-5">
+                  <Heading size="5xl" as="h5" className="uppercase">
+                    Đơn hàng của bạn
+                  </Heading>
+                  <div className="flex flex-col gap-7 self-stretch">
+                    <div className="flex justify-between py-2">
+                      <Text size="md" as="p">
+                        Áo thun
+                      </Text>
+                      <Heading
+                        size="lg"
+                        as="p"
+                        className="flex !font-semibold "
+                      >
+                        <span className="text-lg text-blue_gray-900_02">
                           {totalAmount}đ
-                          </span>
-                        </Heading>
+                        </span>
+                      </Heading>
+                    </div>
+
+                    <div className="flex flex-col gap-[25px]">
+                      <div className="flex flex-1">
+                        <div className="flex w-full flex-col gap-2.5">
+                          <div className="h-px bg-gray-200_01" />
+                          <div className="flex flex-wrap justify-between gap-5">
+                            <Text size="md" as="p" className="self-start">
+                              Sub Total
+                            </Text>
+                            <Heading
+                              size="lg"
+                              as="p"
+                              className="flex self-end !font-semibold capitalize"
+                            >
+                              <span className="text-lg text-blue_gray-900_02">
+                                0đ
+                              </span>
+                            </Heading>
+                          </div>
+                        </div>
                       </div>
-                  
-                  <div className="flex flex-col gap-[25px]">
-                    <div className="flex flex-1">
-                      <div className="flex w-full flex-col gap-2.5">
+                      <div className="flex flex-1">
+                        <div className="flex w-full flex-col gap-3">
+                          <div className="h-px bg-gray-200_01" />
+                          <div className="flex flex-wrap justify-between gap-5">
+                            <Text size="md" as="p" className="self-start">
+                              Shipping
+                            </Text>
+                            <Heading
+                              size="lg"
+                              as="p"
+                              className="flex !font-semibold capitalize"
+                            >
+                              <span className="text-lg text-blue_gray-900_02">
+                                0đ
+                              </span>
+                            </Heading>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="flex flex-1 flex-col gap-2.5">
                         <div className="h-px bg-gray-200_01" />
                         <div className="flex flex-wrap justify-between gap-5">
                           <Text size="md" as="p" className="self-start">
-                            Sub Total
+                            Total
                           </Text>
                           <Heading
                             size="lg"
@@ -431,134 +371,100 @@ export default function PaymentPage() {
                             className="flex self-end !font-semibold capitalize"
                           >
                             <span className="text-lg text-blue_gray-900_02">
-                              1278.000đ
+                              {totalAmount}đ
                             </span>
                           </Heading>
                         </div>
-                      </div>
-                    </div>
-                    <div className="flex flex-1">
-                      <div className="flex w-full flex-col gap-3">
-                        <div className="h-px bg-gray-200_01" />
-                        <div className="flex flex-wrap justify-between gap-5">
-                          <Text size="md" as="p" className="self-start">
-                            Shipping
-                          </Text>
-                          <Heading
-                            size="lg"
-                            as="p"
-                            className="flex !font-semibold capitalize"
-                          >
-                            <span className="text-lg text-blue_gray-900_02">
-                              28.000đ
-                            </span>
-                          </Heading>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="flex flex-1 flex-col gap-2.5">
-                      <div className="h-px bg-gray-200_01" />
-                      <div className="flex flex-wrap justify-between gap-5">
-                        <Text size="md" as="p" className="self-start">
-                          Total
-                        </Text>
-                        <Heading
-                          size="lg"
-                          as="p"
-                          className="flex self-end !font-semibold capitalize"
-                        >
-                          <span className="text-lg text-blue_gray-900_02">
-                          {totalAmount}đ
-                          </span>
-                        </Heading>
                       </div>
                     </div>
                   </div>
                 </div>
-            
-              </div>
 
-              <div className="mt-[30px] flex flex-col gap-2">
-                <div className="flex flex-col items-start gap-5 rounded-md border border-solid border-gray-200_01 bg-white-A700 px-[30px] pb-[37px] pt-[30px] sm:p-5">
-                  <Heading size="5xl" as="h5" className="uppercase">
-                    Thông tin thanh toán
-                  </Heading>
-                  <div className="flex flex-col items-start gap-[17px] self-stretch">
-                    <div className="flex flex-col items-start gap-2 self-stretch">
-                      <Heading as="h6">Chuyển khoản trực tiếp</Heading>
-                      <Text
-                        size="md"
-                        as="p"
-                        className="w-full leading-[17px] !text-blue_gray-600"
-                      >
-                        Thực hiện thanh toán trực tiếp vào tài khoản ngân hàng
-                        của chúng tôi. Vui lòng sử dụng ID đơn hàng của bạn làm
-                        tài liệu tham khảo thanh toán.
-                      </Text>
+                <div className="mt-[30px] flex flex-col gap-2">
+                  <div className="flex flex-col items-start gap-5 rounded-md border border-solid border-gray-200_01 bg-white-A700 px-[30px] pb-[37px] pt-[30px] sm:p-5">
+                    <Heading size="5xl" as="h5" className="uppercase">
+                      Thông tin thanh toán
+                    </Heading>
+                    <div className="flex flex-col items-start gap-[17px] self-stretch">
                       <div className="flex flex-col items-start gap-2 self-stretch">
-                        <div className="flex gap-2.5">
-                          <Img
-                            src="images/img_television_gray_100_04.svg"
-                            alt="television"
-                            className="h-[24px]"
-                          />
-                          <Img
-                            src="images/img_close_gray_100_04.svg"
-                            alt="close"
-                            className="h-[24px]"
-                          />
-                          <Img
-                            src="images/img_3.svg"
-                            alt="three"
-                            className="h-[24px]"
-                          />
-                          <Img
-                            src="images/img_4.png"
-                            alt="four"
-                            className="h-[24px] object-cover"
-                          />
-                          <Img
-                            src="images/img_television_gray_100_04_24x38.svg"
-                            alt="television"
-                            className="h-[24px]"
-                          />
-                          <Img
-                            src="images/img_thumbs_up.svg"
-                            alt="thumbsup"
-                            className="h-[24px]"
-                          />
+                        <Heading as="h6">Chuyển khoản trực tiếp</Heading>
+                        <Text
+                          size="md"
+                          as="p"
+                          className="w-full leading-[17px] !text-blue_gray-600"
+                        >
+                          Thực hiện thanh toán trực tiếp vào tài khoản ngân hàng
+                          của chúng tôi. Vui lòng sử dụng ID đơn hàng của bạn
+                          làm tài liệu tham khảo thanh toán.
+                        </Text>
+                        <div className="flex flex-col items-start gap-2 self-stretch">
+                          {/* <div className="flex gap-2.5">
+                            <Img
+                              src="images/img_television_gray_100_04.svg"
+                              alt="television"
+                              className="h-[24px]"
+                            />
+                            <Img
+                              src="images/img_close_gray_100_04.svg"
+                              alt="close"
+                              className="h-[24px]"
+                            />
+                            <Img
+                              src="images/img_3.svg"
+                              alt="three"
+                              className="h-[24px]"
+                            />
+                            <Img
+                              src="images/img_4.png"
+                              alt="four"
+                              className="h-[24px] object-cover"
+                            />
+                            <Img
+                              src="images/img_television_gray_100_04_24x38.svg"
+                              alt="television"
+                              className="h-[24px]"
+                            />
+                            <Img
+                              src="images/img_thumbs_up.svg"
+                              alt="thumbsup"
+                              className="h-[24px]"
+                            />
+                          </div> */}
+                          <div className="h-px w-full self-stretch bg-gray-200_01" />
                         </div>
+                      </div>
+                      <div className="flex flex-col items-start gap-4 self-stretch">
+                        <Heading as="h6">Kiểm tra thanh toán</Heading>
                         <div className="h-px w-full self-stretch bg-gray-200_01" />
                       </div>
+                      <Heading as="h6">Thanh toán khi giao hàng</Heading>
                     </div>
-                    <div className="flex flex-col items-start gap-4 self-stretch">
-                      <Heading as="h6">Kiểm tra thanh toán</Heading>
-                      <div className="h-px w-full self-stretch bg-gray-200_01" />
-                    </div>
-                    <Heading as="h6">Thanh toán khi giao hàng</Heading>
                   </div>
+                  <CheckBox
+                    name="dữliệucánhâncủa"
+                    label="Dữ liệu cá nhân của bạn sẽ được sử dụng để xử lý đơn đặt hàng, hỗ trợ trải nghiệm của bạn trên trang web."
+                    id="dliucnhnca"
+                    className="gap-3.5 text-left text-[15px] leading-[22px] text-blue_gray-900_02"
+                  />
                 </div>
-                <CheckBox
-                  name="dữliệucánhâncủa"
-                  label="Dữ liệu cá nhân của bạn sẽ được sử dụng để xử lý đơn đặt hàng, hỗ trợ trải nghiệm của bạn trên trang web."
-                  id="dliucnhnca"
-                  className="gap-3.5 text-left text-[15px] leading-[22px] text-blue_gray-900_02"
-                />
-              </div>
-              <a
-                href="https://www.youtube.com/embed/bv8Fxk0sz7I"
-                target="_blank"
-              >
                 <Button
+                  type="submit"
+                  disabled={loading}
                   size="10x1"
                   shape="round"
                   className="mt-[55px] w-full border border-solid border-green-A700_02 !text-gray-100_02 shadow-sm sm:px-5"
                 >
-                  Thanh Toán
+                  {loading ? "Đang xử lý..." : "Thanh Toán"}
                 </Button>
-              </a>
+                {error && <Text className="text-red-500 mt-4">{error}</Text>}
+                {success && (
+                  <Text className="text-green-500 mt-4">
+                    Order created successfully!
+                  </Text>
+                )}
+              </div>
             </div>
-          </div>
+          </form>
         </div>
       </div>
     </>
