@@ -231,6 +231,7 @@ export default function HomePagePage() {
               <div className="flex items-start justify-between gap-5 self-stretch md:flex-col">
 
                 <div className="flex w-[6%] flex-col items-start gap-[5px] shadow-sm md:w-full">
+                  <a href="/product">
                   <Text
                     size="lg"
                     as="p"
@@ -238,6 +239,7 @@ export default function HomePagePage() {
                   >
                     Xem tất cả
                   </Text>
+                  </a>
                   <div className="h-[2px] w-[32px] bg-gray-900_06" />
                 </div>
               </div>
@@ -362,6 +364,11 @@ export default function HomePagePage() {
                       }}
                       ref={sliderRef2}
                       items={products.map((product) => (
+                        <Link
+                        key={product.id}
+                        to={`/productdetail/${product.id}`}
+                        rel="noopener noreferrer"
+                      >
                         <React.Fragment key={product.id}>
                           <div className="flex md:flex-col">
                             <HomePageSix
@@ -378,6 +385,7 @@ export default function HomePagePage() {
                             />
                           </div>
                         </React.Fragment>
+                        </Link>
                       ))}
                     />
                   </div>
@@ -389,7 +397,7 @@ export default function HomePagePage() {
              
            
             </div>
-            <div className="container-md flex flex-col gap-7 md:p-5">
+            {/* <div className="container-md flex flex-col gap-7 md:p-5">
               <div className="flex items-start justify-between gap-5">
                 <Text size="7xl" as="p">
                   Phụ kiện
@@ -463,7 +471,7 @@ export default function HomePagePage() {
                   />
                 </div>
               </div>
-            </div>
+            </div> */}
             <div className="container-md flex flex-col gap-[31px] md:p-5">
             
             

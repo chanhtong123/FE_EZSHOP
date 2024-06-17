@@ -211,7 +211,7 @@ export default function ProfilePage() {
 
 
                 </div>
-                <div className="mt-12 flex w-[49%] flex-col gap-4 md:w-full">
+                {/* <div className="mt-12 flex w-[49%] flex-col gap-4 md:w-full">
                   <div className="flex flex-col items-start gap-2">
                     <Text as="p">Nhập Mật khẩu</Text>
                     <Input
@@ -300,7 +300,7 @@ export default function ProfilePage() {
                       Hủy bỏ
                     </Text>
                   </div>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
