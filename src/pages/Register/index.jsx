@@ -93,10 +93,7 @@ export default function RegisterPage() {
                     className="self-stretch border border-solid border-gray-200_01 sm:pr-5"
                   />
                 </div>
-                <a
-                  href="https://www.youtube.com/embed/bv8Fxk0sz7I"
-                  target="_blank"
-                >
+               
                   <button
                     size="10xl"
                     type="submit"
@@ -104,25 +101,26 @@ export default function RegisterPage() {
                   >
                     Tạo tài khoản
                   </button>
-                </a>
+               
               </form>
 
-              <a
-                href="https://www.youtube.com/embed/bv8Fxk0sz7I"
-                target="_blank"
-              >
-                <Text size="md" as="p" className="mt-5">
+             
+                <Text size="md" as="p" className="mt-5" style={{ display: 'flex', alignItems: 'center' }}>
                   <span className="text-blue_gray-900_02">
                     Bạn đã có tài khoản?&nbsp;
                   </span>
-                  <span className="text-green-A700_02">Đăng nhập</span>
+
+                  <a className="text-green-A700_02" 
+                  href="/login" style={{ marginLeft: '5px' }}>Đăng nhập
+                 </a>
+                 
                 </Text>
-              </a>
+           
               <div className="mt-[27px] flex w-[13%] items-start md:w-full">
                 <div className="h-[40px] w-[40px] rounded-[20px] bg-white-A700" />
-                <Text size="md" as="p" className="relative ml-[-26px] mt-[9px]">
+                {/* <Text size="md" as="p" className="relative ml-[-26px] mt-[9px]">
                   hoặc
-                </Text>
+                </Text> */}
               </div>
               <div className="mt-[15px] flex gap-4 self-stretch">
                 <div className="flex w-full justify-center rounded-lg border border-solid border-blue-700_01 bg-white-A700 px-[13px] pb-3.5 pt-[13px]">

@@ -127,10 +127,10 @@ export default function LoginPage() {
                 </Text>
               
               <div className="mt-[27px] flex w-[13%] items-start md:w-full">
-                <div className="h-[40px] w-[40px] rounded-[20px] bg-white-A700" />
+                {/* <div className="h-[40px] w-[40px] rounded-[20px] bg-white-A700" />
                 <Text size="md" as="p" className="relative ml-[-26px] mt-[9px]">
                   hoặc
-                </Text>
+                </Text> */}
               </div>
               <div className="mt-[15px] flex gap-4 self-stretch">
                 <div className="flex w-full justify-center rounded-lg border border-solid border-blue-700_01 bg-white-A700 px-[13px] pb-3.5 pt-[13px]">
