@@ -4,7 +4,6 @@ import { Img, Text, Button, Heading } from "../../components";
 import FavoriteProductSidebar from "../../components/FavoriteProductSidebar";
 import { ReactTable } from "../../components/ReactTable";
 import { createColumnHelper } from "@tanstack/react-table";
-
 const dropDownOptions = [
   { label: "Option1", value: "option1" },
   { label: "Option2", value: "option2" },
