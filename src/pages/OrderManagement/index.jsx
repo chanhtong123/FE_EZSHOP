@@ -109,7 +109,7 @@ export default function OrderManagementPage() {
                   </Heading>
                   <div className="flex items-center self-stretch rounded-tl-md rounded-tr-md border-b border-solid border-gray-300_02 md:flex-col">
                     <Button
-                      size="6x1"
+                      size="6xl"
                       variant="text"
                       className="mb-2 ml-10 self-end !
                       font-normal !text-blue_gray-600 hover:!text-green-A700_02 md:ml-0"
@@ -117,42 +117,42 @@ export default function OrderManagementPage() {
                       Chờ xác nhận
                     </Button>
                     <Button
-                      size="6x1"
+                      size="6xl"
                       variant="text"
                       className="mb-2 ml-10 self-end !font-normal !text-blue_gray-600 hover:!text-green-A700_02 md:ml-0"
                     >
                       Đã xác nhận
                     </Button>
                     <Button
-                      size="6x1"
+                      size="6xl"
                       variant="text"
                       className="mb-2 ml-10 self-end !font-normal !text-blue_gray-600 hover:!text-green-A700_02 md:ml-0"
                     >
                       Đang xử lý
                     </Button>
                     <Button
-                      size="6x1"
+                      size="6xl"
                       variant="text"
                       className="mb-2 ml-10 self-end !font-normal !text-blue_gray-600 hover:!text-green-A700_02 md:ml-0"
                     >
                       Đã lấy hàng
                     </Button>
                     <Button
-                      size="6x1"
+                      size="6xl"
                       variant="text"
                       className="mb-2 ml-10 self-end !font-normal !text-blue_gray-600 hover:!text-green-A700_02 md:ml-0"
                     >
                       Đang vận chuyển
                     </Button>
                     <Button
-                      size="6x1"
+                      size="6xl"
                       variant="text"
                       className="mb-2 ml-10 self-end !font-normal !text-blue_gray-600 hover:!text-green-A700_02 md:ml-0"
                     >
                       Đã vận chuyển
                     </Button>
                     <Button
-                      size="6x1"
+                      size="6xl"
                       variant="text"
                       className="mb-2 ml-10 self-end !font-normal !text-blue_gray-600 hover:!text-green-A700_02 md:ml-0"
                     >
@@ -185,7 +185,7 @@ export default function OrderManagementPage() {
                           />
                         )
                       }
-                      className="w-[19%] gap-[35px] !rounded shadow-6x1 sm:w-full"
+                      className="w-[19%] gap-[35px] !rounded shadow-6xl sm:w-full"
                     />
                   </div>
                   <ReactTable
@@ -213,7 +213,6 @@ export default function OrderManagementPage() {
           </div>
         </div>
       </div>
-      <Footer />
     </>
   );
 }

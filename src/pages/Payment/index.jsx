@@ -450,7 +450,7 @@ export default function PaymentPage() {
                 <Button
                   type="submit"
                   disabled={loading}
-                  size="10x1"
+                  size="10xl"
                   shape="round"
                   className="mt-[55px] w-full border border-solid border-green-A700_02 !text-gray-100_02 shadow-sm sm:px-5"
                 >

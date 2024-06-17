@@ -151,7 +151,7 @@ export default function DashboardADMINPage() {
           <div className="flex gap-[5px] justify-center">
             <Button
               color="green_A700_e5"
-              size="3x1"
+              size="3xl"
               shape="round"
               className="w-[40px] !rounded-[5px]"
             >

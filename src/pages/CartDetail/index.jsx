@@ -318,7 +318,7 @@ export default function CartDetailPage() {
                       </div>
                     </div>
                     <Button
-                      size="10x1"
+                      size="10xl"
                       shape="round"
                       className="w-full border border-solid border-green-A700_02 !text-gray-100_02 shadow-sm sm:px-5"
                       onClick={handlePaymentNavigation}
@@ -342,7 +342,7 @@ export default function CartDetailPage() {
                     </Heading>
                   </div>
                   <Button
-                    size="10x1"
+                    size="10xl"
                     variant="outline"
                     shape="round"
                     color="red_400"

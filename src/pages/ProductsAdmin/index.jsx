@@ -117,7 +117,7 @@ export default function SalesManagerPage() {
           <div className="flex items-center justify-center  gap-5">
             <Button
               color="green_A700_e5"
-              size="3x1"
+              size="3xl"
               shape="round"
               className="w-[40px] self-center !rounded-[5px]"
             >

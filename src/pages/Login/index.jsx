@@ -9,15 +9,7 @@ import {
   CheckBox,
   Input,
   Heading,
-  SelectBox,
 } from "../../components";
-import Footer1 from "../../components/Footer1";
-
-const dropDownOptions = [
-  { label: "Option1", value: "option1" },
-  { label: "Option2", value: "option2" },
-  { label: "Option3", value: "option3" },
-];
 
 export default function LoginPage() {
   const [userName, setUsername] = useState("");
@@ -41,7 +33,7 @@ export default function LoginPage() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const redirectTo = new URLSearchParams(location.search).get('redirect') || '/homepage';
+    const redirectTo = new URLSearchParams(location.search).get('redirect') || '/';
     handleLogin(redirectTo);
   };
  
@@ -56,13 +48,9 @@ export default function LoginPage() {
           content="Web site created using create-react-app"
         />
       </Helmet>
-      <div className="flex w-full flex-col items-center gap-[71px] bg-white-A700 md:gap-[53px] sm:gap-[35px] pt-16">
 
-
-
-
-
-        <div className="container-md pl-[479px] pr-[480px] md:p-5 md:px-5">
+      <div className="flex w-full flex-col items-center gap-[71px] bg-gray-50_07 md:gap-[53px] sm:gap-[35px] pt-16 pb-16">
+        <div >
           <div className="flex flex-col items-start gap-[22px] rounded-md border border-solid border-gray-200_01 bg-white-A700 pb-[47px] pl-[41px] pr-10 pt-10 shadow-xs md:pb-5 md:pl-5 sm:p-5">
             <Heading size="8xl" as="h1" className=" uppercase ">
               Đăng nhập
@@ -73,19 +61,19 @@ export default function LoginPage() {
               <div className="flex flex-col gap-[22px] self-stretch">
                 <div className="flex flex-col items-start gap-[11px]">
                   <Heading as="h2">Tài khoản</Heading>
-                  <input
+                  <Input
                    shape="round"
                     // name="your_name"
                     type="text"
                     placeholder=""
                     value={userName}
                     onChange={(e) => setUsername(e.target.value)}
-                    className="self-stretch border border-solid border-blue_gray-900_02 !text-blue_gray-900_02 shadow-md sm:pr-5"
+                    className="self-stretch border border-solid border-gray-200_01 sm:pr-5"
                   />
                 </div>
                 <div className="flex flex-col items-start gap-2.5">
                   <Heading as="h3">Mật khẩu</Heading>
-                  <input
+                  <Input
                     shape="round"
                     // type="password"
                     // name="your_name_one"
@@ -107,14 +95,14 @@ export default function LoginPage() {
                     Quên mật khẩu?
                   </Text>
                 </div>
-                <button
+                <Button
                  size="10xl"
                   shape="round"
                   type="submit"
                   className="w-full border border-solid border-green-A700_02 font-semibold shadow-sm sm:px-5"
-                >
+                  >
                   Đăng nhập
-                </button>
+                </Button>
               </div>
              
                 <Text size="md" as="p" className="mt-5" style={{ display: 'flex', alignItems: 'center' }}>
