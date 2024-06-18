@@ -3,7 +3,7 @@ import { Text, Img } from "./..";
 export default function HomePageOne({
   productimage = "images/img_61jlicovxvl_1.png",
   productname = "Apple",
-  productcount = "29 sản phẩm",
+  productcount = "",
   ...props
 }) {
   return (
@@ -12,11 +12,11 @@ export default function HomePageOne({
       className={`${props.className} flex flex-col items-center w-full`}
     >
       <div className="flex flex-col items-center self-stretch rounded-[75px] bg-gray-100 p-[30px] sm:p-5">
-        <Img
-          src={productimage}
-          alt="apple"
-          className="h-[90px] w-[84%] object-cover"
-        />
+      <Img
+        src={productimage}
+        className="w-[200px] h-[200px] object-cover"
+        alt="Product Image"
+      />
       </div>
       <div className="flex flex-col items-center">
         <Text as="p" className="!font-jost">

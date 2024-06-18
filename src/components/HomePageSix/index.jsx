@@ -11,8 +11,8 @@ export default function HomePageSix({
   ),
   p3014nhgi = "3,014 đánh giá",
   p278000,
-  p328000 = "328.000đ",
-  gimtwenty = "Giảm 20%",
+  p328000 = "",
+  gimtwenty = "",
   bnfiftysix = "Đã bán 56",
   ...props
 }) {
@@ -44,9 +44,9 @@ export default function HomePageSix({
         </div>
         <div className="mt-[11px] flex flex-wrap items-start gap-2.5">
           <Heading size="3xl" as="h6" className="flex">
-            <span className="text-blue_gray-900_02">278.000</span>
+            <span className="text-blue_gray-900_02"></span>
             <a href="#" className="text-blue_gray-900_02 underline">
-              đ
+              
             </a>
           </Heading>
           <Text

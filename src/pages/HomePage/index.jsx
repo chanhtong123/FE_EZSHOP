@@ -23,6 +23,34 @@ import { Link } from "react-router-dom";
 import CustomToast from "../../components/CustomToast";
 
 
+const data = [
+  {
+    productimage: "images/aosomi.jpg",
+    productname: "Áo sơ mi",
+   
+  },
+ 
+  {
+    productimage: "images/aokhoac.jpg",
+    productname: "Áo khoác",
+  },
+  {
+    productimage: "images/quanjean.jpg",
+    productname: "Quần jean",
+  
+  },
+  {
+    productimage: "images/giaydep.png",
+    productname: "Giày dép",
+  },
+  {
+    productimage: "images/phukien.jpg",
+    productname: "Phụ kiện",
+  },
+ 
+];
+
+
 
 export default function HomePagePage() {
   const [sliderState, setSliderState] = React.useState(0);
@@ -33,7 +61,7 @@ export default function HomePagePage() {
   const sliderRef2 = React.useRef(null);
   const [sliderState3, setSliderState3] = React.useState(0);
   const sliderRef3 = React.useRef(null);
-
+  const [shops, setShops] = React.useState([]);
 
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -57,6 +85,24 @@ export default function HomePagePage() {
 
     fetchProducts();
   }, []);
+
+
+  useEffect(() => {
+    const fetchShops = async () => {
+      try {
+        const response = await axiosInstance.get("/public/shop");
+        setShops(response.data);
+        setLoading(false);
+      } catch (error) {
+        setError(error.message);
+        setLoading(false);
+      }
+    };
+
+    fetchShops();
+  }, []);
+
+
   useEffect(() => {
     const message = localStorage.getItem("toastMessage");
     const type = localStorage.getItem("toastType");
@@ -242,7 +288,39 @@ export default function HomePagePage() {
             <div className="mt-[60px] flex flex-col items-center gap-8">
               <div className="flex items-start justify-between gap-5 self-stretch md:flex-col">
 
-                <div className="flex w-[6%] flex-col items-start gap-[5px] shadow-sm md:w-full">
+              
+              </div>
+
+
+            
+
+
+
+              <div className="mt-[60px] flex flex-col gap-[29px]">
+              <div className="flex items-start justify-between gap-5">
+                <div className="flex">
+                  <Text size="7xl" as="p">
+                    Danh mục
+                  </Text>
+                </div>
+                <div className="flex w-[6%] flex-col items-start gap-[5px] shadow-sm">
+              
+                </div>
+              </div>
+              <div className="flex gap-7 md:flex-col">
+                {data.map((d, index) => (
+                  <HomePageOne
+                    {...d}
+                    key={"inner" + index}
+                    className="gap-[18px] md:w-full"
+                  />
+                ))}
+              </div>
+            </div>
+            
+
+            <section>
+            <div className="flex w-[6%] flex-col items-start gap-[5px] shadow-sm md:w-full">
                   <a href="/product">
                   <Text
                     size="lg"
@@ -254,69 +332,52 @@ export default function HomePagePage() {
                   </a>
                   <div className="h-[2px] w-[32px] bg-gray-900_06" />
                 </div>
-              </div>
+             <div className="flex w-full max-w-[1401px] self-stretch">
+               <Slider
+                 autoPlay
+                 autoPlayInterval={1000}
+                 responsive={{
+                   0: { items: 1 },
+                   550: { items: 2 },
+                   1050: { items: 3 },
+                   1400: { items: 4 },
+                   1750: { items: 5 },
+                   2100: { items: 6 },
+                 }}
+                 disableDotsControls
+                 activeIndex={sliderState2}
+                 onSlideChanged={(e) => {
+                   setSliderState2(e?.item);
+                 }}
+                 ref={sliderRef2}
+                 items={products.map((product) => (
+                   <Link
+                   key={product.id}
+                   to={`/productdetail/${product.id}`}
+                   rel="noopener noreferrer"
+                 >
+                   <React.Fragment key={product.id}>
+                     <div className="flex md:flex-col">
+                       <HomePageSix
+                         imagethirtyOne={product.image}
+                         ergonomic={
+                           <>
+                             {product.name}
+                             <br />
+                             <span style={{ color: 'red' }}>{product.price} VND</span>                                 
+                           </>
+                         }
+                       />
+                     </div>
+                     
+                   </React.Fragment>
+                   </Link>
+                 ))}
+               />
+             </div>
+         </section>
 
 
-              <section>
-             
-                  <div className="flex w-full max-w-[1401px] self-stretch">
-                    <Slider
-                      autoPlay
-                      autoPlayInterval={1000}
-                      responsive={{
-                        0: { items: 1 },
-                        550: { items: 2 },
-                        1050: { items: 3 },
-                        1400: { items: 4 },
-                        1750: { items: 5 },
-                        2100: { items: 6 },
-                      }}
-                      disableDotsControls
-                      activeIndex={sliderState2}
-                      onSlideChanged={(e) => {
-                        setSliderState2(e?.item);
-                      }}
-                      ref={sliderRef2}
-                      items={products.map((product) => (
-                        <Link
-                        key={product.id}
-                        to={`/productdetail/${product.id}`}
-                        rel="noopener noreferrer"
-                      >
-                        <React.Fragment key={product.id}>
-                          <div className="flex md:flex-col">
-                            <HomePageSix
-                              imagethirtyOne={product.image}
-                              ergonomic={
-                                <>
-                                  {product.name}
-                                  <br />
-                                  {product.price} VND
-                                 
-                                </>
-                              }
-                            />
-                          </div>
-                          
-                        </React.Fragment>
-                        </Link>
-                      ))}
-                    />
-                  </div>
-              </section>
-
-
-
-
-              {/* <div className="flex w-[13%] items-center gap-5 md:w-full">
-                <div className="h-[24px] flex-1 rotate-[180deg]" />
-                <Img
-                  src="images/img_settings.svg"
-                  alt="settings"
-                  className="h-[20px] w-[58%]"
-                />
-                <div className="h-[24px] flex-1" />
-              </div> */}
             </div>
             <div className="mt-[60px] flex flex-col gap-[29px]">
               <div className="flex items-start justify-between gap-5">
@@ -350,7 +411,7 @@ export default function HomePagePage() {
             <div className="flex flex-col gap-[31px]">
               <div className="container-md flex items-center justify-between gap-5 md:flex-col md:p-5">
                 <Text size="7xl" as="p">
-                  Sản phẩm nổi bật
+                 Cửa Hàng Nổi Bật
                 </Text>
                
               </div>
@@ -375,21 +436,21 @@ export default function HomePagePage() {
                         setSliderState2(e?.item);
                       }}
                       ref={sliderRef2}
-                      items={products.map((product) => (
+                      items={shops.map((shop) => (
                         <Link
-                        key={product.id}
-                        to={`/productdetail/${product.id}`}
+                        key={shop.shopId}
+                        to={`/sales-shop/${shop.shopId}`}
                         rel="noopener noreferrer"
                       >
-                        <React.Fragment key={product.id}>
+                        <React.Fragment key={shop.id}>
                           <div className="flex md:flex-col">
                             <HomePageSix
-                              imagethirtyOne={product.image}
+                              imagethirtyOne={shop.image}
                               ergonomic={
                                 <>
-                                  {product.name}
+                                  {shop.nameShop}
                                   <br />
-                                  {product.price} VND
+                                  {shop.address} 
                                   <br />
                                  
                                 </>

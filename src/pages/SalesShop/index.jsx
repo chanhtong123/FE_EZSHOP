@@ -226,7 +226,7 @@ export default function SalesShopPage() {
               </div>
 
             </div>
-            <div className="flex w-[66%] flex-col gap-[30px] md:w-full">
+            {/* <div className="flex w-[66%] flex-col gap-[30px] md:w-full">
               <div className="flex w-[65%] flex-col items-start md:w-full">
                 <Text
                   size="5xl"
@@ -289,8 +289,8 @@ export default function SalesShopPage() {
                   </div>
                 </div>
               </div>
-            </div>
-            <div className="flex flex-col items-end gap-[26px]">
+            </div> */}
+            {/* <div className="flex flex-col items-end gap-[26px]">
               <div className="flex w-[29%] flex-col items-end self-start md:w-full">
                 <Text as="p" className="!font-jost !text-blue_gray-600">
                   <span className="font-bevietnampro text-blue_gray-600">
@@ -403,10 +403,10 @@ export default function SalesShopPage() {
                 </div>
 
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
-        <Footer1 className="mt-20 justify-center self-stretch border-t border-solid border-gray-200_01 bg-white-A700 px-14 pb-[17px] pt-[82px] md:px-5 md:pt-5" />
+        {/* <Footer1 className="mt-20 justify-center self-stretch border-t border-solid border-gray-200_01 bg-white-A700 px-14 pb-[17px] pt-[82px] md:px-5 md:pt-5" /> */}
       </div>
     </>
   );

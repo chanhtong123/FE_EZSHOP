@@ -19,8 +19,21 @@ const dropDownOptions = [
 ];
 export default function ProfilePage() {
 
-  const [profileItems, setProfileItems] = useState([]);
+  // const [profileItems, setProfileItems] = useState([]);
   const navigate = useNavigate();
+  const [profileItems, setProfileItems] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+  });
+  
+  const [profileItems2, setProfileItems2] = useState({
+    firstName: '',
+    lastName: '',
+
+  });
+
 
   useEffect(() => {
     const token = getToken();
@@ -38,6 +51,7 @@ export default function ProfilePage() {
           }
         });
         setProfileItems(response.data);
+        setProfileItems2(response.data);
       } catch (error) {
         if (error.response && error.response.status === 403) {
           removeToken();
@@ -57,6 +71,48 @@ export default function ProfilePage() {
     navigate('/login');
   };
 
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    const token = getToken();
+
+    if (!token) {
+      navigate('/login');
+      return;
+    }
+
+    try {
+      const response = await axiosInstance.put('/user', {
+        firstName: profileItems.firstName,
+        lastName: profileItems.lastName,
+        email: profileItems.email,
+        phone: profileItems.phone,
+      }, {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      });
+
+      console.log('User profile updated successfully:', response.data);
+      window.location.reload();
+    } catch (error) {
+      if (error.response && error.response.status === 403) {
+        removeToken();
+        navigate('/login');
+      } else {
+        console.error('Đã xảy ra lỗi khi cập nhật dữ liệu.', error);
+      }
+    }
+  };
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setProfileItems(prevState => ({
+      ...prevState,
+      [name]: value
+    }));
+  };
 
   return (
     <>
@@ -80,7 +136,7 @@ export default function ProfilePage() {
                     className="h-[40px] w-[40px] rounded-[50%]"
                   />
                   <div className="flex flex-col items-start gap-[5px]">
-                    <Text as="p">{profileItems.lastName} {profileItems.firstName}</Text>
+                    <Text as="p">{profileItems2.lastName} {profileItems2.firstName}</Text>
                     {/* <Text size="lg" as="p" className="!text-blue_gray-600">
                       {profileItems.email}
                     </Text> */}
@@ -105,16 +161,13 @@ export default function ProfilePage() {
                     alt="locationone"
                     className="h-[20px]"
                   />
-                  <a
-                    href="https://www.youtube.com/embed/bv8Fxk0sz7I"
-                    target="_blank"
-                  >
-                    <Img
-                      src="images/img_badge_1.svg"
-                      alt="badgeone"
-                      className="h-[20px]"
-                    />
-                  </a>
+
+                  <Img
+                    src="images/img_badge_1.svg"
+                    alt="badgeone"
+                    className="h-[20px]"
+                  />
+
                   <Img
                     src="images/img_television.svg"
                     alt="television"
@@ -147,15 +200,16 @@ export default function ProfilePage() {
 
 
 
-                  <form>
+                  <form onSubmit={handleSubmit}>
                     <div className="flex items-start gap-[25px] md:flex-col">
                       <div className="flex w-full flex-col gap-4">
                         <div className="flex flex-col items-start gap-2">
                           <Text as="p">Tên</Text>
                           <Input
                             shape="round"
-                            name="your_name"
-                            placeholder={profileItems.firstName}
+                            name="firstName"
+                            value={profileItems.firstName}
+                            onChange={handleChange}
                             className="self-stretch border border-solid border-gray-200_01 sm:pr-5"
                           />
                         </div>
@@ -165,7 +219,8 @@ export default function ProfilePage() {
                             shape="round"
                             type="email"
                             name="email"
-                            placeholder={profileItems.email}
+                            value={profileItems.email}
+                            onChange={handleChange}
                             className="self-stretch border border-solid border-gray-200_01 sm:pr-5"
                           />
                         </div>
@@ -189,8 +244,9 @@ export default function ProfilePage() {
                           </Text>
                           <Input
                             shape="round"
-                            name="your_name_one"
-                            placeholder={profileItems.lastName}
+                            name="lastName"
+                            value={profileItems.lastName}
+                            onChange={handleChange}
                             className="self-stretch border border-solid border-gray-200_01 sm:pr-5"
                           />
                         </div>
@@ -198,8 +254,9 @@ export default function ProfilePage() {
                           <Text as="p">Số điện thoại</Text>
                           <Input
                             shape="round"
-                            name="your_name_two"
-                            placeholder={profileItems.phone}
+                            name="phone"
+                            value={profileItems.phone}
+                            onChange={handleChange}
                             className="self-stretch border border-solid border-gray-200_01 sm:pr-5"
                           />
                         </div>
