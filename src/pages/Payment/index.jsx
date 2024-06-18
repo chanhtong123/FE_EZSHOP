@@ -3,6 +3,7 @@ import axios from "axios";
 import { Helmet } from "react-helmet";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+import { format, addDays } from 'date-fns';
 
 import { Button, CheckBox, Heading, Text, Input, Img } from "../../components";
 
@@ -26,13 +27,15 @@ export default function PaymentPage() {
   const { totalAmount } = location.state || { totalAmount: 10 };
   const [orderId, setOrderId] = useState(null);
   const navigate = useNavigate();
+  const todayDate = format(new Date(), 'yyyy-MM-dd HH:mm:ss');
+  const shipDate = format(addDays(new Date(), 1), 'yyyy-MM-dd');
 
   useEffect(() => {
     if (success) {
       navigate("/paymentsuccess", { state: { orderId } });
     }
-    console.log(totalAmount);
-  }, [success, navigate, totalAmount, orderId, setOrderId]);
+
+  }, [success, navigate, orderId, setOrderId]);
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -51,10 +54,11 @@ export default function PaymentPage() {
     try {
       const fullName = formData.firstName + " " + formData.lastName;
 
+
       const response = await axios.post(
         "http://localhost:8080/guest/api/orders/",
         {
-          orderDate: "2024-06-11 15:05:23",
+          orderDate: todayDate,
           orderStatus: "Pending",
           userId: 1,
           shopId: 1,
@@ -62,20 +66,19 @@ export default function PaymentPage() {
           totalAmount: totalAmount,
           customerName: "string",
           profit: 111,
-          paymentStatus: 1,
-          notes: "string",
-          discounts: "string",
-          email: "string",
-          province: "string",
-          district: "string",
-          ward: "string",
-          address: "string",
+          paymentStatus: "Pending",
+          notes: formData.notes,
+          // discounts: formData.discounts,
+          email: formData.email,
+          province: formData.province,
+          district: formData.district,
+          ward: formData.ward,
+          address: formData.address,
           active: true,
-          payment_method: "string",
-          shipping_method: "string",
-          shipping_date: "2024-06-14",
+          payment_method: "QR",
+          shipping_date: shipDate,
           fullName: fullName,
-          phone_number: "string",
+          phone_number: formData.phoneNumber,
           ...formData,
         }
       );

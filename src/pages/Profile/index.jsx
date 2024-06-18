@@ -1,76 +1,60 @@
-import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import axiosInstance from '../../config/axiosConfig';
-import { getToken, removeToken } from '../../utils/authUtils';
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axiosInstance from "../../config/axiosConfig";
+import { getToken, removeToken } from "../../utils/authUtils";
 import { Helmet } from "react-helmet";
-import {
-  Text,
-  Button,
-  Input,
-  Heading,
-  Img,
-  SelectBox,
-} from "../../components";
-import Footer1 from "../../components/Footer1";
-const dropDownOptions = [
-  { label: "Option1", value: "option1" },
-  { label: "Option2", value: "option2" },
-  { label: "Option3", value: "option3" },
-];
-export default function ProfilePage() {
+import { Text, Button, Input, Heading, Img, SelectBox } from "../../components";
+import FavoriteProductSidebar from "../../components/FavoriteProductSidebar";
 
+export default function ProfilePage() {
   // const [profileItems, setProfileItems] = useState([]);
   const navigate = useNavigate();
   const [profileItems, setProfileItems] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    phone: '',
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
   });
-  
+
   const [profileItems2, setProfileItems2] = useState({
-    firstName: '',
-    lastName: '',
-
+    firstName: "",
+    lastName: "",
   });
-
 
   useEffect(() => {
     const token = getToken();
 
     if (!token) {
-      navigate('/login');
+      navigate("/login");
       return;
     }
 
     const fetchProfileItems = async () => {
       try {
-        const response = await axiosInstance.get('/user', {
+        const response = await axiosInstance.get("/user", {
           headers: {
-            'Authorization': `Bearer ${token}`
-          }
+            Authorization: `Bearer ${token}`,
+          },
         });
         setProfileItems(response.data);
         setProfileItems2(response.data);
       } catch (error) {
         if (error.response && error.response.status === 403) {
           removeToken();
-          navigate('/login');
+          navigate("/login");
         } else {
-          console.error('Đã xảy ra lỗi khi lấy dữ liệu.', error);
+          console.error("Đã xảy ra lỗi khi lấy dữ liệu.", error);
         }
       }
-    }
+    };
 
     fetchProfileItems();
   }, [navigate]);
 
-
   const handleLogout = () => {
     removeToken();
-    navigate('/login');
+    navigate("/login");
   };
-
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -78,39 +62,43 @@ export default function ProfilePage() {
     const token = getToken();
 
     if (!token) {
-      navigate('/login');
+      navigate("/login");
       return;
     }
 
     try {
-      const response = await axiosInstance.put('/user', {
-        firstName: profileItems.firstName,
-        lastName: profileItems.lastName,
-        email: profileItems.email,
-        phone: profileItems.phone,
-      }, {
-        headers: {
-          'Authorization': `Bearer ${token}`
+      const response = await axiosInstance.put(
+        "/user",
+        {
+          firstName: profileItems.firstName,
+          lastName: profileItems.lastName,
+          email: profileItems.email,
+          phone: profileItems.phone,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         }
-      });
+      );
 
-      console.log('User profile updated successfully:', response.data);
+      console.log("User profile updated successfully:", response.data);
       window.location.reload();
     } catch (error) {
       if (error.response && error.response.status === 403) {
         removeToken();
-        navigate('/login');
+        navigate("/login");
       } else {
-        console.error('Đã xảy ra lỗi khi cập nhật dữ liệu.', error);
+        console.error("Đã xảy ra lỗi khi cập nhật dữ liệu.", error);
       }
     }
   };
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    setProfileItems(prevState => ({
+    setProfileItems((prevState) => ({
       ...prevState,
-      [name]: value
+      [name]: value,
     }));
   };
 
@@ -124,71 +112,9 @@ export default function ProfilePage() {
         />
       </Helmet>
       <div className="flex w-full flex-col items-center bg-white-A700">
-
         <div className="container-md mt-[33px] flex justify-center pr-1.5 md:p-5">
           <div className="flex w-full items-start justify-between gap-5 md:flex-col">
-            <div className="mt-[7px] flex w-[15%] flex-col gap-2.5 pt-[5px] md:w-full">
-              <div className="flex flex-col gap-[9px]">
-                <div className="flex items-start gap-[11px]">
-                  <Img
-                    src="images/user.png"
-                    alt="circleimage"
-                    className="h-[40px] w-[40px] rounded-[50%]"
-                  />
-                  <div className="flex flex-col items-start gap-[5px]">
-                    <Text as="p">{profileItems2.lastName} {profileItems2.firstName}</Text>
-                    {/* <Text size="lg" as="p" className="!text-blue_gray-600">
-                      {profileItems.email}
-                    </Text> */}
-                  </div>
-                </div>
-                <div className="h-px bg-gray-200_01" />
-              </div>
-              <div className="flex items-center justify-between gap-5">
-                <div className="flex flex-col gap-[25px]">
-                  <Img
-                    src="images/img_growth_1.svg"
-                    alt="growthone"
-                    className="h-[20px]"
-                  />
-                  <Img
-                    src="images/img_vector.svg"
-                    alt="vector_eleven"
-                    className="h-[20px]"
-                  />
-                  <Img
-                    src="images/img_location_1.svg"
-                    alt="locationone"
-                    className="h-[20px]"
-                  />
-
-                  <Img
-                    src="images/img_badge_1.svg"
-                    alt="badgeone"
-                    className="h-[20px]"
-                  />
-
-                  <Img
-                    src="images/img_television.svg"
-                    alt="television"
-                    className="h-[20px]"
-                  />
-                </div>
-                <Text size="lg" as="p" className="w-[89%] leading-[45px]">
-                  <>
-                    Thông tin tài khoản <br />
-                    Đặt hàng <br />
-                    Địa chỉ <br />
-                    Danh sách yêu thích
-                    <br />
-                    <button onClick={handleLogout}>
-                      Đăng xuất
-                    </button>
-
-                  </>
-                </Text>
-              </div>
-            </div>
+            <FavoriteProductSidebar/>
             <div className="flex w-[80%] flex-col items-start gap-[11px] md:w-full">
               <Heading size="8xl" as="h1" className="uppercase">
                 Thông tin tài khoản
@@ -197,9 +123,6 @@ export default function ProfilePage() {
               <div className="flex flex-col items-start self-stretch">
                 <div className="h-[2px] w-[12%] bg-blue_gray-900_02" />
                 <div className="mt-6 self-stretch">
-
-
-
                   <form onSubmit={handleSubmit}>
                     <div className="flex items-start gap-[25px] md:flex-col">
                       <div className="flex w-full flex-col gap-4">
@@ -232,7 +155,11 @@ export default function ProfilePage() {
                           >
                             Lưu
                           </Button>
-                          <Text size="md" as="p" className="!text-blue_gray-600">
+                          <Text
+                            size="md"
+                            as="p"
+                            className="!text-blue_gray-600"
+                          >
                             Hủy bỏ
                           </Text>
                         </div>
@@ -263,10 +190,6 @@ export default function ProfilePage() {
                       </div>
                     </div>
                   </form>
-
-
-
-
                 </div>
                 {/* <div className="mt-12 flex w-[49%] flex-col gap-4 md:w-full">
                   <div className="flex flex-col items-start gap-2">
@@ -362,7 +285,6 @@ export default function ProfilePage() {
             </div>
           </div>
         </div>
-        <Footer1 className="mt-20 flex-col self-stretch border-t border-solid border-gray-200_01 bg-white-A700 px-14 pb-[17px] pt-[82px] md:px-5 md:pt-5" />
       </div>
     </>
   );

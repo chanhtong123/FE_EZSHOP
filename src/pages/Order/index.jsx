@@ -103,14 +103,10 @@ export default function OrderPage() {
               Quản lí đơn hàng
             </Text>
           </div>
-        </div>
-        <div className="mt-[34px] flex w-[74%] items-start justify-between gap-5 md:w-full md:flex-col md:p-5">
-          <FavoriteProductSidebar
-            emailtext="alitfn58@gmail.com"
-            className="mt-1.5 w-[15%]"
-          />
-          <div className="flex w-[81%] flex-col items-start gap-[38px] md:w-full">
-            <Heading size="8xl" as="h1" className="uppercase">
+          <div className="flex w-full items-start justify-between gap-5 md:flex-col">
+        <FavoriteProductSidebar/>
+          <div className="flex w-[80%] flex-col items-start gap-[11px] md:w-full">
+          <Heading size="8xl" as="h1" className="uppercase">
               Đơn hàng
             </Heading>
             <ReactTable
@@ -123,6 +119,7 @@ export default function OrderPage() {
               data={orderData}
             />
           </div>
+        </div>
         </div>
       </div>
     </>
