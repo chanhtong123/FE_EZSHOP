@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import axios from "axios"; 
 import { Helmet } from "react-helmet";
+import CustomToast from "../../components/CustomToast";
 import {
   Img,
   Text,
@@ -11,22 +12,13 @@ import {
   Heading,
   SelectBox,
 } from "../../components";
-import Footer1 from "../../components/Footer1";
-import CustomToast from "../../components/CustomToast";
-
-const dropDownOptions = [
-  { label: "Option1", value: "option1" },
-  { label: "Option2", value: "option2" },
-  { label: "Option3", value: "option3" },
-];
 
 export default function LoginPage() {
   const [userName, setUsername] = useState("");
   const [passWord, setPassword] = useState("");
   const [toastMessage, setToastMessage] = useState("");
   const [toastType, setToastType] = useState("");
-  const navigate = useNavigate(); 
-  const location = useLocation();
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -34,8 +26,8 @@ export default function LoginPage() {
       const response = await axios.post("http://localhost:8080/login", { userName, passWord }); 
       const token = response.data.token; 
       localStorage.setItem("token", token);
-      setToastMessage("Login successful!");
-      setToastType("success");
+      localStorage.setItem("toastMessage", "Login successful!");
+      localStorage.setItem("toastType", "success");
       navigate("/"); 
     } catch (error) {
       console.error("Login failed:", error);
@@ -43,6 +35,7 @@ export default function LoginPage() {
       setToastType("error");
     }
   };
+  
 
   return (
     <>
@@ -56,7 +49,7 @@ export default function LoginPage() {
       <div className="flex w-full flex-col items-center gap-[71px] bg-white-A700 md:gap-[53px] sm:gap-[35px] pt-16">
         <div className="container-md pl-[479px] pr-[480px] md:p-5 md:px-5">
           <div className="flex flex-col items-start gap-[22px] rounded-md border border-solid border-gray-200_01 bg-white-A700 pb-[47px] pl-[41px] pr-10 pt-10 shadow-xs md:pb-5 md:pl-5 sm:p-5">
-            <Heading size="8xl" as="h1" className=" uppercase ">
+            <Heading size="8xl" as="h1" className="uppercase">
               Đăng nhập
             </Heading>
             <form onSubmit={handleSubmit}>
@@ -107,6 +100,7 @@ export default function LoginPage() {
                 <a
                   href="https://www.youtube.com/embed/bv8Fxk0sz7I"
                   target="_blank"
+                  rel="noopener noreferrer"
                 >
                   <Text size="md" as="p" className="mt-5" style={{ display: 'flex', alignItems: 'center' }}>
                     <span className="text-blue_gray-900_02">
