@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate, useLocation } from 'react-router-dom';
 import axios from "axios"; 
 import { Helmet } from "react-helmet";
+import CustomToast from "../../components/CustomToast";
 import {
   Img,
   Text,
@@ -16,17 +17,21 @@ export default function LoginPage() {
   const [passWord, setPassword] = useState("");
   const navigate = useNavigate(); 
   const location = useLocation();
-
+  const [toastMessage, setToastMessage] = useState("");
+  const [toastType, setToastType] = useState("");
 
   const handleLogin = async (redirectUrl) => {
     try {
       const response = await axios.post("http://localhost:8080/login", { userName, passWord }); 
       const token = response.data.token; 
       localStorage.setItem("token", token);
+      localStorage.setItem("toastMessage", "Login successful!");
+      localStorage.setItem("toastType", "success");
       navigate(redirectUrl); 
     } catch (error) {
       console.error("Login failed:", error);
-     
+      setToastMessage("Login failed!");
+      setToastType("error");
     }
   };
 
@@ -154,6 +159,7 @@ export default function LoginPage() {
             </form>
           </div>
         </div>
+        <CustomToast message={toastMessage} type={toastType} />
       </div>
     </>
   );

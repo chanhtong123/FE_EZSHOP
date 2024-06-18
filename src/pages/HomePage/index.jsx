@@ -20,6 +20,7 @@ import HomePageSix from "../../components/HomePageSix";
 import HomePageThree from "../../components/HomePageThree";
 import axiosInstance from '../../config/axiosConfig';
 import { Link } from "react-router-dom";
+import CustomToast from "../../components/CustomToast";
 
 
 
@@ -37,7 +38,8 @@ export default function HomePagePage() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
+  const [toastMessage, setToastMessage] = useState("");
+  const [toastType, setToastType] = useState("");
   useEffect(() => {
     const fetchProducts = async () => {
       setLoading(true);
@@ -55,7 +57,17 @@ export default function HomePagePage() {
 
     fetchProducts();
   }, []);
+  useEffect(() => {
+    const message = localStorage.getItem("toastMessage");
+    const type = localStorage.getItem("toastType");
 
+    if (message && type) {
+      setToastMessage(message);
+      setToastType(type);
+      localStorage.removeItem("toastMessage");
+      localStorage.removeItem("toastType");
+    }
+  }, []);
 
 
 
@@ -571,6 +583,7 @@ export default function HomePagePage() {
         </div>
         {/* <Footer1 className="mt-[100px] justify-center self-stretch border-t border-solid border-gray-200_01 bg-white-A700 px-14 pb-[17px] pt-[82px] md:px-5 md:pt-5" /> */}
       </div>
+      <CustomToast message={toastMessage} type={toastType} />
     </>
   );
 }
