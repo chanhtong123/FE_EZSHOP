@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate, useLocation } from 'react-router-dom';
 import axios from "axios"; 
 import { Helmet } from "react-helmet";
@@ -41,6 +41,17 @@ export default function LoginPage() {
     const redirectTo = new URLSearchParams(location.search).get('redirect') || '/';
     handleLogin(redirectTo);
   };
+  useEffect(() => {
+    const message = localStorage.getItem("toastMessage");
+    const type = localStorage.getItem("toastType");
+
+    if (message && type) {
+      setToastMessage(message);
+      setToastType(type);
+      localStorage.removeItem("toastMessage");
+      localStorage.removeItem("toastType");
+    }
+  }, []);
  
 
 

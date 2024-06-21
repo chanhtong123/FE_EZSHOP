@@ -7,6 +7,7 @@ import { Button, Heading, Text, Img, SelectBox } from "../../components";
 import Footer1 from "../../components/Footer1";
 import { ReactTable } from "../../components/ReactTable";
 import { createColumnHelper } from "@tanstack/react-table";
+import CustomToast from "../../components/CustomToast";
 
 export default function CartDetailPage() {
   const [cart, setCart] = useState(null);
@@ -16,7 +17,10 @@ export default function CartDetailPage() {
   const originalSize = 93;
   const newSize = originalSize / 3;
   const [totalAmount, setTotalAmount] = useState(0);
+  const [toastMessage, setToastMessage] = useState('');
+  const [toastType, setToastType] = useState('');
 
+  
   const handleDeleteProduct = async (card_detail_id) => {
     const token = getToken();
 
@@ -31,15 +35,24 @@ export default function CartDetailPage() {
       );
 
       if (response.status === 204) {
-        alert("Đã xóa sản phẩm khỏi giỏ hàng.");
-        window.location.reload();
+        // Remove the deleted item from cartItems state
+        const updatedCartItems = cartItems.filter(item => item.card_detail_id !== card_detail_id);
+        setCartItems(updatedCartItems);
+
+        // Show success toast message
+        setToastMessage("Đã xóa sản phẩm khỏi giỏ hàng.");
+        setToastType('success');
       } else {
         console.error("Xóa sản phẩm không thành công.", response.data);
-        alert("Đã xảy ra lỗi khi xóa sản phẩm.");
+        // Show error toast message
+        setToastMessage("Đã xảy ra lỗi khi xóa sản phẩm.");
+        setToastType('error');
       }
     } catch (error) {
       console.error("Đã xảy ra lỗi khi xóa sản phẩm.", error);
-      alert("Đã xảy ra lỗi khi xóa sản phẩm.");
+      // Show error toast message
+      setToastMessage("Đã xảy ra lỗi khi xóa sản phẩm.");
+      setToastType('error');
     }
   };
 
@@ -204,7 +217,9 @@ export default function CartDetailPage() {
             >
               Xóa
             </button>
+            
           </div>
+          
         ),
         header: (info) => (
           <Heading
@@ -355,6 +370,7 @@ export default function CartDetailPage() {
             </div>
           </div>
         </div>
+        <CustomToast message={toastMessage} type={toastType} />
       </div>
     </>
   );

@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import axiosInstance from '../../config/axiosConfig';
 import { getToken, removeToken } from '../../utils/authUtils';
 import { Helmet } from "react-helmet";
+import CustomToast from "../../components/CustomToast";
 
 
 
@@ -41,6 +42,8 @@ const ProductDetailPage = () => {
   const [cartId, setCartId] = useState(null);
   const navigate = useNavigate();
   const [mainImage, setMainImage] = useState(null);
+  const [toastMessage, setToastMessage] = useState('');
+  const [toastType, setToastType] = useState('');
 
 
 
@@ -103,12 +106,14 @@ const ProductDetailPage = () => {
         }
       });
 
-      alert("Thêm sản phẩm thành công.")
+      setToastMessage("Thêm sản phẩm thành công.Hãy vào trang thanh toán để có thể xem giỏ hàng của bạn");
+      setToastType('success');
       console.log("Added to cart:", response.data);
       
     } catch (error) {
       console.error("Error adding to cart:", error);
-      alert("Lỗi.")
+      setToastMessage("Lỗi.");
+      setToastType('error');
     }
   };
 
@@ -291,6 +296,7 @@ const ProductDetailPage = () => {
                         >
                           Thêm Vào Giỏ hàng
                         </Button>
+                        <CustomToast message={toastMessage} type={toastType} />
                       </div>
                       <a
                         href="https://www.youtube.com/embed/bv8Fxk0sz7I"

@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import { Helmet } from "react-helmet";
+import CustomToast from "../../components/CustomToast";
 import { Heading, Img, Text, Button, Input } from "../../components";
 export default function RegisterPage() {
   const [firstName, setFirstName] = useState("");
@@ -11,6 +12,8 @@ export default function RegisterPage() {
 
   const navigate = useNavigate();
   const location = useLocation();
+  const [toastMessage, setToastMessage] = useState("");
+  const [toastType, setToastType] = useState("");
 
   const handleRegister = async (redirectUrl) => {
     try {
@@ -25,10 +28,17 @@ export default function RegisterPage() {
         email,
       });
 
+     
+      const token = response.data.token; 
+      localStorage.setItem("token", token);
+      localStorage.setItem("toastMessage", "Register successful!");
+      localStorage.setItem("toastType", "success");
       navigate(redirectUrl);
-      alert("Đăng Ký Thành Công");
+      
     } catch (error) {
       console.error("Register failed:", error);
+      setToastMessage("Register failed!");
+      setToastType("error");
     }
   };
 
@@ -173,6 +183,7 @@ export default function RegisterPage() {
             </form>
           </div>
         </div>
+        <CustomToast message={toastMessage} type={toastType} />
       </div>
     </>
   );
