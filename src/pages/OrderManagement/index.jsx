@@ -1,9 +1,7 @@
-import React, { useEffect, useState, useMemo } from "react";
+import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import { CloseSVG } from "../../assets/images";
-import { Img, Text, Heading, Input, Button } from "../../components";
-import Header from "../../components/Header";
-import Footer from "../../components/FooterAdmin";
+import { Img, Heading, Input, Button } from "../../components";
 import { ReactTable } from "../../components/ReactTable";
 import SalesShopPagination from "../../components/SalesShopPagination";
 import Sidebar1 from "../../components/Sidebar1";
@@ -46,42 +44,54 @@ const tableColumns = [
       const status = info.getValue();
       const statusName = status || "N/A";
 
-      const statusClass = classNames("inline-block px-2.5 py-0.5 rounded text-sm font-medium", {
-        "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300": statusName === "Pending",
-        "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300": statusName === "Completed",
-        "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-300": statusName === "Cancelled",
-        "bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-300": statusName === "N/A",
-      });
+      const statusClass = classNames(
+        "inline-block px-2.5 py-0.5 rounded text-sm font-medium",
+        {
+          "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300":
+            statusName === "Pending",
+          "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300":
+            statusName === "Completed",
+          "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-300":
+            statusName === "Cancelled",
+          "bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-300":
+            statusName === "N/A",
+        }
+      );
 
       return <span className={statusClass}>{statusName}</span>;
     },
   }),
 ];
+
 export default function OrderManagementPage() {
   const [searchBarValue, setSearchBarValue] = useState("");
   const [orderData, setOrderData] = useState([]);
+  const [currentPage, setCurrentPage] = useState(0);
+  const [pageSize] = useState(10);
+  const [totalPages, setTotalPages] = useState(0);
 
   useEffect(() => {
-    // Fetch data from API
-    const fetchData = async () => {
+    const fetchOrderData = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:8080/guest/api/orders/"
+          `http://localhost:8080/guest/api/orders/?page=${currentPage}&size=${pageSize}`
         );
         console.log("Fetched order data:", response.data);
 
-        const fetchedData = Array.isArray(response.data)
-          ? response.data
-          : [response.data];
-        console.log("Processed order data:", fetchedData);
+        const fetchedData = response.data.content;
         setOrderData(fetchedData);
+        setTotalPages(response.data.totalPages);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
     };
 
-    fetchData();
-  }, []);
+    fetchOrderData();
+  }, [currentPage, pageSize]);
+
+  const handlePageChange = (newPage) => {
+    setCurrentPage(newPage);
+  };
 
   return (
     <>
@@ -94,7 +104,6 @@ export default function OrderManagementPage() {
       </Helmet>
       <div className="w-full bg-gray-50_07 px-5 pb-[29px] pt-5 sm:pb-5">
         <div className="flex flex-col gap-5">
-          <Header />
           <div className="flex items-start gap-[30px] md:flex-col">
             <Sidebar1 className="mt-[60px]" />
             <div className="flex flex-1 flex-col items-center gap-[30px] md:self-stretch">
@@ -204,7 +213,10 @@ export default function OrderManagementPage() {
                     data={orderData}
                   />
                   <SalesShopPagination
-                    text120of300="1 – 20 của 300+ được tìm thấy"
+                    text={`Page ${currentPage + 1} of ${totalPages}`}
+                    onPageChange={handlePageChange}
+                    currentPage={currentPage}
+                    totalPages={totalPages}
                     className="w-[35%] gap-[22px] md:w-full"
                   />
                 </div>

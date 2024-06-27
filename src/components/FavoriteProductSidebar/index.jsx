@@ -88,7 +88,7 @@ export default function FavoriteProductSidebar(){
     </a>
     <a href="/order" className="flex items-center gap-2">
       <Img
-        src="images/img_vector.svg"
+        src="images/img_checkbox.svg"
         alt="vector_eleven"
         className="h-[20px]"
       />

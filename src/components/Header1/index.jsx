@@ -1,21 +1,16 @@
-import React, { useEffect, useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
-import axiosInstance from "../../config/axiosConfig";
-import { getToken, removeToken } from "../../utils/authUtils";
-import MegaMenu1 from "../MegaMenu1";
+import React from "react";
 import { Text, Img, Heading, Button, SelectBox } from "./..";
-import { Input } from "postcss";
-import { Link } from "react-router-dom";
+
 const dropDownOptions = [
   { label: "Điều khoản sử dụng", value: "option1" },
   { label: "Option2", value: "option2" },
   { label: "Option3", value: "option3" },
 ];
 export default function Header1({ ...props }) {
-  const [menuOpen, setMenuOpen] = React.useState(false);
-  const [menuOpen1, setMenuOpen1] = React.useState(false);
-  const [menuOpen2, setMenuOpen2] = React.useState(false);
-  const [menuOpen3, setMenuOpen3] = React.useState(false);
+  // const [menuOpen, setMenuOpen] = React.useState(false);
+  // const [menuOpen1, setMenuOpen1] = React.useState(false);
+  // const [menuOpen2, setMenuOpen2] = React.useState(false);
+  // const [menuOpen3, setMenuOpen3] = React.useState(false);
   const [isOpen, setIsOpen] = React.useState(false);
 
   const toggleDropdown = () => {

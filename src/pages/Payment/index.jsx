@@ -3,9 +3,9 @@ import axios from "axios";
 import { Helmet } from "react-helmet";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
-import { format, addDays } from 'date-fns';
-
-import { Button, CheckBox, Heading, Text, Input, Img } from "../../components";
+import { format, addDays } from "date-fns";
+import { usePayOS, PayOSConfig } from "payos-checkout";
+import { Button, Heading, Text, Input } from "../../components";
 
 export default function PaymentPage() {
   const [formData, setFormData] = useState({
@@ -18,7 +18,8 @@ export default function PaymentPage() {
     phone: "",
     email: "",
     notes: "",
-  });
+    paymentMethod: "COD",
+  }); 
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -27,15 +28,15 @@ export default function PaymentPage() {
   const { totalAmount } = location.state || { totalAmount: 10 };
   const [orderId, setOrderId] = useState(null);
   const navigate = useNavigate();
-  const todayDate = format(new Date(), 'yyyy-MM-dd HH:mm:ss');
-  const shipDate = format(addDays(new Date(), 1), 'yyyy-MM-dd');
+  const todayDate = format(new Date(), "yyyy-MM-dd HH:mm:ss");
+  const shipDate = format(addDays(new Date(), 1), "yyyy-MM-dd");
 
   useEffect(() => {
     if (success) {
       navigate("/paymentsuccess", { state: { orderId } });
     }
-
-  }, [success, navigate, orderId, setOrderId]);
+    console.log(formData)
+  }, [success, navigate, orderId, setOrderId,formData]);
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -45,6 +46,25 @@ export default function PaymentPage() {
     }));
   };
 
+  const payOSConfig = {
+    RETURN_URL: "/payment-success",
+    ELEMENT_ID: "payos-container",
+    CHECKOUT_URL: "https://your-checkout-url.com",
+    onSuccess: (event) => {
+      console.log("Payment successful", event);
+      setSuccess(true);
+    },
+    onCancel: (event) => {
+      console.log("Payment cancelled", event);
+      setError("Payment was cancelled.");
+    },
+    onExit: (event) => {
+      console.log("Payment popup closed", event);
+    },
+  };
+
+  const { open, exit } = usePayOS(payOSConfig);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -53,7 +73,6 @@ export default function PaymentPage() {
 
     try {
       const fullName = formData.firstName + " " + formData.lastName;
-
 
       const response = await axios.post(
         "http://localhost:8080/guest/api/orders/",
@@ -68,24 +87,27 @@ export default function PaymentPage() {
           profit: 111,
           paymentStatus: "Pending",
           notes: formData.notes,
-          // discounts: formData.discounts,
           email: formData.email,
           province: formData.province,
           district: formData.district,
           ward: formData.ward,
           address: formData.address,
           active: true,
-          payment_method: "QR",
+          payment_method: formData.paymentMethod,
           shipping_date: shipDate,
           fullName: fullName,
-          phone_number: formData.phoneNumber,
+          phone_number: formData.phone,
           ...formData,
         }
       );
       if (response.status === 201) {
-        setSuccess(true);
+        setOrderId(response.data.id);
+        if (formData.paymentMethod === "QR") {
+          open();
+        } else {
+          setSuccess(true);
+        }
       }
-      setOrderId(response.data.id);
     } catch (error) {
       setError(
         "Failed to create order: " +
@@ -384,71 +406,15 @@ export default function PaymentPage() {
                 </div>
 
                 <div className="mt-[30px] flex flex-col gap-2">
-                  <div className="flex flex-col items-start gap-5 rounded-md border border-solid border-gray-200_01 bg-white-A700 px-[30px] pb-[37px] pt-[30px] sm:p-5">
-                    <Heading size="5xl" as="h5" className="uppercase">
-                      Thông tin thanh toán
-                    </Heading>
-                    <div className="flex flex-col items-start gap-[17px] self-stretch">
+                  <div className="flex flex-col items-start gap-[17px] self-stretch">
+                    <div className="flex flex-col items-start gap-2 self-stretch">
+                      <Heading as="h6">Chuyển khoản trực tiếp</Heading>
                       <div className="flex flex-col items-start gap-2 self-stretch">
-                        <Heading as="h6">Chuyển khoản trực tiếp</Heading>
-                        <Text
-                          size="md"
-                          as="p"
-                          className="w-full leading-[17px] !text-blue_gray-600"
-                        >
-                          Thực hiện thanh toán trực tiếp vào tài khoản ngân hàng
-                          của chúng tôi. Vui lòng sử dụng ID đơn hàng của bạn
-                          làm tài liệu tham khảo thanh toán.
-                        </Text>
-                        <div className="flex flex-col items-start gap-2 self-stretch">
-                          {/* <div className="flex gap-2.5">
-                            <Img
-                              src="images/img_television_gray_100_04.svg"
-                              alt="television"
-                              className="h-[24px]"
-                            />
-                            <Img
-                              src="images/img_close_gray_100_04.svg"
-                              alt="close"
-                              className="h-[24px]"
-                            />
-                            <Img
-                              src="images/img_3.svg"
-                              alt="three"
-                              className="h-[24px]"
-                            />
-                            <Img
-                              src="images/img_4.png"
-                              alt="four"
-                              className="h-[24px] object-cover"
-                            />
-                            <Img
-                              src="images/img_television_gray_100_04_24x38.svg"
-                              alt="television"
-                              className="h-[24px]"
-                            />
-                            <Img
-                              src="images/img_thumbs_up.svg"
-                              alt="thumbsup"
-                              className="h-[24px]"
-                            />
-                          </div> */}
-                          <div className="h-px w-full self-stretch bg-gray-200_01" />
-                        </div>
-                      </div>
-                      <div className="flex flex-col items-start gap-4 self-stretch">
-                        <Heading as="h6">Kiểm tra thanh toán</Heading>
                         <div className="h-px w-full self-stretch bg-gray-200_01" />
                       </div>
                       <Heading as="h6">Thanh toán khi giao hàng</Heading>
                     </div>
                   </div>
-                  <CheckBox
-                    name="dữliệucánhâncủa"
-                    label="Dữ liệu cá nhân của bạn sẽ được sử dụng để xử lý đơn đặt hàng, hỗ trợ trải nghiệm của bạn trên trang web."
-                    id="dliucnhnca"
-                    className="gap-3.5 text-left text-[15px] leading-[22px] text-blue_gray-900_02"
-                  />
                 </div>
                 <Button
                   type="submit"

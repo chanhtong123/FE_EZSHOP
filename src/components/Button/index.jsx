@@ -103,7 +103,7 @@ const Button = ({
         "8xl",
       ]
     ),
-    variant: PropTypes.oneOf(["fill", "outline"]),
+    variant: PropTypes.oneOf(["fill", "outline", "text"]),
     color: PropTypes.oneOf([
         "blue_gray_900_02",
         "green_400",
@@ -129,6 +129,7 @@ const Button = ({
         "gray_200_01",
         "blue_gray_50",
         "green_50_01",
+        "white_A701",
       ]),
   };
 export { Button };
