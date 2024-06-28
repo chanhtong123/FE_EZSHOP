@@ -1,6 +1,5 @@
 import React from "react";
-import { useRoutes, BrowserRouter } from 'react-router-dom';
-import Home from "../pages/Home";
+import { useRoutes } from 'react-router-dom';
 import NotFound from "../pages/NotFound";
 import FavoriteProduct from "../pages/FavoriteProduct";
 import SalesShop from "../pages/SalesShop";
@@ -20,9 +19,6 @@ import CustomerCare from "../pages/CustomerCare";
 import Login from "../pages/Login";
 import Mailbox from "../pages/Mailbox";
 import Chatbox from "../pages/Chatbox";
-import DashboardADMIN from "../pages/DashboardADMIN";
-import OrderManagement from "../pages/OrderManagement";
-import ClientManagementAdmin from "../pages/ClientManagementAdmin";
 import Register from "../pages/Register";
 import Order from "../pages/Order";
 import ShopLayout from "../pages/ShopLayout";
@@ -30,12 +26,7 @@ import Policy from "../pages/Policy";
 import CartDetail from "../pages/CartDetail";
 import PaymentSuccess from "../pages/PaymentSuccess";
 import CompareProducts from "../pages/CompareProducts";
-import Dashboard from "../pages/Dashboard";
-import SalesManager from "../pages/SalesManagement";
-import CategoriesManager from "../pages/CategoriesAdmin";
-import AdminProducts from "../pages/ProductsAdmin";
 import Test2 from "../pages/Test";
-import TestAdmin from "../pages/TestAdmin";
 
 
 const ProjectRoutes = () => {
@@ -67,15 +58,7 @@ const ProjectRoutes = () => {
     { path: "cartdetail", element: <CartDetail /> },
     { path: "paymentsuccess", element: <PaymentSuccess /> },
     { path: "compareproducts", element: <CompareProducts /> },
-    { path: "dashboard", element: <Dashboard /> },
     { path: "test", element: <Test2 /> },
-    { path: "admin", element: <TestAdmin /> },
-    { path: "admin-dashboard", element: <DashboardADMIN /> },
-    { path: "admin-orders", element: <OrderManagement /> },
-    { path: "admin-users", element: <ClientManagementAdmin /> },
-    { path: "admin-shops", element: <SalesManager /> },
-    { path: "admin-categories", element: <CategoriesManager /> },
-    { path: "admin-products", element: <AdminProducts /> },
   ]);
   return element;
 };

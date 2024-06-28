@@ -1,7 +1,6 @@
 import React from "react";
 import { Helmet } from "react-helmet";
 import { Text, Img, Heading, CheckBox, Button } from "../../components";
-import Header from "../../components/Header";
 import Sidebar1 from "../../components/Sidebar1";
 export default function ChatboxPage() {
   return (
@@ -15,7 +14,6 @@ export default function ChatboxPage() {
       </Helmet>
       <div className="w-full bg-white-A700 px-5 pt-5">
         <div className="flex flex-col gap-4">
-          <Header />
           <div className="flex items-start justify-between gap-5 md:flex-col">
             <Sidebar1 className="mt-[22px]" />
             <div className="flex w-[84%] flex-col items-start md:w-full">

@@ -47,7 +47,7 @@ export default function BlogDetailPage() {
               <div className="flex flex-col items-center gap-[9px] self-stretch">
                 <div className="container-md flex items-center justify-between gap-5 pr-1 md:flex-col md:p-5">
                   <div className="flex items-end self-start sm:flex-col">
-                    <a href="#">
+                    <a href="/map">
                       <Img
                         src="images/img_pin_1.svg"
                         alt="pinone"
@@ -58,7 +58,7 @@ export default function BlogDetailPage() {
                       118 Cách Mạng Tháng 8
                     </Text>
                     <div className="ml-[5px] h-full w-px bg-gray-200_01 sm:ml-0 sm:h-px sm:w-full" />
-                    <a href="#">
+                    <a href="/contact">
                       <Img
                         src="images/img_phone_1.svg"
                         alt="phoneone"
@@ -99,6 +99,7 @@ export default function BlogDetailPage() {
                         <a
                           href="https://www.youtube.com/embed/bv8Fxk0sz7I"
                           target="_blank"
+                          rel="noreferrer"
                         >
                           <Text size="s" as="p">
                             Trợ giúp
@@ -171,6 +172,7 @@ export default function BlogDetailPage() {
                     <a
                       href="https://www.youtube.com/embed/bv8Fxk0sz7I"
                       target="_blank"
+                      rel="noreferrer"
                     >
                       <Img
                         src="images/img_search_1.svg"
@@ -184,6 +186,7 @@ export default function BlogDetailPage() {
                       <a
                         href="https://www.youtube.com/embed/bv8Fxk0sz7I"
                         target="_blank"
+                        rel="noreferrer"
                       >
                         <Button
                           color="green_A700_11"
@@ -212,6 +215,7 @@ export default function BlogDetailPage() {
                       <a
                         href="https://www.youtube.com/embed/bv8Fxk0sz7I"
                         target="_blank"
+                        rel="noreferrer"
                       >
                         <Button
                           color="green_A700_11"
@@ -242,6 +246,7 @@ export default function BlogDetailPage() {
                           <a
                             href="https://www.youtube.com/embed/bv8Fxk0sz7I"
                             target="_blank"
+                            rel="noreferrer"
                           >
                             <Button
                               shape="round"
@@ -264,16 +269,8 @@ export default function BlogDetailPage() {
                           className="w-[62%] self-end !font-inter leading-[22px]"
                         >
                           <span className="font-bevietnampro text-[13px] font-normal text-blue_gray-900_02">
-                            289.000
+                            289.000đ
                           </span>
-                          <a
-                            href="#"
-                            className="font-bevietnampro text-[13px] font-normal text-blue_gray-900_02 underline"
-                          >
-                            <>
-                              đ<br />
-                            </>
-                          </a>
                           <span className="font-bevietnampro text-base font-medium text-blue_gray-900_02">
                             Thanh toán
                           </span>
@@ -316,7 +313,7 @@ export default function BlogDetailPage() {
                     className="mb-6 h-[5px] md:w-full"
                   />
                   <a
-                    href="https://www.youtube.com/embed/bv8Fxk0sz7I"
+                    href="/product"
                     target="_blank"
                   >
                     <Text as="p" className="ml-[38px] md:ml-0">
@@ -329,8 +326,9 @@ export default function BlogDetailPage() {
                     className="mb-6 h-[5px] md:w-full"
                   />
                   <a
-                    href="https://www.youtube.com/embed/bv8Fxk0sz7I"
+                    href="/contact"
                     target="_blank"
+                    
                   >
                     <Text as="p" className="mb-[17px] ml-[39px] md:ml-0">
                       Liên hệ
@@ -342,7 +340,7 @@ export default function BlogDetailPage() {
                     className="mb-6 h-[5px] md:w-full"
                   />
                   <a
-                    href="https://www.youtube.com/embed/bv8Fxk0sz7I"
+                    href="/blog"
                     target="_blank"
                   >
                     <Text as="p" className="ml-10 mt-[18px] md:ml-0">
@@ -358,12 +356,7 @@ export default function BlogDetailPage() {
                 <ul className="flex flex-wrap gap-3.5">
                   <li>
                     <a href="#">
-                      <Text as="p">Ưu</Text>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <Text as="p">đãi</Text>
+                      <Text as="p">Ưu đãi</Text>
                     </a>
                   </li>
                 </ul>
@@ -379,7 +372,7 @@ export default function BlogDetailPage() {
             <Text size="md" as="p" className="self-end">
               /
             </Text>
-            <a href="https://www.youtube.com/embed/bv8Fxk0sz7I" target="_blank">
+            <a href="/blog" target="_blank">
               <Text size="md" as="p" className="self-start">
                 Bài viết
               </Text>

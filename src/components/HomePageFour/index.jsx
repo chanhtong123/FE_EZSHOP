@@ -74,14 +74,8 @@ export default function HomePageFour({
         <div className="flex flex-wrap items-start gap-2.5">
           <Text size="2xl" as="p" className="flex !font-jost">
             <span className="font-bevietnampro font-semibold text-blue_gray-900_02">
-              278.000
+              278.000đ
             </span>
-            <a
-              href="#"
-              className="font-bevietnampro font-semibold text-blue_gray-900_02 underline"
-            >
-              đ
-            </a>
           </Text>
           <Text
             size="md"

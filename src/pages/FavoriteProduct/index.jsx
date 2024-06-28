@@ -2,7 +2,6 @@ import React from "react";
 import { Helmet } from "react-helmet";
 import { Img, Text, Heading, RatingBar, Button } from "../../components";
 import FavoriteProductSidebar from "../../components/FavoriteProductSidebar";
-import Header1 from "../../components/Header1";
 export default function FavoriteProductPage() {
   return (
     <>
@@ -17,7 +16,6 @@ export default function FavoriteProductPage() {
       </Helmet>
       <div className="flex w-full flex-col items-center bg-white-A700">
         
-        <Header1 />
         <div className="container-md mt-[30px] md:p-5">
           
           <div>
@@ -40,6 +38,7 @@ export default function FavoriteProductPage() {
                       <a
                         href="https://www.youtube.com/embed/bv8Fxk0sz7I"
                         target="_blank"
+                        rel="noreferrer"
                       >
                         
                         <Img
@@ -58,6 +57,7 @@ export default function FavoriteProductPage() {
                       <a
                         href="https://www.youtube.com/embed/bv8Fxk0sz7I"
                         target="_blank"
+                        rel="noreferrer"
                       >
                         
                         <Heading as="h2" className="w-full leading-[150%]">
@@ -105,15 +105,8 @@ export default function FavoriteProductPage() {
                         <Heading size="3xl" as="h3" className="flex">
                           
                           <span className="text-blue_gray-900_02">
-                            278.000
+                            278.000đ
                           </span>
-                          <a
-                            href="#"
-                            className="text-blue_gray-900_02 underline"
-                          >
-                            
-                            đ
-                          </a>
                         </Heading>
                         <Text
                           size="md"
@@ -132,6 +125,7 @@ export default function FavoriteProductPage() {
                       <a
                         href="https://www.youtube.com/embed/bv8Fxk0sz7I"
                         target="_blank"
+                        rel="noreferrer"
                       >
                         
                         <Img
@@ -159,6 +153,7 @@ export default function FavoriteProductPage() {
                       <a
                         href="https://www.youtube.com/embed/bv8Fxk0sz7I"
                         target="_blank"
+                        rel="noreferrer"
                       >
                         
                         <Heading as="h4" className="w-full leading-[150%]">
@@ -206,15 +201,8 @@ export default function FavoriteProductPage() {
                         <Heading size="3xl" as="h5" className="flex">
                           
                           <span className="text-blue_gray-900_02">
-                            278.000
+                            278.000đ
                           </span>
-                          <a
-                            href="#"
-                            className="text-blue_gray-900_02 underline"
-                          >
-                            
-                            đ
-                          </a>
                         </Heading>
                         <Text
                           size="md"
@@ -234,6 +222,7 @@ export default function FavoriteProductPage() {
                       <a
                         href="https://www.youtube.com/embed/bv8Fxk0sz7I"
                         target="_blank"
+                        rel="noreferrer"
                       >
                         
                         <Img
@@ -252,6 +241,7 @@ export default function FavoriteProductPage() {
                       <a
                         href="https://www.youtube.com/embed/bv8Fxk0sz7I"
                         target="_blank"
+                        rel="noreferrer"
                       >
                         
                         <Heading as="h6" className="w-full leading-[150%]">
@@ -299,15 +289,8 @@ export default function FavoriteProductPage() {
                         <Text size="2xl" as="p" className="flex !font-jost">
                           
                           <span className="font-bevietnampro font-semibold text-blue_gray-900_02">
-                            278.000
+                            278.000đ
                           </span>
-                          <a
-                            href="#"
-                            className="font-bevietnampro font-semibold text-blue_gray-900_02 underline"
-                          >
-                            
-                            đ
-                          </a>
                         </Text>
                         <Text
                           size="md"
@@ -327,6 +310,7 @@ export default function FavoriteProductPage() {
                       <a
                         href="https://www.youtube.com/embed/bv8Fxk0sz7I"
                         target="_blank"
+                        rel="noreferrer"
                       >
                         
                         <Img
@@ -345,6 +329,7 @@ export default function FavoriteProductPage() {
                       <a
                         href="https://www.youtube.com/embed/bv8Fxk0sz7I"
                         target="_blank"
+                        rel="noreferrer"
                       >
                         
                         <Heading as="h6" className="w-full leading-[150%]">
@@ -392,15 +377,9 @@ export default function FavoriteProductPage() {
                         <Text size="2xl" as="p" className="flex !font-jost">
                           
                           <span className="font-bevietnampro font-semibold text-blue_gray-900_02">
-                            278.000
+                            278.000đ
                           </span>
-                          <a
-                            href="#"
-                            className="font-bevietnampro font-semibold text-blue_gray-900_02 underline"
-                          >
-                            
-                            đ
-                          </a>
+
                         </Text>
                         <Text
                           size="md"
@@ -420,6 +399,7 @@ export default function FavoriteProductPage() {
                       <a
                         href="https://www.youtube.com/embed/bv8Fxk0sz7I"
                         target="_blank"
+                        rel="noreferrer"
                       >
                         
                         <Img
@@ -438,6 +418,7 @@ export default function FavoriteProductPage() {
                       <a
                         href="https://www.youtube.com/embed/bv8Fxk0sz7I"
                         target="_blank"
+                        rel="noreferrer"
                       >
                         
                         <Heading as="h6" className="w-full leading-[150%]">
@@ -463,15 +444,9 @@ export default function FavoriteProductPage() {
                         <Text size="2xl" as="p" className="flex !font-jost">
                           
                           <span className="font-bevietnampro font-semibold text-blue_gray-900_02">
-                            278.000
+                            278.000đ
                           </span>
-                          <a
-                            href="#"
-                            className="font-bevietnampro font-semibold text-blue_gray-900_02 underline"
-                          >
-                            
-                            đ
-                          </a>
+          
                         </Text>
                         <Text
                           size="md"
@@ -491,6 +466,7 @@ export default function FavoriteProductPage() {
                       <a
                         href="https://www.youtube.com/embed/bv8Fxk0sz7I"
                         target="_blank"
+                        rel="noreferrer"
                       >
                         
                         <Img
@@ -509,6 +485,7 @@ export default function FavoriteProductPage() {
                       <a
                         href="https://www.youtube.com/embed/bv8Fxk0sz7I"
                         target="_blank"
+                        rel="noreferrer"
                       >
                         
                         <Heading as="h6" className="w-full leading-[150%]">
@@ -534,15 +511,9 @@ export default function FavoriteProductPage() {
                         <Text size="2xl" as="p" className="flex !font-jost">
                           
                           <span className="font-bevietnampro font-semibold text-blue_gray-900_02">
-                            278.000
+                            278.000đ
                           </span>
-                          <a
-                            href="#"
-                            className="font-bevietnampro font-semibold text-blue_gray-900_02 underline"
-                          >
-                            
-                            đ
-                          </a>
+            
                         </Text>
                         <Text
                           size="md"
@@ -562,6 +533,7 @@ export default function FavoriteProductPage() {
                       <a
                         href="https://www.youtube.com/embed/bv8Fxk0sz7I"
                         target="_blank"
+                        rel="noreferrer"
                       >
                         
                         <Img
@@ -580,6 +552,7 @@ export default function FavoriteProductPage() {
                       <a
                         href="https://www.youtube.com/embed/bv8Fxk0sz7I"
                         target="_blank"
+                        rel="noreferrer"
                       >
                         
                         <Heading as="h6" className="w-full leading-[150%]">
@@ -605,15 +578,9 @@ export default function FavoriteProductPage() {
                         <Text size="2xl" as="p" className="flex !font-jost">
                           
                           <span className="font-bevietnampro font-semibold text-blue_gray-900_02">
-                            278.000
+                            278.000đ
                           </span>
-                          <a
-                            href="#"
-                            className="font-bevietnampro font-semibold text-blue_gray-900_02 underline"
-                          >
-                            
-                            đ
-                          </a>
+                        
                         </Text>
                         <Text
                           size="md"
@@ -633,6 +600,7 @@ export default function FavoriteProductPage() {
                       <a
                         href="https://www.youtube.com/embed/bv8Fxk0sz7I"
                         target="_blank"
+                        rel="noreferrer"
                       >
                         
                         <Img
@@ -651,6 +619,7 @@ export default function FavoriteProductPage() {
                       <a
                         href="https://www.youtube.com/embed/bv8Fxk0sz7I"
                         target="_blank"
+                        rel="noreferrer"
                       >
                         
                         <Heading as="h6" className="w-full leading-[150%]">
@@ -676,15 +645,9 @@ export default function FavoriteProductPage() {
                         <Heading size="3xl" as="h6" className="flex">
                           
                           <span className="text-blue_gray-900_02">
-                            278.000
+                            278.000đ
                           </span>
-                          <a
-                            href="#"
-                            className="text-blue_gray-900_02 underline"
-                          >
-                            
-                            đ
-                          </a>
+                        
                         </Heading>
                         <Text
                           size="md"
@@ -701,11 +664,11 @@ export default function FavoriteProductPage() {
                     
                     <div className="self-stretch bg-white-A700 px-5 py-[25px] sm:py-5">
                       
-                      <a
+                       <a
                         href="https://www.youtube.com/embed/bv8Fxk0sz7I"
                         target="_blank"
+                        rel="noreferrer"
                       >
-                        
                         <Img
                           src="images/img_image_30_2.png"
                           alt="imagethirty"
@@ -719,11 +682,11 @@ export default function FavoriteProductPage() {
                         
                         Thời trang
                       </Text>
-                      <a
+                       <a
                         href="https://www.youtube.com/embed/bv8Fxk0sz7I"
                         target="_blank"
+                        rel="noreferrer"
                       >
-                        
                         <Heading as="h6" className="w-full leading-[150%]">
                           
                           Áo nỉ chần bông màu xám có dây Nike
@@ -749,13 +712,7 @@ export default function FavoriteProductPage() {
                           <span className="text-blue_gray-900_02">
                             278.000
                           </span>
-                          <a
-                            href="#"
-                            className="text-blue_gray-900_02 underline"
-                          >
-                            
-                            đ
-                          </a>
+                         
                         </Heading>
                         <Text
                           size="md"
@@ -772,11 +729,11 @@ export default function FavoriteProductPage() {
                     
                     <div className="self-stretch bg-white-A700 px-5 py-[25px] sm:py-5">
                       
-                      <a
+                       <a
                         href="https://www.youtube.com/embed/bv8Fxk0sz7I"
                         target="_blank"
+                        rel="noreferrer"
                       >
-                        
                         <Img
                           src="images/img_image_30_2.png"
                           alt="imagethirty"
@@ -790,11 +747,11 @@ export default function FavoriteProductPage() {
                         
                         Thời trang
                       </Text>
-                      <a
+                       <a
                         href="https://www.youtube.com/embed/bv8Fxk0sz7I"
                         target="_blank"
+                        rel="noreferrer"
                       >
-                        
                         <Heading as="h6" className="w-full leading-[150%]">
                           
                           Áo nỉ chần bông màu xám có dây Nike
@@ -818,15 +775,9 @@ export default function FavoriteProductPage() {
                         <Heading size="3xl" as="h6" className="flex">
                           
                           <span className="text-blue_gray-900_02">
-                            278.000
+                            278.000đ
                           </span>
-                          <a
-                            href="#"
-                            className="text-blue_gray-900_02 underline"
-                          >
-                            
-                            đ
-                          </a>
+                         
                         </Heading>
                         <Text
                           size="md"
@@ -843,11 +794,11 @@ export default function FavoriteProductPage() {
                     
                     <div className="self-stretch bg-white-A700 px-5 py-[25px] sm:py-5">
                       
-                      <a
+                       <a
                         href="https://www.youtube.com/embed/bv8Fxk0sz7I"
                         target="_blank"
+                        rel="noreferrer"
                       >
-                        
                         <Img
                           src="images/img_image_30_2.png"
                           alt="imagethirty"
@@ -861,11 +812,11 @@ export default function FavoriteProductPage() {
                         
                         Thời trang
                       </Text>
-                      <a
+                       <a
                         href="https://www.youtube.com/embed/bv8Fxk0sz7I"
                         target="_blank"
+                        rel="noreferrer"
                       >
-                        
                         <Heading as="h6" className="w-full leading-[150%]">
                           
                           Áo nỉ chần bông màu xám có dây Nike
@@ -895,15 +846,9 @@ export default function FavoriteProductPage() {
                           <Heading size="3xl" as="h6" className="flex">
                             
                             <span className="text-blue_gray-900_02">
-                              278.000
+                              278.000đ
                             </span>
-                            <a
-                              href="#"
-                              className="text-blue_gray-900_02 underline"
-                            >
-                              
-                              đ
-                            </a>
+                          
                           </Heading>
                           <Text
                             size="md"
@@ -921,11 +866,11 @@ export default function FavoriteProductPage() {
                     
                     <div className="self-stretch bg-white-A700 px-5 py-[25px] sm:py-5">
                       
-                      <a
+                       <a
                         href="https://www.youtube.com/embed/bv8Fxk0sz7I"
                         target="_blank"
+                        rel="noreferrer"
                       >
-                        
                         <Img
                           src="images/img_image_30_2.png"
                           alt="imagethirty"
@@ -939,11 +884,11 @@ export default function FavoriteProductPage() {
                         
                         Thời trang
                       </Text>
-                      <a
+                       <a
                         href="https://www.youtube.com/embed/bv8Fxk0sz7I"
                         target="_blank"
+                        rel="noreferrer"
                       >
-                        
                         <Heading as="h6" className="w-full leading-[150%]">
                           
                           Áo nỉ chần bông màu xám có dây Nike
@@ -969,13 +914,7 @@ export default function FavoriteProductPage() {
                           <span className="text-blue_gray-900_02">
                             278.000
                           </span>
-                          <a
-                            href="#"
-                            className="text-blue_gray-900_02 underline"
-                          >
-                            
-                            đ
-                          </a>
+                         
                         </Heading>
                         <Text
                           size="md"

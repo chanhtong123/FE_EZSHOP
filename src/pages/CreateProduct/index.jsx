@@ -4,22 +4,10 @@ import axios from "axios";
 import {
   Text,
   Button,
-  Radio,
-  RadioGroup,
   Heading,
-  TextArea,
-  SelectBox,
-  Img,
   Input,
 } from "../../components";
 import CreateProductSidebar from "../../components/CreateProductSidebar";
-import Footer1 from "../../components/Footer1";
-import Header1 from "../../components/Header1";
-const dropDownOptions = [
-  { label: "Option1", value: "option1" },
-  { label: "Option2", value: "option2" },
-  { label: "Option3", value: "option3" },
-];
 
 const CreateProductForm = () => {
   const [productData, setProductData] = useState({
@@ -92,18 +80,6 @@ const CreateProductForm = () => {
     }
   };
 
-  const [dropDownOptions, setDropDownOptions] = useState({
-    categories: [],
-    situations: [
-      { label: "100", value: "100" },
-      { label: "99", value: "99" },
-      { label: "98", value: "98" },
-      { label: "97", value: "97" },
-      { label: "96", value: "96" },
-      { label: "95", value: "95" },
-    ],
-  });
-
   useEffect(() => {
     // Fetch categories from backend API
     axios
@@ -126,7 +102,6 @@ const CreateProductForm = () => {
         />
       </Helmet>
       <div className="flex w-full flex-col items-center bg-white-A700">
-        <Header1 />
         <div className="container-md mt-[41px] flex items-start justify-between gap-5 pr-[5px] md:flex-col md:p-5">
           <CreateProductSidebar />
           <div className="flex w-[80%] flex-col gap-12 md:w-full">
@@ -303,6 +278,7 @@ const CreateProductForm = () => {
               <a
                 href="https://www.youtube.com/embed/bv8Fxk0sz7I"
                 target="_blank"
+                rel="noreferrer"
               >
                 <Button
                   size="10xl"
@@ -319,7 +295,6 @@ const CreateProductForm = () => {
             </div>
           </div>
         </div>
-        <Footer1 className="mt-20 justify-center self-stretch border-t border-solid border-gray-200_01 bg-white-A700 px-14 pb-[17px] pt-[82px] md:px-5 md:pt-5" />
       </div>
     </>
   );

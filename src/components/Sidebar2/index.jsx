@@ -1,6 +1,6 @@
 import React from "react";
 import { Text, Img } from "./..";
-import { MenuItem, Menu, Sidebar, sidebarClasses } from "react-pro-sidebar";
+import { MenuItem, Menu, Sidebar } from "react-pro-sidebar";
 export default function Sidebar2({ ...props }) {
   const [collapsed, setCollapsed] = React.useState(false);
   //use this function to collapse/expand the sidebar  //function collapseSidebar() {  //    setCollapsed(!collapsed)  //}

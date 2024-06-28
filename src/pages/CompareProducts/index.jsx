@@ -32,7 +32,7 @@ export default function CompareProductsPage() {
               <div className="container-md flex items-center justify-between gap-5 pr-1 md:flex-col md:p-5">
                 <div className="flex items-end self-start sm:flex-col">
                   <div className="flex items-center gap-[5px]">
-                    <a href="#">
+                    <a href="/map">
                       <Img
                         src="images/img_pin_1.svg"
                         alt="pinone"
@@ -44,7 +44,7 @@ export default function CompareProductsPage() {
                     </Text>
                     <div className="h-full w-px bg-gray-200_01" />
                   </div>
-                  <a href="#">
+                  <a href="/contact">
                     <Img
                       src="images/img_phone_1.svg"
                       alt="phoneone"
@@ -125,7 +125,7 @@ export default function CompareProductsPage() {
             </div>
             <div className="mt-[15px] flex w-[75%] items-center justify-between gap-5 md:w-full md:flex-col md:p-5">
               <a
-                href="https://www.youtube.com/embed/bv8Fxk0sz7I"
+                href="/favorite"
                 target="_blank"
               >
                 <Img
@@ -153,7 +153,7 @@ export default function CompareProductsPage() {
                     </Text>
                   </div>
                   <a
-                    href="https://www.youtube.com/embed/bv8Fxk0sz7I"
+                    href="/"
                     target="_blank"
                   >
                     <Img
@@ -166,7 +166,7 @@ export default function CompareProductsPage() {
                 <div className="flex w-[43%] items-center justify-center gap-[17px] md:w-full sm:flex-col">
                   <div className="flex w-full items-start justify-center gap-[15px] self-end sm:w-full">
                     <a
-                      href="https://www.youtube.com/embed/bv8Fxk0sz7I"
+                      href="/"
                       target="_blank"
                     >
                       <Button
@@ -194,7 +194,7 @@ export default function CompareProductsPage() {
                   </div>
                   <div className="flex w-full items-start justify-center gap-[15px] self-end sm:w-full">
                     <a
-                      href="https://www.youtube.com/embed/bv8Fxk0sz7I"
+                      href="/profile"
                       target="_blank"
                     >
                       <Button
@@ -223,7 +223,7 @@ export default function CompareProductsPage() {
                   <div className="flex w-full items-center gap-[9px] sm:w-full">
                     <div className="relative h-[55px] w-[38%]">
                       <a
-                        href="https://www.youtube.com/embed/bv8Fxk0sz7I"
+                        href="/cartdetail"
                         target="_blank"
                       >
                         <Button
@@ -247,16 +247,8 @@ export default function CompareProductsPage() {
                       className="w-[62%] self-end !font-inter leading-[22px]"
                     >
                       <span className="font-bevietnampro text-[13px] font-normal text-blue_gray-900_02">
-                        289.000
+                        289.000đ
                       </span>
-                      <a
-                        href="#"
-                        className="font-bevietnampro text-[13px] font-normal text-blue_gray-900_02 underline"
-                      >
-                        <>
-                          đ<br />
-                        </>
-                      </a>
                       <span className="font-bevietnampro text-base font-medium text-blue_gray-900_02">
                         Thanh toán
                       </span>
@@ -296,7 +288,7 @@ export default function CompareProductsPage() {
                   className="mb-6 h-[5px] md:w-full"
                 />
                 <a
-                  href="https://www.youtube.com/embed/bv8Fxk0sz7I"
+                  href="/product"
                   target="_blank"
                 >
                   <Text as="p" className="ml-[38px] md:ml-0">
@@ -309,7 +301,7 @@ export default function CompareProductsPage() {
                   className="mb-6 h-[5px] md:w-full"
                 />
                 <a
-                  href="https://www.youtube.com/embed/bv8Fxk0sz7I"
+                  href="/contact"
                   target="_blank"
                 >
                   <Text as="p" className="mb-[17px] ml-[39px] md:ml-0">
@@ -322,7 +314,7 @@ export default function CompareProductsPage() {
                   className="mb-6 h-[5px] md:w-full"
                 />
                 <a
-                  href="https://www.youtube.com/embed/bv8Fxk0sz7I"
+                  href="/blog"
                   target="_blank"
                 >
                   <Text as="p" className="ml-10 mt-[18px] md:ml-0">
@@ -453,6 +445,7 @@ export default function CompareProductsPage() {
                             <a
                               href="https://www.youtube.com/embed/bv8Fxk0sz7I"
                               target="_blank"
+                              rel="noreferrer"
                             >
                               <Img
                                 src="images/img_image_65.png"
@@ -481,6 +474,7 @@ export default function CompareProductsPage() {
                           <a
                             href="https://www.youtube.com/embed/bv8Fxk0sz7I"
                             target="_blank"
+                            rel="noreferrer"
                           >
                             <Text as="p" className="w-full leading-7">
                               Áo thun Nike SB màu xám chất lượng cao
@@ -575,6 +569,7 @@ export default function CompareProductsPage() {
                           <a
                             href="https://www.youtube.com/embed/bv8Fxk0sz7I"
                             target="_blank"
+                            rel="noreferrer"
                           >
                             <Img
                               src="images/img_image_65.png"
@@ -603,6 +598,7 @@ export default function CompareProductsPage() {
                         <a
                           href="https://www.youtube.com/embed/bv8Fxk0sz7I"
                           target="_blank"
+                          rel="noreferrer"
                         >
                           <Text as="p" className="w-full leading-7">
                             Áo thun Nike SB màu xám chất lượng cao
@@ -696,6 +692,7 @@ export default function CompareProductsPage() {
                           <a
                             href="https://www.youtube.com/embed/bv8Fxk0sz7I"
                             target="_blank"
+                            rel="noreferrer"
                           >
                             <Img
                               src="images/img_image_65.png"
@@ -724,6 +721,7 @@ export default function CompareProductsPage() {
                         <a
                           href="https://www.youtube.com/embed/bv8Fxk0sz7I"
                           target="_blank"
+                          rel="noreferrer"
                         >
                           <Text as="p" className="w-full leading-7">
                             Áo thun Nike SB màu xám chất lượng cao
