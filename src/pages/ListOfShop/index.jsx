@@ -1,40 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import axiosInstance from '../../config/axiosConfig';
 import { Helmet } from "react-helmet";
-import { CloseSVG } from "../../assets/images";
 import { Link } from 'react-router-dom';
 
 import {
   Button,
   Text,
-  RatingBar,
   Img,
-  Input,
-  CheckBox,
-  SelectBox,
-  Heading,
 } from "../../components";
 import Footer1 from "../../components/Footer1";
-import MegaMenu1 from "../../components/MegaMenu1";
-import SalesShopPagination from "../../components/SalesShopPagination";
-import {
-  AccordionItemHeading,
-  AccordionItemButton,
-  AccordionItemState,
-  Accordion,
-  AccordionItem,
-} from "react-accessible-accordion";
-const dropDownOptions = [
-  { label: "Option1", value: "option1" },
-  { label: "Option2", value: "option2" },
-  { label: "Option3", value: "option3" },
-];
+
 export default function ListOfShopPage() {
-  const [searchBarValue35, setSearchBarValue35] = React.useState("");
-  const [menuOpen, setMenuOpen] = React.useState(false);
-  const [menuOpen1, setMenuOpen1] = React.useState(false);
-  const [menuOpen2, setMenuOpen2] = React.useState(false);
-  const [menuOpen3, setMenuOpen3] = React.useState(false);
 
   const [shops, setShops] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
@@ -98,18 +74,12 @@ export default function ListOfShopPage() {
             <div className="flex items-start justify-between gap-5 self-stretch md:flex-col">
 
               <div className="flex w-[100%] flex-col items-center gap-[25px] md:w-full">
-
-
-
-
-
                 {/* list shop */}
-
                 <div className="grid grid-cols-5 justify-center gap-7 self-stretch md:grid-cols-2 sm:grid-cols-1">
                   {shops.map(shop => (
                     <div key={shop.shopId} className="flex w-full flex-col gap-[21px] rounded-md border border-solid border-gray-200_01 bg-white-A700 p-[30px] sm:p-5">
                        <Link to={`/sales-shop/${shop.shopId}`} key={shop.shopId}>
-                      <img
+                      <Img
                         src={shop.image}
                         className="h-[200px] rounded-md object-cover"
                       />

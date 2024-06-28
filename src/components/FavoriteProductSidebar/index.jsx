@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axiosInstance from "../../config/axiosConfig";
 import { getToken, removeToken } from "../../utils/authUtils";
-import { Helmet } from "react-helmet";
-import { Text, Button, Input, Heading, Img, SelectBox } from "../../components";
+import { Text, Img } from "../../components";
 
 export default function FavoriteProductSidebar(){
   const navigate = useNavigate();
@@ -110,7 +109,7 @@ export default function FavoriteProductSidebar(){
       />
       <span>Danh sách yêu thích</span>
     </a>
-    <a href="" className="flex items-center gap-2">
+    <a href="/login" className="flex items-center gap-2">
       <Img
         src="images/img_television.svg"
         alt="television"
