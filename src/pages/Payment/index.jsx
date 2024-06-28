@@ -49,7 +49,7 @@ export default function PaymentPage() {
   const payOSConfig = {
     RETURN_URL: "/payment-success",
     ELEMENT_ID: "payos-container",
-    CHECKOUT_URL: "https://your-checkout-url.com",
+    CHECKOUT_URL: "https://your-checkout-url.com", 
     onSuccess: (event) => {
       console.log("Payment successful", event);
       setSuccess(true);
