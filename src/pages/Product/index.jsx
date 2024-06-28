@@ -143,7 +143,7 @@ export default function ProductPage() {
                 Thương hiệu
               </label>
               <div className="flex flex-col">
-                {["Nike", "Adidas", "Hihi", "Hoho"].map((brandName) => (
+                {["Nike", "Adidas", "LEVI'S", "Chanel"].map((brandName) => (
                   <label
                     key={brandName}
                     className="flex items-center gap-2 mb-2"
