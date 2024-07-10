@@ -3,10 +3,11 @@ import { Helmet } from "react-helmet";
 import { Text, Heading, Button } from "../../components";
 import FavoriteProductSidebar from "../../components/FavoriteProductSidebar";
 import { ReactTable } from "../../components/ReactTable";
-import axios from "axios";
+import { getOrdersByUserId } from "api/orderService";
 import { createColumnHelper } from "@tanstack/react-table";
 import { formatDistanceToNow } from "date-fns";
 import { vi } from "date-fns/locale";
+import axios from "axios";
 import classNames from "classnames";
 
 const columnHelper = createColumnHelper();
@@ -65,24 +66,33 @@ export default function OrderPage() {
 
   useEffect(() => {
     const fetchOrderData = async () => {
-      try {
-        const response = await axios.get(
-          `http://localhost:8080/guest/api/orders/user-id?user_id=1&page=${currentPage}&size=${pageSize}`
-        );
-        console.log("Fetched order data:", response.data);
+        try {
 
-        const fetchedData = response.data.content;
+          const token = localStorage.getItem("token");
+          const axiosInstance = axios.create({
+            baseURL: 'http://localhost:8080',
+            headers: {
+              'Authorization': `Bearer ${token}`,
+              'Content-Type': 'application/json'
+            }
+          });
+          const userInfoResponse = await axiosInstance.get("/user");
+          const userId = userInfoResponse.data.id;
+            const response = await getOrdersByUserId(userId, currentPage, pageSize);
+            console.log("Fetched order data:", response);
 
-        console.log("Processed order data:", fetchedData);
-        setOrderData(fetchedData);
-        setTotalPages(response.data.totalPages);
-      } catch (error) {
-        console.error("Error fetching order data:", error);
-      }
+            const fetchedData = response.content; 
+
+            console.log("Processed order data:", fetchedData);
+            setOrderData(fetchedData);
+            setTotalPages(response.totalPages);
+        } catch (error) {
+            console.error("Error fetching order data:", error.message);
+        }
     };
 
     fetchOrderData();
-  }, [currentPage, pageSize]);
+}, [ currentPage, pageSize]);
 
   const handlePageChange = (newPage) => {
     setCurrentPage(newPage);
