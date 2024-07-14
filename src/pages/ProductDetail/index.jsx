@@ -6,13 +6,12 @@ import axiosInstance from '../../config/axiosConfig';
 import { getToken, removeToken } from '../../utils/authUtils';
 import { Helmet } from "react-helmet";
 import CustomToast from "../../components/CustomToast";
-
-
-
+import HomePageSix from "../../components/HomePageSix";
 
 import {
   Button,
   Img,
+  Slider,
   Text,
   CheckBox,
   Input,
@@ -26,16 +25,7 @@ import HomePageFour from "../../components/HomePageFour";
 import HomePageThree from "../../components/HomePageThree";
 import ProductDetailDetails from "../../components/ProductDetailDetails";
 import { Link } from "react-router-dom";
-const data = [
-  { imageseventyfiv: "images/img_image_75.png" },
-  { imageseventyfiv: "images/img_image_76.png" },
-  { imageseventyfiv: "images/img_image_65.png" },
-];
-const dropDownOptions = [
-  { label: "Option1", value: "option1" },
-  { label: "Option2", value: "option2" },
-  { label: "Option3", value: "option3" },
-];
+
 const ProductDetailPage = () => {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
@@ -44,8 +34,22 @@ const ProductDetailPage = () => {
   const [mainImage, setMainImage] = useState(null);
   const [toastMessage, setToastMessage] = useState('');
   const [toastType, setToastType] = useState('');
+  const [products, setProducts] = useState([]); // Initialize as empty array
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [shop, setShop] = useState(null);
 
 
+
+
+  const [sliderState, setSliderState] = React.useState(0);
+  const sliderRef = React.useRef(null);
+  const [sliderState1, setSliderState1] = React.useState(0);
+  const sliderRef1 = React.useRef(null);
+  const [sliderState2, setSliderState2] = React.useState(0);
+  const sliderRef2 = React.useRef(null);
+  const [sliderState3, setSliderState3] = React.useState(0);
+  const sliderRef3 = React.useRef(null);
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -54,7 +58,7 @@ const ProductDetailPage = () => {
           `http://localhost:8080/guest/api/products/${id}`
         );
         setProduct(response.data);
-        setMainImage(response.data.image)
+        setMainImage(response.data.image);
       } catch (error) {
         console.error("Error fetching product:", error);
       }
@@ -63,12 +67,9 @@ const ProductDetailPage = () => {
     fetchProduct();
   }, [id]);
 
-
   useEffect(() => {
     const fetchCartId = async () => {
-
       const token = getToken();
-
 
       try {
         const response = await axiosInstance.get('/api/cart/user', {
@@ -85,7 +86,23 @@ const ProductDetailPage = () => {
     fetchCartId();
   }, []);
 
+  useEffect(() => {
+    const fetchProducts = async () => {
+      setLoading(true);
+      setError("");
+      try {
+        const response = await axiosInstance.get("http://localhost:8080/guest/api/products/search");
+        setProducts(response.data);
+      } catch (error) {
+        console.error("Error fetching products", error);
+        setError("Error fetching products: " + error.message);
+      } finally {
+        setLoading(false);
+      }
+    };
 
+    fetchProducts();
+  }, []);
 
   const handleAddToCart = async () => {
     const token = getToken();
@@ -106,10 +123,9 @@ const ProductDetailPage = () => {
         }
       });
 
-      setToastMessage("Thêm sản phẩm thành công.Hãy vào trang thanh toán để có thể xem giỏ hàng của bạn");
+      setToastMessage("Thêm sản phẩm thành công!");
       setToastType('success');
       console.log("Added to cart:", response.data);
-      
     } catch (error) {
       console.error("Error adding to cart:", error);
       setToastMessage("Lỗi.");
@@ -117,10 +133,24 @@ const ProductDetailPage = () => {
     }
   };
 
+  useEffect(() => {
+    const fetchShop = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:8080/guest/shop/byProduct/${id}`
+        );
+        setShop(response.data);
+        console.log("Shop: ", response.data);
+      } catch (error) {
+        console.error("Error fetching product:", error);
+      }
+    };
+
+    fetchShop();
+  }, [id]);
 
 
- 
-  
+
 
 
   if (!product) {
@@ -319,97 +349,69 @@ const ProductDetailPage = () => {
             </div>
             <div className="flex flex-col gap-[23px]">
               <div className="flex w-[66%] flex-col gap-6 md:w-full">
+
+
                 <div className="flex flex-col gap-4">
                   <div className="flex flex-col items-start gap-[15px]">
-                    {/* <Text size="3xl" as="p">
-                      Tổng Quan
-                    </Text> */}
-                    <div className="flex flex-col gap-[17px] self-stretch pb-[9px]">
-                      <Text as="p" className="!font-normal leading-7 !text-blue_gray-600">
-                        {/* {product.overview} */}
-                      </Text>
-                      <div className="flex items-center">
-                        {/* <Text as="p" className="!font-normal !text-green-A700_02">
-                          Xem Thêm
-                        </Text> */}
-                        {/* <Img
-                          src="images/img_vector_green_a700_02.svg"
-                          alt="vector_fifteen"
-                          className="mb-[5px] h-[5px] self-end"
-                        /> */}
+                    <div className="flex flex-row gap-[17px] self-stretch pb-[9px] items-center">
+
+                      <Link to={`/sales-shop/${shop.shopId}`}>
+                        <Img
+                          src={shop.image}
+                          className="h-[200px] w-[200px] rounded-md object-cover"
+                          alt={shop.nameShop}
+                        />
+                      </Link>
+                      <div className="flex flex-col gap-[10px]">
+                        <Text as="p" style={{ fontWeight: 'bold', color: '#FF0000' }} className="leading-7">
+                          {shop.nameShop}
+                        </Text>
+
+                        <Text as="p" className="!font-normal ">
+                          Địa chi:  {shop.address}
+                        </Text>
                       </div>
+
                     </div>
                   </div>
                   <div className="h-px bg-gray-200_01" />
                 </div>
+
+
+
+
                 <div className="flex flex-col items-start gap-[15px]">
                   <div className="flex items-center justify-between gap-5 self-stretch">
                     <Text size="3xl" as="p">
                       Thông Tin Chi Tiết
                     </Text>
-                    <Img
-                      src="images/img_arrow_up.svg"
-                      alt="arrowup"
-                      className="mb-2 h-[7px] self-end"
-                    />
+
                   </div>
                   <div className="flex w-[87%] flex-col gap-[19px] md:w-full">
                     <div className="flex flex-col items-start gap-[13px]">
                       <Text as="p">Đặc điểm</Text>
                       <div className="self-stretch">
                         <div className="flex items-start md:flex-col">
-                          <div className="mt-[19px] h-[4px] w-[4px] flex-1 rounded-sm bg-blue_gray-900_02 md:self-stretch" />
-                          <div className="relative ml-[-4px] mt-[59px] h-[4px] w-[4px] flex-1 rounded-sm bg-blue_gray-900_02 md:ml-0 md:self-stretch" />
-                          <div className="relative ml-[-4px] mt-[99px] h-[4px] w-[4px] flex-1 rounded-sm bg-blue_gray-900_02 md:ml-0 md:self-stretch" />
-                          <div className="relative mb-[97px] ml-[-4px] h-[4px] w-[4px] flex-1 rounded-sm bg-blue_gray-900_02 md:ml-0 md:self-stretch" />
-                          <div className="relative mb-[57px] ml-[-4px] h-[4px] w-[4px] flex-1 rounded-sm bg-blue_gray-900_02 md:ml-0 md:self-stretch" />
-                          <div className="relative mb-[17px] ml-[-4px] h-[4px] w-[4px] flex-1 rounded-sm bg-blue_gray-900_02 md:ml-0 md:self-stretch" />
+
                           <Text
                             as="p"
                             className="ml-2.5 w-full !font-normal leading-10 !text-blue_gray-600 md:ml-0"
                           >
-                            <>
-                              Thiết kế dáng rộng có phần vai trễ xuống mang lại
-                              vẻ ngoài và cảm giác thoải mái. <br /> Chất liệu
-                              cotton dày dặn có độ rủ cứng giúp outfits của bạn
-                              trông bắt mắt và đặc biệt hơn. <br /> Logo thêu
-                              phía trước tạo điểm nhấn tinh tế. <br /> Kiểu dáng
-                              loose fit. <br /> Sản phẩm có thể giặt máy. <br />
-                              Chất liệu: 100% cotton.
-                            </>
+                            {product.description.split('\n').map((line, index) => (
+                              <span key={index}>
+                                {line}
+                                <br />
+                              </span>
+                            ))}
                           </Text>
+
                         </div>
                       </div>
                     </div>
                     <div className="flex flex-col items-start gap-[13px]">
-                      <Text as="p" className="capitalize !text-gray-900_06">
-                        <span className="text-blue_gray-900_02">
-                          Hướng&nbsp;
-                        </span>
-                        <span className="text-blue_gray-900_02">
-                          dẫn chọn kích cỡ quần áo phù hợp
-                        </span>
-                      </Text>
+
                       <div className="flex items-start self-stretch md:flex-col">
-                        <div className="mt-[19px] h-[4px] w-[4px] flex-1 rounded-sm bg-blue_gray-900_02 md:self-stretch" />
-                        <div className="relative ml-[-4px] mt-[59px] h-[4px] w-[4px] flex-1 rounded-sm bg-blue_gray-900_02 md:ml-0 md:self-stretch" />
-                        <div className="relative ml-[-4px] h-[4px] w-[4px] flex-1 rounded-sm bg-blue_gray-900_02 md:ml-0 md:self-stretch" />
-                        <div className="relative mb-[57px] ml-[-4px] h-[4px] w-[4px] flex-1 rounded-sm bg-blue_gray-900_02 md:ml-0 md:self-stretch" />
-                        <div className="relative mb-[17px] ml-[-4px] h-[4px] w-[4px] flex-1 rounded-sm bg-blue_gray-900_02 md:ml-0 md:self-stretch" />
-                        <Text
-                          as="p"
-                          className="ml-2.5 w-full !font-normal leading-10 !text-blue_gray-600 md:ml-0"
-                        >
-                          <>
-                            Để đo được kích cỡ đúng, dùng thước dây đo. <br />
-                            Đo quanh phần hẹp nhất của thắt lưng, giữ thước dây
-                            thẳng theo phương ngang. <br /> Đứng khép hai chân
-                            và đo phần nở nhất của hông, giữ thước dây thẳng
-                            theo phương ngang. <br /> Đo chiều dài từ đỉnh vai
-                            cho đến cuối tay áo. <br /> Xin lưu ý số đo này dựa
-                            trên kiểu đường may viền trong thông thường.
-                          </>
-                        </Text>
+
                       </div>
                     </div>
                   </div>
@@ -425,11 +427,67 @@ const ProductDetailPage = () => {
                 </div> */}
               </div>
               <div className="flex flex-col gap-[17px]">
-             
-                <div className="flex flex-col items-end gap-7">
-               
 
-                </div>
+                <section>
+                  <div className="flex w-[6%] flex-col items-start gap-[5px] shadow-sm md:w-full">
+                    <a href="/product">
+                      <Text
+                        size="lg"
+                        as="p"
+                        className="!font-medium !text-gray-900_06"
+                      >
+                        Xem tất cả
+                      </Text>
+                    </a>
+                    <div className="h-[2px] w-[32px] bg-gray-900_06" />
+                  </div>
+                  <div className="flex w-full max-w-[1401px] self-stretch">
+                    <Slider
+                      autoPlay
+                      autoPlayInterval={1000}
+                      responsive={{
+                        0: { items: 1 },
+                        550: { items: 2 },
+                        1050: { items: 3 },
+                        1400: { items: 4 },
+                        1750: { items: 5 },
+                        2100: { items: 6 },
+                      }}
+                      disableDotsControls
+                      activeIndex={sliderState2}
+                      onSlideChanged={(e) => {
+                        setSliderState2(e?.item);
+                      }}
+                      ref={sliderRef2}
+                      items={products.map((product) => (
+                        <Link
+                          key={product.id}
+                          to={`/productdetail/${product.id}`}
+                          rel="noopener noreferrer"
+                        >
+                          <React.Fragment key={product.id}>
+                            <div className="flex md:flex-col">
+                              <HomePageSix
+                                imagethirtyOne={product.image}
+                                ergonomic={
+                                  <>
+                                    {product.name}
+                                    <br />
+                                    <span style={{ color: 'red' }}>{product.price} VND</span>
+                                  </>
+                                }
+                              />
+                            </div>
+
+                          </React.Fragment>
+                        </Link>
+                      ))}
+                    />
+                  </div>
+                </section>
+
+
+
               </div>
             </div>
           </div>

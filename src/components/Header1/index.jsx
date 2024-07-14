@@ -34,7 +34,7 @@ export default function Header1({ ...props }) {
               </a>
               <div className="ml-[5px] flex items-center gap-[5px] sm:ml-0">
                 <Text size="s" as="p" className="self-end">
-                  118 Cách Mạng Tháng 8
+                  51a Làng Tăng Phú, Tăng Nhơn Phú A, TP Thủ Đức
                 </Text>
                 <div className="h-full w-px bg-gray-200_01" />
               </div>
@@ -54,7 +54,7 @@ export default function Header1({ ...props }) {
                   Bạn cần trợ giúp? Gọi ngay:&nbsp;
                 </span>
                 <span className="font-bevietnampro font-medium text-blue_gray-900_02">
-                  +84 1800 900
+                  0334989612
                 </span>
               </Text>
             </div>
@@ -293,8 +293,12 @@ export default function Header1({ ...props }) {
           <div className="flex w-[40%] justify-between cursor-pointer items-center gap-1">
             <Button color="white_A701">Ưu đãi trong ngày</Button>
             <Button color="white_A701">Ưu đãi hấp dẫn</Button>
+            <a href="/shops">
             <Button color="white_A701">Cửa hàng nổi bật</Button>
+            </a>
+            <a href="/product">
             <Button color="white_A701">Hàng mới</Button>
+            </a>
           </div>
         </div>
       </div>
