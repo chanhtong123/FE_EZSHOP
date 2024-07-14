@@ -45,6 +45,12 @@ const tableColumns = [
           "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300":
             statusName === "Pending",
           "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300":
+            statusName === "Confirmed",
+          "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300":
+            statusName === "Processing",
+          "bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-300":
+            statusName === "Shipping",
+          "bg-teal-100 text-teal-800 dark:bg-teal-900 dark:text-teal-300":
             statusName === "Completed",
           "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-300":
             statusName === "Cancelled",
@@ -53,10 +59,12 @@ const tableColumns = [
         }
       );
 
+
       return <span className={statusClass}>{statusName}</span>;
     },
   }),
 ];
+
 
 export default function OrderPage() {
   const [orderData, setOrderData] = useState([]);
