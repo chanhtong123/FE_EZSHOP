@@ -25,10 +25,6 @@ const tableColumns = [
         locale: vi,
       })}`,
   }),
-  columnHelper.accessor("customerName", {
-    header: () => "Tên khách hàng",
-    cell: (info) => info.getValue(),
-  }),
   columnHelper.accessor("totalAmount", {
     header: () => "Tổng cộng",
     cell: (info) => `$${info.getValue()}`,
