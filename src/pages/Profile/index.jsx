@@ -119,7 +119,7 @@ export default function ProfilePage() {
               <Heading size="8xl" as="h1" className="uppercase">
                 Thông tin tài khoản
               </Heading>
-              <Heading as="h2">Thông tin tài khoản</Heading>
+              <Heading as="h2">Thông tin tài khoản Mật khẩu</Heading>
               <div className="flex flex-col items-start self-stretch">
                 <div className="h-[2px] w-[12%] bg-blue_gray-900_02" />
                 <div className="mt-6 self-stretch">
@@ -191,7 +191,96 @@ export default function ProfilePage() {
                     </div>
                   </form>
                 </div>
-               
+                {/* <div className="mt-12 flex w-[49%] flex-col gap-4 md:w-full">
+                  <div className="flex flex-col items-start gap-2">
+                    <Text as="p">Nhập Mật khẩu</Text>
+                    <Input
+                      shape="round"
+                      type="text"
+                      name="name"
+                      placeholder={`Your Name`}
+                      className="self-stretch border border-solid border-gray-200_01 sm:pr-5"
+                    />
+                  </div>
+                  <div className="flex flex-col items-start gap-2">
+                    <Text as="p">Mật khẩu mới</Text>
+                    <Input
+                      shape="round"
+                      type="text"
+                      name="name"
+                      placeholder={`Your Name`}
+                      className="self-stretch border border-solid border-gray-200_01 sm:pr-5"
+                    />
+                  </div>
+                  <div className="flex flex-col items-start gap-2">
+                    <Text as="p">Xác nhận mật khẩu mới</Text>
+                    <Input
+                      shape="round"
+                      type="text"
+                      name="name"
+                      placeholder={`Your Name`}
+                      className="self-stretch border border-solid border-gray-200_01 sm:pr-5"
+                    />
+                  </div>
+                  <div className="flex w-[36%] items-center justify-between gap-5 md:w-full">
+                    <Button
+                      size="10xl"
+                      shape="round"
+                      className="min-w-[99px] border border-solid border-green-A700_02 !text-gray-100_02 shadow-sm sm:px-5"
+                    >
+                      Lưu
+                    </Button>
+                    <Text as="p" className="!font-normal !text-blue_gray-600">
+                      Hủy bỏ
+                    </Text>
+                  </div>
+                </div>
+                <div className="mt-12 flex w-[61%] flex-col gap-4 md:w-full">
+                  <div className="flex flex-col gap-4">
+                    <div className="flex flex-1">
+                      <div className="flex w-full flex-col items-start">
+                        <div className="flex items-start justify-between gap-5 self-stretch">
+                          <Text as="p">SMS</Text>
+                        </div>
+                        <Text as="p" className="!font-normal">
+                          Mã được gửi đến điện thoại di động của bạn qua phương
+                          thức SMS
+                        </Text>
+                        <div className="mt-[22px] h-px w-full self-stretch bg-gray-200_01" />
+                      </div>
+                    </div>
+                    <div className="flex flex-1 flex-col items-start">
+                      <div className="flex items-start justify-between gap-5 self-stretch">
+                        <Text as="p">Email</Text>
+                      </div>
+                      <Text as="p" className="!font-normal">
+                        Mã xác thực được gửi đến email của bạn
+                      </Text>
+                      <div className="mt-[22px] h-px w-full self-stretch bg-gray-200_01" />
+                    </div>
+                    <div className="flex flex-1 flex-col items-start">
+                      <div className="flex items-center justify-between gap-5 self-stretch">
+                        <Text as="p">Điện thoại</Text>
+                      </div>
+                      <Text as="p" className="!font-normal">
+                        Nhân viên EZShop sẽ gọi điện thoại tới di động của bạn
+                      </Text>
+                      <div className="mt-[22px] h-px w-full self-stretch bg-gray-200_01" />
+                    </div>
+                  </div>
+                  <div className="flex w-[29%] items-center justify-between gap-5 md:w-full">
+                    <Button
+                      size="10xl"
+                      shape="round"
+                      className="min-w-[99px] border border-solid border-green-A700_02 !text-gray-100_02 shadow-sm sm:px-5"
+                    >
+                      Lưu
+                    </Button>
+                    <Text as="p" className="!font-normal !text-blue_gray-600">
+                      Hủy bỏ
+                    </Text>
+                  </div>
+                </div> */}
               </div>
             </div>
           </div>

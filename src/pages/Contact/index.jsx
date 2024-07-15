@@ -1,3 +1,4 @@
+import Footer1 from "../../components/Footer1";
 import {
   Button,
   TextArea,
@@ -10,7 +11,12 @@ import {
 import ContactOne from "../../components/ContactOne";
 import React from "react";
 import { Helmet } from "react-helmet";
+import MegaMenu1 from "../../components/MegaMenu1";
 export default function ContactPage() {
+  const [menuOpen, setMenuOpen] = React.useState(false);
+  const [menuOpen1, setMenuOpen1] = React.useState(false);
+  const [menuOpen2, setMenuOpen2] = React.useState(false);
+  const [menuOpen3, setMenuOpen3] = React.useState(false);
   return (
     <>
       <Helmet>

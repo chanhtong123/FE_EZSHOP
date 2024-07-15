@@ -47,35 +47,35 @@ export default function Footer1({ ...props }) {
               <Text className="text-lg font-medium uppercase">Về EZShop</Text>
               <ul className="flex flex-col gap-[50px]">
                 <li>
-                  <a href="/order-tracking">
+                  <a href="#">
                     <Text className="text-sm font-normal">
                       Theo dõi đơn hàng của bạn
                     </Text>
                   </a>
                 </li>
                 <li>
-                  <a href="/product">
+                  <a href="#">
                     <Text className="text-sm font-normal">
                       Hướng dẫn sản phẩm
                     </Text>
                   </a>
                 </li>
                 <li>
-                  <a href="/favorite-product">
+                  <a href="#">
                     <Text className="text-sm font-normal">
                       Danh sách yêu thích
                     </Text>
                   </a>
                 </li>
                 <li>
-                  <a href="/policy">
+                  <a href="#">
                     <Text className="text-sm font-normal">
                       Chính sách bảo mật
                     </Text>
                   </a>
                 </li>
                 <li>
-                  <a href="/map">
+                  <a href="#">
                     <Text className="text-sm font-normal">
                       Định vị cửa hàng
                     </Text>
@@ -89,35 +89,35 @@ export default function Footer1({ ...props }) {
               </Text>
               <ul className="flex flex-col gap-[50px]">
                 <li>
-                  <a href="/contact">
+                  <a href="#">
                     <Text className="text-sm font-normal">
                       Liên hệ chúng tôi
                     </Text>
                   </a>
                 </li>
                 <li>
-                  <a href="/contact">
+                  <a href="#">
                     <Text className="text-sm font-normal">
                       Trung tâm trợ giúp
                     </Text>
                   </a>
                 </li>
                 <li>
-                  <a href="/return">
+                  <a href="#">
                     <Text className="text-sm font-normal">
                       Trả lại & Trao đổi
                     </Text>
                   </a>
                 </li>
                 <li>
-                  <a href="/support">
+                  <a href="#">
                     <Text className="text-sm font-normal">
                       Tài trợ mua tốt nhất
                     </Text>
                   </a>
                 </li>
                 <li>
-                  <a href="/discount">
+                  <a href="#">
                     <Text className="text-sm font-normal">
                       Thẻ quà tặng mua tốt nhất
                     </Text>
@@ -129,31 +129,31 @@ export default function Footer1({ ...props }) {
               <Text className="text-lg font-medium uppercase">Dịch vụ</Text>
               <ul className="flex flex-col items-start gap-[50px]">
                 <li>
-                  <a href="/a">
+                  <a href="#">
                     <Text className="text-sm font-normal">Biệt đội đam mê</Text>
                   </a>
                 </li>
                 <li>
-                  <a href="/b">
+                  <a href="#">
                     <Text className="text-sm font-normal">Cố vấn tại nhà</Text>
                   </a>
                 </li>
                 <li>
-                  <a href="/c">
+                  <a href="#">
                     <Text className="text-sm font-normal">
                       Chương trình trao đổi
                     </Text>
                   </a>
                 </li>
                 <li>
-                  <a href="/d">
+                  <a href="#">
                     <Text className="text-sm font-normal">
                       Tái chế đồ điện tử
                     </Text>
                   </a>
                 </li>
                 <li>
-                  <a href="/e">
+                  <a href="#">
                     <Text className="text-sm font-normal">
                       Sức khỏe mua tốt nhất
                     </Text>

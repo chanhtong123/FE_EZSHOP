@@ -2,6 +2,7 @@ import React from "react";
 import { Helmet } from "react-helmet";
 import { CloseSVG } from "../../assets/images";
 import { Img, Text, Button, Input } from "../../components";
+import Header from "../../components/Header";
 import { ReactTable } from "../../components/ReactTable";
 import SalesShopPagination from "../../components/SalesShopPagination";
 import Sidebar2 from "../../components/Sidebar2";
@@ -185,6 +186,7 @@ export default function CustomerLayoutOfShopPage() {
       </Helmet>
       <div className="w-full bg-white-A700 px-5 pb-[29px] pt-5 sm:pb-5">
         <div className="flex flex-col gap-5">
+          <Header />
           <div className="flex items-start gap-[30px] md:flex-col">
             <Sidebar2 />
             <div className="flex flex-1 flex-col items-center gap-[30px] md:self-stretch">

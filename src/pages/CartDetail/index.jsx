@@ -3,7 +3,8 @@ import { useNavigate, Link } from "react-router-dom";
 import axiosInstance from "../../config/axiosConfig";
 import { getToken, removeToken } from "../../utils/authUtils";
 import { Helmet } from "react-helmet";
-import { Button, Heading, Text, Img } from "../../components";
+import { Button, Heading, Text, Img, SelectBox } from "../../components";
+import Footer1 from "../../components/Footer1";
 import { ReactTable } from "../../components/ReactTable";
 import { createColumnHelper } from "@tanstack/react-table";
 import CustomToast from "../../components/CustomToast";
@@ -16,44 +17,44 @@ export default function CartDetailPage() {
   const originalSize = 93;
   const newSize = originalSize / 3;
   const [totalAmount, setTotalAmount] = useState(0);
-  const [toastMessage, setToastMessage] = useState("");
-  const [toastType, setToastType] = useState("");
+  const [toastMessage, setToastMessage] = useState('');
+  const [toastType, setToastType] = useState('');
 
+  
   const handleDeleteProduct = async (card_detail_id) => {
     const token = getToken();
 
     try {
-        const response = await axiosInstance.delete(
-            `http://localhost:8080/cart_item/delete/${card_detail_id}`,
-            {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            }
-        );
-
-        if (response.status === 204) {
-            // Show success toast message
-            window.location.reload();
-            setToastMessage("Đã xóa sản phẩm khỏi giỏ hàng.");
-            setToastType("success");
-
-            // Reload the page
-            
-        } else {
-            console.error("Xóa sản phẩm không thành công.", response.data);
-            // Show error toast message
-            setToastMessage("Đã xảy ra lỗi khi xóa sản phẩm.");
-            setToastType("error");
+      const response = await axiosInstance.delete(
+        `http://localhost:8080/cart_item/delete/${card_detail_id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         }
-    } catch (error) {
-        console.error("Đã xảy ra lỗi khi xóa sản phẩm.", error);
+      );
+
+      if (response.status === 204) {
+        // Remove the deleted item from cartItems state
+        const updatedCartItems = cartItems.filter(item => item.card_detail_id !== card_detail_id);
+        setCartItems(updatedCartItems);
+
+        // Show success toast message
+        setToastMessage("Đã xóa sản phẩm khỏi giỏ hàng.");
+        setToastType('success');
+      } else {
+        console.error("Xóa sản phẩm không thành công.", response.data);
         // Show error toast message
         setToastMessage("Đã xảy ra lỗi khi xóa sản phẩm.");
-        setToastType("error");
+        setToastType('error');
+      }
+    } catch (error) {
+      console.error("Đã xảy ra lỗi khi xóa sản phẩm.", error);
+      // Show error toast message
+      setToastMessage("Đã xảy ra lỗi khi xóa sản phẩm.");
+      setToastType('error');
     }
-};
-
+  };
 
   const calculateTotalAmount = (items) => {
     const total = items.reduce((acc, item) => acc + item.total, 0);
@@ -216,7 +217,9 @@ export default function CartDetailPage() {
             >
               Xóa
             </button>
+            
           </div>
+          
         ),
         header: (info) => (
           <Heading
@@ -291,8 +294,9 @@ export default function CartDetailPage() {
                           className="w-[37%] capitalize leading-[30px]"
                         >
                           <>
+                            {" "}
                             Tổng Đơn hàng <br /> Giảm giá <br />
-                            Tổng phí vận chuyển
+                            Tổng phí vận chuyển{" "}
                           </>
                         </Text>
                         <Heading
@@ -301,8 +305,14 @@ export default function CartDetailPage() {
                           className="w-[21%] text-right !font-semibold capitalize leading-[30px]"
                         >
                           <span className="text-blue_gray-900_02 ">
-                            {totalAmount}đ
+                            {totalAmount}đ{" "}
                           </span>
+                          <a href="#" className="text-blue_gray-900_02 ">
+                            <>
+                              {" "}
+                              <br />{" "}
+                            </>
+                          </a>
                           {/* <span className="text-blue_gray-900_02">80.000đ</span>
                           <br/>
                         <span className="text-blue_gray-900_02">24.000đ</span> */}
