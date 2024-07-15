@@ -1,9 +1,9 @@
 import React from "react";
-import Routes from "./Routes/Routes";
+import Routes from "./Routes/Routes.jsx";
 import { BrowserRouter as Router } from "react-router-dom";
-import Header1 from "components/Header1";
-import Footer1 from "components/Footer1";
-import ScrollToTop from "components/ScrollToTop";
+import Header1 from "components/Header1/index.jsx";
+import Footer1 from "components/Footer1/index.jsx";
+import ScrollToTop from "components/ScrollToTop/index.jsx";
 function App() {
   return (
     <Router>
