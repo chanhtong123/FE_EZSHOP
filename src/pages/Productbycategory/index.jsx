@@ -2,8 +2,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Helmet } from "react-helmet";
-import PaginationProduct from "../../components/PaginationProduct";
-
 import {
   Text,
   Heading,
@@ -17,90 +15,29 @@ import {
 import SalesShopPagination from "../../components/SalesShopPagination";
 import { Link } from "react-router-dom";
 
-export default function ProductPage() {
+const ProductPageByCategory = ({ match }) => {
+  const categoryId = match.params.categoryId; // Lấy categoryId từ params
 
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [name, setName] = useState("");
-  const [minPrice, setMinPrice] = useState("");
-  const [maxPrice, setMaxPrice] = useState("");
-  const [brand, setBrand] = useState("");
-  const [situation, setSituation] = useState("");
-  const [selectedBrands, setSelectedBrands] = useState([]);
-  const [price, setPrice] = useState("");
-
-  const [currentPage, setCurrentPage] = useState(1); // Thêm state currentPage
-  const [totalPages, setTotalPages] = useState(0); // Thêm state totalPages
-  const pageSize = 12;
-
-
-
-  const fetchProducts = async (searchParams = {}) => {
-    setLoading(true);
-    setError("");
-    try {
-      const situationParam =
-        searchParams.situation?.length > 0 ? searchParams.situation[0] : null; // API expects a single situation
-
-      const response = await axios.get(
-        "http://localhost:8080/guest/api/products/search",
-        {
-          params: {
-            name: searchParams.name || "",
-            minPrice: searchParams.minPrice || null, // Ensure null if price is empty
-            maxPrice: searchParams.maxPrice || null,
-            brand:
-              searchParams.selectedBrands?.length > 0
-                ? searchParams.selectedBrands.join(",")
-                : null,
-            situation: situationParam,
-            page: currentPage,
-          },
-          paramsSerializer: (params) => {
-            return Object.entries(params)
-              .filter(([key, value]) => value !== null && value !== "") // Filter out null or empty values
-              .map(([key, value]) => `${key}=${encodeURIComponent(value)}`)
-              .join("&");
-          },
-        }
-      );
-      setProducts(response.data); // Update products state with the fetched data
-      setTotalPages(Math.ceil(response.data.totalCount / pageSize));
-      console.log(response.data);
-    } catch (error) {
-      console.error("Error fetching products", error);
-      setError("Error fetching products: " + error.message);
-    } finally {
-      setLoading(false);
-    }
-  };
 
   useEffect(() => {
-    fetchProducts();
-  }, [currentPage]);
+    const fetchProductsByCategory = async () => {
+      setLoading(true);
+      setError(null);
+      try {
+        const response = await axios.get(`/guest/api/products/category/${categoryId}`);
+        setProducts(response.data);
+      } catch (error) {
+        setError(error.message);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-
-  const handleSearch = () => {
-
-    setCurrentPage(1);
-
-    // Fetch products when search button is clicked
-    fetchProducts({
-      
-      name,
-      minPrice,
-      maxPrice,
-      selectedBrands,
-      situation,
-    });
-  };
-
-  const handlePageChange = (newPage) => {
-    setCurrentPage(newPage); // Update currentPage state
-  };
-  
-
+    fetchProductsByCategory();
+  }, [categoryId]); // Thêm categoryId vào dependencies để khi nào categoryId thay đổi thì fetch lại
 
   return (
     <>
@@ -114,7 +51,7 @@ export default function ProductPage() {
       <div className="flex w-full flex-col items-center gap-[67px] bg-white-A700 sm:gap-[33px]">
 
         <div className="flex items-start md:flex-col h-full">
-          <div className="flex-[1] container mx-auto p-4">
+          {/* <div className="flex-[1] container mx-auto p-4">
             <div className="mb-4">
               <label
                 htmlFor="name"
@@ -186,7 +123,7 @@ export default function ProductPage() {
               </div>
             </div>
             <div className="mb-4">
-              {/* <label className="block text-lg font-medium text-gray-700 mb-2">
+              <label className="block text-lg font-medium text-gray-700 mb-2">
                 Tình trạng (%)
               </label>
               <div className="flex flex-col">
@@ -208,7 +145,7 @@ export default function ProductPage() {
                     {value}
                   </label>
                 ))}
-              </div> */}
+              </div>
             </div>
             <button
               onClick={handleSearch}
@@ -216,7 +153,7 @@ export default function ProductPage() {
             >
               Tìm kiếm
             </button>
-          </div>
+          </div> */}
 
           <div className="flex-[4] relative ml-[-3px] flex flex-1 flex-col items-center md:ml-0 md:self-stretch">
 
@@ -229,7 +166,6 @@ export default function ProductPage() {
                 </Text> */}
               </div>
             </div>
-            
             <div className="mt-[31px] grid w-[96%] grid-cols-4 justify-center gap-px md:grid-cols-2 sm:grid-cols-1">
               {products.map((product) => {
                 console.log("Rendering product:", product);
@@ -276,7 +212,7 @@ export default function ProductPage() {
                           <Text
                             size="md"
                             as="p"
-                            className="self-start capitalize  line-through"
+                            className="self-start capitalize  line-through" 
                           >
                             {typeof product.price === "number"
                               ? `${product.price.toLocaleString()}đ`
@@ -315,11 +251,11 @@ export default function ProductPage() {
               })}
             </div>
 
-
-
+            <SalesShopPagination className="mt-8 w-[42%] gap-[22px] md:w-full" />
           </div>
         </div>
       </div>
     </>
   );
 }
+export default ProductPageByCategory;

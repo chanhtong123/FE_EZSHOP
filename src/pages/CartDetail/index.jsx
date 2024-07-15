@@ -23,38 +23,37 @@ export default function CartDetailPage() {
     const token = getToken();
 
     try {
-      const response = await axiosInstance.delete(
-        `http://localhost:8080/cart_item/delete/${card_detail_id}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-
-      if (response.status === 204) {
-        // Remove the deleted item from cartItems state
-        const updatedCartItems = cartItems.filter(
-          (item) => item.card_detail_id !== card_detail_id
+        const response = await axiosInstance.delete(
+            `http://localhost:8080/cart_item/delete/${card_detail_id}`,
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            }
         );
-        setCartItems(updatedCartItems);
 
-        // Show success toast message
-        setToastMessage("Đã xóa sản phẩm khỏi giỏ hàng.");
-        setToastType("success");
-      } else {
-        console.error("Xóa sản phẩm không thành công.", response.data);
+        if (response.status === 204) {
+            // Show success toast message
+            window.location.reload();
+            setToastMessage("Đã xóa sản phẩm khỏi giỏ hàng.");
+            setToastType("success");
+
+            // Reload the page
+            
+        } else {
+            console.error("Xóa sản phẩm không thành công.", response.data);
+            // Show error toast message
+            setToastMessage("Đã xảy ra lỗi khi xóa sản phẩm.");
+            setToastType("error");
+        }
+    } catch (error) {
+        console.error("Đã xảy ra lỗi khi xóa sản phẩm.", error);
         // Show error toast message
         setToastMessage("Đã xảy ra lỗi khi xóa sản phẩm.");
         setToastType("error");
-      }
-    } catch (error) {
-      console.error("Đã xảy ra lỗi khi xóa sản phẩm.", error);
-      // Show error toast message
-      setToastMessage("Đã xảy ra lỗi khi xóa sản phẩm.");
-      setToastType("error");
     }
-  };
+};
+
 
   const calculateTotalAmount = (items) => {
     const total = items.reduce((acc, item) => acc + item.total, 0);

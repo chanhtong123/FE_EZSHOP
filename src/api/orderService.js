@@ -1,4 +1,4 @@
-import axiosInstance from '../config/axiosConfig';
+import axiosInstance from '../config/axiosConfig.js';
 
 export const getOrderById = async (id) => {
     try {

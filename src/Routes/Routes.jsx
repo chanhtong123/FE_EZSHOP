@@ -7,7 +7,7 @@ import CreateProduct from "../pages/CreateProduct";
 import HomePage from "../pages/HomePage";
 import Product from "../pages/Product";
 import ProductDetail from "../pages/ProductDetail";
-import Payment from "../pages/Payment";
+// import Payment from "../pages/Payment";
 import OrderTracking from "../pages/OrderTracking";
 import Profile from "../pages/Profile";
 import CustomerLayoutOfShop from "../pages/CustomerLayoutOfShop";
@@ -27,6 +27,8 @@ import CartDetail from "../pages/CartDetail";
 import PaymentSuccess from "../pages/PaymentSuccess";
 import CompareProducts from "../pages/CompareProducts";
 import Test2 from "../pages/Test";
+import TestAdmin from "../pages/TestAdmin";
+import ProductPageByCategory from "../pages/Productbycategory";
 
 
 const ProjectRoutes = () => {
@@ -38,14 +40,15 @@ const ProjectRoutes = () => {
     { path: "createproduct", element: <CreateProduct /> },
     { path: "homepage", element: <HomePage /> },
     { path: "product", element: <Product /> },
+    { path:"/product/category/:categoryId",element:<ProductPageByCategory/>},
     { path: "productdetail/:id", element: <ProductDetail /> },
-    { path: "payment", element: <Payment /> },
+    // { path: "payment", element: <Payment /> },
     { path: "ordertracking", element: <OrderTracking /> },
     { path: "profile", element: <Profile /> },
     { path: "customerlayoutofshop", element: <CustomerLayoutOfShop /> },
     { path: "shops", element: <ListOfShop /> },
     { path: "blog", element: <Blog /> },
-    { path: "blogdetail", element: <BlogDetail /> },
+    { path: "blogdetail/:id", element: <BlogDetail /> },
     { path: "contact", element: <Contact /> },
     { path: "customercare", element: <CustomerCare /> },
     { path: "login", element: <Login /> },
