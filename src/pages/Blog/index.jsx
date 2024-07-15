@@ -2,10 +2,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Helmet } from "react-helmet";
-import { Text, Img, SelectBox, Heading, Button } from "../../components";
-import Footer1 from "../../components/Footer1";
-import MegaMenu1 from "../../components/MegaMenu1";
+import { Text, Img } from "../../components";
 import SalesShopPagination from "../../components/SalesShopPagination";
+
 import { Link } from "react-router-dom";
 const dropDownOptions = [
   { label: "Option1", value: "option1" },
@@ -60,6 +59,8 @@ export default function BlogPage() {
                 <a
                   href="https://www.youtube.com/embed/bv8Fxk0sz7I"
                   target="_blank"
+                  rel="noreferrer"
+                  rel="noreferrer"
                 >
                   <div className="flex w-full flex-col gap-6">
                     <div className="relative h-[300px] md:h-auto">
@@ -91,6 +92,7 @@ export default function BlogPage() {
                   <a
                     href="https://www.youtube.com/embed/bv8Fxk0sz7I"
                     target="_blank"
+                    rel="noreferrer"
                   >
                     <Img
                       src="images/img_cute_girl_works_300x448.png"
@@ -105,6 +107,7 @@ export default function BlogPage() {
                     <a
                       href="https://www.youtube.com/embed/bv8Fxk0sz7I"
                       target="_blank"
+                      rel="noreferrer"
                     >
                       <Text size="3xl" as="p">
                         10 cửa hàng uy tín nhất năm - EZSHOP
@@ -119,6 +122,7 @@ export default function BlogPage() {
                   <a
                     href="https://www.youtube.com/embed/bv8Fxk0sz7I"
                     target="_blank"
+                    rel="noreferrer"
                   >
                     <Img
                       src="images/img_cute_girl_works_1.png"
@@ -133,6 +137,7 @@ export default function BlogPage() {
                     <a
                       href="https://www.youtube.com/embed/bv8Fxk0sz7I"
                       target="_blank"
+                      rel="noreferrer"
                     >
                       <Text size="3xl" as="p">
                         Làm thế nào mua đồ trên EZSHOP hiệu quả?
@@ -147,6 +152,7 @@ export default function BlogPage() {
                   <a
                     href="https://www.youtube.com/embed/bv8Fxk0sz7I"
                     target="_blank"
+                    rel="noreferrer"
                   >
                     <Img
                       src="images/img_cute_girl_works_2.png"
@@ -161,6 +167,7 @@ export default function BlogPage() {
                     <a
                       href="https://www.youtube.com/embed/bv8Fxk0sz7I"
                       target="_blank"
+                      rel="noreferrer"
                     >
                       <Text size="3xl" as="p">
                         Hãy là người tiêu dùng thông minh!
@@ -175,6 +182,7 @@ export default function BlogPage() {
                   <a
                     href="https://www.youtube.com/embed/bv8Fxk0sz7I"
                     target="_blank"
+                    rel="noreferrer"
                   >
                     <Img
                       src="images/img_cute_girl_works_3.png"
@@ -189,6 +197,7 @@ export default function BlogPage() {
                     <a
                       href="https://www.youtube.com/embed/bv8Fxk0sz7I"
                       target="_blank"
+                      rel="noreferrer"
                     >
                       <Text size="3xl" as="p">
                         Mẹo tái chế quần áo cực chất
@@ -203,6 +212,7 @@ export default function BlogPage() {
                   <a
                     href="https://www.youtube.com/embed/bv8Fxk0sz7I"
                     target="_blank"
+                    rel="noreferrer"
                   >
                     <Img
                       src="images/img_cute_girl_works_4.png"
@@ -217,6 +227,7 @@ export default function BlogPage() {
                     <a
                       href="https://www.youtube.com/embed/bv8Fxk0sz7I"
                       target="_blank"
+                      rel="noreferrer"
                     >
                       <Text size="3xl" as="p">
                         5 cách kiểm tra thật - giả khi mua đồ cũ
@@ -231,6 +242,7 @@ export default function BlogPage() {
                   <a
                     href="https://www.youtube.com/embed/bv8Fxk0sz7I"
                     target="_blank"
+                    rel="noreferrer"
                   >
                     <Img
                       src="images/img_cute_girl_works_296x448.png"
@@ -245,6 +257,7 @@ export default function BlogPage() {
                     <a
                       href="https://www.youtube.com/embed/bv8Fxk0sz7I"
                       target="_blank"
+                      rel="noreferrer"
                     >
                       <Text size="3xl" as="p">
                         Thử nhuộm áo tại nhà
@@ -259,6 +272,7 @@ export default function BlogPage() {
                   <a
                     href="https://www.youtube.com/embed/bv8Fxk0sz7I"
                     target="_blank"
+                    rel="noreferrer"
                   >
                     <Img
                       src="images/img_cute_girl_works_5.png"
@@ -273,6 +287,7 @@ export default function BlogPage() {
                     <a
                       href="https://www.youtube.com/embed/bv8Fxk0sz7I"
                       target="_blank"
+                      rel="noreferrer"
                     >
                       <Text size="3xl" as="p">
                         Mẹo vặt cuộc sống bạn cần biết
@@ -287,6 +302,7 @@ export default function BlogPage() {
                   <a
                     href="https://www.youtube.com/embed/bv8Fxk0sz7I"
                     target="_blank"
+                    rel="noreferrer"
                   >
                     <Img
                       src="images/img_cute_girl_works_6.png"
@@ -301,6 +317,7 @@ export default function BlogPage() {
                     <a
                       href="https://www.youtube.com/embed/bv8Fxk0sz7I"
                       target="_blank"
+                      rel="noreferrer"
                     >
                       <Text size="3xl" as="p">
                         Hãy là người tiêu dùng thông minh!

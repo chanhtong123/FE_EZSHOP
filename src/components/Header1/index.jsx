@@ -7,18 +7,14 @@ const dropDownOptions = [
   { label: "Option3", value: "option3" },
 ];
 export default function Header1({ ...props }) {
-  // const [menuOpen, setMenuOpen] = React.useState(false);
-  // const [menuOpen1, setMenuOpen1] = React.useState(false);
-  // const [menuOpen2, setMenuOpen2] = React.useState(false);
-  // const [menuOpen3, setMenuOpen3] = React.useState(false);
   const [isOpen, setIsOpen] = React.useState(false);
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
-  const handleLoginClick = () => {
-    window.location.href = "/login";
-  };
+  // const handleLoginClick = () => {
+  //   window.location.href = "/login";
+  // };
 
   return (
     <header
@@ -29,7 +25,7 @@ export default function Header1({ ...props }) {
         <div className="flex flex-col items-center gap-[9px] self-stretch">
           <div className="container-md flex items-center justify-between gap-5 pr-1 md:flex-col md:p-5">
             <div className="flex items-center self-start sm:flex-col">
-              <a href="#">
+              <a href="/a">
                 <Img
                   src="images/img_pin_1.svg"
                   alt="pinone"
@@ -38,11 +34,11 @@ export default function Header1({ ...props }) {
               </a>
               <div className="ml-[5px] flex items-center gap-[5px] sm:ml-0">
                 <Text size="s" as="p" className="self-end">
-                  118 Cách Mạng Tháng 8
+                  51a Làng Tăng Phú, Tăng Nhơn Phú A, TP Thủ Đức
                 </Text>
                 <div className="h-full w-px bg-gray-200_01" />
               </div>
-              <a href="#">
+              <a href="/b">
                 <Img
                   src="images/img_phone_1.svg"
                   alt="phoneone"
@@ -58,7 +54,7 @@ export default function Header1({ ...props }) {
                   Bạn cần trợ giúp? Gọi ngay:&nbsp;
                 </span>
                 <span className="font-bevietnampro font-medium text-blue_gray-900_02">
-                  +84 1800 900
+                  0334989612
                 </span>
               </Text>
             </div>
@@ -160,7 +156,7 @@ export default function Header1({ ...props }) {
               </div>
 
               <div className="flex items-center w-[30%]">
-                <a href="#">
+                <a href="/profile">
                   <Button
                     color="green_A700_11"
                     shape="round"
@@ -297,8 +293,12 @@ export default function Header1({ ...props }) {
           <div className="flex w-[40%] justify-between cursor-pointer items-center gap-1">
             <Button color="white_A701">Ưu đãi trong ngày</Button>
             <Button color="white_A701">Ưu đãi hấp dẫn</Button>
+            <a href="/shops">
             <Button color="white_A701">Cửa hàng nổi bật</Button>
+            </a>
+            <a href="/product">
             <Button color="white_A701">Hàng mới</Button>
+            </a>
           </div>
         </div>
       </div>

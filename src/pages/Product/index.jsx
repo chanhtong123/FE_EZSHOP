@@ -2,6 +2,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Helmet } from "react-helmet";
+import PaginationProduct from "../../components/PaginationProduct";
+
 import {
   Text,
   Heading,
@@ -28,6 +30,11 @@ export default function ProductPage() {
   const [selectedBrands, setSelectedBrands] = useState([]);
   const [price, setPrice] = useState("");
 
+  const [currentPage, setCurrentPage] = useState(1); // Thêm state currentPage
+  const [totalPages, setTotalPages] = useState(0); // Thêm state totalPages
+  const pageSize = 12;
+
+
 
   const fetchProducts = async (searchParams = {}) => {
     setLoading(true);
@@ -48,6 +55,7 @@ export default function ProductPage() {
                 ? searchParams.selectedBrands.join(",")
                 : null,
             situation: situationParam,
+            page: currentPage,
           },
           paramsSerializer: (params) => {
             return Object.entries(params)
@@ -58,6 +66,7 @@ export default function ProductPage() {
         }
       );
       setProducts(response.data); // Update products state with the fetched data
+      setTotalPages(Math.ceil(response.data.totalCount / pageSize));
       console.log(response.data);
     } catch (error) {
       console.error("Error fetching products", error);
@@ -68,13 +77,17 @@ export default function ProductPage() {
   };
 
   useEffect(() => {
-    // Fetch products when the component mounts
     fetchProducts();
-  }, []);
+  }, [currentPage]);
+
 
   const handleSearch = () => {
+
+    setCurrentPage(1);
+
     // Fetch products when search button is clicked
     fetchProducts({
+      
       name,
       minPrice,
       maxPrice,
@@ -82,6 +95,12 @@ export default function ProductPage() {
       situation,
     });
   };
+
+  const handlePageChange = (newPage) => {
+    setCurrentPage(newPage); // Update currentPage state
+  };
+  
+
 
   return (
     <>
@@ -167,7 +186,7 @@ export default function ProductPage() {
               </div>
             </div>
             <div className="mb-4">
-              <label className="block text-lg font-medium text-gray-700 mb-2">
+              {/* <label className="block text-lg font-medium text-gray-700 mb-2">
                 Tình trạng (%)
               </label>
               <div className="flex flex-col">
@@ -189,7 +208,7 @@ export default function ProductPage() {
                     {value}
                   </label>
                 ))}
-              </div>
+              </div> */}
             </div>
             <button
               onClick={handleSearch}
@@ -210,6 +229,7 @@ export default function ProductPage() {
                 </Text> */}
               </div>
             </div>
+            
             <div className="mt-[31px] grid w-[96%] grid-cols-4 justify-center gap-px md:grid-cols-2 sm:grid-cols-1">
               {products.map((product) => {
                 console.log("Rendering product:", product);
@@ -256,7 +276,7 @@ export default function ProductPage() {
                           <Text
                             size="md"
                             as="p"
-                            className="self-start capitalize  line-through" 
+                            className="self-start capitalize  line-through"
                           >
                             {typeof product.price === "number"
                               ? `${product.price.toLocaleString()}đ`
@@ -295,7 +315,8 @@ export default function ProductPage() {
               })}
             </div>
 
-            <SalesShopPagination className="mt-8 w-[42%] gap-[22px] md:w-full" />
+
+
           </div>
         </div>
       </div>

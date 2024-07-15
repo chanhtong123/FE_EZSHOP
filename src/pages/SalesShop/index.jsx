@@ -191,15 +191,7 @@ export default function SalesShopPage() {
                               {product.name}
                             </Heading>
 
-                            <div className="flex w-[70%] items-start gap-2.5 md:w-full">
-                              <RatingBar
-                                value={1}
-                                isEditable={true}
-                                size={10}
-                                className="flex justify-between rounded-[5px]"
-                              />
-
-                            </div>
+                            
                             <div className="flex flex-wrap items-center gap-2.5">
                               <Heading size="3xl" as="h3" className="flex">
                                 <span className="text-blue_gray-900_02  text-red-600">{product.price}đ</span>

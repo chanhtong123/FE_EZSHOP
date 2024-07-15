@@ -3,7 +3,6 @@ import { Helmet } from "react-helmet";
 import { CloseSVG } from "../../assets/images";
 import { Text, Img, Input, Heading, Button } from "../../components";
 import Footer1 from "../../components/Footer1";
-import MegaMenu1 from "../../components/MegaMenu1";
 import {
   AccordionItemPanel,
   AccordionItemHeading,
@@ -23,10 +22,7 @@ const data = [
 
 export default function CustomerCarePage() {
   const [searchBarValue41, setSearchBarValue41] = React.useState("");
-  const [menuOpen, setMenuOpen] = React.useState(false);
-  const [menuOpen1, setMenuOpen1] = React.useState(false);
-  const [menuOpen2, setMenuOpen2] = React.useState(false);
-  const [menuOpen3, setMenuOpen3] = React.useState(false);
+
   return (
     <>
       <Helmet>
@@ -152,7 +148,7 @@ export default function CustomerCarePage() {
                   </Text>
                 </div>
                 <a
-                  href="https://www.youtube.com/embed/bv8Fxk0sz7I"
+                  href="/search"
                   target="_blank"
                 >
                   <Img
@@ -165,7 +161,7 @@ export default function CustomerCarePage() {
               <div className="flex w-[43%] items-center justify-center gap-[17px] md:w-full sm:flex-col">
                 <div className="flex w-full items-start justify-center gap-[15px] self-end sm:w-full">
                   <a
-                    href="https://www.youtube.com/embed/bv8Fxk0sz7I"
+                    href="/favorite"
                     target="_blank"
                   >
                     <Button
@@ -193,7 +189,7 @@ export default function CustomerCarePage() {
                 </div>
                 <div className="flex w-full items-start justify-center gap-[15px] self-end sm:w-full">
                   <a
-                    href="https://www.youtube.com/embed/bv8Fxk0sz7I"
+                    href="/profile"
                     target="_blank"
                   >
                     <Button
@@ -222,7 +218,7 @@ export default function CustomerCarePage() {
                 <div className="flex w-full items-center gap-[9px] sm:w-full">
                   <div className="relative h-[55px] w-[38%]">
                     <a
-                      href="https://www.youtube.com/embed/bv8Fxk0sz7I"
+                      href="/cartdetail"
                       target="_blank"
                     >
                       <Button
@@ -246,16 +242,8 @@ export default function CustomerCarePage() {
                     className="w-[62%] self-end !font-inter leading-[22px]"
                   >
                     <span className="font-bevietnampro text-[13px] font-normal text-blue_gray-900_02">
-                      289.000
+                      289.000đ
                     </span>
-                    <a
-                      href="#"
-                      className="font-bevietnampro text-[13px] font-normal text-blue_gray-900_02 underline"
-                    >
-                      <>
-                        đ<br />
-                      </>
-                    </a>
                     <span className="font-bevietnampro text-base font-medium text-blue_gray-900_02">
                       Thanh toán
                     </span>
@@ -286,7 +274,7 @@ export default function CustomerCarePage() {
               <div className="absolute left-[25.00px] top-[21.00px] m-auto h-[2px] w-[15px] bg-white-A700" />
             </div>
             <div className="flex flex-1 items-center justify-between gap-5 md:flex-col md:self-stretch">
-              <ul className="flex gap-[38px] sm:flex-col">
+              {/* <ul className="flex gap-[38px] sm:flex-col">
                 <li
                   onMouseLeave={() => {
                     setMenuOpen(false);
@@ -356,7 +344,7 @@ export default function CustomerCarePage() {
                   </div>
                   {menuOpen3 ? <MegaMenu1 /> : null}
                 </li>
-              </ul>
+              </ul> */}
               <ul className="flex flex-wrap gap-[18px]">
                 <li>
                   <a href="#">
@@ -446,7 +434,7 @@ export default function CustomerCarePage() {
                       </>
                     </span>
                     <a
-                      href="#"
+                      href="/order"
                       className="font-bevietnampro text-green-A700_02 underline"
                     >
                       <>

@@ -3,10 +3,11 @@ import { Helmet } from "react-helmet";
 import { Text, Heading, Button } from "../../components";
 import FavoriteProductSidebar from "../../components/FavoriteProductSidebar";
 import { ReactTable } from "../../components/ReactTable";
-import axios from "axios";
+import { getOrdersByUserId } from "api/orderService";
 import { createColumnHelper } from "@tanstack/react-table";
 import { formatDistanceToNow } from "date-fns";
 import { vi } from "date-fns/locale";
+import axios from "axios";
 import classNames from "classnames";
 
 const columnHelper = createColumnHelper();
@@ -44,6 +45,12 @@ const tableColumns = [
           "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300":
             statusName === "Pending",
           "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300":
+            statusName === "Confirmed",
+          "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300":
+            statusName === "Processing",
+          "bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-300":
+            statusName === "Shipping",
+          "bg-teal-100 text-teal-800 dark:bg-teal-900 dark:text-teal-300":
             statusName === "Completed",
           "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-300":
             statusName === "Cancelled",
@@ -52,10 +59,12 @@ const tableColumns = [
         }
       );
 
+
       return <span className={statusClass}>{statusName}</span>;
     },
   }),
 ];
+
 
 export default function OrderPage() {
   const [orderData, setOrderData] = useState([]);
@@ -65,24 +74,33 @@ export default function OrderPage() {
 
   useEffect(() => {
     const fetchOrderData = async () => {
-      try {
-        const response = await axios.get(
-          `http://localhost:8080/guest/api/orders/user-id?user_id=1&page=${currentPage}&size=${pageSize}`
-        );
-        console.log("Fetched order data:", response.data);
+        try {
 
-        const fetchedData = response.data.content;
+          const token = localStorage.getItem("token");
+          const axiosInstance = axios.create({
+            baseURL: 'http://localhost:8080',
+            headers: {
+              'Authorization': `Bearer ${token}`,
+              'Content-Type': 'application/json'
+            }
+          });
+          const userInfoResponse = await axiosInstance.get("/user");
+          const userId = userInfoResponse.data.id;
+            const response = await getOrdersByUserId(userId, currentPage, pageSize);
+            console.log("Fetched order data:", response);
 
-        console.log("Processed order data:", fetchedData);
-        setOrderData(fetchedData);
-        setTotalPages(response.data.totalPages);
-      } catch (error) {
-        console.error("Error fetching order data:", error);
-      }
+            const fetchedData = response.content; 
+
+            console.log("Processed order data:", fetchedData);
+            setOrderData(fetchedData);
+            setTotalPages(response.totalPages);
+        } catch (error) {
+            console.error("Error fetching order data:", error.message);
+        }
     };
 
     fetchOrderData();
-  }, [currentPage, pageSize]);
+}, [ currentPage, pageSize]);
 
   const handlePageChange = (newPage) => {
     setCurrentPage(newPage);
