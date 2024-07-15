@@ -125,23 +125,25 @@ export default function OrderPage() {
                 columns={tableColumns}
                 data={orderData}
               />
-              <div className="flex justify-between items-center mt-4">
-                <Button
-                  onClick={() => handlePageChange(currentPage - 1)}
-                  disabled={currentPage === 0}
-                >
-                  Previous
-                </Button>
-                <Text size="md" as="p">
-                  Page {currentPage + 1} of {totalPages}
-                </Text>
-                <Button
-                  onClick={() => handlePageChange(currentPage + 1)}
-                  disabled={currentPage + 1 >= totalPages}
-                >
-                  Next
-                </Button>
-              </div>
+               {totalPages > 1 && (
+                <div className="flex justify-between items-center mt-4">
+                  <Button
+                    onClick={() => handlePageChange(currentPage - 1)}
+                    disabled={currentPage === 0}
+                  >
+                    Previous
+                  </Button>
+                  <Text size="md" as="p">
+                    Page {currentPage + 1} of {totalPages}
+                  </Text>
+                  <Button
+                    onClick={() => handlePageChange(currentPage + 1)}
+                    disabled={currentPage + 1 >= totalPages}
+                  >
+                    Next
+                  </Button>
+                </div>
+              )}
             </div>
           </div>
         </div>

@@ -1,33 +1,29 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate, useLocation } from 'react-router-dom';
-import axios from "axios"; 
+import { useNavigate, useLocation } from "react-router-dom";
+import axios from "axios";
 import { Helmet } from "react-helmet";
 import CustomToast from "../../components/CustomToast";
-import {
-  Img,
-  Text,
-  Button,
-  CheckBox,
-  Input,
-  Heading,
-} from "../../components";
+import { Img, Text, Button, CheckBox, Input, Heading } from "../../components";
 
 export default function LoginPage() {
   const [userName, setUsername] = useState("");
   const [passWord, setPassword] = useState("");
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
   const location = useLocation();
   const [toastMessage, setToastMessage] = useState("");
   const [toastType, setToastType] = useState("");
 
   const handleLogin = async (redirectUrl) => {
     try {
-      const response = await axios.post("http://localhost:8080/login", { userName, passWord }); 
-      const token = response.data.token; 
+      const response = await axios.post("http://localhost:8080/login", {
+        userName,
+        passWord,
+      });
+      const token = response.data.token;
       localStorage.setItem("token", token);
       localStorage.setItem("toastMessage", "Login successful!");
       localStorage.setItem("toastType", "success");
-      navigate(redirectUrl); 
+      navigate(redirectUrl);
     } catch (error) {
       console.error("Login failed:", error);
       setToastMessage("Login failed!");
@@ -35,10 +31,10 @@ export default function LoginPage() {
     }
   };
 
-
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const redirectTo = new URLSearchParams(location.search).get('redirect') || '/';
+    const redirectTo =
+      new URLSearchParams(location.search).get("redirect") || "/";
     handleLogin(redirectTo);
   };
   useEffect(() => {
@@ -52,8 +48,6 @@ export default function LoginPage() {
       localStorage.removeItem("toastType");
     }
   }, []);
- 
-
 
   return (
     <>
@@ -65,20 +59,18 @@ export default function LoginPage() {
         />
       </Helmet>
 
-      <div className="flex w-full flex-col items-center gap-[71px] bg-gray-50_07 md:gap-[53px] sm:gap-[35px] pt-16 pb-16">
-        <div >
-          <div className="flex flex-col items-start gap-[22px] rounded-md border border-solid border-gray-200_01 bg-white-A700 pb-[47px] pl-[41px] pr-10 pt-10 shadow-xs md:pb-5 md:pl-5 sm:p-5">
-            <Heading size="8xl" as="h1" className=" uppercase ">
-              Đăng nhập
-            </Heading>
-            <form onSubmit={handleSubmit}>
-
+      <div className="flex w-full flex-col items-center gap-6 bg-gray-50_07 p-8">
+        <div className="w-full max-w-md flex flex-col items-center gap-4 rounded-md border border-gray-200 bg-white shadow-md p-6">
+          <Heading size="8xl" as="h1" className=" uppercase ">
+            Đăng nhập
+          </Heading>
+          <form onSubmit={handleSubmit}>
             <div className="flex flex-col items-center self-stretch">
               <div className="flex flex-col gap-[22px] self-stretch">
                 <div className="flex flex-col items-start gap-[11px]">
                   <Heading as="h2">Tài khoản</Heading>
                   <Input
-                   shape="round"
+                    shape="round"
                     // name="your_name"
                     type="text"
                     placeholder=""
@@ -112,7 +104,7 @@ export default function LoginPage() {
                   </Text>
                 </div>
                 <Button
-                 size="10xl"
+                  size="9xl"
                   shape="round"
                   type="submit"
                   className="w-full border border-solid border-green-A700_02 font-semibold shadow-sm sm:px-5"
@@ -120,16 +112,25 @@ export default function LoginPage() {
                   Đăng nhập
                 </Button>
               </div>
-             
-                <Text size="md" as="p" className="mt-5" style={{ display: 'flex', alignItems: 'center' }}>
-                  <span className="text-blue_gray-900_02">
-                    Bạn chưa có tài khoản?&nbsp;
-                  </span>
-                  <a className="text-green-A700_02" 
-                  href="/register" style={{ marginLeft: '5px' }}>Đăng ký</a>
-                 
-                </Text>
-              
+
+              <Text
+                size="md"
+                as="p"
+                className="mt-5"
+                style={{ display: "flex", alignItems: "center" }}
+              >
+                <span className="text-blue_gray-900_02">
+                  Bạn chưa có tài khoản?&nbsp;
+                </span>
+                <a
+                  className="text-green-A700_02"
+                  href="/register"
+                  style={{ marginLeft: "5px" }}
+                >
+                  Đăng ký
+                </a>
+              </Text>
+
               <div className="mt-[27px] flex w-[13%] items-start md:w-full">
                 {/* <div className="h-[40px] w-[40px] rounded-[20px] bg-white-A700" />
                 <Text size="md" as="p" className="relative ml-[-26px] mt-[9px]">
@@ -167,8 +168,7 @@ export default function LoginPage() {
                 </div>
               </div>
             </div>
-            </form>
-          </div>
+          </form>
         </div>
         <CustomToast message={toastMessage} type={toastType} />
       </div>

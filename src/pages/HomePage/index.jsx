@@ -1,35 +1,18 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import { Helmet } from "react-helmet";
-import {
-  Img,
-  Button,
-  Input,
-  Text,
-  Heading,
-  RatingBar,
-  Slider,
-} from "../../components";
-import Footer1 from "../../components/Footer1";
-import Header from "../../components/Header1";
-import HomePageArrowbullet from "../../components/HomePageArrowbullet";
-import HomePageFive from "../../components/HomePageFive";
-import HomePageFour from "../../components/HomePageFour";
+import { Img, Button, Input, Text, Heading, Slider } from "../../components";
 import HomePageOne from "../../components/HomePageOne";
 import HomePageSix from "../../components/HomePageSix";
-import HomePageThree from "../../components/HomePageThree";
-import axiosInstance from '../../config/axiosConfig';
+import axiosInstance from "../../config/axiosConfig";
 import { Link } from "react-router-dom";
 import CustomToast from "../../components/CustomToast";
-
 
 const data = [
   {
     productimage: "images/aosomi.jpg",
     productname: "Áo sơ mi",
-   
   },
- 
+
   {
     productimage: "images/aokhoac.jpg",
     productname: "Áo khoác",
@@ -37,7 +20,6 @@ const data = [
   {
     productimage: "images/quanjean.jpg",
     productname: "Quần jean",
-  
   },
   {
     productimage: "images/giaydep.png",
@@ -47,16 +29,11 @@ const data = [
     productimage: "images/phukien.jpg",
     productname: "Phụ kiện",
   },
- 
 ];
-
-
 
 export default function HomePagePage() {
   const [sliderState, setSliderState] = React.useState(0);
-  const sliderRef = React.useRef(null);
   const [sliderState1, setSliderState1] = React.useState(0);
-  const sliderRef1 = React.useRef(null);
   const [sliderState2, setSliderState2] = React.useState(0);
   const sliderRef2 = React.useRef(null);
   const [sliderState3, setSliderState3] = React.useState(0);
@@ -86,7 +63,6 @@ export default function HomePagePage() {
     fetchProducts();
   }, []);
 
-
   useEffect(() => {
     const fetchShops = async () => {
       try {
@@ -102,7 +78,6 @@ export default function HomePagePage() {
     fetchShops();
   }, []);
 
-
   useEffect(() => {
     const message = localStorage.getItem("toastMessage");
     const type = localStorage.getItem("toastType");
@@ -115,9 +90,6 @@ export default function HomePagePage() {
     }
   }, []);
 
-
-
-
   return (
     <>
       <Helmet>
@@ -128,12 +100,11 @@ export default function HomePagePage() {
         />
       </Helmet>
       <div className="flex w-full flex-col items-center bg-white-A700">
-        {/* <Header className="shadow-lg" /> */}
         <div className="flex w-[76%] flex-col gap-[59px] md:w-full md:p-5 sm:gap-[29px]">
           <div className="container-md flex flex-col">
             <div className="flex gap-[31px] md:flex-col">
               <div className="relative h-[500px] flex-1 md:h-auto md:w-full md:flex-none md:self-stretch center pt-5 ">
-                <div className="flex w-full max-w-[1099px] justify-center items-center">
+                <div className="flex w-full max-w-[1403px] justify-center items-center">
                   <Slider
                     autoPlay
                     autoPlayInterval={2000}
@@ -286,102 +257,88 @@ export default function HomePagePage() {
               </div>
             </div>
             <div className="mt-[60px] flex flex-col items-center gap-8">
-              <div className="flex items-start justify-between gap-5 self-stretch md:flex-col">
-
-              
-              </div>
-
-
-            
-
-
-
+              <div className="flex items-start justify-between gap-5 self-stretch md:flex-col"></div>
               <div className="mt-[60px] flex flex-col gap-[29px]">
-              <div className="flex items-start justify-between gap-5">
-                <div className="flex">
-                  <Text size="7xl" as="p">
-                    Danh mục
-                  </Text>
+                <div className="flex items-start justify-between gap-5">
+                  <div className="flex">
+                    <Text size="7xl" as="p">
+                      Danh mục
+                    </Text>
+                  </div>
+                  <div className="flex w-[6%] flex-col items-start gap-[5px] shadow-sm"></div>
                 </div>
-                <div className="flex w-[6%] flex-col items-start gap-[5px] shadow-sm">
-              
+                <div className="flex gap-7 md:flex-col">
+                  {data.map((d, index) => (
+                    <HomePageOne
+                      {...d}
+                      key={"inner" + index}
+                      className="gap-[18px] md:w-full"
+                    />
+                  ))}
                 </div>
               </div>
-              <div className="flex gap-7 md:flex-col">
-                {data.map((d, index) => (
-                  <HomePageOne
-                    {...d}
-                    key={"inner" + index}
-                    className="gap-[18px] md:w-full"
-                  />
-                ))}
-              </div>
-            </div>
-            
 
-            <section>
-            <div className="flex w-[6%] flex-col items-start gap-[5px] shadow-sm md:w-full">
+              <section>
+                <div className="flex w-[6%] flex-col items-start gap-[5px] shadow-sm md:w-full">
                   <a href="/product">
-                  <Text
-                    size="lg"
-                    as="p"
-                    className="!font-medium !text-gray-900_06"
-                  >
-                    Xem tất cả
-                  </Text>
+                    <Text
+                      size="lg"
+                      as="p"
+                      className="!font-medium !text-gray-900_06"
+                    >
+                      Xem tất cả
+                    </Text>
                   </a>
                   <div className="h-[2px] w-[32px] bg-gray-900_06" />
                 </div>
-             <div className="flex w-full max-w-[1401px] self-stretch">
-               <Slider
-                 autoPlay
-                 autoPlayInterval={1000}
-                 responsive={{
-                   0: { items: 1 },
-                   550: { items: 2 },
-                   1050: { items: 3 },
-                   1400: { items: 4 },
-                   1750: { items: 5 },
-                   2100: { items: 6 },
-                 }}
-                 disableDotsControls
-                 activeIndex={sliderState2}
-                 onSlideChanged={(e) => {
-                   setSliderState2(e?.item);
-                 }}
-                 ref={sliderRef2}
-                 items={products.map((product) => (
-                   <Link
-                   key={product.id}
-                   to={`/productdetail/${product.id}`}
-                   rel="noopener noreferrer"
-                 >
-                   <React.Fragment key={product.id}>
-                     <div className="flex md:flex-col">
-                       <HomePageSix
-                         imagethirtyOne={product.image}
-                         ergonomic={
-                           <>
-                             {product.name}
-                             <br />
-                             <span style={{ color: 'red' }}>{product.price} VND</span>                                 
-                           </>
-                         }
-                       />
-                     </div>
-                     
-                   </React.Fragment>
-                   </Link>
-                 ))}
-               />
-             </div>
-         </section>
-
-
+                <div className="flex w-full max-w-[1401px] self-stretch">
+                  <Slider
+                    autoPlay
+                    autoPlayInterval={1000}
+                    responsive={{
+                      0: { items: 1 },
+                      550: { items: 2 },
+                      1050: { items: 3 },
+                      1400: { items: 4 },
+                      1750: { items: 5 },
+                      2100: { items: 6 },
+                    }}
+                    disableDotsControls
+                    activeIndex={sliderState2}
+                    onSlideChanged={(e) => {
+                      setSliderState2(e?.item);
+                    }}
+                    ref={sliderRef2}
+                    items={products.map((product) => (
+                      <Link
+                        key={product.id}
+                        to={`/productdetail/${product.id}`}
+                        rel="noopener noreferrer"
+                      >
+                        <React.Fragment key={product.id}>
+                          <div className="flex md:flex-col">
+                            <HomePageSix
+                              imagethirtyOne={product.image}
+                              ergonomic={
+                                <>
+                                  {product.name}
+                                  <br />
+                                  <span style={{ color: "red" }}>
+                                    {product.price} VND
+                                  </span>
+                                </>
+                              }
+                            />
+                          </div>
+                        </React.Fragment>
+                      </Link>
+                    ))}
+                  />
+                </div>
+              </section>
             </div>
             <div className="mt-[60px] flex flex-col gap-[29px]">
               <div className="flex items-start justify-between gap-5">
-              
                 {/* <div className="flex w-[6%] flex-col items-start gap-[5px] shadow-sm">
                   <Text
                     size="lg"
@@ -403,41 +360,36 @@ export default function HomePagePage() {
                 ))}
               </div> */}
             </div>
-            <div className="mt-[59px] flex justify-center bg-gray-100_02 px-[5px] pt-[5px]">
-             
-            </div>
+            <div className="mt-[59px] flex justify-center bg-gray-100_02 px-[5px] pt-[5px]"></div>
           </div>
-          <div className="flex flex-col gap-[60px] sm:gap-[30px]">
+          <div className="mt-[60px] flex flex-col items-center gap-8">
             <div className="flex flex-col gap-[31px]">
               <div className="container-md flex items-center justify-between gap-5 md:flex-col md:p-5">
                 <Text size="7xl" as="p">
-                 Cửa Hàng Nổi Bật
+                  Cửa Hàng Nổi Bật
                 </Text>
-               
               </div>
               <section>
-              
-              
-                  <div className="flex w-full max-w-[1401px] self-stretch">
-                    <Slider
-                      autoPlay
-                      autoPlayInterval={2000}
-                      responsive={{
-                        0: { items: 1 },
-                        550: { items: 2 },
-                        1050: { items: 3 },
-                        1400: { items: 4 },
-                        1750: { items: 5 },
-                        2100: { items: 6 },
-                      }}
-                      disableDotsControls
-                      activeIndex={sliderState2}
-                      onSlideChanged={(e) => {
-                        setSliderState2(e?.item);
-                      }}
-                      ref={sliderRef2}
-                      items={shops.map((shop) => (
-                        <Link
+                <div className="flex w-full max-w-[1401px] self-stretch">
+                  <Slider
+                    autoPlay
+                    autoPlayInterval={2000}
+                    responsive={{
+                      0: { items: 1 },
+                      550: { items: 2 },
+                      1050: { items: 3 },
+                      1400: { items: 4 },
+                      1750: { items: 5 },
+                      2100: { items: 6 },
+                    }}
+                    disableDotsControls
+                    activeIndex={sliderState2}
+                    onSlideChanged={(e) => {
+                      setSliderState2(e?.item);
+                    }}
+                    ref={sliderRef2}
+                    items={shops.map((shop) => (
+                      <Link
                         key={shop.shopId}
                         to={`/sales-shop/${shop.shopId}`}
                         rel="noopener noreferrer"
@@ -450,26 +402,20 @@ export default function HomePagePage() {
                                 <>
                                   {shop.nameShop}
                                   <br />
-                                  {shop.address} 
+                                  {shop.address}
                                   <br />
-                                 
                                 </>
                               }
                             />
                           </div>
                         </React.Fragment>
-                        </Link>
-                      ))}
-                    />
-                  </div>
-              
+                      </Link>
+                    ))}
+                  />
+                </div>
               </section>
-
             </div>
-            <div className="container-md flex flex-col gap-[29px] md:p-5">
-             
-           
-            </div>
+            <div className="container-md flex flex-col gap-[29px] md:p-5"></div>
             {/* <div className="container-md flex flex-col gap-7 md:p-5">
               <div className="flex items-start justify-between gap-5">
                 <Text size="7xl" as="p">
@@ -545,16 +491,9 @@ export default function HomePagePage() {
                 </div>
               </div>
             </div> */}
-            <div className="container-md flex flex-col gap-[31px] md:p-5">
-            
-            
-            </div>
-            <div className="flex flex-col gap-[31px]">
-            
-          
-            </div>
+            <div className="container-md flex flex-col gap-[31px] md:p-5"></div>
+            <div className="flex flex-col gap-[31px]"></div>
             <div className="container-md flex flex-col items-center gap-6 md:p-5">
-              
               <div className="flex items-center justify-between gap-5 self-stretch md:flex-col">
                 <Img
                   src="images/img_1.png"

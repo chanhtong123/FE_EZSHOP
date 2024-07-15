@@ -59,10 +59,8 @@ export default function RegisterPage() {
         />
       </Helmet>
       <div className="flex w-full flex-col items-center gap-[71px] bg-gray-50_07 md:gap-[53px] sm:gap-[35px] pt-16 pb-16">
-        <div>
-
-          <div className="flex flex-col items-start gap-[22px] rounded-md border border-solid border-gray-200_01 bg-white-A700 pb-[47px] pl-[150px] pr-10 pt-10 shadow-xs md:pb-5 md:pl-5 sm:p-5">
-            <Heading size="6xl" as="h1" className="uppercase ml-[-15px] mr-[90px]">
+        <div className="w-full max-w-md flex flex-col items-center gap-4 rounded-md border border-gray-200 bg-white shadow-md p-6"> 
+        <Heading size="6xl" as="h1" className="uppercase ml-[-15px] mr-[90px]">
               Tạo tài khoản
             </Heading>
 
@@ -115,7 +113,7 @@ export default function RegisterPage() {
                   </div>
                   <Button
                     shape="round"
-                    size="10xl"
+                    size="9xl"
                     type="submit"
                     className="w-full border border-solid border-green-A700_02 font-semibold shadow-sm sm:px-5"
                   >
@@ -182,7 +180,6 @@ export default function RegisterPage() {
               </div>
             </form>
           </div>
-        </div>
         <CustomToast message={toastMessage} type={toastType} />
       </div>
     </>

@@ -14,28 +14,10 @@ import {
   Button,
   Img,
   Text,
-  CheckBox,
-  Input,
-  TextArea,
-  RatingBar,
-  Heading,
-  SelectBox,
+
 } from "../../components";
-import Footer1 from "../../components/Footer1";
-import HomePageFour from "../../components/HomePageFour";
-import HomePageThree from "../../components/HomePageThree";
-import ProductDetailDetails from "../../components/ProductDetailDetails";
-import { Link } from "react-router-dom";
-const data = [
-  { imageseventyfiv: "images/img_image_75.png" },
-  { imageseventyfiv: "images/img_image_76.png" },
-  { imageseventyfiv: "images/img_image_65.png" },
-];
-const dropDownOptions = [
-  { label: "Option1", value: "option1" },
-  { label: "Option2", value: "option2" },
-  { label: "Option3", value: "option3" },
-];
+
+
 const ProductDetailPage = () => {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
@@ -288,30 +270,24 @@ const ProductDetailPage = () => {
                     </div>
                     <div className="h-px self-stretch bg-gray-200_01" />
                     <div className="flex flex-col gap-5 self-stretch">
-                      <div className="flex gap-5 sm:flex-col">
+                      <div className="flex gap-2 sm:flex-col">
                         <Button
                           onClick={handleAddToCart}
-                          size="x10"
-                          className="min-w-[236px] rounded-[26px] border border-solid border-green-A700_02 !text-gray-100_02 sm:px-5"
+                          size="9xl"
+                          color="bg-green-100"
+                          className="w-[60%] rounded-[5px] border border-solid border-green-A700_02 !text-green-700 sm:px-2"
                         >
                           Thêm Vào Giỏ hàng
                         </Button>
                         <CustomToast message={toastMessage} type={toastType} />
-                      </div>
-                      <a
-                        href="https://www.youtube.com/embed/bv8Fxk0sz7I"
-                        target="_blank"
-                      >
+                     
                         <Button
-                          size="x10"
-                          variant="outline"
-                          className="w-full rounded-[26px] font-bevietnamprosemibold font-semibold sm:px-5"
+                          size="9xl"
+                          className="w-[40%] rounded-[5px] border border-solid border-green-A700_02 !text-gray-100_02 sm:px-2"
                         >
                           Mua Ngay
                         </Button>
-                      </a>
-
-
+                        </div>
                     </div>
                   </div>
                 </div>

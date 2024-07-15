@@ -4,7 +4,6 @@ import axiosInstance from "../../config/axiosConfig";
 import { getToken, removeToken } from "../../utils/authUtils";
 import { Helmet } from "react-helmet";
 import { Button, Heading, Text, Img, SelectBox } from "../../components";
-import Footer1 from "../../components/Footer1";
 import { ReactTable } from "../../components/ReactTable";
 import { createColumnHelper } from "@tanstack/react-table";
 import CustomToast from "../../components/CustomToast";
@@ -233,7 +232,7 @@ export default function CartDetailPage() {
         meta: { width: "210px" },
       }),
     ];
-  }, [newSize]);
+  }, [handleDeleteProduct, newSize]);
 
   const handlePaymentNavigation = () => {
     navigate("/payment", { state: { totalAmount } });
@@ -248,10 +247,9 @@ export default function CartDetailPage() {
           content="Web site created using create-react-app"
         />
       </Helmet>
-      <div className="w-full bg-white-A700">
-        <div className="flex flex-col items-center">
-          <div className="mt-[21px] flex w-[73%] flex-col items-start md:w-full md:p-5">
-            <div className="flex flex-wrap gap-[7px]">
+      <div className="flex w-full flex-col items-center bg-white-A700">
+        <div className="container-md mt-[17px] flex flex-col items-center md:p-5">
+          <div className="flex flex-wrap gap-[7px] self-start">
               <Text size="md" as="p">
                 Trang chủ
               </Text>
@@ -266,7 +264,7 @@ export default function CartDetailPage() {
             <div className="container-xs flex">
               <div className="flex w-full flex-col items-center">
                 <div className="mt-[30px] flex items-start gap-[27px] self-stretch md:flex-col">
-                  <div className="flex-1 rounded-md border border-solid border-gray-200_01 bg-white-A700 pb-[53px] md:self-stretch md:pb-5">
+                  <div className="flex-1 rounded-md bg-white-A700 pb-[53px] md:self-stretch md:pb-5">
                     {cartItems && cartItems.length > 0 ? (
                       <ReactTable
                         columns={table6Columns}
@@ -278,7 +276,7 @@ export default function CartDetailPage() {
                         }}
                       />
                     ) : (
-                      <p>Không có mặt hàng trong giỏ hàng.</p>
+                      <h2>Không có mặt hàng trong giỏ hàng.</h2>
                     )}
                   </div>
 
@@ -333,7 +331,7 @@ export default function CartDetailPage() {
                       </div>
                     </div>
                     <Button
-                      size="10xl"
+                      size="9xl"
                       shape="round"
                       className="w-full border border-solid border-green-A700_02 !text-gray-100_02 shadow-sm sm:px-5"
                       onClick={handlePaymentNavigation}
@@ -369,7 +367,6 @@ export default function CartDetailPage() {
               </div>
             </div>
           </div>
-        </div>
         <CustomToast message={toastMessage} type={toastType} />
       </div>
     </>

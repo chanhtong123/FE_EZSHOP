@@ -1,16 +1,8 @@
 import React from "react";
 import { Text, Img, Heading, Button, SelectBox } from "./..";
 
-const dropDownOptions = [
-  { label: "Điều khoản sử dụng", value: "option1" },
-  { label: "Option2", value: "option2" },
-  { label: "Option3", value: "option3" },
-];
+const dropDownOptions = [{ label: "Điều khoản sử dụng", value: "option1" }];
 export default function Header1({ ...props }) {
-  // const [menuOpen, setMenuOpen] = React.useState(false);
-  // const [menuOpen1, setMenuOpen1] = React.useState(false);
-  // const [menuOpen2, setMenuOpen2] = React.useState(false);
-  // const [menuOpen3, setMenuOpen3] = React.useState(false);
   const [isOpen, setIsOpen] = React.useState(false);
 
   const toggleDropdown = () => {
@@ -63,9 +55,8 @@ export default function Header1({ ...props }) {
               </Text>
             </div>
             <div className="flex w-[30%] justify-between">
-              <div className="flex sm:w-full items-center gap-2 bg-white">
-              </div>
-              
+              <div className="flex sm:w-full items-center gap-2 bg-white"></div>
+
               <div className="flex items-ends gap-2.5">
                 <div className="h-full w-px bg-gray-200_01" />
                 <SelectBox
@@ -88,12 +79,12 @@ export default function Header1({ ...props }) {
                   <Img
                     src="images/img_facebook.svg"
                     alt="close"
-                    className="h-[12px]"
+                    className="h-[21px] self-start"
                   />
                   <Img
                     src="images/img_inta.svg"
                     alt="close"
-                    className="h-[11px] self-start object-cover"
+                    className="h-[21px] self-end"
                   />
                 </div>
               </div>
@@ -126,41 +117,12 @@ export default function Header1({ ...props }) {
                 </div>
               </div>
               <Button color="white_A701" outline="green_50_01" shape={"circle"}>
-                <Img
-                  src="images/img_search1.svg"
-                  alt="searchone"
-                  // className="h-[20px] w-[20px]"
-                />
+                <Img src="images/img_search1.svg" alt="searchone" />
               </Button>
             </div>
             <div className="flex w-[40%] items-end justify-center gap-[17px] md:w-full sm:flex-col">
-              <div className="flex w-[30%] items-center items-start">
-                {/* <a href="#" className="">
-                  <Button
-                    color="green_A700_11"
-                    shape="round"
-                    className="w-[50px] h-[50px]"
-                  >
-                    <Img
-                      src="images/img_heart1.svg"
-                      alt="searchone"
-                      className="h-[20px] w-[20px]"
-                    />
-                  </Button>
-                </a>
-                <Heading
-                  size="lg"
-                  as="p"
-                  className="w-[60%] !font-inter leading-[22px]"
-                >
-                  <span className="font-bevietnampro text-base font-medium text-blue_gray-900_02">
-                    Yêu thích
-                  </span>
-                </Heading> */}
-              </div>
-
               <div className="flex items-center w-[30%]">
-                <a href="#">
+                <a href="/profile">
                   <Button
                     color="green_A700_11"
                     shape="round"
@@ -177,11 +139,26 @@ export default function Header1({ ...props }) {
                   <span className="font-bevietnampro text-base font-medium text-blue_gray-900_02">
                     <a href="/profile">Tài khoản</a>
                   </span>
-                 
+                </Heading>
+              </div>
+              <div className="flex items-center w-[30%]">
+                <a href="/cartdetail">
+                  <Button shape="round" className="w-[50px] h-[50px]">
+                    <Img src="images/img_cart.svg" />
+                  </Button>
+                </a>
+                <Heading
+                  size="lg"
+                  as="p"
+                  className="!font-inter leading-[22px] sm:w-full whitespace-nowrap overflow-hidden overflow-ellipsis"
+                >
+                  <span className="font-bevietnampro text-base font-medium text-blue_gray-900_02">
+                    <a href="/cartdetail">Thanh toán</a>
+                  </span>
                 </Heading>
               </div>
 
-              <div className="flex-1 w-[40%] sm:self-stretch">
+              {/* <div className="flex-1 w-[40%] sm:self-stretch">
                 <a href="/cartdetail">
                   <div className="flex items-center">
                     <div className="relative w-[38%]">
@@ -200,33 +177,15 @@ export default function Header1({ ...props }) {
                       </span>
                     </Heading>
                   </div>
+
                 </a>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
         <div className="mt-5 h-px w-full self-stretch bg-gray-200_01" />
         <div className="container-md flex items-center justify-between gap-5 pr-[5px] md:flex-col md:p-5">
           <div className="flex w-[50%] items-center justify-between gap-5 md:w-full md:flex-col">
-            {/* <div className="relative h-[60px] w-[38%] bg-green-A700_02 py-[19px] pl-5 pr-[21px] md:h-auto md:w-full sm:pr-5">
-              <div className="flex w-full flex-col items-start">
-                <div className="flex items-center justify-between gap-5 self-stretch">
-                  <div className="flex w-[50%] items-center justify-center gap-[15px]">
-                    <div className="h-[2px] w-[20px] bg-white-A700" />
-                    <Heading as="h6" className="!text-white-A700">
-                      Danh mục
-                    </Heading>
-                  </div>
-                  <Img
-                    src="images/img_vector_white.svg"
-                    alt="vector"
-                    className="mb-[7px] h-[5px] self-end"
-                  />
-                </div>
-                <div className="relative mt-[-3px] h-[2px] w-[15px] bg-white-A700" />
-              </div>
-              <div className="absolute left-[25.00px] top-[21.00px] m-auto h-[2px] w-[15px] bg-white-A700" />
-            </div> */}
             <div
               className="relative h-[60px] w-[38%] bg-green-A700_02 py-[19px] pl-5 pr-[21px] md:h-auto md:w-full sm:pr-5 "
               onClick={toggleDropdown}
@@ -294,12 +253,23 @@ export default function Header1({ ...props }) {
               </li>
             </ul>
           </div>
-          <div className="flex w-[40%] justify-between cursor-pointer items-center gap-1">
-            <Button color="white_A701">Ưu đãi trong ngày</Button>
-            <Button color="white_A701">Ưu đãi hấp dẫn</Button>
-            <Button color="white_A701">Cửa hàng nổi bật</Button>
-            <Button color="white_A701">Hàng mới</Button>
-          </div>
+          <ul className="flex w-[40%] justify-between">
+            <li>
+              <a href="/product">
+                <Text as="p">Ưu đãi trong ngày</Text>
+              </a>
+            </li>
+            <li>
+            <a href="/product">
+                <Text as="p">Ưu đãi hấp dẫn</Text>
+              </a></li>
+            <li><a href="/shops">
+                <Text as="p">Cửa hàng nổi bật</Text>
+              </a></li>
+            <li><a href="/product">
+                <Text as="p">Hàng mới về</Text>
+              </a></li>
+          </ul>
         </div>
       </div>
     </header>

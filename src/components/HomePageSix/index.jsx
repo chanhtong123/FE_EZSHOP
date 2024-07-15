@@ -32,9 +32,10 @@ export default function HomePageSix({
         <Text size="md" as="p" className="!text-blue_gray-600">
           {int}
         </Text>
-        <Heading as="h6" className="mt-2 w-full leading-[150%]">
-          {ergonomic}
-        </Heading>
+        <Heading as="h6" className="mt-2 w-full min-w-[72px] leading-[150%] truncate">
+  {ergonomic}
+</Heading>
+
         <div className="mt-[19px] flex items-start gap-2.5">
           <div className="flex gap-[5px]">
        

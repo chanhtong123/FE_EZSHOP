@@ -3,13 +3,13 @@ import { Img, Text } from "./..";
 export default function Footer1({ ...props }) {
   return (
     <footer {...props} className={`${props.className} flex items-center`}>
-      <div className="container-sm flex flex-col gap-[47px]">
+      <div className="container-sm flex flex-col gap-[25px]">
         <div className="flex items-start md:flex-col">
-          <div className="mt-1.5 flex flex-1 flex-col items-start gap-[35px] md:self-stretch">
+          <div className="mt-1.5 flex flex-1 flex-col items-start gap-[25px] md:self-stretch">
             <Text className="text-lg font-medium uppercase">
               Liên hệ chúng tôi
             </Text>
-            <div className="flex flex-col items-start gap-[30px] self-stretch">
+            <div className="flex flex-col items-start gap-[25px] self-stretch">
               <div className="flex flex-col items-start">
                 <div className="flex items-start gap-[25px]">
                   <Img
@@ -43,9 +43,9 @@ export default function Footer1({ ...props }) {
             </div>
           </div>
           <div className="ml-[58px] flex w-[52%] items-center justify-between gap-5 md:ml-0 md:w-full md:flex-col">
-            <div className="flex flex-col gap-[19px]">
+            <div className="flex flex-col gap-[25px]">
               <Text className="text-lg font-medium uppercase">Về EZShop</Text>
-              <ul className="flex flex-col gap-[50px]">
+              <ul className="flex flex-col gap-[25px]">
                 <li>
                   <a href="#">
                     <Text className="text-sm font-normal">
@@ -83,11 +83,11 @@ export default function Footer1({ ...props }) {
                 </li>
               </ul>
             </div>
-            <div className="flex flex-col gap-[19px]">
+            <div className="flex flex-col gap-[25px]">
               <Text className="text-lg font-medium uppercase">
                 Hỗ trợ khách hàng
               </Text>
-              <ul className="flex flex-col gap-[50px]">
+              <ul className="flex flex-col gap-[25px]">
                 <li>
                   <a href="#">
                     <Text className="text-sm font-normal">
@@ -125,9 +125,9 @@ export default function Footer1({ ...props }) {
                 </li>
               </ul>
             </div>
-            <div className="flex flex-col items-start gap-[19px]">
+            <div className="flex flex-col items-start gap-[25px]">
               <Text className="text-lg font-medium uppercase">Dịch vụ</Text>
-              <ul className="flex flex-col items-start gap-[50px]">
+              <ul className="flex flex-col items-start gap-[25px]">
                 <li>
                   <a href="#">
                     <Text className="text-sm font-normal">Biệt đội đam mê</Text>
@@ -189,7 +189,7 @@ export default function Footer1({ ...props }) {
           </div>
         </div>
         <div className="pb-[9px]">
-          <div className="flex flex-col gap-[30px]">
+          <div className="flex flex-col gap-[25px]">
             <div className="h-px bg-gray-200_01" />
             <div className="flex items-center gap-8 self-start md:flex-col">
               <div className="flex md:flex-col">
