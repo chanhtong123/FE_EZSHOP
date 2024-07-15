@@ -7,7 +7,7 @@ import CreateProduct from "../pages/CreateProduct";
 import HomePage from "../pages/HomePage";
 import Product from "../pages/Product";
 import ProductDetail from "../pages/ProductDetail";
-import Payment from "../pages/Payment";
+// import Payment from "../pages/Payment";
 import OrderTracking from "../pages/OrderTracking";
 import Profile from "../pages/Profile";
 import CustomerLayoutOfShop from "../pages/CustomerLayoutOfShop";
@@ -42,7 +42,7 @@ const ProjectRoutes = () => {
     { path: "product", element: <Product /> },
     { path:"/product/category/:categoryId",element:<ProductPageByCategory/>},
     { path: "productdetail/:id", element: <ProductDetail /> },
-    { path: "payment", element: <Payment /> },
+    // { path: "payment", element: <Payment /> },
     { path: "ordertracking", element: <OrderTracking /> },
     { path: "profile", element: <Profile /> },
     { path: "customerlayoutofshop", element: <CustomerLayoutOfShop /> },
