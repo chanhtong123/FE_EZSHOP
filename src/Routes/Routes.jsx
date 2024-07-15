@@ -36,7 +36,7 @@ import CategoriesManager from "../pages/CategoriesAdmin";
 import AdminProducts from "../pages/ProductsAdmin";
 import Test2 from "../pages/Test";
 import TestAdmin from "../pages/TestAdmin";
-
+import ProductPageByCategory from "../pages/Productbycategory";
 
 const ProjectRoutes = () => {
   let element = useRoutes([
@@ -47,6 +47,7 @@ const ProjectRoutes = () => {
     { path: "createproduct", element: <CreateProduct /> },
     { path: "homepage", element: <HomePage /> },
     { path: "product", element: <Product /> },
+    { path:"/product/category/:categoryId",element:<ProductPageByCategory/>},
     { path: "productdetail/:id", element: <ProductDetail /> },
     { path: "payment", element: <Payment /> },
     { path: "ordertracking", element: <OrderTracking /> },
@@ -54,7 +55,7 @@ const ProjectRoutes = () => {
     { path: "customerlayoutofshop", element: <CustomerLayoutOfShop /> },
     { path: "shops", element: <ListOfShop /> },
     { path: "blog", element: <Blog /> },
-    { path: "blogdetail", element: <BlogDetail /> },
+    { path: "blogdetail/:id", element: <BlogDetail /> },
     { path: "contact", element: <Contact /> },
     { path: "customercare", element: <CustomerCare /> },
     { path: "login", element: <Login /> },
