@@ -134,6 +134,13 @@ export default function HomePagePage() {
     ref: sliderRef3,
   };
 
+
+  const handleButtonClick = () => {
+    localStorage.setItem("toastMessage", "Đăng ký thành công!");
+    localStorage.setItem("toastType", "success");
+    
+  };
+
   return (
     <>
       <Helmet>
@@ -175,7 +182,7 @@ export default function HomePagePage() {
                             shape="round"
                             className="min-w-[173px] font-medium"
                           >
-                            Khuyến mãi cuối tháng
+                            Khuyến mãi ngập tràn
                           </Button>
                           <Heading
                             size="8xl"
@@ -190,8 +197,8 @@ export default function HomePagePage() {
                             as="p"
                             className="w-full !font-normal leading-[150%] !text-blue_gray-600_01"
                           >
-                            Những gì chúng tôi mất hàng giờ để thực hiện
-                            sẽ là của bạn để tận hưởng
+                            Những gì chúng tôi mất hàng <br/> giờ để thực hiện
+                            sẽ là của bạn <br/>để tận hưởng
                           </Text>
                         </div>
                         <a href="/product">
@@ -621,9 +628,10 @@ export default function HomePagePage() {
                       color="green_400"
                       size="11xl"
                       shape="round"
+                      onClick={handleButtonClick}
                       className="min-w-[131px] border border-solid border-green-400 sm:px-5"
                     >
-                      Gửi ngay
+                      Gửi ngay              
                     </Button>
                   </div>
                 </div>

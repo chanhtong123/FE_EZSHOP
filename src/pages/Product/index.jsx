@@ -87,7 +87,7 @@ export default function ProductPage() {
 
     // Fetch products when search button is clicked
     fetchProducts({
-      
+
       name,
       minPrice,
       maxPrice,
@@ -99,7 +99,7 @@ export default function ProductPage() {
   const handlePageChange = (newPage) => {
     setCurrentPage(newPage); // Update currentPage state
   };
-  
+
 
 
   return (
@@ -162,7 +162,7 @@ export default function ProductPage() {
                 Thương hiệu
               </label>
               <div className="flex flex-col">
-                {["Nike", "Adidas", "LEVI'S", "Chanel"].map((brandName) => (
+                {["Đầm", "Áo sơ mi", "Áo thun", "Quần", "Áo khoác"].map((brandName) => (
                   <label
                     key={brandName}
                     className="flex items-center gap-2 mb-2"
@@ -186,7 +186,7 @@ export default function ProductPage() {
               </div>
             </div>
             <div className="mb-4">
-              {/* <label className="block text-lg font-medium text-gray-700 mb-2">
+              <label className="block text-lg font-medium text-gray-700 mb-2">
                 Tình trạng (%)
               </label>
               <div className="flex flex-col">
@@ -208,7 +208,7 @@ export default function ProductPage() {
                     {value}
                   </label>
                 ))}
-              </div> */}
+              </div>
             </div>
             <button
               onClick={handleSearch}
@@ -229,7 +229,7 @@ export default function ProductPage() {
                 </Text> */}
               </div>
             </div>
-            
+
             <div className="mt-[31px] grid w-[96%] grid-cols-4 justify-center gap-px md:grid-cols-2 sm:grid-cols-1">
               {products.map((product) => {
                 console.log("Rendering product:", product);
@@ -269,19 +269,21 @@ export default function ProductPage() {
                           <Heading size="3xl" as="h6" className="flex">
                             <span className="text-blue_gray-900_02 text-red-600">
                               {typeof product.price === "number"
-                                ? product.price.toLocaleString()
-                                : "278.000đ"}
+                                ? `${product.price.toLocaleString()}đ`
+                                : "100.000đ"}
+
                             </span>
                           </Heading>
                           <Text
                             size="md"
                             as="p"
-                            className="self-start capitalize  line-through"
+                            className="self-start capitalize line-through"
                           >
                             {typeof product.price === "number"
-                              ? `${product.price.toLocaleString()}đ`
-                              : "328.000đ"}
+                              ? `${(product.price * 1.3).toLocaleString()}đ`
+                              : "100.000đ"}
                           </Text>
+
 
                         </div>
                         <Text

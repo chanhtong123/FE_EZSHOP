@@ -31,7 +31,7 @@ export default function RegisterPage() {
      
       const token = response.data.token; 
       localStorage.setItem("token", token);
-      localStorage.setItem("toastMessage", "Register successful!");
+      localStorage.setItem("toastMessage", "Đăng ký thành công!");
       localStorage.setItem("toastType", "success");
       navigate(redirectUrl);
       

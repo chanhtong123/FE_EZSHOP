@@ -51,6 +51,28 @@ const ProductDetailPage = () => {
   const [sliderState3, setSliderState3] = React.useState(0);
   const sliderRef3 = React.useRef(null);
 
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      setLoading(true);
+      setError("");
+      try {
+        const response = await axiosInstance.get("http://localhost:8080/guest/api/products/search");
+        setProducts(response.data);
+      } catch (error) {
+        console.error("Error fetching products", error);
+        setError("Error fetching products: " + error.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
+
+
+
   useEffect(() => {
     const fetchProduct = async () => {
       try {
@@ -86,24 +108,7 @@ const ProductDetailPage = () => {
     fetchCartId();
   }, []);
 
-  useEffect(() => {
-    const fetchProducts = async () => {
-      setLoading(true);
-      setError("");
-      try {
-        const response = await axiosInstance.get("http://localhost:8080/guest/api/products/search");
-        setProducts(response.data);
-      } catch (error) {
-        console.error("Error fetching products", error);
-        setError("Error fetching products: " + error.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchProducts();
-  }, []);
-
+ 
   const handleAddToCart = async () => {
     const token = getToken();
 

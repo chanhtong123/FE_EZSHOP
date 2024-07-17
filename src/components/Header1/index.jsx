@@ -111,14 +111,14 @@ export default function Header1({ ...props }) {
             <div className="flex flex-1 items-center justify-between gap-5 self-end rounded-md border border-solid border-green-A700_02 py-[11px] pl-[27px] pr-4 md:self-stretch sm:pl-5">
               <div className="flex w-[18%] items-start justify-between">
                 <div className="flex w-[100%] items-start justify-between">
-                  <Text size="md" as="p" className="center">
+                  {/* <Text size="md" as="p" className="center">
                     Danh mục
                   </Text>
                   <Img
                     src="images/img_vector.svg"
                     alt="vector"
                     className="mb-2.5 mt-2.5 h-[5px]"
-                  />
+                  /> */}
                 </div>
               </div>
               <Button color="white_A701" outline="green_50_01" shape={"circle"}>

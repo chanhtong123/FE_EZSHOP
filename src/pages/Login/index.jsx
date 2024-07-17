@@ -25,7 +25,7 @@ export default function LoginPage() {
       const response = await axios.post("http://localhost:8080/login", { userName, passWord }); 
       const token = response.data.token; 
       localStorage.setItem("token", token);
-      localStorage.setItem("toastMessage", "Login successful!");
+      localStorage.setItem("toastMessage", "Đăng nhập thành công!");
       localStorage.setItem("toastType", "success");
       navigate(redirectUrl); 
     } catch (error) {
