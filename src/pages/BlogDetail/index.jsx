@@ -2,10 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams, Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
-import {
-  Img,
-  Text,
-} from "../../components";
+import { Img, Text } from "../../components";
 
 const BlogDetailPage = () => {
   const { id } = useParams(); // Lấy id từ URL
@@ -61,13 +58,15 @@ const BlogDetailPage = () => {
       <div className="flex w-full flex-col items-center bg-white-A700">
         <div className="container-md mt-[19px] flex flex-col gap-[62px] md:p-5 sm:gap-[31px]">
           <div className="flex flex-wrap gap-[7px]">
-            <Text size="md" as="p" className="self-end">
-              Trang chủ
-            </Text>
+            <a href="/">
+              <Text size="md" as="p" className="self-end">
+                Trang chủ
+              </Text>
+            </a>
             <Text size="md" as="p" className="self-end">
               /
             </Text>
-            <a href="https://www.youtube.com/embed/bv8Fxk0sz7I" target="_blank">
+            <a href="/blog">
               <Text size="md" as="p" className="self-start">
                 Bài viết
               </Text>
@@ -102,7 +101,7 @@ const BlogDetailPage = () => {
                   .blog-content p {
                     text-indent: 2em; /* Thụt vào 2 ô */
                     margin-bottom: 1em; /* Cách dòng trên 1 hàng */
-                       font-size: 1.99rem;
+                    font-size: 1.99rem;
                   }
                 `}</style>
                 <div

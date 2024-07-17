@@ -119,7 +119,7 @@ export default function ProductPage() {
                 htmlFor="name"
                 className="block text-lg font-medium text-gray-700 mb-2"
               >
-                Tìm kiếm sản phẩm theo tên
+                Tìm kiếm sản phẩm 
               </label>
               <input
                 id="name"
@@ -158,7 +158,7 @@ export default function ProductPage() {
             </div>
             <div className="mb-4">
               <label className="block text-lg font-medium text-gray-700 mb-2">
-                Thương hiệu
+                Loại
               </label>
               <div className="flex flex-col">
                 {["Đầm", "Áo sơ mi", "Áo thun", "Quần", "Áo khoác"].map((brandName) => (

@@ -41,9 +41,11 @@ export default function BlogPage() {
       <div className="flex w-full flex-col items-center bg-white-A700">
         <div className="container-md mt-[19px] flex flex-col gap-[11px] md:p-5">
           <div className="flex flex-wrap gap-[7px]">
-            <Text size="md" as="p" className="self-end">
-              Trang chủ
-            </Text>
+          <a href="/homepage">
+              <Text size="md" as="p" className="self-end">
+                Trang chủ
+              </Text>
+            </a>
             <Text size="md" as="p" className="self-end">
               /
             </Text>
