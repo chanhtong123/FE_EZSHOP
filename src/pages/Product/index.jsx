@@ -2,11 +2,22 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Helmet } from "react-helmet";
-import { Text, Heading, Button } from "../../components";
+
+import {
+  Text,
+  Heading,
+  Button,
+  Img,
+  CheckBox,
+  SeekBar,
+  Input,
+  SelectBox,
+} from "../../components";
 import SalesShopPagination from "../../components/SalesShopPagination";
 import { Link } from "react-router-dom";
 
 export default function ProductPage() {
+
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -17,6 +28,12 @@ export default function ProductPage() {
   const [situation, setSituation] = useState("");
   const [selectedBrands, setSelectedBrands] = useState([]);
   const [price, setPrice] = useState("");
+
+  const [currentPage, setCurrentPage] = useState(1); // Thêm state currentPage
+  const [totalPages, setTotalPages] = useState(0); // Thêm state totalPages
+  const pageSize = 12;
+
+
 
   const fetchProducts = async (searchParams = {}) => {
     setLoading(true);
@@ -37,6 +54,7 @@ export default function ProductPage() {
                 ? searchParams.selectedBrands.join(",")
                 : null,
             situation: situationParam,
+            page: currentPage,
           },
           paramsSerializer: (params) => {
             return Object.entries(params)
@@ -47,6 +65,7 @@ export default function ProductPage() {
         }
       );
       setProducts(response.data); // Update products state with the fetched data
+      setTotalPages(Math.ceil(response.data.totalCount / pageSize));
       console.log(response.data);
     } catch (error) {
       console.error("Error fetching products", error);
@@ -57,13 +76,17 @@ export default function ProductPage() {
   };
 
   useEffect(() => {
-    // Fetch products when the component mounts
     fetchProducts();
-  }, []);
+  }, [currentPage]);
+
 
   const handleSearch = () => {
+
+    setCurrentPage(1);
+
     // Fetch products when search button is clicked
     fetchProducts({
+
       name,
       minPrice,
       maxPrice,
@@ -71,6 +94,12 @@ export default function ProductPage() {
       situation,
     });
   };
+
+  const handlePageChange = (newPage) => {
+    setCurrentPage(newPage); // Update currentPage state
+  };
+
+
 
   return (
     <>
@@ -81,9 +110,10 @@ export default function ProductPage() {
           content="Web site created using create-react-app"
         />
       </Helmet>
-      <div className="container-md flex items-center justify-between gap-5 pr-1 md:flex-col md:p-5">
-        <div className="flex items-start md:flex-col h-full w-full">
-          <div className="flex-[1] container mx-auto p-4 self-start">
+      <div className="flex w-full flex-col items-center gap-[67px] bg-white-A700 sm:gap-[33px]">
+
+        <div className="flex items-start md:flex-col h-full">
+          <div className="flex-[1] container mx-auto p-4">
             <div className="mb-4">
               <label
                 htmlFor="name"
@@ -131,7 +161,7 @@ export default function ProductPage() {
                 Thương hiệu
               </label>
               <div className="flex flex-col">
-                {["Nike", "Adidas", "LEVI'S", "Chanel"].map((brandName) => (
+                {["Đầm", "Áo sơ mi", "Áo thun", "Quần", "Áo khoác"].map((brandName) => (
                   <label
                     key={brandName}
                     className="flex items-center gap-2 mb-2"
@@ -179,14 +209,18 @@ export default function ProductPage() {
                 ))}
               </div>
             </div>
-            <Button
+            <button
               onClick={handleSearch}
               className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700"
             >
               Tìm kiếm
-            </Button>
+            </button>
           </div>
+
           <div className="flex-[4] relative ml-[-3px] flex flex-1 flex-col items-center md:ml-0 md:self-stretch">
+
+
+
             <div className="mt-[71px] flex w-[96%] flex-col gap-8 md:w-full">
               <div className="flex flex-col items-start gap-[51px] sm:gap-[25px]">
                 {/* <Text size="7xl" as="p">
@@ -194,6 +228,7 @@ export default function ProductPage() {
                 </Text> */}
               </div>
             </div>
+
             <div className="mt-[31px] grid w-[96%] grid-cols-4 justify-center gap-px md:grid-cols-2 sm:grid-cols-1">
               {products.map((product) => {
                 console.log("Rendering product:", product);
@@ -212,11 +247,15 @@ export default function ProductPage() {
                         />
                       </div>
                       <div className="flex w-[86%] flex-col items-start gap-[11px] md:w-full md:p-5">
-                        <Text size="xs" as="p" className="!text-blue_gray-600">
+                        <Text
+                          size="xs"
+                          as="p"
+                          className="!text-blue_gray-600"
+                        >
                           {Array.isArray(product.categories)
                             ? product.categories
-                                .map((category) => category.name)
-                                .join(", ")
+                              .map((category) => category.name)
+                              .join(", ")
                             : "Thời trang"}
                         </Text>
                         <Heading as="h5" className="w-full leading-[150%]">
@@ -229,29 +268,41 @@ export default function ProductPage() {
                           <Heading size="3xl" as="h6" className="flex">
                             <span className="text-blue_gray-900_02 text-red-600">
                               {typeof product.price === "number"
-                                ? product.price.toLocaleString()
-                                : "278.000đ"}
+                                ? `${product.price.toLocaleString()}đ`
+                                : "100.000đ"}
+
                             </span>
                           </Heading>
                           <Text
                             size="md"
                             as="p"
-                            className="self-start capitalize  line-through"
+                            className="self-start capitalize line-through"
                           >
                             {typeof product.price === "number"
-                              ? `${product.price.toLocaleString()}đ`
-                              : "328.000đ"}
+                              ? `${(product.price * 1.3).toLocaleString()}đ`
+                              : "100.000đ"}
                           </Text>
+
+
                         </div>
-                        <Text size="md" as="p" className="!text-blue_gray-600">
+                        <Text
+                          size="md"
+                          as="p"
+                          className="!text-blue_gray-600"
+                        >
                           {product.brand}
                         </Text>
-                        <Text size="xs" as="p" className="!text-blue_gray-600">
-                          {product.description &&
-                          product.description.length > 10
+                        <Text
+                          size="xs"
+                          as="p"
+                          className="!text-blue_gray-600"
+                        >
+                          {product.description && product.description.length > 10
                             ? `${product.description.slice(0, 30)}...`
                             : product.description}
                         </Text>
+
+
 
                         {/* {product.title && (
             <Text size="xs" as="p" className="!text-blue_gray-600">
@@ -264,6 +315,9 @@ export default function ProductPage() {
                 );
               })}
             </div>
+
+
+
           </div>
         </div>
       </div>

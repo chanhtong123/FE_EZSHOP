@@ -21,7 +21,7 @@ export default function LoginPage() {
       });
       const token = response.data.token;
       localStorage.setItem("token", token);
-      localStorage.setItem("toastMessage", "Login successful!");
+      localStorage.setItem("toastMessage", "Đăng nhập thành công!");
       localStorage.setItem("toastType", "success");
       navigate(redirectUrl);
     } catch (error) {

@@ -26,6 +26,42 @@ const ProductDetailPage = () => {
   const [mainImage, setMainImage] = useState(null);
   const [toastMessage, setToastMessage] = useState('');
   const [toastType, setToastType] = useState('');
+  const [products, setProducts] = useState([]); // Initialize as empty array
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [shop, setShop] = useState(null);
+
+
+
+
+  const [sliderState, setSliderState] = React.useState(0);
+  const sliderRef = React.useRef(null);
+  const [sliderState1, setSliderState1] = React.useState(0);
+  const sliderRef1 = React.useRef(null);
+  const [sliderState2, setSliderState2] = React.useState(0);
+  const sliderRef2 = React.useRef(null);
+  const [sliderState3, setSliderState3] = React.useState(0);
+  const sliderRef3 = React.useRef(null);
+
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      setLoading(true);
+      setError("");
+      try {
+        const response = await axiosInstance.get("http://localhost:8080/guest/api/products/search");
+        setProducts(response.data);
+      } catch (error) {
+        console.error("Error fetching products", error);
+        setError("Error fetching products: " + error.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
 
 
 
@@ -67,8 +103,7 @@ const ProductDetailPage = () => {
     fetchCartId();
   }, []);
 
-
-
+ 
   const handleAddToCart = async () => {
     const token = getToken();
 
