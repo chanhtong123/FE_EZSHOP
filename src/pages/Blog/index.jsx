@@ -357,7 +357,6 @@ export default function BlogPage() {
             </div>
           </div>
         </div>
-        <Footer1 className="mt-[77px] justify-center self-stretch border-t border-solid border-gray-200_01 bg-white-A700 px-14 pb-[17px] pt-[82px] md:px-5 md:pt-5" />
       </div>
     </>
   );

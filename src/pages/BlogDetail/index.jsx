@@ -5,32 +5,7 @@ import { Helmet } from "react-helmet";
 import {
   Img,
   Text,
-  Button,
-  CheckBox,
-  Input,
-  TextArea,
-  RatingBar,
-  Heading,
-  SelectBox,
 } from "../../components";
-import Footer1 from "../../components/Footer1";
-
-const data = [
-  {
-    image: "images/img_armchair_toys_children_s_room.png",
-    mccmica: "Mức độ cũ mới của đồ đạc là như thế nào?",
-  },
-  {
-    image: "images/img_boy_plays_with.png",
-    mccmica: "Đồ đạc đã được sửa chữa nào không?",
-  },
-];
-
-const dropDownOptions = [
-  { label: "Option1", value: "option1" },
-  { label: "Option2", value: "option2" },
-  { label: "Option3", value: "option3" },
-];
 
 const BlogDetailPage = () => {
   const { id } = useParams(); // Lấy id từ URL
@@ -169,7 +144,6 @@ const BlogDetailPage = () => {
             </div>
           </div>
         </div>
-        <Footer1 className="mt-[277px] justify-center self-stretch border-t border-solid border-gray-200_01 bg-white-A700 px-14 pb-[17px] pt-[82px] md:px-5 md:pt-5" />
       </div>
     </>
   );
