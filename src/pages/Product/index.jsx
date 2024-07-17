@@ -73,9 +73,6 @@ export default function ProductPage() {
     });
   };
 
-  const handlePageChange = (newPage) => {
-    setCurrentPage(newPage); // Update currentPage state
-  };
 
 
 
@@ -162,7 +159,6 @@ export default function ProductPage() {
               </div>
             </div>
             <div className="mb-4">
-              <label className="block text-lg font-medium text-gray-700 mb-2">
               <label className="block text-lg font-medium text-gray-700 mb-2">
                 Tình trạng (%)
               </label>
@@ -279,7 +275,6 @@ export default function ProductPage() {
             </div>
           </div>
         </div>
-      </div>
     </>
   );
 }
