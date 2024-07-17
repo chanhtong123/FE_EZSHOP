@@ -1,16 +1,33 @@
 import React, { useEffect, useState } from "react";
+import axios from "axios";
 import { Helmet } from "react-helmet";
-import { Img, Button, Input, Text, Heading, Slider } from "../../components";
+import {
+  Img,
+  Button,
+  Input,
+  Text,
+  Heading,
+  RatingBar,
+  Slider,
+} from "../../components";
+import Footer1 from "../../components/Footer1";
+import Header from "../../components/Header1";
+import HomePageArrowbullet from "../../components/HomePageArrowbullet";
+import HomePageFive from "../../components/HomePageFive";
+import HomePageFour from "../../components/HomePageFour";
 import HomePageOne from "../../components/HomePageOne";
 import HomePageSix from "../../components/HomePageSix";
-import axiosInstance from "../../config/axiosConfig";
+import HomePageThree from "../../components/HomePageThree";
+import axiosInstance from '../../config/axiosConfig';
 import { Link } from "react-router-dom";
 import CustomToast from "../../components/CustomToast";
+
 
 const data = [
   {
     productimage: "images/aosomi.jpg",
     productname: "Áo sơ mi",
+
   },
 
   {
@@ -20,6 +37,7 @@ const data = [
   {
     productimage: "images/quanjean.jpg",
     productname: "Quần jean",
+
   },
   {
     productimage: "images/giaydep.png",
@@ -29,16 +47,22 @@ const data = [
     productimage: "images/phukien.jpg",
     productname: "Phụ kiện",
   },
+
 ];
+
+
 
 export default function HomePagePage() {
   const [sliderState, setSliderState] = React.useState(0);
+  const sliderRef = React.useRef(null);
   const [sliderState1, setSliderState1] = React.useState(0);
+  const sliderRef1 = React.useRef(null);
   const [sliderState2, setSliderState2] = React.useState(0);
   const sliderRef2 = React.useRef(null);
   const [sliderState3, setSliderState3] = React.useState(0);
   const sliderRef3 = React.useRef(null);
   const [shops, setShops] = React.useState([]);
+
 
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -63,6 +87,7 @@ export default function HomePagePage() {
     fetchProducts();
   }, []);
 
+
   useEffect(() => {
     const fetchShops = async () => {
       try {
@@ -77,6 +102,7 @@ export default function HomePagePage() {
 
     fetchShops();
   }, []);
+
 
   useEffect(() => {
     const message = localStorage.getItem("toastMessage");
@@ -106,13 +132,6 @@ export default function HomePagePage() {
       setSliderState3(e?.item);
     },
     ref: sliderRef3,
-  };
-
-
-  const handleButtonClick = () => {
-    localStorage.setItem("toastMessage", "Đăng ký thành công!");
-    localStorage.setItem("toastType", "success");
-    
   };
 
   return (
@@ -156,7 +175,7 @@ export default function HomePagePage() {
                             shape="round"
                             className="min-w-[173px] font-medium"
                           >
-                            Khuyến mãi ngập tràn
+                            Khuyến mãi cuối tháng
                           </Button>
                           <Heading
                             size="8xl"
@@ -171,8 +190,8 @@ export default function HomePagePage() {
                             as="p"
                             className="w-full !font-normal leading-[150%] !text-blue_gray-600_01"
                           >
-                            Những gì chúng tôi mất hàng <br/> giờ để thực hiện
-                            sẽ là của bạn <br/>để tận hưởng
+                            Những gì chúng tôi mất hàng giờ để thực hiện
+                            sẽ là của bạn để tận hưởng
                           </Text>
                         </div>
                         <a href="/product">
@@ -267,8 +286,81 @@ export default function HomePagePage() {
                 </div>
               </div>
             </div>
+
+
+
+
+            <div className="mt-[59px] flex justify-center bg-gray-100_02 px-[5px] pt-[5px]">
+              <div className="flex w-[84%] items-center justify-between gap-5 md:w-full md:flex-col">
+                <div className="flex w-[43%] flex-col items-start gap-6 md:w-full">
+                  <div className="flex flex-col items-start gap-2.5 self-stretch">
+                    <Text size="md" as="p" className="!text-blue_gray-600">
+                    </Text>
+                    <Heading
+                      size="8xl"
+                      as="h2"
+                      className="w-full  leading-[60px]"
+                    >
+                      <>
+                        Cùng EZSHOP phối đồ cực phong cách
+                      </>
+                    </Heading>
+                    <Text
+                      size="md"
+                      as="p"
+                      className="w-[100%] leading-[150%] !text-blue_gray-600 md:w-full"
+                    >
+                      Ezshop mang đến cho bạn những phong cách phối đồ đa dạng phong cách tuỳ theo sở thích của từng cá nhân bạn
+                    </Text>
+                  </div>
+                  <a href="/blog">
+                  <Button
+                    size="9xl"
+                    shape="round"
+                    className="min-w-[176px] sm:px-5"
+                  >
+                    Khám phá ngay
+                  </Button>
+                  </a>
+                </div>
+                <div className="relative h-[394px] w-[48%] md:h-auto md:w-full">
+                  <div className="mr-6 h-[312px] w-[80%] rounded-[226px] bg-green-A700_19 md:mr-0" />
+                  <div className="absolute bottom-0 left-0 right-0 top-0 m-auto h-[394px] w-full">
+                    <div className="absolute bottom-0 left-[0.00px] top-0 my-auto h-[385px] w-[81%] md:h-auto">
+                      <Img
+                        src="images/img_model_women_385x460.png"
+                        alt="modelwomen"
+                        className="h-[385px] w-full object-cover"
+                      />
+                      <div className="absolute bottom-[-0.61px] right-[23%] m-auto h-[172px] w-[29%] rotate-[-16deg] rounded-[50%] bg-gray-900_99_01 blur-[60.00px] backdrop-opacity-[0.5]" />
+                    </div>
+                    <div className="absolute bottom-0 right-[-0.25px] top-0 my-auto flex h-max w-[66%] flex-col items-start">
+                      <Img
+                        src="images/img_model_men.png"
+                        alt="modelmen"
+                        className="h-[394px] w-full object-cover md:h-auto"
+                      />
+                      <div className="relative ml-[59px] mt-[-46px] h-[46px] w-[27px] rotate-[-4deg] rounded-[50%] bg-light_green-900_99 blur-[40.00px] backdrop-opacity-[0.5] md:ml-0" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
+
             <div className="mt-[60px] flex flex-col items-center gap-8">
-              <div className="flex items-start justify-between gap-5 self-stretch md:flex-col"></div>
+              <div className="flex items-start justify-between gap-5 self-stretch md:flex-col">
+
+
+              </div>
+
+
+
+
+
+
               <div className="mt-[60px] flex flex-col gap-[29px]">
                 <div className="flex items-start justify-between gap-5">
                   <div className="flex">
@@ -276,7 +368,9 @@ export default function HomePagePage() {
                       Danh mục
                     </Text>
                   </div>
-                  <div className="flex w-[6%] flex-col items-start gap-[5px] shadow-sm"></div>
+                  <div className="flex w-[6%] flex-col items-start gap-[5px] shadow-sm">
+
+                  </div>
                 </div>
                 <div className="flex gap-7 md:flex-col">
                   {data.map((d, index) => (
@@ -288,6 +382,7 @@ export default function HomePagePage() {
                   ))}
                 </div>
               </div>
+
 
               <section>
                 <div className="flex w-[6%] flex-col items-start gap-[5px] shadow-sm md:w-full">
@@ -334,22 +429,27 @@ export default function HomePagePage() {
                                 <>
                                   {product.name}
                                   <br />
-                                  <span style={{ color: "red" }}>
-                                    {product.price} VND
-                                  </span>
+                                  <span style={{ color: 'red' }}>{product.price} VND</span>
                                 </>
                               }
                             />
                           </div>
+
                         </React.Fragment>
                       </Link>
                     ))}
                   />
                 </div>
               </section>
+
+
             </div>
+
+
+
             <div className="mt-[60px] flex flex-col gap-[29px]">
               <div className="flex items-start justify-between gap-5">
+
                 {/* <div className="flex w-[6%] flex-col items-start gap-[5px] shadow-sm">
                   <Text
                     size="lg"
@@ -371,16 +471,21 @@ export default function HomePagePage() {
                 ))}
               </div> */}
             </div>
-            <div className="mt-[59px] flex justify-center bg-gray-100_02 px-[5px] pt-[5px]"></div>
+            <div className="mt-[59px] flex justify-center bg-gray-100_02 px-[5px] pt-[5px]">
+
+            </div>
           </div>
-          <div className="mt-[60px] flex flex-col items-center gap-8">
+          <div className="flex flex-col gap-[60px] sm:gap-[30px]">
             <div className="flex flex-col gap-[31px]">
               <div className="container-md flex items-center justify-between gap-5 md:flex-col md:p-5">
                 <Text size="7xl" as="p">
                   Cửa Hàng Nổi Bật
                 </Text>
+
               </div>
               <section>
+
+              <div className="container-md flex items-center justify-between gap-5 md:flex-col md:p-5">
                 <div className="flex w-full max-w-[1401px] self-stretch">
                   <Slider
                     autoPlay
@@ -415,6 +520,7 @@ export default function HomePagePage() {
                                   <br />
                                   {shop.address}
                                   <br />
+
                                 </>
                               }
                             />
@@ -424,87 +530,25 @@ export default function HomePagePage() {
                     ))}
                   />
                 </div>
+                </div>
               </section>
+
             </div>
-            <div className="container-md flex flex-col gap-[29px] md:p-5"></div>
-            {/* <div className="container-md flex flex-col gap-7 md:p-5">
-              <div className="flex items-start justify-between gap-5">
-                <Text size="7xl" as="p">
-                  Phụ kiện
-                </Text>
-                <div className="flex w-[13%] items-center gap-5">
-                  <Img
-                    src="images/img_arrow_down.svg"
-                    alt="arrowdown"
-                    className="h-[24px] w-[24px]"
-                  />
-                  <Img
-                    src="images/img_settings.svg"
-                    alt="settings"
-                    className="h-[20px] w-[58%]"
-                  />
-                </div>
-              </div>
-              <div className="flex items-center gap-[29px] md:flex-col">
-                <div className="relative h-[391px] w-[32%] rounded-md bg-gray-100_02 pl-10 pt-[42px] md:w-full md:pt-5 sm:pl-5">
-                  <Img
-                    src="images/img_men_s_clothing.png"
-                    alt="mensclothing"
-                    className="absolute bottom-[0.00px] right-[0.00px] m-auto h-[234px] w-[94%] rounded-md object-cover"
-                  />
-                  <div className="absolute left-[9%] top-[11%] m-auto flex w-[55%] flex-col items-start gap-[9px]">
-                    <Text size="md" as="p" className="!text-blue-A700">
-                      Chỉ từ 150K
-                    </Text>
-                    <Text size="7xl" as="p" className="w-full leading-[35px]">
-                      <>
-                        Discover Real <br /> Organic Flavors
-                      </>
-                    </Text>
-                    <div className="flex w-[33%] flex-col items-start gap-0.5 shadow-sm md:w-full">
-                      <Text
-                        size="lg"
-                        as="p"
-                        className="!font-medium !text-gray-900_06"
-                      >
-                        Mua ngay
-                      </Text>
-                      <div className="h-[2px] w-[32px] bg-gray-900_06" />
-                    </div>
-                  </div>
-                </div>
-                <div className="flex w-full max-w-[933px] md:flex-col md:self-stretch">
-                  <Slider
-                    autoPlay
-                    autoPlayInterval={2000}
-                    responsive={{
-                      0: { items: 1 },
-                      550: { items: 2 },
-                      1050: { items: 4 },
-                    }}
-                    disableDotsControls
-                    activeIndex={sliderState1}
-                    onSlideChanged={(e) => {
-                      setSliderState1(e?.item);
-                    }}
-                    ref={sliderRef1}
-                    items={[...Array(12)].map(() => (
-                      <React.Fragment key={Math.random()}>
-                        <HomePageFive
-                          image="images/img_image_30_17.png"
-                          category="Điện tử"
-                          title="Đồng hồ Apple Watch Series 9"
-                          className="sm:pb-5"
-                        />
-                      </React.Fragment>
-                    ))}
-                  />
-                </div>
-              </div>
-            </div> */}
-            <div className="container-md flex flex-col gap-[31px] md:p-5"></div>
-            <div className="flex flex-col gap-[31px]"></div>
+            <div className="container-md flex flex-col gap-[29px] md:p-5">
+
+
+            </div>
+
+            <div className="container-md flex flex-col gap-[31px] md:p-5">
+
+
+            </div>
+            <div className="flex flex-col gap-[31px]">
+
+
+            </div>
             <div className="container-md flex flex-col items-center gap-6 md:p-5">
+
               <div className="flex items-center justify-between gap-5 self-stretch md:flex-col">
                 <Img
                   src="images/img_1.png"
@@ -577,10 +621,9 @@ export default function HomePagePage() {
                       color="green_400"
                       size="11xl"
                       shape="round"
-                      onClick={handleButtonClick}
                       className="min-w-[131px] border border-solid border-green-400 sm:px-5"
                     >
-                      Gửi ngay              
+                      Gửi ngay
                     </Button>
                   </div>
                 </div>
@@ -594,7 +637,7 @@ export default function HomePagePage() {
           </div>
         </div>
         {/* <Footer1 className="mt-[100px] justify-center self-stretch border-t border-solid border-gray-200_01 bg-white-A700 px-14 pb-[17px] pt-[82px] md:px-5 md:pt-5" /> */}
-      </div>
+      </div >
       <CustomToast message={toastMessage} type={toastType} />
     </>
   );
