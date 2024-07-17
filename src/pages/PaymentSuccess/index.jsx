@@ -50,7 +50,7 @@ export default function PaymentSuccessPage() {
                 Thanh toán
               </span>
             </Text>
-            <div className="flex w-[80%] flex-col items-center gap-[46px] self-end md:w-full">
+            <div className="flex w-full flex-col items-center gap-[46px] self-end md:w-full">
               <div className="flex flex-col items-center">
                 <Img
                   src="images/img_checkmark.svg"

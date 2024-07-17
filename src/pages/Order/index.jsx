@@ -3,11 +3,10 @@ import { Helmet } from "react-helmet";
 import { Text, Heading, Button } from "../../components";
 import FavoriteProductSidebar from "../../components/FavoriteProductSidebar";
 import { ReactTable } from "../../components/ReactTable";
-import { getOrdersByUserId } from "api/orderService";
+import axios from "axios";
 import { createColumnHelper } from "@tanstack/react-table";
 import { formatDistanceToNow } from "date-fns";
 import { vi } from "date-fns/locale";
-import axios from "axios";
 import classNames from "classnames";
 
 const columnHelper = createColumnHelper();
@@ -25,10 +24,6 @@ const tableColumns = [
         locale: vi,
       })}`,
   }),
-  columnHelper.accessor("customerName", {
-    header: () => "Tên khách hàng",
-    cell: (info) => info.getValue(),
-  }),
   columnHelper.accessor("totalAmount", {
     header: () => "Tổng cộng",
     cell: (info) => `$${info.getValue()}`,
@@ -45,12 +40,6 @@ const tableColumns = [
           "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300":
             statusName === "Pending",
           "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300":
-            statusName === "Confirmed",
-          "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300":
-            statusName === "Processing",
-          "bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-300":
-            statusName === "Shipping",
-          "bg-teal-100 text-teal-800 dark:bg-teal-900 dark:text-teal-300":
             statusName === "Completed",
           "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-300":
             statusName === "Cancelled",
@@ -59,12 +48,10 @@ const tableColumns = [
         }
       );
 
-
       return <span className={statusClass}>{statusName}</span>;
     },
   }),
 ];
-
 
 export default function OrderPage() {
   const [orderData, setOrderData] = useState([]);
@@ -74,33 +61,24 @@ export default function OrderPage() {
 
   useEffect(() => {
     const fetchOrderData = async () => {
-        try {
+      try {
+        const response = await axios.get(
+          `http://localhost:8080/guest/api/orders/user-id?user_id=1&page=${currentPage}&size=${pageSize}`
+        );
+        console.log("Fetched order data:", response.data);
 
-          const token = localStorage.getItem("token");
-          const axiosInstance = axios.create({
-            baseURL: 'http://localhost:8080',
-            headers: {
-              'Authorization': `Bearer ${token}`,
-              'Content-Type': 'application/json'
-            }
-          });
-          const userInfoResponse = await axiosInstance.get("/user");
-          const userId = userInfoResponse.data.id;
-            const response = await getOrdersByUserId(userId, currentPage, pageSize);
-            console.log("Fetched order data:", response);
+        const fetchedData = response.data.content;
 
-            const fetchedData = response.content; 
-
-            console.log("Processed order data:", fetchedData);
-            setOrderData(fetchedData);
-            setTotalPages(response.totalPages);
-        } catch (error) {
-            console.error("Error fetching order data:", error.message);
-        }
+        console.log("Processed order data:", fetchedData);
+        setOrderData(fetchedData);
+        setTotalPages(response.data.totalPages);
+      } catch (error) {
+        console.error("Error fetching order data:", error);
+      }
     };
 
     fetchOrderData();
-}, [ currentPage, pageSize]);
+  }, [currentPage, pageSize]);
 
   const handlePageChange = (newPage) => {
     setCurrentPage(newPage);
@@ -147,23 +125,25 @@ export default function OrderPage() {
                 columns={tableColumns}
                 data={orderData}
               />
-              <div className="flex justify-between items-center mt-4">
-                <Button
-                  onClick={() => handlePageChange(currentPage - 1)}
-                  disabled={currentPage === 0}
-                >
-                  Previous
-                </Button>
-                <Text size="md" as="p">
-                  Page {currentPage + 1} of {totalPages}
-                </Text>
-                <Button
-                  onClick={() => handlePageChange(currentPage + 1)}
-                  disabled={currentPage + 1 >= totalPages}
-                >
-                  Next
-                </Button>
-              </div>
+               {totalPages > 1 && (
+                <div className="flex justify-between items-center mt-4">
+                  <Button
+                    onClick={() => handlePageChange(currentPage - 1)}
+                    disabled={currentPage === 0}
+                  >
+                    Previous
+                  </Button>
+                  <Text size="md" as="p">
+                    Page {currentPage + 1} of {totalPages}
+                  </Text>
+                  <Button
+                    onClick={() => handlePageChange(currentPage + 1)}
+                    disabled={currentPage + 1 >= totalPages}
+                  >
+                    Next
+                  </Button>
+                </div>
+              )}
             </div>
           </div>
         </div>

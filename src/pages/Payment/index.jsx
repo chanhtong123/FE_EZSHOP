@@ -141,7 +141,7 @@ export default function PaymentPage() {
             <Heading
               size="8xl"
               as="h1"
-              className="relative mt-[-4px] self-end uppercase"
+              className="relative mt-[-4px] self-end uppercase pt-10"
             >
               THANH TOÁN
             </Heading>
@@ -419,7 +419,7 @@ export default function PaymentPage() {
                 <Button
                   type="submit"
                   disabled={loading}
-                  size="10xl"
+                  size="9xl"
                   shape="round"
                   className="mt-[55px] w-full border border-solid border-green-A700_02 !text-gray-100_02 shadow-sm sm:px-5"
                 >
