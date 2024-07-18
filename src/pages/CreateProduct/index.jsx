@@ -73,7 +73,7 @@ const CreateProductForm = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:8080/guest/api/products",
+        "https://ezshop-be.azurewebsites.net/guest/api/products",
         formData,
         {
           headers: {
@@ -107,7 +107,7 @@ const CreateProductForm = () => {
   useEffect(() => {
     // Fetch categories from backend API
     axios
-      .get("http://localhost:8080/guest/api/categories")
+      .get("https://ezshop-be.azurewebsites.net/guest/api/categories")
       .then((response) => {
         setCategories(response.data);
       })
@@ -370,7 +370,7 @@ export default CreateProductForm;
 //   try {
 //     console.log("Submitting data:", formData); // Log dữ liệu để kiểm tra
 //     const response = await axios.post(
-//       "http://localhost:8080/guest/api/products",
+//       "https://ezshop-be.azurewebsites.net/guest/api/products",
 //       formData
 //     );
 //     console.log("Product created:", response.data);

@@ -15,7 +15,7 @@ const BlogDetailPage = () => {
     const fetchBlogDetail = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8080/guest/api/blogs/${id}`
+          `https://ezshop-be.azurewebsites.net/guest/api/blogs/${id}`
         );
         setBlog(response.data);
         setLoading(false);
@@ -32,7 +32,7 @@ const BlogDetailPage = () => {
     const fetchBlogs = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8080/guest/api/blogs`
+          `https://ezshop-be.azurewebsites.net/guest/api/blogs`
         );
         setBlogs(response.data);
       } catch (err) {

@@ -33,7 +33,7 @@ export default function ProductPage() {
         searchParams.situation?.length > 0 ? searchParams.situation[0] : null; // API expects a single situation
 
       const response = await axios.get(
-        "http://localhost:8080/guest/api/products/search",
+        "https://ezshop-be.azurewebsites.net/guest/api/products/search",
         {
           params: {
             name: searchParams.name || "",

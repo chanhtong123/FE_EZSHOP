@@ -15,7 +15,7 @@ export default function LoginPage() {
 
   const handleLogin = async (redirectUrl) => {
     try {
-      const response = await axios.post("http://localhost:8080/login", {
+      const response = await axios.post("https://ezshop-be.azurewebsites.net/login", {
         userName,
         passWord,
       });

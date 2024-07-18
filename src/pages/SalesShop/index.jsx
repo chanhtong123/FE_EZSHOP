@@ -27,10 +27,10 @@ export default function SalesShopPage() {
   useEffect(() => {
     const fetchProfileItems = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/public/shop/${id}`);
+        const response = await axios.get(`https://ezshop-be.azurewebsites.net/public/shop/${id}`);
         setShop(response.data);
 
-        const productsResponse = await axios.get(`http://localhost:8080/guest/api/products/products/shop/${id}`);
+        const productsResponse = await axios.get(`https://ezshop-be.azurewebsites.net/guest/api/products/products/shop/${id}`);
         setProductsData(productsResponse.data);
 
       } catch (error) {

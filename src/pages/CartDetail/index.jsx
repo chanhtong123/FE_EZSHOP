@@ -24,7 +24,7 @@ export default function CartDetailPage() {
 
     try {
       const response = await axiosInstance.delete(
-        `http://localhost:8080/cart_item/delete/${card_detail_id}`,
+        `https://ezshop-be.azurewebsites.net/cart_item/delete/${card_detail_id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

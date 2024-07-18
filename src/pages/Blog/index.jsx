@@ -21,7 +21,7 @@ export default function BlogPage() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8080/guest/api/blogs")
+      .get("https://ezshop-be.azurewebsites.net/guest/api/blogs")
       .then((response) => {
         setBlogs(response.data);
       })

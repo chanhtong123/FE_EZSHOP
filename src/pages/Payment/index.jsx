@@ -73,7 +73,7 @@ export default function PaymentPage() {
       const userInfoResponse = await axiosInstance.get("/user");
       const userId = userInfoResponse.data.id;
       const response = await axios.post(
-        "http://localhost:8080/guest/api/orders/",
+        "https://ezshop-be.azurewebsites.net/guest/api/orders/",
         {
           orderDate: todayDate,
           orderStatus: "Pending",

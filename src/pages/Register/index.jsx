@@ -19,7 +19,7 @@ export default function RegisterPage() {
     try {
       const role = "USER";
       const status = true;
-      const response = await axios.post("http://localhost:8080/register", {
+      const response = await axios.post("https://ezshop-be.azurewebsites.net/register", {
         firstName,
         userName,
         passWord,

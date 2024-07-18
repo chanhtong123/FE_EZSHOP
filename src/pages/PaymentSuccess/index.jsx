@@ -10,7 +10,7 @@ export default function PaymentSuccessPage() {
   const location = useLocation();
   const { orderId } = location.state;
   useEffect(() => {
-    axios.get(`http://localhost:8080/guest/api/orders/id?id=${orderId}`)
+    axios.get(`https://ezshop-be.azurewebsites.net/guest/api/orders/id?id=${orderId}`)
       .then(response => {
         setOrder(response.data);
         setLoading(false);

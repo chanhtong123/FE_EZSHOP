@@ -52,7 +52,7 @@ const ProductDetailPage = () => {
     const fetchProduct = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8080/guest/api/products/${id}`
+          `https://ezshop-be.azurewebsites.net/guest/api/products/${id}`
         );
         setProduct(response.data);
         setMainImage(response.data.image);
@@ -89,7 +89,7 @@ const ProductDetailPage = () => {
       setError("");
       try {
         const response = await axiosInstance.get(
-          "http://localhost:8080/guest/api/products/search"
+          "https://ezshop-be.azurewebsites.net/guest/api/products/search"
         );
         setProducts(response.data);
       } catch (error) {
@@ -113,7 +113,7 @@ const ProductDetailPage = () => {
 
     try {
       const response = await axiosInstance.post(
-        "http://localhost:8080/cart_item/cart-details/create",
+        "https://ezshop-be.azurewebsites.net/cart_item/cart-details/create",
         null,
         {
           params: {
@@ -140,7 +140,7 @@ const ProductDetailPage = () => {
     const fetchShop = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8080/guest/shop/byProduct/${id}`
+          `https://ezshop-be.azurewebsites.net/guest/shop/byProduct/${id}`
         );
         setShop(response.data);
         console.log("Shop: ", response.data);
@@ -162,7 +162,7 @@ const ProductDetailPage = () => {
 
     try {
       const response = await axiosInstance.post(
-        "http://localhost:8080/cart_item/cart-details/create",
+        "https://ezshop-be.azurewebsites.net/cart_item/cart-details/create",
         null,
         {
           params: {

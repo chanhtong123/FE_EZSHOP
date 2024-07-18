@@ -74,7 +74,7 @@ export default function OrderManagementPage() {
     const fetchOrderData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8080/guest/api/orders/?page=${currentPage}&size=${pageSize}`
+          `https://ezshop-be.azurewebsites.net/guest/api/orders/?page=${currentPage}&size=${pageSize}`
         );
         console.log("Fetched order data:", response.data);
 
