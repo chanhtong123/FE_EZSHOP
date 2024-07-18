@@ -37,10 +37,7 @@ export default function FavoriteProductPage() {
                     
                     <div className="self-stretch bg-white-A700 px-5 py-[25px] sm:py-5">
                       
-                      <a
-                        href="https://www.youtube.com/embed/bv8Fxk0sz7I"
-                        target="_blank"
-                      >
+                      <a>
                         
                         <Img
                           src="images/img_image_30.png"

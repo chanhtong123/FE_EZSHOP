@@ -3,7 +3,7 @@ import { getToken } from '../utils/authUtils.js';
 
 
 const axiosInstance = axios.create({
-  baseURL: 'http://localhost:8080',
+  baseURL: 'https://ezshop-be.azurewebsites.net/',
 });
 
 // Thêm token vào tất cả các yêu cầu
