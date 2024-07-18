@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import { useNavigate } from 'react-router-dom';
-import axiosInstance from '../../config/axiosConfig';
-import { getToken, removeToken } from '../../utils/authUtils';
+import { useNavigate } from "react-router-dom";
+import axiosInstance from "../../config/axiosConfig";
+import { getToken, removeToken } from "../../utils/authUtils";
 import { Helmet } from "react-helmet";
 import CustomToast from "../../components/CustomToast";
 import HomePageSix from "../../components/HomePageSix";
@@ -32,15 +32,12 @@ const ProductDetailPage = () => {
   const [cartId, setCartId] = useState(null);
   const navigate = useNavigate();
   const [mainImage, setMainImage] = useState(null);
-  const [toastMessage, setToastMessage] = useState('');
-  const [toastType, setToastType] = useState('');
+  const [toastMessage, setToastMessage] = useState("");
+  const [toastType, setToastType] = useState("");
   const [products, setProducts] = useState([]); // Initialize as empty array
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [shop, setShop] = useState(null);
-
-
-
 
   const [sliderState, setSliderState] = React.useState(0);
   const sliderRef = React.useRef(null);
@@ -72,10 +69,10 @@ const ProductDetailPage = () => {
       const token = getToken();
 
       try {
-        const response = await axiosInstance.get('/api/cart/user', {
+        const response = await axiosInstance.get("/api/cart/user", {
           headers: {
-            'Authorization': `Bearer ${token}`
-          }
+            Authorization: `Bearer ${token}`,
+          },
         });
         setCartId(response.data.id);
       } catch (error) {
@@ -91,7 +88,9 @@ const ProductDetailPage = () => {
       setLoading(true);
       setError("");
       try {
-        const response = await axiosInstance.get("http://localhost:8080/guest/api/products/search");
+        const response = await axiosInstance.get(
+          "http://localhost:8080/guest/api/products/search"
+        );
         setProducts(response.data);
       } catch (error) {
         console.error("Error fetching products", error);
@@ -108,28 +107,32 @@ const ProductDetailPage = () => {
     const token = getToken();
 
     if (!token) {
-      navigate('/login');
+      navigate("/login");
       return;
     }
 
     try {
-      const response = await axiosInstance.post('http://localhost:8080/cart_item/cart-details/create', null, {
-        params: {
-          productId: product.id,
-          cartId: cartId,
-        },
-        headers: {
-          'Authorization': `Bearer ${token}`
+      const response = await axiosInstance.post(
+        "http://localhost:8080/cart_item/cart-details/create",
+        null,
+        {
+          params: {
+            productId: product.id,
+            cartId: cartId,
+          },
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         }
-      });
+      );
 
       setToastMessage("Thêm sản phẩm thành công!");
-      setToastType('success');
+      setToastType("success");
       console.log("Added to cart:", response.data);
     } catch (error) {
       console.error("Error adding to cart:", error);
       setToastMessage("Lỗi.");
-      setToastType('error');
+      setToastType("error");
     }
   };
 
@@ -149,9 +152,41 @@ const ProductDetailPage = () => {
     fetchShop();
   }, [id]);
 
+  const handleAddToCart2 = async () => {
+    const token = getToken();
 
+    if (!token) {
+      navigate("/login");
+      return;
+    }
 
+    try {
+      const response = await axiosInstance.post(
+        "http://localhost:8080/cart_item/cart-details/create",
+        null,
+        {
+          params: {
+            productId: product.id,
+            cartId: cartId,
+          },
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
+      setToastMessage("Thêm sản phẩm thành công!");
+      setToastType("success");
+      console.log("Added to cart:", response.data);
+      if (response.status === 201) {
+        navigate("/cartdetail");
+      }
+    } catch (error) {
+      console.error("Error adding to cart:", error);
+      setToastMessage("Lỗi.");
+      setToastType("error");
+    }
+  };
 
   if (!product) {
     return <div>Loading...</div>;
@@ -166,7 +201,6 @@ const ProductDetailPage = () => {
         />
       </Helmet>
       <div className="flex w-full flex-col items-center bg-white-A700">
-
         <div className="mt-[21px] flex w-[76%] flex-col gap-20 md:w-full md:gap-[60px] md:p-5 sm:gap-10">
           <div className="container-xs flex flex-col gap-[60px] sm:gap-[30px]">
             <div className="pr-[5px]">
@@ -176,55 +210,37 @@ const ProductDetailPage = () => {
                   as="p"
                   className="!font-bevietnamprolight !font-light"
                 >
-                  Trang chủ / Thời Trang  / {product.name}
+                  Trang chủ / Thời Trang / {product.name}
                 </Text>
                 <div className="flex items-start justify-between gap-5 self-stretch md:flex-col">
                   <div className="w-[6%] md:w-full">
-                    <div className="flex flex-col gap-2.5 md:flex-row" >
-
-                      <div
-
-                        className="flex flex-1 flex-col rounded-md border border-solid border-gray-200_01 bg-white-A700 p-2.5"
-                      >
+                    <div className="flex flex-col gap-2.5 md:flex-row">
+                      <div className="flex flex-1 flex-col rounded-md border border-solid border-gray-200_01 bg-white-A700 p-2.5">
                         <Img
                           onClick={() => setMainImage(product.image2)}
                           src={product.image2}
                           alt="imageseventyfiv"
                           className="h-[60px] w-[60px] object-cover"
                         />
-
                       </div>
-                      <div
-
-                        className="flex flex-1 flex-col rounded-md border border-solid border-gray-200_01 bg-white-A700 p-2.5"
-                      >
+                      <div className="flex flex-1 flex-col rounded-md border border-solid border-gray-200_01 bg-white-A700 p-2.5">
                         <Img
                           onClick={() => setMainImage(product.image3)}
                           src={product.image3}
                           alt="imageseventyfiv"
                           className="h-[60px] w-[60px] object-cover"
                         />
-
                       </div>
-                      <div
-
-                        className="flex flex-1 flex-col rounded-md border border-solid border-gray-200_01 bg-white-A700 p-2.5"
-                      >
+                      <div className="flex flex-1 flex-col rounded-md border border-solid border-gray-200_01 bg-white-A700 p-2.5">
                         <Img
                           onClick={() => setMainImage(product.image4)}
                           src={product.image4}
                           alt="imageseventyfiv"
                           className="h-[60px] w-[60px] object-cover"
                         />
-
-
-
                       </div>
 
-                      <div
-
-                        className="flex flex-1 flex-col rounded-md border border-solid border-gray-200_01 bg-white-A700 p-2.5"
-                      >
+                      <div className="flex flex-1 flex-col rounded-md border border-solid border-gray-200_01 bg-white-A700 p-2.5">
                         <Img
                           onClick={() => setMainImage(product.image)}
                           src={product.image}
@@ -232,19 +248,15 @@ const ProductDetailPage = () => {
                           className="h-[60px] w-[60px] object-cover"
                         />
                       </div>
-
                     </div>
                   </div>
                   <div className="flex w-[47%] flex-col items-start md:w-full">
-
                     <Img
                       src={mainImage}
                       alt="ảnh product"
                       className="mt-3.5 h-[612px] w-[612px] object-cover"
                     />
-
                   </div>
-
 
                   <div className="mt-2 flex w-[32%] flex-col items-start gap-[19px] rounded-md border border-solid border-gray-200_01 bg-white-A700 py-[30px] pl-[30px] pr-[26px] shadow-xs md:w-full sm:p-5">
                     <div>
@@ -312,7 +324,7 @@ const ProductDetailPage = () => {
                     </div>
                     <div className="h-px self-stretch bg-gray-200_01" />
                     <div className="flex flex-col gap-5 self-stretch">
-                    <div className="flex gap-2 sm:flex-col">
+                      <div className="flex gap-2 sm:flex-col">
                         <Button
                           onClick={handleAddToCart}
                           size="9xl"
@@ -322,14 +334,15 @@ const ProductDetailPage = () => {
                           Thêm Vào Giỏ hàng
                         </Button>
                         <CustomToast message={toastMessage} type={toastType} />
-                     
+
                         <Button
                           size="9xl"
+                          onClick={handleAddToCart2}
                           className="w-[40%] rounded-[5px] border border-solid border-green-A700_02 !text-gray-100_02 sm:px-2"
                         >
                           Mua Ngay
                         </Button>
-                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -337,12 +350,9 @@ const ProductDetailPage = () => {
             </div>
             <div className="flex flex-col gap-[23px]">
               <div className="flex w-[66%] flex-col gap-6 md:w-full">
-
-
                 <div className="flex flex-col gap-4">
                   <div className="flex flex-col items-start gap-[15px]">
                     <div className="flex flex-row gap-[17px] self-stretch pb-[9px] items-center">
-
                       <Link to={`/sales-shop/${shop.shopId}`}>
                         <Img
                           src={shop.image}
@@ -351,56 +361,52 @@ const ProductDetailPage = () => {
                         />
                       </Link>
                       <div className="flex flex-col gap-[10px]">
-                        <Text as="p" style={{ fontWeight: 'bold', color: '#FF0000' }} className="leading-7">
+                        <Text
+                          as="p"
+                          style={{ fontWeight: "bold", color: "#FF0000" }}
+                          className="leading-7"
+                        >
                           {shop.nameShop}
                         </Text>
 
                         <Text as="p" className="!font-normal ">
-                          Địa chi:  {shop.address}
+                          Địa chi: {shop.address}
                         </Text>
                       </div>
-
                     </div>
                   </div>
                   <div className="h-px bg-gray-200_01" />
                 </div>
-
-
-
 
                 <div className="flex flex-col items-start gap-[15px]">
                   <div className="flex items-center justify-between gap-5 self-stretch">
                     <Text size="3xl" as="p">
                       Thông Tin Chi Tiết
                     </Text>
-
                   </div>
                   <div className="flex w-[87%] flex-col gap-[19px] md:w-full">
                     <div className="flex flex-col items-start gap-[13px]">
                       <Text as="p">Đặc điểm</Text>
                       <div className="self-stretch">
                         <div className="flex items-start md:flex-col">
-
                           <Text
                             as="p"
                             className="ml-2.5 w-full !font-normal leading-10 !text-blue_gray-600 md:ml-0"
                           >
-                            {product.description.split('\n').map((line, index) => (
-                              <span key={index}>
-                                {line}
-                                <br />
-                              </span>
-                            ))}
+                            {product.description
+                              .split("\n")
+                              .map((line, index) => (
+                                <span key={index}>
+                                  {line}
+                                  <br />
+                                </span>
+                              ))}
                           </Text>
-
                         </div>
                       </div>
                     </div>
                     <div className="flex flex-col items-start gap-[13px]">
-
-                      <div className="flex items-start self-stretch md:flex-col">
-
-                      </div>
+                      <div className="flex items-start self-stretch md:flex-col"></div>
                     </div>
                   </div>
                   <div className="h-px w-full self-stretch bg-gray-200_01" />
@@ -415,7 +421,6 @@ const ProductDetailPage = () => {
                 </div> */}
               </div>
               <div className="flex flex-col gap-[17px]">
-
                 <section>
                   <div className="flex w-[6%] flex-col items-start gap-[5px] shadow-sm md:w-full">
                     <a href="/product">
@@ -461,28 +466,23 @@ const ProductDetailPage = () => {
                                   <>
                                     {product.name}
                                     <br />
-                                    <span style={{ color: 'red' }}>{product.price} VND</span>
+                                    <span style={{ color: "red" }}>
+                                      {product.price} VND
+                                    </span>
                                   </>
                                 }
                               />
                             </div>
-
                           </React.Fragment>
                         </Link>
                       ))}
                     />
                   </div>
                 </section>
-
-
-
               </div>
             </div>
           </div>
-          <div className="flex flex-col gap-[60px]">
-
-
-          </div>
+          <div className="flex flex-col gap-[60px]"></div>
         </div>
       </div>
     </>
