@@ -1,5 +1,5 @@
 // import React from "react";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import axios from "axios";
 import { Helmet } from "react-helmet";
 
@@ -7,17 +7,10 @@ import {
   Text,
   Heading,
   Button,
-  Img,
-  CheckBox,
-  SeekBar,
-  Input,
-  SelectBox,
 } from "../../components";
-import SalesShopPagination from "../../components/SalesShopPagination";
 import { Link } from "react-router-dom";
 
 export default function ProductPage() {
-
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -27,15 +20,12 @@ export default function ProductPage() {
   const [brand, setBrand] = useState("");
   const [situation, setSituation] = useState("");
   const [selectedBrands, setSelectedBrands] = useState([]);
-  const [price, setPrice] = useState("");
 
-  const [currentPage, setCurrentPage] = useState(1); // Thêm state currentPage
-  const [totalPages, setTotalPages] = useState(0); // Thêm state totalPages
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(0);
   const pageSize = 12;
 
-
-
-  const fetchProducts = async (searchParams = {}) => {
+  const fetchProducts = useCallback(async (searchParams = {}) => {
     setLoading(true);
     setError("");
     try {
@@ -73,20 +63,16 @@ export default function ProductPage() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [currentPage, pageSize]);
 
   useEffect(() => {
     fetchProducts();
-  }, [currentPage]);
-
+  }, [fetchProducts]);
 
   const handleSearch = () => {
-
     setCurrentPage(1);
 
-    // Fetch products when search button is clicked
     fetchProducts({
-
       name,
       minPrice,
       maxPrice,
@@ -99,8 +85,6 @@ export default function ProductPage() {
     setCurrentPage(newPage); // Update currentPage state
   };
 
-
-
   return (
     <>
       <Helmet>
@@ -110,10 +94,9 @@ export default function ProductPage() {
           content="Web site created using create-react-app"
         />
       </Helmet>
-      <div className="flex w-full flex-col items-center gap-[67px] bg-white-A700 sm:gap-[33px]">
-
-        <div className="flex items-start md:flex-col h-full">
-          <div className="flex-[1] container mx-auto p-4">
+      <div className="container-md flex items-center justify-between gap-5 pr-1 md:flex-col md:p-5">
+        <div className="flex items-start md:flex-col h-full w-full">
+          <div className="flex-[1] container mx-auto p-4 self-start">
             <div className="mb-4">
               <label
                 htmlFor="name"
@@ -161,27 +144,29 @@ export default function ProductPage() {
                 Loại
               </label>
               <div className="flex flex-col">
-                {["Đầm", "Áo sơ mi", "Áo thun", "Quần", "Áo khoác"].map((brandName) => (
-                  <label
-                    key={brandName}
-                    className="flex items-center gap-2 mb-2"
-                  >
-                    <input
-                      type="checkbox"
-                      value={brandName}
-                      checked={selectedBrands.includes(brandName)}
-                      onChange={(e) => {
-                        const newBrand = e.target.value;
-                        setSelectedBrands((prevBrands) =>
-                          prevBrands.includes(newBrand)
-                            ? prevBrands.filter((b) => b !== newBrand)
-                            : [...prevBrands, newBrand]
-                        );
-                      }}
-                    />
-                    {brandName}
-                  </label>
-                ))}
+                {["Đầm", "Áo sơ mi", "Áo thun", "Quần", "Áo khoác"].map(
+                  (brandName) => (
+                    <label
+                      key={brandName}
+                      className="flex items-center gap-2 mb-2"
+                    >
+                      <input
+                        type="checkbox"
+                        value={brandName}
+                        checked={selectedBrands.includes(brandName)}
+                        onChange={(e) => {
+                          const newBrand = e.target.value;
+                          setSelectedBrands((prevBrands) =>
+                            prevBrands.includes(newBrand)
+                              ? prevBrands.filter((b) => b !== newBrand)
+                              : [...prevBrands, newBrand]
+                          );
+                        }}
+                      />
+                      {brandName}
+                    </label>
+                  )
+                )}
               </div>
             </div>
             <div className="mb-4">
@@ -209,18 +194,15 @@ export default function ProductPage() {
                 ))}
               </div>
             </div>
-            <button
+            <Button
               onClick={handleSearch}
               className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700"
             >
               Tìm kiếm
-            </button>
+            </Button>
           </div>
 
           <div className="flex-[4] relative ml-[-3px] flex flex-1 flex-col items-center md:ml-0 md:self-stretch">
-
-
-
             <div className="mt-[71px] flex w-[96%] flex-col gap-8 md:w-full">
               <div className="flex flex-col items-start gap-[51px] sm:gap-[25px]">
                 {/* <Text size="7xl" as="p">
@@ -247,15 +229,11 @@ export default function ProductPage() {
                         />
                       </div>
                       <div className="flex w-[86%] flex-col items-start gap-[11px] md:w-full md:p-5">
-                        <Text
-                          size="xs"
-                          as="p"
-                          className="!text-blue_gray-600"
-                        >
+                        <Text size="xs" as="p" className="!text-blue_gray-600">
                           {Array.isArray(product.categories)
                             ? product.categories
-                              .map((category) => category.name)
-                              .join(", ")
+                                .map((category) => category.name)
+                                .join(", ")
                             : "Thời trang"}
                         </Text>
                         <Heading as="h5" className="w-full leading-[150%]">
@@ -270,7 +248,6 @@ export default function ProductPage() {
                               {typeof product.price === "number"
                                 ? `${product.price.toLocaleString()}đ`
                                 : "100.000đ"}
-
                             </span>
                           </Heading>
                           <Text
@@ -282,27 +259,16 @@ export default function ProductPage() {
                               ? `${(product.price * 1.3).toLocaleString()}đ`
                               : "100.000đ"}
                           </Text>
-
-
                         </div>
-                        <Text
-                          size="md"
-                          as="p"
-                          className="!text-blue_gray-600"
-                        >
+                        <Text size="md" as="p" className="!text-blue_gray-600">
                           {product.brand}
                         </Text>
-                        <Text
-                          size="xs"
-                          as="p"
-                          className="!text-blue_gray-600"
-                        >
-                          {product.description && product.description.length > 10
+                        <Text size="xs" as="p" className="!text-blue_gray-600">
+                          {product.description &&
+                          product.description.length > 10
                             ? `${product.description.slice(0, 30)}...`
                             : product.description}
                         </Text>
-
-
 
                         {/* {product.title && (
             <Text size="xs" as="p" className="!text-blue_gray-600">
@@ -315,9 +281,6 @@ export default function ProductPage() {
                 );
               })}
             </div>
-
-
-
           </div>
         </div>
       </div>

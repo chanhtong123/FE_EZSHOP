@@ -19,7 +19,6 @@ export default function PaymentSuccessPage() {
         console.error("Error fetching the order:", error);
         setLoading(false);
       });
-      console.log("Order", orderId);
   }, [orderId]);
 
   if (loading) {

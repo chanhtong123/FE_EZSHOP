@@ -4,7 +4,6 @@ import { Helmet } from "react-helmet";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { format, addDays } from "date-fns";
-import { usePayOS, PayOSConfig } from "payos-checkout";
 import { Button, Heading, Text, Input } from "../../components";
 
 export default function PaymentPage() {
@@ -18,9 +17,9 @@ export default function PaymentPage() {
     phone: "",
     email: "",
     notes: "",
-    paymentMethod: "COD",
-  }); 
-
+    paymentMethod: "",
+  });
+  const [paymentMethod, setPaymentMethod] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
@@ -30,13 +29,31 @@ export default function PaymentPage() {
   const navigate = useNavigate();
   const todayDate = format(new Date(), "yyyy-MM-dd HH:mm:ss");
   const shipDate = format(addDays(new Date(), 1), "yyyy-MM-dd");
+  const axiosInstance = axios.create({
+    baseURL: "http://localhost:8080",
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+      "Content-Type": "application/json",
+    },
+  });
+
+  const momoPaymentLink = "https://me.momo.vn/qr/do-xuan-phu-qIyoCDFQjN";
+
+  const handleDirectTransferClick = () => {
+    setPaymentMethod("QR");
+    window.open(momoPaymentLink, "_blank");
+  };
+
+  const handleCODClick = () => {
+    setPaymentMethod("COD");
+  };
 
   useEffect(() => {
     if (success) {
       navigate("/paymentsuccess", { state: { orderId } });
     }
-    console.log(formData)
-  }, [success, navigate, orderId, setOrderId,formData]);
+    console.log(formData);
+  }, [success, navigate, orderId, setOrderId, formData]);
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -46,40 +63,21 @@ export default function PaymentPage() {
     }));
   };
 
-  const payOSConfig = {
-    RETURN_URL: "/payment-success",
-    ELEMENT_ID: "payos-container",
-    CHECKOUT_URL: "https://your-checkout-url.com", 
-    onSuccess: (event) => {
-      console.log("Payment successful", event);
-      setSuccess(true);
-    },
-    onCancel: (event) => {
-      console.log("Payment cancelled", event);
-      setError("Payment was cancelled.");
-    },
-    onExit: (event) => {
-      console.log("Payment popup closed", event);
-    },
-  };
-
-  const { open, exit } = usePayOS(payOSConfig);
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     setError(null);
     setSuccess(false);
-
     try {
       const fullName = formData.firstName + " " + formData.lastName;
-
+      const userInfoResponse = await axiosInstance.get("/user");
+      const userId = userInfoResponse.data.id;
       const response = await axios.post(
         "http://localhost:8080/guest/api/orders/",
         {
           orderDate: todayDate,
           orderStatus: "Pending",
-          userId: 1,
+          userId: userId,
           shopId: 1,
           orderDetailId: 1,
           totalAmount: totalAmount,
@@ -93,7 +91,7 @@ export default function PaymentPage() {
           ward: formData.ward,
           address: formData.address,
           active: true,
-          payment_method: formData.paymentMethod,
+          payment_method: paymentMethod,
           shipping_date: shipDate,
           fullName: fullName,
           phone_number: formData.phone,
@@ -101,9 +99,11 @@ export default function PaymentPage() {
         }
       );
       if (response.status === 201) {
-        setOrderId(response.data.id);
+        const createdOrderId = response.data.id;
+        setOrderId(createdOrderId);
+        console.log(response.data.id);
         if (formData.paymentMethod === "QR") {
-          open();
+          setSuccess(true);
         } else {
           setSuccess(true);
         }
@@ -340,7 +340,9 @@ export default function PaymentPage() {
                         className="flex !font-semibold "
                       >
                         <span className="text-lg text-blue_gray-900_02">
-                          {totalAmount}đ
+                          {typeof totalAmount === "number"
+                            ? `${totalAmount.toLocaleString()}đ`
+                            : "100.000đ"}
                         </span>
                       </Heading>
                     </div>
@@ -396,7 +398,9 @@ export default function PaymentPage() {
                             className="flex self-end !font-semibold capitalize"
                           >
                             <span className="text-lg text-blue_gray-900_02">
-                              {totalAmount}đ
+                              {typeof totalAmount === "number"
+                                ? `${totalAmount.toLocaleString()}đ`
+                                : "100.000đ"}
                             </span>
                           </Heading>
                         </div>
@@ -408,11 +412,16 @@ export default function PaymentPage() {
                 <div className="mt-[30px] flex flex-col gap-2">
                   <div className="flex flex-col items-start gap-[17px] self-stretch">
                     <div className="flex flex-col items-start gap-2 self-stretch">
-                      <Heading as="h6">Chuyển khoản trực tiếp</Heading>
-                      <div className="flex flex-col items-start gap-2 self-stretch">
-                        <div className="h-px w-full self-stretch bg-gray-200_01" />
+                      <div
+                        onClick={handleDirectTransferClick}
+                        className="cursor-pointer"
+                      >
+                        <Heading as="h6">Chuyển khoản qua momo</Heading>
                       </div>
-                      <Heading as="h6">Thanh toán khi giao hàng</Heading>
+                      <div className="h-px w-full self-stretch bg-gray-200_01" />
+                      <div onClick={handleCODClick} className="cursor-pointer">
+                        <Heading as="h6">Thanh toán khi giao hàng</Heading>
+                      </div>
                     </div>
                   </div>
                 </div>

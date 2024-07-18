@@ -77,6 +77,7 @@ const ProjectRoutes = () => {
     { path: "admin-shops", element: <SalesManager /> },
     { path: "admin-categories", element: <CategoriesManager /> },
     { path: "admin-products", element: <AdminProducts /> },
+
   ]);
   return element;
 };

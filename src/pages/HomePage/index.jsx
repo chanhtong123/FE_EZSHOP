@@ -18,16 +18,14 @@ import HomePageFour from "../../components/HomePageFour";
 import HomePageOne from "../../components/HomePageOne";
 import HomePageSix from "../../components/HomePageSix";
 import HomePageThree from "../../components/HomePageThree";
-import axiosInstance from '../../config/axiosConfig';
+import axiosInstance from "../../config/axiosConfig";
 import { Link } from "react-router-dom";
 import CustomToast from "../../components/CustomToast";
-
 
 const data = [
   {
     productimage: "images/aosomi.jpg",
     productname: "Áo sơ mi",
-
   },
 
   {
@@ -37,7 +35,6 @@ const data = [
   {
     productimage: "images/quanjean.jpg",
     productname: "Quần jean",
-
   },
   {
     productimage: "images/giaydep.png",
@@ -47,10 +44,7 @@ const data = [
     productimage: "images/phukien.jpg",
     productname: "Phụ kiện",
   },
-
 ];
-
-
 
 export default function HomePagePage() {
   const [sliderState, setSliderState] = React.useState(0);
@@ -62,7 +56,6 @@ export default function HomePagePage() {
   const [sliderState3, setSliderState3] = React.useState(0);
   const sliderRef3 = React.useRef(null);
   const [shops, setShops] = React.useState([]);
-
 
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -87,7 +80,6 @@ export default function HomePagePage() {
     fetchProducts();
   }, []);
 
-
   useEffect(() => {
     const fetchShops = async () => {
       try {
@@ -103,7 +95,6 @@ export default function HomePagePage() {
     fetchShops();
   }, []);
 
-
   useEffect(() => {
     const message = localStorage.getItem("toastMessage");
     const type = localStorage.getItem("toastType");
@@ -115,8 +106,6 @@ export default function HomePagePage() {
       localStorage.removeItem("toastType");
     }
   }, []);
-
-
 
   const settings = {
     autoPlay: true,
@@ -146,7 +135,7 @@ export default function HomePagePage() {
       <div className="flex w-full flex-col items-center bg-white-A700">
         {/* <Header className="shadow-lg" /> */}
 
-        <div className="flex w-full max-w-[1099px] justify-center items-center">
+        <div className="flex w-full max-w-[1403px] justify-center items-center pt-10">
           <Slider
             autoPlay
             autoPlayInterval={100000}
@@ -190,8 +179,8 @@ export default function HomePagePage() {
                             as="p"
                             className="w-full !font-normal leading-[150%] !text-blue_gray-600_01"
                           >
-                            Những gì chúng tôi mất hàng giờ để thực hiện
-                            sẽ là của bạn để tận hưởng
+                            Những gì chúng tôi mất hàng giờ để thực hiện sẽ là
+                            của bạn để tận hưởng
                           </Text>
                         </div>
                         <a href="/product">
@@ -219,17 +208,8 @@ export default function HomePagePage() {
           />
         </div>
 
-
-
         <div className="flex w-[76%] flex-col gap-[59px] md:w-full md:p-5 sm:gap-[29px]">
-
           <div className="container-md flex flex-col">
-
-
-
-
-
-
             <div className="mt-6 flex items-center rounded-md border border-solid border-gray-200_01 px-[31px] pb-[30px] pt-[31px] md:flex-col sm:p-5">
               <div className="flex items-start gap-[15px]">
                 <Img
@@ -287,40 +267,39 @@ export default function HomePagePage() {
               </div>
             </div>
 
-
-
-
             <div className="mt-[59px] flex justify-center bg-gray-100_02 px-[5px] pt-[5px]">
               <div className="flex w-[84%] items-center justify-between gap-5 md:w-full md:flex-col">
                 <div className="flex w-[43%] flex-col items-start gap-6 md:w-full">
                   <div className="flex flex-col items-start gap-2.5 self-stretch">
-                    <Text size="md" as="p" className="!text-blue_gray-600">
-                    </Text>
+                    <Text
+                      size="md"
+                      as="p"
+                      className="!text-blue_gray-600"
+                    ></Text>
                     <Heading
                       size="8xl"
                       as="h2"
                       className="w-full  leading-[60px]"
                     >
-                      <>
-                        Cùng EZSHOP phối đồ cực phong cách
-                      </>
+                      <>Cùng EZSHOP phối đồ cực phong cách</>
                     </Heading>
                     <Text
                       size="md"
                       as="p"
                       className="w-[100%] leading-[150%] !text-blue_gray-600 md:w-full"
                     >
-                      Ezshop mang đến cho bạn những phong cách phối đồ đa dạng phong cách tuỳ theo sở thích của từng cá nhân bạn
+                      Ezshop mang đến cho bạn những phong cách phối đồ đa dạng
+                      phong cách tuỳ theo sở thích của từng cá nhân bạn
                     </Text>
                   </div>
                   <a href="/blog">
-                  <Button
-                    size="9xl"
-                    shape="round"
-                    className="min-w-[176px] sm:px-5"
-                  >
-                    Khám phá ngay
-                  </Button>
+                    <Button
+                      size="9xl"
+                      shape="round"
+                      className="min-w-[176px] sm:px-5"
+                    >
+                      Khám phá ngay
+                    </Button>
                   </a>
                 </div>
                 <div className="relative h-[394px] w-[48%] md:h-auto md:w-full">
@@ -347,19 +326,8 @@ export default function HomePagePage() {
               </div>
             </div>
 
-
-
-
             <div className="mt-[60px] flex flex-col items-center gap-8">
-              <div className="flex items-start justify-between gap-5 self-stretch md:flex-col">
-
-
-              </div>
-
-
-
-
-
+              <div className="flex items-start justify-between gap-5 self-stretch md:flex-col"></div>
 
               <div className="mt-[60px] flex flex-col gap-[29px]">
                 <div className="flex items-start justify-between gap-5">
@@ -368,9 +336,7 @@ export default function HomePagePage() {
                       Danh mục
                     </Text>
                   </div>
-                  <div className="flex w-[6%] flex-col items-start gap-[5px] shadow-sm">
-
-                  </div>
+                  <div className="flex w-[6%] flex-col items-start gap-[5px] shadow-sm"></div>
                 </div>
                 <div className="flex gap-7 md:flex-col">
                   {data.map((d, index) => (
@@ -382,7 +348,6 @@ export default function HomePagePage() {
                   ))}
                 </div>
               </div>
-
 
               <section>
                 <div className="flex w-[6%] flex-col items-start gap-[5px] shadow-sm md:w-full">
@@ -429,27 +394,23 @@ export default function HomePagePage() {
                                 <>
                                   {product.name}
                                   <br />
-                                  <span style={{ color: 'red' }}>{product.price} VND</span>
+                                  <span style={{ color: "red" }}>
+                                    {product.price} VND
+                                  </span>
                                 </>
                               }
                             />
                           </div>
-
                         </React.Fragment>
                       </Link>
                     ))}
                   />
                 </div>
               </section>
-
-
             </div>
-
-
 
             <div className="mt-[60px] flex flex-col gap-[29px]">
               <div className="flex items-start justify-between gap-5">
-
                 {/* <div className="flex w-[6%] flex-col items-start gap-[5px] shadow-sm">
                   <Text
                     size="lg"
@@ -471,9 +432,7 @@ export default function HomePagePage() {
                 ))}
               </div> */}
             </div>
-            <div className="mt-[59px] flex justify-center bg-gray-100_02 px-[5px] pt-[5px]">
-
-            </div>
+            <div className="mt-[59px] flex justify-center bg-gray-100_02 px-[5px] pt-[5px]"></div>
           </div>
           <div className="flex flex-col gap-[60px] sm:gap-[30px]">
             <div className="flex flex-col gap-[31px]">
@@ -481,74 +440,60 @@ export default function HomePagePage() {
                 <Text size="7xl" as="p">
                   Cửa Hàng Nổi Bật
                 </Text>
-
               </div>
               <section>
-
-              <div className="container-md flex items-center justify-between gap-5 md:flex-col md:p-5">
-                <div className="flex w-full max-w-[1401px] self-stretch">
-                  <Slider
-                    autoPlay
-                    autoPlayInterval={2000}
-                    responsive={{
-                      0: { items: 1 },
-                      550: { items: 2 },
-                      1050: { items: 3 },
-                      1400: { items: 4 },
-                      1750: { items: 5 },
-                      2100: { items: 6 },
-                    }}
-                    disableDotsControls
-                    activeIndex={sliderState2}
-                    onSlideChanged={(e) => {
-                      setSliderState2(e?.item);
-                    }}
-                    ref={sliderRef2}
-                    items={shops.map((shop) => (
-                      <Link
-                        key={shop.shopId}
-                        to={`/sales-shop/${shop.shopId}`}
-                        rel="noopener noreferrer"
-                      >
-                        <React.Fragment key={shop.id}>
-                          <div className="flex md:flex-col">
-                            <HomePageSix
-                              imagethirtyOne={shop.image}
-                              ergonomic={
-                                <>
-                                  {shop.nameShop}
-                                  <br />
-                                  {shop.address}
-                                  <br />
-
-                                </>
-                              }
-                            />
-                          </div>
-                        </React.Fragment>
-                      </Link>
-                    ))}
-                  />
-                </div>
+                <div className="container-md flex items-center justify-between gap-5 md:flex-col md:p-5">
+                  <div className="flex w-full max-w-[1401px] self-stretch">
+                    <Slider
+                      autoPlay
+                      autoPlayInterval={2000}
+                      responsive={{
+                        0: { items: 1 },
+                        550: { items: 2 },
+                        1050: { items: 3 },
+                        1400: { items: 4 },
+                        1750: { items: 5 },
+                        2100: { items: 6 },
+                      }}
+                      disableDotsControls
+                      activeIndex={sliderState2}
+                      onSlideChanged={(e) => {
+                        setSliderState2(e?.item);
+                      }}
+                      ref={sliderRef2}
+                      items={shops.map((shop) => (
+                        <Link
+                          key={shop.shopId}
+                          to={`/sales-shop/${shop.shopId}`}
+                          rel="noopener noreferrer"
+                        >
+                          <React.Fragment key={shop.id}>
+                            <div className="flex md:flex-col">
+                              <HomePageSix
+                                imagethirtyOne={shop.image}
+                                ergonomic={
+                                  <>
+                                    {shop.nameShop}
+                                    <br />
+                                    {shop.address}
+                                    <br />
+                                  </>
+                                }
+                              />
+                            </div>
+                          </React.Fragment>
+                        </Link>
+                      ))}
+                    />
+                  </div>
                 </div>
               </section>
-
             </div>
-            <div className="container-md flex flex-col gap-[29px] md:p-5">
+            <div className="container-md flex flex-col gap-[29px] md:p-5"></div>
 
-
-            </div>
-
-            <div className="container-md flex flex-col gap-[31px] md:p-5">
-
-
-            </div>
-            <div className="flex flex-col gap-[31px]">
-
-
-            </div>
+            <div className="container-md flex flex-col gap-[31px] md:p-5"></div>
+            <div className="flex flex-col gap-[31px]"></div>
             <div className="container-md flex flex-col items-center gap-6 md:p-5">
-
               <div className="flex items-center justify-between gap-5 self-stretch md:flex-col">
                 <Img
                   src="images/img_1.png"
@@ -637,7 +582,7 @@ export default function HomePagePage() {
           </div>
         </div>
         {/* <Footer1 className="mt-[100px] justify-center self-stretch border-t border-solid border-gray-200_01 bg-white-A700 px-14 pb-[17px] pt-[82px] md:px-5 md:pt-5" /> */}
-      </div >
+      </div>
       <CustomToast message={toastMessage} type={toastType} />
     </>
   );

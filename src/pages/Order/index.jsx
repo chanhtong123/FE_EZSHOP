@@ -3,12 +3,12 @@ import { Helmet } from "react-helmet";
 import { Text, Heading, Button } from "../../components";
 import FavoriteProductSidebar from "../../components/FavoriteProductSidebar";
 import { ReactTable } from "../../components/ReactTable";
-import axios from "axios";
+import { getOrdersByUserId } from "api/orderService";
 import { createColumnHelper } from "@tanstack/react-table";
 import { formatDistanceToNow } from "date-fns";
 import { vi } from "date-fns/locale";
+import axios from "axios";
 import classNames from "classnames";
-
 const columnHelper = createColumnHelper();
 
 const tableColumns = [
@@ -23,6 +23,10 @@ const tableColumns = [
         addSuffix: true,
         locale: vi,
       })}`,
+  }),
+  columnHelper.accessor("customerName", {
+    header: () => "Tên khách hàng",
+    cell: (info) => info.getValue(),
   }),
   columnHelper.accessor("totalAmount", {
     header: () => "Tổng cộng",
@@ -40,6 +44,12 @@ const tableColumns = [
           "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300":
             statusName === "Pending",
           "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300":
+            statusName === "Confirmed",
+          "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300":
+            statusName === "Processing",
+          "bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-300":
+            statusName === "Shipping",
+          "bg-teal-100 text-teal-800 dark:bg-teal-900 dark:text-teal-300":
             statusName === "Completed",
           "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-300":
             statusName === "Cancelled",
@@ -53,27 +63,51 @@ const tableColumns = [
   }),
 ];
 
+const axiosInstance = axios.create({
+  baseURL: "http://localhost:8080",
+  headers: {
+    "Content-Type": "application/json",
+  },
+});
+
+export const getOrderDetailByOrderId = async (orderId) => {
+  try {
+    const response = await axiosInstance.get(`/guest/api/order-details/order_id?order_id=${orderId}`);
+    return response.data;
+  } catch (error) {
+    throw new Error(error.response ? error.response.data : 'Server Error');
+  }
+};
+
 export default function OrderPage() {
   const [orderData, setOrderData] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
   const [pageSize] = useState(10);
   const [totalPages, setTotalPages] = useState(0);
+  const [selectedOrders, setSelectedOrders] = useState([]);
 
   useEffect(() => {
     const fetchOrderData = async () => {
       try {
-        const response = await axios.get(
-          `http://localhost:8080/guest/api/orders/user-id?user_id=1&page=${currentPage}&size=${pageSize}`
-        );
-        console.log("Fetched order data:", response.data);
+        const token = localStorage.getItem("token");
+        const axiosInstance = axios.create({
+          baseURL: "http://localhost:8080",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        });
+        const userInfoResponse = await axiosInstance.get("/user");
+        const userId = userInfoResponse.data.id;
+        const response = await getOrdersByUserId(userId, currentPage, pageSize);
+        console.log("Fetched order data:", response);
 
-        const fetchedData = response.data.content;
-
+        const fetchedData = response.content;
         console.log("Processed order data:", fetchedData);
         setOrderData(fetchedData);
-        setTotalPages(response.data.totalPages);
+        setTotalPages(response.totalPages);
       } catch (error) {
-        console.error("Error fetching order data:", error);
+        console.error("Error fetching order data:", error.message);
       }
     };
 
@@ -84,12 +118,25 @@ export default function OrderPage() {
     setCurrentPage(newPage);
   };
 
+  const handleOrderClick = async (orderId) => {
+    try {
+      const orderDetail = await getOrderDetailByOrderId(orderId);
+      setSelectedOrders(orderDetail);
+      console.log("Selected order detail:", orderDetail);
+    } catch (error) {
+      console.error("Error fetching order detail:", error.message);
+    }
+  };
 
+  
   return (
     <>
       <Helmet>
         <title>Ezshop</title>
-        <meta name="description" content="Web site created using create-react-app" />
+        <meta
+          name="description"
+          content="Web site created using create-react-app"
+        />
       </Helmet>
       <div className="flex w-full flex-col items-center bg-white-A700">
         <div className="container-md mt-[17px] flex flex-col items-center md:p-5">
@@ -119,13 +166,16 @@ export default function OrderPage() {
               <ReactTable
                 size="xs"
                 bodyProps={{ className: "" }}
-                headerProps={{ className: "bg-gray-100_02 flex-wrap rounded-md" }}
+                headerProps={{
+                  className: "bg-gray-100_02 flex-wrap rounded-md",
+                }}
                 rowDataProps={{ className: "md:flex-col" }}
                 className="self-stretch"
                 columns={tableColumns}
                 data={orderData}
+                onRowClick={(row) => handleOrderClick(row.id)}
               />
-               {totalPages > 1 && (
+              {orderData.length >= 10 && (
                 <div className="flex justify-between items-center mt-4">
                   <Button
                     onClick={() => handlePageChange(currentPage - 1)}
@@ -144,7 +194,28 @@ export default function OrderPage() {
                   </Button>
                 </div>
               )}
+             
             </div>
+            {selectedOrders.length > 0 && (
+              <div className="flex flex-col items-start gap-4 md:w-full">
+                <Heading size="lg" as="h2" className="uppercase">
+                  Chi tiết các đơn hàng
+                </Heading>
+                {selectedOrders.map((order) => (
+                  <div key={order.id} className="border p-2">
+                    <Heading size="md" as="h3">
+                      Chi tiết đơn hàng #{order.id}
+                    </Heading>
+                    <Text size="md" as="p">
+                      Tên sản phẩm: {order.name}
+                    </Text>
+                    <Text size="md" as="p">
+                      Giá: ${order.price}
+                    </Text>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         </div>
       </div>

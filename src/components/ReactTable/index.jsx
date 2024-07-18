@@ -22,6 +22,7 @@ const ReactTable = ({
   className = "",
   rowDataProps = { className: "" },
   size,
+  onRowClick,
   ...restConfig
 }) => {
   const table = useReactTable({
@@ -60,6 +61,7 @@ const ReactTable = ({
             {...rowDataProps}
             className={`${rowDataProps?.className}`}
             key={row.id}
+            onClick={() => onRowClick && onRowClick(row.original)} 
           >
             {row.getVisibleCells().map((cell) => (
               <td key={cell.id} className={size ? sizes[size] : ``}>

@@ -16,10 +16,9 @@ export default function CartDetailPage() {
   const originalSize = 93;
   const newSize = originalSize / 3;
   const [totalAmount, setTotalAmount] = useState(0);
-  const [toastMessage, setToastMessage] = useState('');
-  const [toastType, setToastType] = useState('');
+  const [toastMessage, setToastMessage] = useState("");
+  const [toastType, setToastType] = useState("");
 
-  
   const handleDeleteProduct = async (card_detail_id) => {
     const token = getToken();
 
@@ -35,23 +34,25 @@ export default function CartDetailPage() {
 
       if (response.status === 204) {
         // Remove the deleted item from cartItems state
-        const updatedCartItems = cartItems.filter(item => item.card_detail_id !== card_detail_id);
+        const updatedCartItems = cartItems.filter(
+          (item) => item.card_detail_id !== card_detail_id
+        );
         setCartItems(updatedCartItems);
 
         // Show success toast message
         setToastMessage("Đã xóa sản phẩm khỏi giỏ hàng.");
-        setToastType('success');
+        setToastType("success");
       } else {
         console.error("Xóa sản phẩm không thành công.", response.data);
         // Show error toast message
         setToastMessage("Đã xảy ra lỗi khi xóa sản phẩm.");
-        setToastType('error');
+        setToastType("error");
       }
     } catch (error) {
       console.error("Đã xảy ra lỗi khi xóa sản phẩm.", error);
       // Show error toast message
       setToastMessage("Đã xảy ra lỗi khi xóa sản phẩm.");
-      setToastType('error');
+      setToastType("error");
     }
   };
 
@@ -190,7 +191,9 @@ export default function CartDetailPage() {
       table6ColumnHelper.accessor("rowngi", {
         cell: (info) => (
           <Text size="md" as="p" className="py-[26px] pl-[55px]">
-            {info?.getValue?.()}đ
+            {typeof info?.getValue?.() === "number"
+              ? `${info?.getValue?.().toLocaleString()}đ`
+              : "100.000đ"}
           </Text>
         ),
         header: (info) => (
@@ -216,9 +219,7 @@ export default function CartDetailPage() {
             >
               Xóa
             </button>
-            
           </div>
-          
         ),
         header: (info) => (
           <Heading
@@ -250,123 +251,126 @@ export default function CartDetailPage() {
       <div className="flex w-full flex-col items-center bg-white-A700">
         <div className="container-md mt-[17px] flex flex-col items-center md:p-5">
           <div className="flex flex-wrap gap-[7px] self-start">
-              <Text size="md" as="p">
-                Trang chủ
-              </Text>
-              <Text size="md" as="p">
-                /
-              </Text>
-              <Text size="md" as="p" className="!text-blue_gray-600">
-                Giỏ hàng
-              </Text>
-            </div>
+            <Text size="md" as="p">
+              Trang chủ
+            </Text>
+            <Text size="md" as="p">
+              /
+            </Text>
+            <Text size="md" as="p" className="!text-blue_gray-600">
+              Giỏ hàng
+            </Text>
+          </div>
 
-            <div className="container-xs flex">
-              <div className="flex w-full flex-col items-center">
-                <div className="mt-[30px] flex items-start gap-[27px] self-stretch md:flex-col">
-                  <div className="flex-1 rounded-md bg-white-A700 pb-[53px] md:self-stretch md:pb-5">
-                    {cartItems && cartItems.length > 0 ? (
-                      <ReactTable
-                        columns={table6Columns}
-                        data={cartItems}
-                        bodyProps={{ className: "" }}
-                        headerProps={{
-                          className:
-                            "bg-gray-100_02 rounded-tl-md rounded-tr-md md:flex-col",
-                        }}
-                      />
-                    ) : (
-                      <h2>Không có mặt hàng trong giỏ hàng.</h2>
-                    )}
-                  </div>
-
-                  <div className="flex w-[33%] flex-col items-start gap-[29px] rounded-md border border-solid border-gray-200_01 bg-white-A700 px-[30px] py-7 md:w-full sm:p-5">
-                    <Heading size="5xl" as="h5" className="uppercase">
-                      Tổng Thanh toán
-                    </Heading>
-                    <div className="flex flex-col gap-[47px] self-stretch">
-                      <div className="flex justify-between gap-5">
-                        <Text
-                          size="md"
-                          as="p"
-                          className="w-[37%] capitalize leading-[30px]"
-                        >
-                          <>
-                            {" "}
-                            Tổng Đơn hàng <br /> Giảm giá <br />
-                            Tổng phí vận chuyển{" "}
-                          </>
-                        </Text>
-                        <Heading
-                          size="lg"
-                          as="p"
-                          className="w-[21%] text-right !font-semibold capitalize leading-[30px]"
-                        >
-                          <span className="text-blue_gray-900_02 ">
-                            {totalAmount}đ{" "}
-                          </span>
-                          <a href="#" className="text-blue_gray-900_02 ">
-                            <>
-                              {" "}
-                              <br />{" "}
-                            </>
-                          </a>
-                          {/* <span className="text-blue_gray-900_02">80.000đ</span>
-                          <br/>
-                        <span className="text-blue_gray-900_02">24.000đ</span> */}
-                        </Heading>
-                      </div>
-                      <div className="flex flex-col gap-[13px]">
-                        <div className="h-px bg-gray-200_01" />
-                        <div className="flex flex-wrap items-center justify-between gap-5">
-                          <Text size="md" as="p">
-                            Tổng thanh toán
-                          </Text>
-                          <Heading as="h6" className="flex">
-                            <span className="text-blue_gray-900_02">
-                              {totalAmount}đ
-                            </span>
-                          </Heading>
-                        </div>
-                      </div>
-                    </div>
-                    <Button
-                      size="9xl"
-                      shape="round"
-                      className="w-full border border-solid border-green-A700_02 !text-gray-100_02 shadow-sm sm:px-5"
-                      onClick={handlePaymentNavigation}
-                    >
-                      Thanh toán ngay
-                    </Button>
-                  </div>
+          <div className="container-xs flex">
+            <div className="flex w-full flex-col items-center">
+              <div className="mt-[30px] flex items-start gap-[27px] self-stretch md:flex-col">
+                <div className="flex-1 rounded-md bg-white-A700 pb-[53px] md:self-stretch md:pb-5">
+                  {cartItems && cartItems.length > 0 ? (
+                    <ReactTable
+                      columns={table6Columns}
+                      data={cartItems}
+                      bodyProps={{ className: "" }}
+                      headerProps={{
+                        className:
+                          "bg-gray-100_02 rounded-tl-md rounded-tr-md md:flex-col",
+                      }}
+                    />
+                  ) : (
+                    <h2>Không có mặt hàng trong giỏ hàng.</h2>
+                  )}
                 </div>
 
-                <div className="mt-[30px] flex w-[61%] items-center justify-between gap-5 self-start md:w-full sm:flex-col">
-                  <div className="flex w-[41%] flex-wrap justify-between gap-5 rounded-md border border-dashed border-blue_gray-600 bg-white-A700 pb-[17px] pl-4 pr-[22px] pt-[19px] sm:w-full sm:pr-5">
-                    <Text size="md" as="p">
-                      Mã khuyến mãi
-                    </Text>
-                    <Heading
-                      size="lg"
-                      as="p"
-                      className="self-start !font-semibold capitalize underline"
-                    >
-                      Nhập mã
-                    </Heading>
+                <div className="flex w-[33%] flex-col items-start gap-[29px] rounded-md border border-solid border-gray-200_01 bg-white-A700 px-[30px] py-7 md:w-full sm:p-5">
+                  <Heading size="5xl" as="h5" className="uppercase">
+                    Tổng Thanh toán
+                  </Heading>
+                  <div className="flex flex-col gap-[47px] self-stretch">
+                    <div className="flex justify-between gap-5">
+                      <Text
+                        size="md"
+                        as="p"
+                        className="w-[37%] capitalize leading-[30px]"
+                      >
+                        <>
+                          Tổng Đơn hàng <br /> Giảm giá <br />
+                          Tổng phí vận chuyển
+                        </>
+                      </Text>
+                      <Heading
+                        size="lg"
+                        as="p"
+                        className="w-[21%] text-right !font-semibold capitalize leading-[30px]"
+                      >
+                        <span className="text-blue_gray-900_02 ">
+                          {typeof totalAmount === "number"
+                            ? `${totalAmount.toLocaleString()}đ`
+                            : "100.000đ"}
+                        </span>
+                        <a href="#" className="text-blue_gray-900_02 ">
+                          <>
+                            {" "}
+                            <br />{" "}
+                          </>
+                        </a>
+                        {/* <span className="text-blue_gray-900_02">80.000đ</span>
+                          <br/>
+                        <span className="text-blue_gray-900_02">24.000đ</span> */}
+                      </Heading>
+                    </div>
+                    <div className="flex flex-col gap-[13px]">
+                      <div className="h-px bg-gray-200_01" />
+                      <div className="flex flex-wrap items-center justify-between gap-5">
+                        <Text size="md" as="p">
+                          Tổng thanh toán
+                        </Text>
+                        <Heading as="h6" className="flex">
+                          <span className="text-blue_gray-900_02">
+                            {typeof totalAmount === "number"
+                              ? `${totalAmount.toLocaleString()}đ`
+                              : "100.000đ"}
+                          </span>
+                        </Heading>
+                      </div>
+                    </div>
                   </div>
                   <Button
-                    size="10xl"
-                    variant="outline"
+                    size="9xl"
                     shape="round"
-                    color="red_400"
-                    className="min-w-[134px] sm:px-5"
+                    className="w-full border border-solid border-green-A700_02 !text-gray-100_02 shadow-sm sm:px-5"
+                    onClick={handlePaymentNavigation}
                   >
-                    Quay về
+                    Thanh toán ngay
                   </Button>
                 </div>
               </div>
+
+              <div className="mt-[30px] flex w-[61%] items-center justify-between gap-5 self-start md:w-full sm:flex-col">
+                <div className="flex w-[41%] flex-wrap justify-between gap-5 rounded-md border border-dashed border-blue_gray-600 bg-white-A700 pb-[17px] pl-4 pr-[22px] pt-[19px] sm:w-full sm:pr-5">
+                  <Text size="md" as="p">
+                    Mã khuyến mãi
+                  </Text>
+                  <Heading
+                    size="lg"
+                    as="p"
+                    className="self-start !font-semibold capitalize underline"
+                  >
+                    Nhập mã
+                  </Heading>
+                </div>
+                <Button
+                  size="10xl"
+                  variant="outline"
+                  shape="round"
+                  color="red_400"
+                  className="min-w-[134px] sm:px-5"
+                >
+                  Quay về
+                </Button>
+              </div>
             </div>
           </div>
+        </div>
         <CustomToast message={toastMessage} type={toastType} />
       </div>
     </>

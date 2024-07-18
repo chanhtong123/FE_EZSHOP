@@ -30,7 +30,7 @@ export default function Header1({ ...props }) {
               </a>
               <div className="ml-[5px] flex items-center gap-[5px] sm:ml-0">
                 <Text size="s" as="p" className="self-end">
-                  118 Cách Mạng Tháng 8
+                  51a Làng Tăng Phú, Tăng Nhơn Phú A, TP Thủ Đức
                 </Text>
                 <div className="h-full w-px bg-gray-200_01" />
               </div>
@@ -50,7 +50,7 @@ export default function Header1({ ...props }) {
                   Bạn cần trợ giúp? Gọi ngay:&nbsp;
                 </span>
                 <span className="font-bevietnampro font-medium text-blue_gray-900_02">
-                  +84 1800 900
+                  +84 334989612
                 </span>
               </Text>
             </div>
@@ -204,7 +204,13 @@ export default function Header1({ ...props }) {
               </div>
 
               {isOpen && (
-                <div className="z-10 bg-white divide-y divide-gray-100 rounded-lg shadow-md absolute left-0 w-[100%] dark:bg-gray-700 pt-5">
+                <div
+                className="absolute top-[100%] left-0 w-full bg-white border border-gray-200_01 z-50"
+                style={{
+                  zIndex: 9999,
+                  boxShadow: "0px 8px 16px rgba(0, 0, 0, 0.1)",
+                }}
+              >
                   <ul className="py-2 text-lg text-gray-700 dark:text-gray-200">
                     <li className="flex items-center gap-[10px]">
                       <Text size="lg" as="p" className="leading-[50px] pl-5">
@@ -260,15 +266,20 @@ export default function Header1({ ...props }) {
               </a>
             </li>
             <li>
-            <a href="/product">
+              <a href="/product">
                 <Text as="p">Ưu đãi hấp dẫn</Text>
-              </a></li>
-            <li><a href="/shops">
+              </a>
+            </li>
+            <li>
+              <a href="/shops">
                 <Text as="p">Cửa hàng nổi bật</Text>
-              </a></li>
-            <li><a href="/product">
+              </a>
+            </li>
+            <li>
+              <a href="/product">
                 <Text as="p">Hàng mới về</Text>
-              </a></li>
+              </a>
+            </li>
           </ul>
         </div>
       </div>
