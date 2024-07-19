@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axiosInstance from "../../config/axiosConfig";
 import { getToken, removeToken } from "../../utils/authUtils";
-import { Helmet } from "react-helmet";
-import { Text, Button, Input, Heading, Img, SelectBox } from "../../components";
+import { Text, Img } from "../../components";
 
 export default function FavoriteProductSidebar(){
   const navigate = useNavigate();
@@ -51,7 +50,6 @@ export default function FavoriteProductSidebar(){
 
   const handleLogout = () => {
     removeToken();
-    navigate("/login");
   };
 
 
@@ -94,23 +92,8 @@ export default function FavoriteProductSidebar(){
       />
       <span>Đặt hàng</span>
     </a>
-    <a href="/address" className="flex items-center gap-2">
-      <Img
-        src="images/img_location_1.svg"
-        alt="locationone"
-        className="h-[20px]"
-      />
-      <span>Địa chỉ</span>
-    </a>
-    <a href="/favorite" className="flex items-center gap-2">
-      <Img
-        src="images/img_badge_1.svg"
-        alt="badgeone"
-        className="h-[20px]"
-      />
-      <span>Danh sách yêu thích</span>
-    </a>
-    <a href="" className="flex items-center gap-2">
+
+    <a href="/login" className="flex items-center gap-2">
       <Img
         src="images/img_television.svg"
         alt="television"

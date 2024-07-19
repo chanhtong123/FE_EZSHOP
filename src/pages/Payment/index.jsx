@@ -438,7 +438,6 @@ export default function PaymentPage() {
                 >
                   {loading ? "Đang xử lý..." : "Thanh Toán"}
                 </Button>
-                {error && <Text className="text-red-500 mt-4">{error}</Text>}
                 {success && (
                   <Text className="text-green-500 mt-4">
                     Order created successfully!
