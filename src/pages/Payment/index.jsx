@@ -17,7 +17,7 @@ export default function PaymentPage() {
     phone: "",
     email: "",
     notes: "",
-    paymentMethod: "",
+    paymentMethod: "QR",
   });
   const [paymentMethod, setPaymentMethod] = useState("");
   const [loading, setLoading] = useState(false);
@@ -52,6 +52,7 @@ export default function PaymentPage() {
     if (success) {
       navigate("/paymentsuccess", { state: { orderId } });
     }
+    setPaymentMethod("COD");
     console.log(formData);
   }, [success, navigate, orderId, setOrderId, formData]);
 
@@ -104,10 +105,13 @@ export default function PaymentPage() {
         console.log(response.data.id);
         if (formData.paymentMethod === "QR") {
           setSuccess(true);
-        } else {
+        }else {
           setSuccess(true);
         }
+
+
       }
+
     } catch (error) {
       setError(
         "Failed to create order: " +

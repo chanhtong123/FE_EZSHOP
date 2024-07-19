@@ -174,7 +174,7 @@ export default function ProductPage() {
                 Tình trạng (%)
               </label>
               <div className="flex flex-col">
-                {[100, 95, 90, 85, 80].map((value) => (
+                {[100,99,98].map((value) => (
                   <label key={value} className="flex items-center gap-2 mb-2">
                     <input
                       type="checkbox"

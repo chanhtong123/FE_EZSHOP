@@ -52,7 +52,7 @@ const ProductDetailPage = () => {
     const fetchProduct = async () => {
       try {
         const response = await axios.get(
-          `https://ezshop-be.azurewebsites.net/guest/api/products/${id}`
+          `http://localhost:8080/guest/api/products/${id}`
         );
         setProduct(response.data);
         setMainImage(response.data.image);
@@ -62,6 +62,22 @@ const ProductDetailPage = () => {
     };
 
     fetchProduct();
+  }, [id]);
+
+  useEffect(() => {
+    const fetchShop = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:8080/guest/shop/byProduct/${id}`
+        );
+        setShop(response.data);
+        console.log("Shop: ", response.data);
+      } catch (error) {
+        console.error("Error fetching product:", error);
+      }
+    };
+
+    fetchShop();
   }, [id]);
 
   useEffect(() => {
@@ -89,7 +105,7 @@ const ProductDetailPage = () => {
       setError("");
       try {
         const response = await axiosInstance.get(
-          "https://ezshop-be.azurewebsites.net/guest/api/products/search"
+          "http://localhost:8080/guest/api/products/search"
         );
         setProducts(response.data);
       } catch (error) {
@@ -113,7 +129,7 @@ const ProductDetailPage = () => {
 
     try {
       const response = await axiosInstance.post(
-        "https://ezshop-be.azurewebsites.net/cart_item/cart-details/create",
+        "http://localhost:8080/cart_item/cart-details/create",
         null,
         {
           params: {
@@ -136,21 +152,7 @@ const ProductDetailPage = () => {
     }
   };
 
-  useEffect(() => {
-    const fetchShop = async () => {
-      try {
-        const response = await axios.get(
-          `https://ezshop-be.azurewebsites.net/guest/shop/byProduct/${id}`
-        );
-        setShop(response.data);
-        console.log("Shop: ", response.data);
-      } catch (error) {
-        console.error("Error fetching product:", error);
-      }
-    };
 
-    fetchShop();
-  }, [id]);
 
   const handleAddToCart2 = async () => {
     const token = getToken();
@@ -162,7 +164,7 @@ const ProductDetailPage = () => {
 
     try {
       const response = await axiosInstance.post(
-        "https://ezshop-be.azurewebsites.net/cart_item/cart-details/create",
+        "http://localhost:8080/cart_item/cart-details/create",
         null,
         {
           params: {
@@ -352,29 +354,36 @@ const ProductDetailPage = () => {
               <div className="flex w-[66%] flex-col gap-6 md:w-full">
                 <div className="flex flex-col gap-4">
                   <div className="flex flex-col items-start gap-[15px]">
-                    <div className="flex flex-row gap-[17px] self-stretch pb-[9px] items-center">
-                      <Link to={`/sales-shop/${shop.shopId}`}>
-                        <Img
-                          src={shop.image}
-                          className="h-[200px] w-[200px] rounded-md object-cover"
-                          alt={shop.nameShop}
-                        />
-                      </Link>
-                      <div className="flex flex-col gap-[10px]">
-                        <Text
-                          as="p"
-                          style={{ fontWeight: "bold", color: "#FF0000" }}
-                          className="leading-7"
-                        >
-                          {shop.nameShop}
-                        </Text>
+                    {shop && (
+                      <div className="flex flex-row gap-[17px] self-stretch pb-[9px] items-center">
 
-                        <Text as="p" className="!font-normal ">
-                          Địa chi: {shop.address}
-                        </Text>
+                        <Link to={`/sales-shop/${shop.shopId}`}>
+                          <Img
+                            src={shop.image}
+                            className="h-[200px] w-[200px] rounded-md object-cover"
+                            alt={shop.nameShop}
+                          />
+                        </Link>
+
+
+                        <div className="flex flex-col gap-[10px]">
+                          <Text
+                            as="p"
+                            style={{ fontWeight: "bold", color: "#FF0000" }}
+                            className="leading-7"
+                          >
+                            {shop.nameShop}
+                          </Text>
+
+                          <Text as="p" className="!font-normal ">
+                            Địa chi: {shop.address}
+                          </Text>
+                        </div>
                       </div>
-                    </div>
+
+                    )}
                   </div>
+
                   <div className="h-px bg-gray-200_01" />
                 </div>
 
