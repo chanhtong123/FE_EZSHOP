@@ -30,7 +30,7 @@ export default function PaymentPage() {
   const todayDate = format(new Date(), "yyyy-MM-dd HH:mm:ss");
   const shipDate = format(addDays(new Date(), 1), "yyyy-MM-dd");
   const axiosInstance = axios.create({
-    baseURL: "http://localhost:8080",
+    baseURL: "https://ezshop-be.azurewebsites.net/",
     headers: {
       Authorization: `Bearer ${localStorage.getItem("token")}`,
       "Content-Type": "application/json",
