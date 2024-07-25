@@ -8,6 +8,7 @@ import { createColumnHelper } from "@tanstack/react-table";
 import { formatDistanceToNow } from "date-fns";
 import { vi } from "date-fns/locale";
 import axios from "axios";
+import { CloseSVG } from "../../assets/images";
 import classNames from "classnames";
 const columnHelper = createColumnHelper();
 
@@ -128,6 +129,11 @@ export default function OrderPage() {
     }
   };
 
+  const handleCloseModal = () => {
+    setSelectedOrders([]);
+  };
+
+
   
   return (
     <>
@@ -197,25 +203,30 @@ export default function OrderPage() {
              
             </div>
             {selectedOrders.length > 0 && (
-              <div className="flex flex-col items-start gap-4 md:w-full">
-                <Heading size="lg" as="h2" className="uppercase">
-                  Chi tiết các đơn hàng
-                </Heading>
-                {selectedOrders.map((order) => (
-                  <div key={order.id} className="border p-2">
-                    <Heading size="md" as="h3">
-                      Chi tiết đơn hàng #{order.id}
-                    </Heading>
-                    <Text size="md" as="p">
-                      Tên sản phẩm: {order.name}
-                    </Text>
-                    <Text size="md" as="p">
-                      Giá: ${order.price}
-                    </Text>
-                  </div>
-                ))}
+          <div className="fixed inset-0 flex items-center justify-center bg-white z-50">
+            <div className="bg-stone-50 p-5 rounded-lg shadow-lg w-2/3 max-w-3xl">
+              <div className="flex justify-between items-center mb-4">
+                <h2 className="text-xl font-semibold">Order Details</h2>
+                <button
+                  className="text-gray-500 hover:text-gray-700"
+                  onClick={handleCloseModal}
+                >
+                  <CloseSVG />
+                </button>
               </div>
-            )}
+             {selectedOrders.map(order => (
+               <div className="bg-stone-50 p-5 rounded-lg shadow-inner">
+               <p>
+               <strong>Name:</strong>{order.name}
+               </p>
+               <p>
+               <strong>Price:</strong> ${order.price}
+               </p>
+             </div>
+             ))}
+            </div>
+          </div>
+        )}
           </div>
         </div>
       </div>
